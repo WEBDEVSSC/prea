@@ -730,16 +730,6 @@
           <div class="col-md-12">
             <center>
 
-            <!-- Mostrar el widget de reCAPTCHA -->
-            <!-- {!! NoCaptcha::display() !!} -->
-
-            <!-- Mostrar mensaje de error si hay uno para reCAPTCHA -->
-            <!-- @if ($errors->has('g-recaptcha-response'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('g-recaptcha-response') }}
-                </div>
-            @endif-->
-
             <button type="submit" class="btn btn-block mt-3" style="background-color: #6f42c1; color: #fff; border: none;">REGISTRAR EVENTO</button>
 
             </center>
@@ -761,11 +751,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Incluir el script de reCAPTCHA después del formulario -->
-    
-
-    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
     <br>
     <br>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\EventoCentinela;
 use App\Models\Correo;
 use App\Models\Evento;
+use App\Models\IncidenteCategoria;
+use App\Models\IncidenteOpcion;
 use App\Models\Unidad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -12,7 +14,34 @@ use Illuminate\Support\Facades\Mail;
 class SitioController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Llenamos el select de categorias
+     */
+    public function getCategorias()
+    {
+        $categorias = IncidenteCategoria::all();
+        return response()->json($categorias);
+    }
+
+    /**
+     * Llenamos el select de opciones de la categoria
+     */
+    public function getOpciones($categoria_id)
+    {
+        $opciones = IncidenteOpcion::where('relacion', $categoria_id)->get();
+        return response()->json($opciones);
+    }
+
+    /**
+     * Llenamos el select de unidades
+     */
+    public function getUnidades()
+    {
+        $unidades = Unidad::all();
+        return response()->json($unidades);
+    }
+    
+    /**
+     * Mostramos el formualario publico
      */
     public function create()
     {
@@ -21,7 +50,7 @@ class SitioController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Cargamos los datos y los registramos en la DB
      */
     public function store(Request $request)
     {
