@@ -10,15 +10,11 @@ use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 Auth::routes();
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'formPublic'])->name('formPublic');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 
 Route::get('/incidentes/categorias', [IncidenteController::class, 'getCategorias'])->name('incidentes.categorias');
 Route::get('/unidades', [IncidenteController::class, 'getUnidades'])->name('unidades');

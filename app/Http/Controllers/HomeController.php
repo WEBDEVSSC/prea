@@ -17,6 +17,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function formPublic()
+    {
+        return view('welcome');
+    }
+
     /**
      * Show the application dashboard.
      *
