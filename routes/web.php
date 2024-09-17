@@ -2,27 +2,53 @@
 
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\IncidenteController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\SitioController;
 use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\UserController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'formPublic'])->name('formPublic');
+/**
+ * 
+ * 
+ * SITIO CONTROLLER - CONTROLADOR PARA LOS RECURSOS PUBLICOS
+ * 
+ * 
+ */
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Mostramos el formulario al entrar a la aplicacion
+Route::get('/', [SitioController::class,'create'])->name('create');
 
+// Registramos los datos del formulario
+Route::post('/store',[SitioController::class,'store'])->name('store');
+
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+// Mostramos las graficas y el Dashboard
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Llenamos el select de CATEGORIAS
 Route::get('/incidentes/categorias', [IncidenteController::class, 'getCategorias'])->name('incidentes.categorias');
-Route::get('/unidades', [IncidenteController::class, 'getUnidades'])->name('unidades');
+
+// Llenamos el select de OPTIONES de CATEGORIAS
 Route::get('/incidentes/opciones/{categoria_id}', [IncidenteController::class, 'getOpciones'])->name('incidentes.opciones');
 
-Route::post('/formStore',[IncidenteController::class,'formStore'])->name('formStore');
+// Llenamos el select de UNIDADES
+Route::get('/unidades', [IncidenteController::class, 'getUnidades'])->name('unidades');
 
-Route::post('/formStore',[IncidenteController::class,'formStore'])->name('formStore');
+
+
 
 
 /**

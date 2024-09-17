@@ -28,7 +28,7 @@
 
     <div class="container mt-3">
               
-        <form action="{{ route('formStore') }}" method="POST">
+        <form action="{{ route('store') }}" method="POST">
 
         @csrf
 
