@@ -35,7 +35,6 @@ class IncidenteController extends Controller
     public function formStore(Request $request)
     {
         $request->validate([
-            'g-recaptcha-response' => 'required|captcha',
             'clasificacion_del_evento'=>'required',
             'unidad'=>'required',
             'edad'=>'required|integer',
@@ -72,8 +71,6 @@ class IncidenteController extends Controller
             'acciones_mejora_siete' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_ocho',
             'acciones_mejora_ocho' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_siete',
         ], [
-            'g-recaptcha-response.required' => 'Debe seleccionar la captcha.',
-            'g-recaptcha-response.captcha' => 'Por favor, confirma que no eres un robot.',
             'clasificacion_del_evento.required' => 'El campo de clasificación del evento es obligatorio.',
             'unidad.required' => 'El campo unidad es obligatorio.',
             'edad.required' => 'El campo edad es obligatorio.',
