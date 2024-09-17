@@ -28,13 +28,13 @@ Route::get('/', [SitioController::class,'create'])->name('create');
 Route::post('/store',[SitioController::class,'store'])->name('store');
 
 // Llenamos el select de UNIDADES
-Route::get('/unidades', [IncidenteController::class, 'getUnidades'])->name('unidades');
+Route::get('/unidades', [SitioController::class, 'getUnidades'])->name('unidades');
 
 // Llenamos el select de CATEGORIAS
-Route::get('/incidentes/categorias', [IncidenteController::class, 'getCategorias'])->name('incidentes.categorias');
+Route::get('/incidentes/categorias', [SitioController::class, 'getCategorias'])->name('incidentes.categorias');
 
 // Llenamos el select de OPTIONES de CATEGORIAS
-Route::get('/incidentes/opciones/{categoria_id}', [IncidenteController::class, 'getOpciones'])->name('incidentes.opciones');
+Route::get('/incidentes/opciones/{categoria_id}', [SitioController::class, 'getOpciones'])->name('incidentes.opciones');
 
 /**
  * 
