@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -746,19 +744,18 @@
 
     </form>
 
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-12">
-          <center>
-            <p><strong>Secretaría de Salud de Coahuila <?php echo date('Y'); ?></strong></p>
-          </center>
+    <!-- ------------------------------------------------------------------------- -->
+    
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; <?php echo date('Y'); ?> Secretaría de Salud de Coahuila. Todos los derechos reservados.</p>
+            
         </div>
-      </div>
-    </div>
+        <br>
+        <br>
+    </footer>
 
-    <br>
-    <br>
-    <br>
+    <!-- ------------------------------------------------------------------------- -->
 
     @section('plugins.Sweetalert2', true)
 
