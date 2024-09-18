@@ -19,12 +19,16 @@
 
 <body>
 
-<!-- As a heading -->
-<nav class="navbar" style="background-color: #6f42c1; color: white;">
-  <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1" style="color: white;">Sistema de Notificación y Análisis de Eventos Adversos Relacionados con la Seguridad del Paciente</span>
+<br>
+<br>
+
+<div class="container">
+  <div class="col-md-12">
+    <center><h3>Sistema de Notificación y Análisis de Eventos Adversos Relacionados con la Seguridad del Paciente</h3></center>
   </div>
-</nav>
+</div>
+
+<br>
 
     <div class="container mt-3">
               
