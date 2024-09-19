@@ -34,12 +34,15 @@
         </div>
     </div>
 
+    <p>Tu nivel es: {{ Auth::user()->nivel }}</p>
+    <p>Tu categoria es: {{ Auth::user()->categoria }}</p>
+
     <!-- -------------------------------------------------------------- -->
 
     <div class="card card-purple  mt-3">
 
         <div class="card-header">
-            <h3 class="card-title">Lista de eventos<p>Tu categoría es: {{ Auth::user()->clues }}</p></h3>
+            <h3 class="card-title">Lista de eventos</h3>
         </div>
 
         <div class="card-body">   

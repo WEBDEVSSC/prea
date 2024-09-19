@@ -23,7 +23,7 @@ class EventoController extends Controller
         $categoria = $user->categoria;
         $unidad = $user->clues;
         
-        // Opcion para ADMINISTRADOR 0
+        // Opcion para ADMINISTRADOR 1
         if($nivel == 1){
             
             // Consultamos todos los registros de la tabla eventos

@@ -115,6 +115,16 @@ Route::middleware('auth')->group(function () {
     /**
      * 
      * 
+     * MODULO DE MIS UNIDADES ( SE MUESTRA UNA LISTA DE LAS UNIDADES QUE PUEDE VER EL USUARIO )
+     * 
+     * 
+     */
+
+     Route::get('admin/misUnidadesIndex',[UnidadController::class,'misUnidades'])->name('misUnidades');
+
+    /**
+     * 
+     * 
      * MODULO DE USUARIOS
      * 
      * 

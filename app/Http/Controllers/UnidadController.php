@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Unidad;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+
 class UnidadController extends Controller
 {
     /**
@@ -128,5 +130,25 @@ class UnidadController extends Controller
 
         // Redirigimos y mandamos el mensaje de exito
         return redirect()->route('unidadIndex')->with('destroy', 'La unidad se elimino correctamente'); 
+    }
+
+    /**
+     * Consultamos todas las unidades que esten asigandas al usuario que inicio sesion
+     */
+    public function misUnidades()
+    {
+        // Obtener el usuario autenticado
+        $user = FacadesAuth::user();
+
+        // Obtenemos la categoria en una variable
+        $nivel = $user->nivel;
+        $categoria = $user->categoria;
+        $unidad = $user->clues;
+
+        // Consultamos todas las unidades de la DB
+        $unidades = Unidad::where('categoria', $categoria)->get();
+
+        // Retornamos la vista con los registros
+        return view('mis-unidades.index', compact('unidades'));
     }
 }

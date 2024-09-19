@@ -308,6 +308,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Mis unidades',
+            'url' => 'admin/misUnidadesIndex',
+            'icon' => 'far fa-fw fa-file',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Reporte',
             'url' => 'admin/reporteIndex',
             'icon' => 'far fa-fw fa-file',
