@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EventoExport;
 use App\Models\Evento;
 use App\Models\Unidad;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteController extends Controller
 {
@@ -108,5 +110,14 @@ class ReporteController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Funcion para exportar el archivo de Excel de todos los eventos
+     */
+    public function reporteExcel()
+    {
+        // Retornamos la descarga del archivo Excel
+        return Excel::download(new EventoExport,'eventos.xlsx');
     }
 }

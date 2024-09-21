@@ -31,6 +31,8 @@
             <h3 class="card-title">Lista de eventos</h3>
         </div>
 
+        <a href="{{ route('reporteExcel') }}">Excel</a>
+
         <div class="card-body">   
         <form action=" {{ route('reporteSearch') }} " method="POST">
 

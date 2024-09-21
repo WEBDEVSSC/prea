@@ -174,6 +174,9 @@ Route::middleware('auth')->group(function () {
     // Ruta para mostrar los resultados
     Route::get('admin/reporteShow',[ReporteController::class,'show'])->name('reporteShow');
 
+    // Ruta para generar un excel
+    Route::get('admin/reporteExcel',[ReporteController::class,'reporteExcel'])->name('reporteExcel');
+
 });
 
 
