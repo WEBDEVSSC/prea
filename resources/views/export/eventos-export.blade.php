@@ -32,8 +32,19 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Tipo de Evento</th>
+                <th><strong>ID</strong></th>
+                <th><strong>TIPO DE EVENTO</strong></th>
+                <th><strong>UNIDAD</strong></th>
+                <th><strong>EDAD</strong></th>
+                <th><strong>SEXO</strong></th>
+                <th><strong>LUGAR / AREA DONDE OCURRIO</strong></th>
+                <th><strong>TURNO</strong></th>
+                <th><strong>FECHA / HORA</strong></th>
+                <th><strong>PERSONA INVOLUCRADA</strong></th>
+                <th><strong>OTRO</strong></th>
+                <th><strong>PERSONA QUE PRESENCIARON</strong></th>
+                <th><strong>OTRO</strong></th>
+                <th><strong>DESCRIPCION</strong></th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +52,17 @@
                 <tr>
                     <td>{{ $evento->id }}</td>
                     <td>{{ $evento->clasificacion_del_evento }}</td>
+                    <td>{{ $evento->unidad }} - {{$evento->unidad_nombre}}</td>
+                    <td>{{ $evento->edad }}</td>
+                    <td>{{ $evento->sexo }}</td>
+                    <td>{{ $evento->servicio }}</td>
+                    <td>{{ $evento->turno }}</td>
+                    <td>{{ $evento->fecha_hora }}</td>
+                    <td>{{ $evento->persona_involucrada }}</td>
+                    <td>{{ $evento->persona_involucrada_otro }}</td>
+                    <td>{{ $evento->persona_testigos }}</td>
+                    <td>{{ $evento->persona_testigos_otro }}</td>
+                    <td>{{ $evento->descripcion }}</td>
                 </tr>
             @endforeach
         </tbody>

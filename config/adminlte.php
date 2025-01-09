@@ -324,16 +324,17 @@ return [
             'text' => 'Timbrado',
             'url' => 'admin/timbradoIndex',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'isAdmin',
         ],
         [
             'text' => 'Usuarios',
             'url' => 'admin/usuarioIndex',
-            'icon' => 'fas fa-fw fa-lock',
+            'can' => 'isAdmin',
         ],
         [
             'text' => 'Unidades',
             'url' => 'admin/unidadIndex',
-            'icon' => 'fas fa-fw fa-lock',
+            'can' => 'isAdmin',
         ],
     ],
 
@@ -423,7 +424,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],

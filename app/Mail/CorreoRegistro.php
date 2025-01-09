@@ -33,7 +33,7 @@ class CorreoRegistro extends Mailable
 
     public function build()
     {
-        return $this->view('emails.correo-registro') // la vista del correo
+        return $this->markdown('emails.correo-registro') // la vista del correo
                     ->subject('Correo registrado')
                     ->from('soportewebssc@gmail.com', 'P.R.E.A. Coah'); // Correo y nombre del remitente
     }

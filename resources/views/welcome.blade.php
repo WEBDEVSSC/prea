@@ -34,6 +34,10 @@
 
         @csrf
 
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- TIPO DE EVENTO -->
+        <!-- ------------------------------------------------------------------------------- -->
+
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
                 Tipo de evento
@@ -73,6 +77,10 @@
             </div>
         </div>
 
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- UNIDAD -->
+        <!-- ------------------------------------------------------------------------------- -->
+
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
                 Unidad
@@ -93,6 +101,10 @@
                 
             </div>
         </div>
+
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- DATOS DEL PACIENTE -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -133,11 +145,9 @@
             </div>
         </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Descripción del evento adverso -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+       <!-- ------------------------------------------------------------------------------- -->
+        <!-- DESCRIPCION DEL EVENTO ADVERSO -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -216,31 +226,38 @@
 
           <div class="row mt-3">
 
-    <div class="col-md-6">
-      <p>Persona directamente involucrada</p>
-      <select id="personaInvolucradaSelect" name="persona_involucrada" class="form-control">
-        <option value="">[ Seleccione una opción ]</option>
-        <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
-        <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
-        <option value="CAMILLERO"{{ old('persona_involucrada') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
-        <option value="TECNICO"{{ old('persona_involucrada') == 'TECNICO' ? ' selected' : '' }}>TÉCNICO</option>
-        <option value="PASANTE"{{ old('persona_involucrada') == 'PASANTE' ? ' selected' : '' }}>PASANTE</option>
-        <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
-      </select>
-
-      @error('persona_involucrada')
-        <br><div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-    </div>
-
-    <div class="col-md-6">
-      <p><small>En caso de que su respuesta anterior fuera "OTRO", favor de ingresar el cargo del personal</small></p>
-      <input type="text" name="persona_involucrada_otro" class="form-control" value="{{ old('persona_involucrada_otro') }}">
-      
-      @error('persona_involucrada_otro')
-        <br><div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-    </div>
+            <div class="col-md-6">
+              <p>Persona directamente involucrada</p>
+              <select id="personaInvolucradaSelect" name="persona_involucrada" class="form-control" onchange="toggleOtroInput()">
+                <option value="">[ Seleccione una opción ]</option>
+                <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
+                <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
+                <option value="CAMILLERO"{{ old('persona_involucrada') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
+                <option value="TECNICO"{{ old('persona_involucrada') == 'TECNICO' ? ' selected' : '' }}>TÉCNICO</option>
+                <option value="PASANTE"{{ old('persona_involucrada') == 'PASANTE' ? ' selected' : '' }}>PASANTE</option>
+                <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
+              </select>
+            
+              @error('persona_involucrada')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+            </div>
+            
+            <div class="col-md-6">
+              <p><small>En caso de que su respuesta anterior fuera "OTRO", favor de ingresar el cargo del personal</small></p>
+              <input 
+                type="text" 
+                id="personaInvolucradaOtro" 
+                name="persona_involucrada_otro" 
+                class="form-control" 
+                value="{{ old('persona_involucrada_otro') }}" 
+                disabled
+              >
+              
+              @error('persona_involucrada_otro')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+            </div>
 
   </div>
 
@@ -250,7 +267,7 @@
     
     <div class="col-md-6">
       <p>Personas que presenciaron</p>
-      <select id="personaTestigosSelect" name="persona_testigos" class="form-control">
+      <select id="personaTestigosSelect" name="persona_testigos" class="form-control" onchange="toggleTestigosInput()">
         <option value="">[ Seleccione una opción ]</option>
         <option value="MEDICO"{{ old('persona_testigos') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
         <option value="ENFERMERIA"{{ old('persona_testigos') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
@@ -259,15 +276,22 @@
         <option value="FAMILIAR"{{ old('persona_testigos') == 'FAMILIAR' ? ' selected' : '' }}>FAMILIAR</option>
         <option value="OTRO"{{ old('persona_testigos') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
       </select>
-
+    
       @error('persona_testigos')
         <br><div class="alert alert-danger">{{ $message }}</div>
       @enderror
     </div>
-
+    
     <div class="col-md-6">
       <p><small>En caso de que su respuesta anterior fuera "OTRO", favor de ingresar el cargo del personal</small></p>
-      <input type="text" name="persona_testigos_otro" class="form-control" value="{{ old('persona_testigos_otro') }}">
+      <input 
+        type="text" 
+        id="personaTestigosOtro" 
+        name="persona_testigos_otro" 
+        class="form-control" 
+        value="{{ old('persona_testigos_otro') }}" 
+        disabled
+      >
       
       @error('persona_testigos_otro')
         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -278,11 +302,9 @@
   </div>
   </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Descripción detallada del evento -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- DESCRIPCION DETALLADA DEL EVENTO -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -306,11 +328,9 @@
             </div>
         </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Tipo de incidente -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- TIPO DE INCIDENTE -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -339,11 +359,9 @@
             </div>
         </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Gravedad del daño -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- GRAVEDAD DEL DAÑO -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -420,11 +438,9 @@
             </div>
         </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Factores del incidente -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- FACTORES DEL INCIDENTE -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -521,11 +537,9 @@
             </div>
         </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Evitabilidad -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- EVITABILIDAD -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -599,11 +613,9 @@
             </div>
         </div>
 
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
-        <!-- Acciones de mejora -->
-        <!-- -------------------------------------------------------- -->
-        <!-- -------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------- -->
+        <!-- ACCIONES DE MEJORA -->
+        <!-- ------------------------------------------------------------------------------- -->
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
@@ -867,6 +879,48 @@
     } else {
       personaTestigosOtroInput.disabled = true;
     }
+  });
+</script>
+
+<script>
+  // Función para habilitar/deshabilitar el campo de texto
+  function toggleOtroInput() {
+    const select = document.getElementById('personaInvolucradaSelect');
+    const otroInput = document.getElementById('personaInvolucradaOtro');
+    
+    if (select.value === 'OTRO') {
+      otroInput.disabled = false; // Habilita el campo
+      otroInput.focus(); // Opcional: Enfoca el campo
+    } else {
+      otroInput.disabled = true; // Deshabilita el campo
+      otroInput.value = ''; // Limpia el valor del campo
+    }
+  }
+
+  // Verifica el estado inicial al cargar la página
+  window.addEventListener('DOMContentLoaded', (event) => {
+    toggleOtroInput();
+  });
+</script>
+
+<script>
+  // Función para habilitar/deshabilitar el campo de texto
+  function toggleTestigosInput() {
+    const select = document.getElementById('personaTestigosSelect');
+    const otroInput = document.getElementById('personaTestigosOtro');
+    
+    if (select.value === 'OTRO') {
+      otroInput.disabled = false; // Habilita el campo
+      otroInput.focus(); // Opcional: Enfoca el campo
+    } else {
+      otroInput.disabled = true; // Deshabilita el campo
+      otroInput.value = ''; // Limpia el valor del campo
+    }
+  }
+
+  // Verifica el estado inicial al cargar la página
+  window.addEventListener('DOMContentLoaded', (event) => {
+    toggleTestigosInput();
   });
 </script>
 
