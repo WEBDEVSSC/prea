@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\EventoCentinela;
+use App\Mail\adversoMail;
+use App\Mail\cuasiFallaMail;
+use App\Mail\eventoCentinelaMail;
 use App\Models\Correo;
 use App\Models\Evento;
 use App\Models\IncidenteCategoria;
 use App\Models\IncidenteOpcion;
 use App\Models\Unidad;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -198,14 +201,34 @@ class SitioController extends Controller
         // Guardamos el registro
         $evento->save();
 
+        // Verificar la clasificación del evento para "CUASIFALLA"
+        if ($request->clasificacion_del_evento === 'CUASI-FALLA') {
+
+            // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
+            $correos = User::where('cuasifalla', 1)->pluck('email')->toArray();
+            
+            // Enviamos el correo de confirmación para Evento Adverso
+            Mail::to($correos)->send(new cuasiFallaMail($folio));
+        }
+
+            // Verificar la clasificación del evento para "EVENTO ADVERSO"
+        if ($request->clasificacion_del_evento === 'EVENTO ADVERSO') {
+
+            // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
+            $correos = User::where('adverso', 1)->pluck('email')->toArray();
+            
+            // Enviamos el correo de confirmación para Evento Adverso
+            Mail::to($correos)->send(new adversoMail($folio));
+        }
+
         // Verificar la clasificación del evento
         if ($request->clasificacion_del_evento === 'EVENTO CENTINELA') {
 
-            // Obtenemos todos los correos de la tabla Correos
-            $correos = Correo::all()->pluck('correo')->toArray();
+            // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
+            $correos = User::where('centinela', 1)->pluck('email')->toArray();
             
             // Enviamos el correo de confirmacion
-            Mail::to($correos)->send(new EventoCentinela($folio));
+            Mail::to($correos)->send(new eventoCentinelaMail($folio));
         }
 
         // Redireccionamos con el evento 

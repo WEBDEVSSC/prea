@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EventoCentinela extends Mailable
+class cuasiFallaMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -36,8 +36,8 @@ class EventoCentinela extends Mailable
 
     public function build()
     {
-        return $this->view('emails.evento-centinela') // la vista del correo
-                    ->subject('Evento Centinela')
+        return $this->markdown('emails.cuasi-falla') // la vista del correo
+                    ->subject('Cuasi-Falla')
                     ->from('soportewebssc@gmail.com', 'P.R.E.A. Coah'); // Correo y nombre del remitente
     }
 }

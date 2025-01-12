@@ -52,14 +52,14 @@
                         </div>
                         <div class="col-md-3">
                             <p>Contraseña</p>
-                            <input type="password" name="password" id="password" class="form-control" value="{{ old('password') }}">
+                            <input type="password" name="password" id="password" class="form-control" >
                             @error('password')
                                 <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-3">
                             <p>*</p>
-                            <input type="password" placeholder="Repite la contraseña" id="rPassword" name="rPassword" class="form-control" value="{{ old('rPassword') }}">
+                            <input type="password" placeholder="Repite la contraseña" id="rPassword" name="rPassword" class="form-control">
                             @error('rPassword')
                                 <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -77,12 +77,13 @@
                             <p>Nivel</p>
                             <select name="nivel" id="nivel" class="form-control">
                                 <option value="">[ Seleccione una opción ]</option>
-                                <option value="1">Administrador SSC</option>
-                                <option value="2">Jurisdicción</option>
-                                <option value="3">Unidad</option>
+                                <option value="1" {{ old('nivel') == '1' ? 'selected' : '' }}>Administrador SSC</option>
+                                <option value="2" {{ old('nivel') == '2' ? 'selected' : '' }}>Jurisdicción</option>
+                                <option value="3" {{ old('nivel') == '3' ? 'selected' : '' }}>Unidad</option>
                             </select>
                             @error('nivel')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
+                                <br>
+                                <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-3">
@@ -95,14 +96,32 @@
                     </div>
 
                     <div class="row mt-3">
-                        <div class="col-md-12">
-
-                        <button type="submit" class="btn btn-success">Registrar datos</button>
-
-                        </div>
+                        <p>Seleccione las notificaciones que recibira por email</p>
                     </div>
 
-                    </form>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" name="cuasifalla" value="0"> <!-- Valor por defecto cuando no está marcado -->
+                                <input name="cuasifalla" type="checkbox" class="custom-control-input" id="cuasifalla" value="1" {{ old('cuasifalla') == 1 ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="cuasifalla">Cuasi - Falla</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" name="adverso" value="0"> <!-- Valor por defecto cuando no está marcado -->
+                                <input name="adverso" type="checkbox" class="custom-control-input" id="adverso" value="1" {{ old('adverso') == 1 ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="adverso">Evento Adverso</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" name="centinela" value="0"> <!-- Valor por defecto cuando no está marcado -->
+                                <input name="centinela" type="checkbox" class="custom-control-input" id="centinela" value="1" {{ old('centinela') == 1 ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="centinela">Evento Centinela</label>
+                            </div>
+                        </div>
+                    </div>               
 
                 </div>
             </div>
@@ -110,9 +129,13 @@
         </div><!-- CARD BODY -->
 
         <div class="card-footer">
+
+            <button type="submit" class="btn btn-info">Registrar datos</button>
             
         </div>
     </div>
+
+</form>
 
     <!-- -------------------------------------------------------------- -->
 

@@ -42,13 +42,17 @@ class UserController extends Controller
             'rPassword'=>'required|string|same:password',
             'categoria'=>'required|integer',
             'nivel'=>'required|integer',
-            'clues'=>'required|string',
+            'clues'=>'required|string',            
+            'cuasifalla' => 'nullable|boolean',
+            'adverso' => 'nullable|boolean',
+            'centinela' => 'nullable|boolean',
         ],[
             'rPassword.same'=>'Las contraseñas no coinciden',
-            'correo.unique'=>'El correo ya se encuentra registrado',            
+            'correo.unique'=>'El correo ya se encuentra registrado', 
+            'password.required'=>'Este campo es requerido',     
+            'rPassword.required'=>'Este campo es requerido',     
         ]);
-        
-        
+
         // Creamos una instancia del modelo
         $user = new User();
 
@@ -59,6 +63,9 @@ class UserController extends Controller
         $user->categoria=$request->categoria;
         $user->nivel=$request->nivel;
         $user->clues=$request->clues;
+        $user->cuasifalla = $request->has('cuasifalla');
+        $user->adverso = $request->has('adverso');
+        $user->centinela = $request->has('centinela');
 
         // Guardamos el registro
         $user->save();

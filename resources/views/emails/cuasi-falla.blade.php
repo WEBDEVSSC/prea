@@ -2,7 +2,7 @@
 
 <x-mail::panel>
 
-<p>Se ha realizado un registro de tipo : <strong>EVENTO CENTINELA</strong></p>
+<p>Se ha realizado un registro de tipo : <strong>CUASI-FALLA</strong></p>
 <p>Folio : {{$folio}}</p>
 
 </x-mail::panel>
