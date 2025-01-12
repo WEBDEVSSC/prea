@@ -321,12 +321,6 @@ return [
         ],
         ['header' => 'Configuración'],
         [
-            'text' => 'Timbrado',
-            'url' => 'admin/timbradoIndex',
-            'icon' => 'fas fa-fw fa-user',
-            'can' => 'isAdmin',
-        ],
-        [
             'text' => 'Usuarios',
             'url' => 'admin/usuarioIndex',
             'can' => 'isAdmin',
