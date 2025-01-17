@@ -5,7 +5,7 @@
 @section('title', 'Unidades')
 
 @section('content_header')
-    <h1><strong>Unidades</strong></h1>
+    <h1><strong>Unidades</strong> | <small>Panel de Control</small></h1>
 @stop
 
 @section('content')
@@ -22,17 +22,7 @@
             });
         </script>
     @endif
-    
 
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Panel de Control</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -42,10 +32,10 @@
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info  mt-3">
 
         <div class="card-header">
-            <h3 class="card-title">Lista de correos</h3>
+            <h3 class="card-title"></h3>
         </div>
 
         <div class="card-body">   
@@ -71,8 +61,7 @@
                                     <td>{{ $unidad->clues }}</td>
                                     <td>{{ $unidad->jurisdiccion }}</td>
                                     <td>
-                                        <a href="{{ route('unidadEdit',['id'=>$unidad->id]) }}" class="btn btn-success btn-sm">Editar</a>
-                                        <a href="{{ route('unidadDestroy',['id'=>$unidad->id]) }}" class="btn btn-success btn-sm">Eliminar</a>
+                                        <a href="{{ route('unidadShow',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm">DETALLES</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -92,6 +81,8 @@
     <!-- -------------------------------------------------------------- -->
     
 @stop
+
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

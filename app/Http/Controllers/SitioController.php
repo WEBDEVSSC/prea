@@ -39,7 +39,7 @@ class SitioController extends Controller
      */
     public function getUnidades()
     {
-        $unidades = Unidad::all();
+        $unidades = Unidad::orderBy('nombre', 'asc')->get();
         return response()->json($unidades);
     }
     

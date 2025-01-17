@@ -5,7 +5,7 @@
 @section('title', 'Eventos')
 
 @section('content_header')
-    <h1><strong>Eventos</strong></h1>
+    <h1><strong>Eventos</strong> | <small>Panel de Control</small></h1>
 @stop
 
 @section('content')
@@ -22,27 +22,13 @@
             });
         </script>
     @endif
-    
-
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Panel de Control</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-
-    <p>Tu nivel es: {{ Auth::user()->nivel }}</p>
-    <p>Tu categoria es: {{ Auth::user()->categoria }}</p>
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
 
         <div class="card-header">
-            <h3 class="card-title">Lista de eventos</h3>
+            <h3 class="card-title"></h3>
         </div>
 
         <div class="card-body">   
@@ -101,9 +87,7 @@
     
 @stop
 
-@section('footer')
-<p>Copyright © <?php echo date('Y') ?> <strong>Servicios de Salud de Coahuila de Zaragoza</strong> | Subdirección de Calidad y Certificación [Nombre programa] | Unidad de Planeación [Departamento de Tecnologías de la Información]</p>
-@stop
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

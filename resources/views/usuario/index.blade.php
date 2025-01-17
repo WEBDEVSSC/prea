@@ -5,12 +5,14 @@
 @section('title', 'Unidades')
 
 @section('content_header')
-    <h1><strong>Usuarios</strong></h1>
+    <h1><strong>Usuarios</strong> <small>Panel de Control</small></h1>
 @stop
 
 @section('content')
 
-@if(session('success') || session('update') || session('destroy'))
+<!-- --------------------------------------------------------------------------------- -->
+
+    @if(session('success') || session('update') || session('destroy'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
@@ -22,30 +24,22 @@
             });
         </script>
     @endif
+
+    <!-- --------------------------------------------------------------------------------- -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('usuarioCreate') }}" class="btn btn-info btn-sm float-right">NUEVO REGISTRO</a>
+        </div>
+    </div>
     
-
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Panel de Control</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <a href="{{ route('usuarioCreate') }}" class="btn btn-info float-right">Nuevo registro</a>
-        </div>
-    </div>
-
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info  mt-3">
 
         <div class="card-header">
-            <h3 class="card-title">Lista de usuarios</h3>
+            <h3 class="card-title"></h3>
+            
         </div>
 
         <div class="card-body">   
@@ -58,17 +52,16 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>Nivel</th>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                <th>Nivel</th>
+                                <th>CLUES</th>                                
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($usuarios as $usuario)
                                 <tr>
-                                    <td>{{ $usuario->name }}</td>
-                                    <td>{{ $usuario->email }}</td>
                                     <td>
                                         @if($usuario->nivel == 1)
                                         <span class="badge badge-success">ADMINISTRADOR</span>
@@ -78,8 +71,12 @@
                                         <span class="badge badge-info">UNIDAD</span>
                                         @endif
                                     </td>
+                                    <td>{{ $usuario->name }}</td>
+                                    <td>{{ $usuario->email }}</td>
+                                    <td>J.{{ $usuario->clues_jurisdiccion }} - {{ $usuario->clues_nombre }}</td>
+                                    
                                     <td>
-                                        
+                                        <a href="{{ route('usuarioShow',['id'=>$usuario->id]) }}" class="btn btn-info btn-sm">DETALLES</a>
                                     </td>
                                 </tr>
                             @endforeach

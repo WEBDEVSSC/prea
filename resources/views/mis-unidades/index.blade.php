@@ -5,14 +5,18 @@
 @section('title', 'Unidades')
 
 @section('content_header')
-    <h1><strong>Mis unidades</strong></h1>
+    <h1><strong>Mis unidades</strong> | <small>Panel de Control</small></h1>
 @stop
 
 @section('content')
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
+
+        <div class="card-header">
+            <h3 class="card-title"></h3>
+        </div>
 
         <div class="card-body">   
             
@@ -55,6 +59,8 @@
     <!-- -------------------------------------------------------------- -->
     
 @stop
+
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unidad;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Auth;
 
 class UnidadController extends Controller
 {
@@ -68,9 +67,14 @@ class UnidadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Buscamos el registro
+        $unidad = Unidad::findOrFail($id);
+
+        // Retornamos la visya con los valores de la unidad
+        return view('unidad.show', compact('unidad'));
+        
     }
 
     /**
@@ -138,15 +142,25 @@ class UnidadController extends Controller
     public function misUnidades()
     {
         // Obtener el usuario autenticado
-        $user = FacadesAuth::user();
+        $user = Auth::user();
 
-        // Obtenemos la categoria en una variable
-        $nivel = $user->nivel;
-        $categoria = $user->categoria;
-        $unidad = $user->clues;
-
-        // Consultamos todas las unidades de la DB
-        $unidades = Unidad::where('categoria', $categoria)->get();
+        // Administrador
+        if ($user->nivel == 1) 
+        {
+            $unidades = Unidad::orderBy('jurisdiccion', 'asc')
+                                ->orderBy('nombre', 'asc')
+                                ->get();
+        } 
+        // Jurisdiccion
+        elseif ($user->nivel == 2) 
+        {
+            $unidades = Unidad::where('jurisdiccion',$user->clues_jurisdiccion)->get();
+        } 
+        // Unidad
+        else 
+        {
+            
+        }
 
         // Retornamos la vista con los registros
         return view('mis-unidades.index', compact('unidades'));

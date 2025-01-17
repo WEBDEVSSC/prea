@@ -63,32 +63,6 @@ Route::middleware('auth')->group(function () {
     /**
      * 
      * 
-     * MODULO DE TIMBRADO
-     * 
-     * 
-     */
-
-    //Ruta para mostrar todos los registros
-    Route::get('admin/timbradoIndex',[CorreoController::class,'index'])->name('timbradoIndex');
-
-    //Ruta para mostrar el formulario de creacion de registro
-    Route::get('admin/timbradoCreate',[CorreoController::class,'create'])->name('timbradoCreate');
-
-    //Ruta para almacenar un registro en la DB
-    Route::post('admin/timbradoStore',[CorreoController::class,'store'])->name('timbradoStore');
-
-    //Ruta para mostrar el formulario de edicion de registro
-    Route::get('admin/timbradoEdit/{id}', [CorreoController::class, 'edit'])->name('timbradoEdit');
-
-    //Ruta para actualizar los campos en la DB
-    Route::put('admin/timbradoUpdate/{id}',[CorreoController::class,'update'])->name('timbradoUpdate');
-
-    //Ruta para eliminar un registro de la DB
-    Route::get('admin/timbradoDestroy/{id}',[CorreoController::class,'destroy'])->name('timbradoDestroy');
-
-    /**
-     * 
-     * 
      * MODULO DE UNIDADES
      * 
      * 
@@ -111,6 +85,9 @@ Route::middleware('auth')->group(function () {
 
     //Ruta oara eliminar un registro de la DB
     Route::get('admin/unidadDestroy/{id}',[UnidadController::class,'destroy'])->name('unidadDestroy');
+
+    // Ruta para mostrar los detalles
+    Route::get('admin/unidadShow/{id}',[UnidadController::class,'show'])->name('unidadShow');
 
     /**
      * 
@@ -138,6 +115,15 @@ Route::middleware('auth')->group(function () {
 
     // Ruta para guardar el registro en la db
     Route::post('admin/usuarioStore',[UserController::class,'store'])->name('usuarioStore');
+
+    // Ruta para editar un registro de usuario
+    Route::get('admin/usuarioEdit/{id}',[UserController::class,'edit'])->name('usuarioEdit');
+
+    // Ruta para actualiza registros
+    Route::put('admin/usuariosUpdate/{id}',[UserController::class,'update'])->name('usuariosUpdate');
+
+    // Ruta para mostrar los detalles de un registro
+    Route::get('admin/usuarioShow/{id}',[UserController::class,'show'])->name('usuarioShow');
 
     /**
     * 

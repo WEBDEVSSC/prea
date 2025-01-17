@@ -3,27 +3,17 @@
 @section('title', 'Unidades')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+<h1><strong>Unidades</strong> | <small>Editar registro</small></h1>
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('unidadIndex') }}">Panel de Control</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Nuevo registro</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
 
         <div class="card-header">
-            <h3 class="card-title">Lista de unidades registradas</h3>
+            <h3 class="card-title"></h3>
         </div>
 
         <div class="card-body">   
@@ -71,15 +61,9 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-12">
+                    
 
-                        <button type="submit" class="btn btn-success">Registrar datos</button>
-
-                        </div>
-                    </div>
-
-                    </form>
+                    
 
                 </div>
             </div>
@@ -87,9 +71,19 @@
         </div><!-- CARD BODY -->
 
         <div class="card-footer">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                <button type="submit" class="btn btn-info btn-sm float-right">ACTUALIZAR DATOS</button>
+
+                </div>
+            </div>
             
         </div>
     </div>
+
+</form>
 
     <!-- -------------------------------------------------------------- -->
 
