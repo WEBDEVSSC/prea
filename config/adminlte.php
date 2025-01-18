@@ -319,6 +319,15 @@ return [
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
+
+        ['header' => 'Años'],
+        [
+            'text' => '2024',
+            'url' => 'admin/anio2024',
+            'icon' => 'far fa-fw fa-file',
+            'label_color' => 'success',
+        ],
+
         ['header' => 'Configuración'],
         [
             'text' => 'Usuarios',

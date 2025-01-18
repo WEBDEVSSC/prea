@@ -9,21 +9,27 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class EventoExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    /*public function collection()
-    {
-        // Asi se descarga la base de datos en crudo
-        return Evento::orderBy('id', 'desc')->get();
+    protected $inicio;
+    protected $fin;
 
-        
-    }*/
+    // Recibimos las fechas de inicio y fin
+    public function __construct($inicio, $fin)
+    {
+        $this->inicio = $inicio;
+        $this->fin = $fin;
+    }
 
     public function view(): View
     {
-        return view('export.eventos-export',[
-            'eventos'=> Evento::orderBy('id', 'desc')->get()
+        // Filtramos los eventos por el rango de fechas
+        $eventos = Evento::whereBetween('created_at', [$this->inicio, $this->fin])
+                         ->orderBy('id', 'desc')
+                         ->get();
+
+        // Pasamos los eventos a la vista
+        return view('export.eventos-export', [
+            'eventos' => $eventos
         ]);
+        
     }
 }

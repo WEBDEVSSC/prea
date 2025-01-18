@@ -115,9 +115,22 @@ class ReporteController extends Controller
     /**
      * Funcion para exportar el archivo de Excel de todos los eventos
      */
-    public function reporteExcel()
+    public function reporteExcel(Request $request)
     {
+        // Validar las fechas
+        $validated = $request->validate([
+            'inicio' => 'required|date',
+            'fin' => 'required|date|after_or_equal:inicio',
+        ]);
+
+        // Obtener las fechas de inicio y fin
+        $inicio = $validated['inicio'];
+        $fin = $validated['fin'];
+
+        // Exportar el archivo Excel
+        return Excel::download(new EventoExport($inicio, $fin), 'eventos-'.$inicio.'-to-'.$fin.'.xlsx');
+        
         // Retornamos la descarga del archivo Excel
-        return Excel::download(new EventoExport,'eventos.xlsx');
+        // return Excel::download(new EventoExport,'eventos.xlsx');
     }
 }

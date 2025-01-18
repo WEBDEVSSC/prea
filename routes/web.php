@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnioController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\HomeController;
@@ -162,6 +163,16 @@ Route::middleware('auth')->group(function () {
 
     // Ruta para generar un excel
     Route::get('admin/reporteExcel',[ReporteController::class,'reporteExcel'])->name('reporteExcel');
+
+    /**
+     * 
+     *
+     * MODULO DE AÑOS
+     *
+     *
+     */
+
+    Route::get('admin/anio2024',[AnioController::class,'anio2024'])->name('anio2024');  
 
 });
 

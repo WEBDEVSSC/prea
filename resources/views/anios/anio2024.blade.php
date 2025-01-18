@@ -5,7 +5,7 @@
 @section('plugins.Chartjs', true)
 
 @section('content_header')
-    <h1><strong>Dashboard </strong><small><?php echo date('Y'); ?></small></h1>
+    <h1><strong>Dashboard</strong> <small>2024</small></h1>
 @stop
 
 @section('content')
@@ -183,7 +183,70 @@
 
             </div>
         </div>
+        
 
+        </div>
+    </div>
+
+    <!-- ---------------------------------------------------------- -->
+
+    <!-- -------------------------------------------------------------- -->
+
+    <div class="card card-info mt-3">
+
+        <div class="card-header">
+            <h3 class="card-title"></h3>
+        </div>
+
+        <div class="card-body">   
+            
+            <div class="row">
+                <div class="col-md-12">
+                    @if($eventos->isEmpty())
+                        <p>No hay eventos disponibles.</p>
+                    @else
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Clasificación</th>
+                                <th>Folio</th>
+                                <th>Unidad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($eventos as $evento)
+                                <tr>
+                                    <td>{{ $evento->id }}</td>
+                                    <td>
+                                        @if($evento->clasificacion_del_evento == 'CUASI-FALLA')
+                                            <span class="badge badge-success">{{ $evento->clasificacion_del_evento }}</span>
+                                        @elseif($evento->clasificacion_del_evento == 'EVENTO ADVERSO')
+                                        <span class="badge badge-warning">{{ $evento->clasificacion_del_evento }}</span>
+                                        @elseif($evento->clasificacion_del_evento == 'EVENTO CENTINELA')
+                                        <span class="badge badge-danger">{{ $evento->clasificacion_del_evento }}</span>
+                                        @else
+                                            <span>{{ $evento->clasificacion_del_evento }}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $evento->folio }}</td>
+                                    <td>{{ $evento->unidad }} - {{ $evento->unidad_nombre}}</td>
+                                    <td>
+                                        <a href="{{ route('eventoShow',['id'=>$evento->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
+                </div>
+            </div>
+
+        </div><!-- CARD BODY -->
+
+        <div class="card-footer">
+            
         </div>
     </div>
 

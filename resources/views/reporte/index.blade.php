@@ -10,17 +10,36 @@
 
 @section('content')
 
+    <!-- -------------------------------------------------------------- -->
 
-    
+    <div class="card card-info">
 
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Panel de Control</li>
-                </ol>
-            </nav>
+        <div class="card-header">
+            <h3 class="card-title">Excel por fechas</h3>
         </div>
+
+        <form action="{{ route('reporteExcel') }}" method="get">
+        @csrf
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Fecha de inicio</strong></p>
+                    <input type="date" name="inicio" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Fecha de fin</strong></p>
+                    <input type="date" name="fin" class="form-control">
+                </div>
+            </div>
+        
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info btn-sm btn-block">GENERAR EXCEL</button>
+        </div>
+        
+        </form>
+
     </div>
 
     <!-- -------------------------------------------------------------- -->
@@ -30,8 +49,6 @@
         <div class="card-header">
             <h3 class="card-title">Lista de eventos</h3>
         </div>
-
-        <a href="{{ route('reporteExcel') }}">Excel</a>
 
         <div class="card-body">   
         <form action=" {{ route('reporteSearch') }} " method="POST">
@@ -65,6 +82,7 @@
         </div>
 
         </form>
+
     </div>
 
     <!-- -------------------------------------------------------------- -->

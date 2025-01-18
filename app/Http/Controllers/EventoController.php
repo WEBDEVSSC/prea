@@ -26,16 +26,22 @@ class EventoController extends Controller
         // Opcion para ADMINISTRADOR 1
         if($nivel == 1){
             
+            $anio = 2025;
+
             // Consultamos todos los registros de la tabla eventos
-            $eventos = Evento::orderBy('id', 'desc')
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->orderBy('id', 'desc')
                 ->get();
 
         }
         // Opcion para JURISDICCIONES
         elseif($nivel == 2){
 
+            $anio = 2025;
+
             // Consultamos todos los registros por jurisdiccion
-            $eventos = Evento::where('categoria',$categoria)
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('categoria',$categoria)
                 ->orderBy('id','desc')
                 ->get();
 
@@ -43,8 +49,11 @@ class EventoController extends Controller
         // Opcion para UNIDADES
         else{
 
+            $anio = 2025;
+            
             //Consultamos los registros por unidad
-            $eventos = Evento::where('unidad',$unidad)
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('unidad',$unidad)
                 ->orderBy('id','desc')
                 ->get();
 
