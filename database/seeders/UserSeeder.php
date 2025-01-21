@@ -18,6 +18,17 @@ class UserSeeder extends Seeder
             'name' => 'ROOT PREA',
             'email' => 'soportewebcoah@gmail.com',
             'password' => Hash::make('PreaCoah0950$'), 
+            'categoria' => 0,
+            'nivel' => 1,
+            'clues' => 'CLSSA002734',
+            'clues_id' => 81,
+            'clues_jurisdiccion' => 8,
+            'clues_nombre' => 'HOSPITAL GENERAL DE SALTILLO',
+            'clues_categoria' => 8,
+            'cuasifalla' => 1,
+            'adverso' => 1,
+            'centinela' => 1,
+            'role' => 'admin'
         ]);
     }
 }

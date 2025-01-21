@@ -5,7 +5,7 @@
 @section('title', 'Unidades')
 
 @section('content_header')
-    <h1><strong>Unidades</strong> | <small>Panel de Control</small></h1>
+    <h1><strong>Unidades</strong> <small>Panel de Control</small></h1>
 @stop
 
 @section('content')
@@ -26,7 +26,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('unidadCreate') }}" class="btn btn-info float-right">Nuevo registro</a>
+            <a href="{{ route('unidadCreate') }}" class="btn btn-info btn-sm float-right">NUEVO REGISTRO</a>
         </div>
     </div>
 

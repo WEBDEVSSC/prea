@@ -66,7 +66,7 @@
 
         <div class="card-footer">
 
-            <a href="{{ route('unidadShow',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right">ELIMINAR</a>
+            <a href="{{ route('unidadDestroy',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right">ELIMINAR</a>
             <a href="{{ route('unidadEdit',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right mr-2">EDITAR</a>
             
         </div>

@@ -4,7 +4,6 @@ namespace App\Exports;
 
 use App\Models\Evento;
 use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 
 class EventoExport implements FromView

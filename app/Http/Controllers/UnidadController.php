@@ -39,11 +39,13 @@ class UnidadController extends Controller
             'clues' => 'required|string|unique:unidades,clues',
             'jurisdiccion' => 'required',
             'unidad' => 'required|string',
+            'categoria' => 'required|string',
         ],[
             'clues.required'=> 'Este campo es obligatorio',
             'clues.unique'=> 'La CLUES ya se encuentra registrada',
             'jurisdiccio .required'=> 'Este campo es obligatorio',
             'unidad.required'=> 'Este campo es obligatorio',
+            'categoria.required'=> 'Este campo es obligatorio',
         ]);
         
         // Creamos el objeto
@@ -53,7 +55,7 @@ class UnidadController extends Controller
         $unidad->clues = $request->clues;
         $unidad->jurisdiccion = $request->jurisdiccion;
         $unidad->nombre = $request->unidad;
-        $unidad->categoria = 9999;
+        $unidad->categoria = $request->categoria;
 
         //Guardamos los datos
         $unidad->save();

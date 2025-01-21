@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,21 +19,24 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
+
     public function boot(): void
-    {
-        // Menu para Administradores
-        Gate::define('isAdmin', function ($user) {
-            return $user->role === 'admin';
-        });
+{   
+    Schema::defaultStringLength(191);
 
-        // Menu para Jurisdicciones
-        Gate::define('isJurisdiccion', function ($user) {
-            return $user->role === 'jurisdiccion';
-        });
+    // Menu para Administradores
+    Gate::define('isAdmin', function ($user) {
+        return $user->role === 'admin';
+    });
 
-        // Menu para Administradores
-        Gate::define('isUnidad', function ($user) {
-            return $user->role === 'unidad';
-        });
-    }
+    // Menu para Jurisdicciones
+    Gate::define('isJurisdiccion', function ($user) {
+        return $user->role === 'jurisdiccion';
+    });
+
+    // Menu para Unidades
+    Gate::define('isUnidad', function ($user) {
+        return $user->role === 'unidad';
+    });
+}
 }

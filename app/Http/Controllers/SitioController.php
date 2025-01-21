@@ -11,6 +11,7 @@ use App\Models\IncidenteCategoria;
 use App\Models\IncidenteOpcion;
 use App\Models\Unidad;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -142,15 +143,24 @@ class SitioController extends Controller
         $unidadCategoria = $unidad->categoria;
         $unidadNombre = $unidad->nombre;
 
+        // SSC-PREA-CLUES-CONSECUTIVO
+
+        $maxConsecutivo = Evento::whereYear('created_at', Carbon::now()->year)
+                                    ->max('consecutivo');
+
+        $consecutivo = $maxConsecutivo+1;
+
+        $numeroFormateado = str_pad($consecutivo, 4, '0', STR_PAD_LEFT);
+
         // Generamos el folio
-
-        $numeroFolio = mt_rand(0000, 9999);
-
-        $folio = "SSC-EA-".$unidadClues."-".$numeroFolio;
+        $folio = "SSC-PREA-".$unidadClues."-".$numeroFormateado;
 
         // Generamos el status
-
         $status = "NUEVO";
+
+        // Consultamos los datos de categorias y descripcion
+        $categoriaLabel = IncidenteCategoria::findOrFail($request->categoria);
+        $opcionLabel = IncidenteOpcion::findOrFail($request->opcion);
 
         // Creamos una instancia con el modelo evento y asignamos los valores a cada campo
         $evento = new Evento();
@@ -169,7 +179,9 @@ class SitioController extends Controller
         $evento -> persona_testigos_otro = $request->persona_testigos_otro;
         $evento -> descripcion = $request->descripcion;
         $evento -> incidente_categoria = $request->categoria;
+        $evento -> incidente_categoria_label = $categoriaLabel->categoria;
         $evento -> incidente_descripcion = $request->opcion;
+        $evento -> incidente_descripcion_label = $opcionLabel->opcion;
         $evento -> gravedad = $request->gravedad;
         $evento -> causa_raiz = $causaRaiz;
         $evento -> factores_incidente_uno = $request->factores_incidente_uno;
@@ -194,6 +206,7 @@ class SitioController extends Controller
         $evento -> acciones_mejora_siete = $request->acciones_mejora_siete;
         $evento -> acciones_mejora_ocho = $request->acciones_mejora_ocho;
         $evento -> folio = $folio;
+        $evento -> consecutivo = $consecutivo;
         $evento -> status = $status;
         $evento -> sesiono_comite = $sesionoComite;
         $evento -> categoria = $unidadCategoria;
