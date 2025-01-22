@@ -2,7 +2,7 @@
 
 @section('plugins.Sweetalert2', true)
 
-@section('title', 'Eventos')
+@section('title', 'Reportes')
 
 @section('content_header')
     <h1><strong>Reporte</strong></h1>
@@ -35,7 +35,7 @@
         
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-info btn-sm btn-block">GENERAR EXCEL</button>
+            <button type="submit" class="btn btn-info btn-sm float-right">GENERAR EXCEL</button>
         </div>
         
         </form>
@@ -44,10 +44,10 @@
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
 
         <div class="card-header">
-            <h3 class="card-title">Lista de eventos</h3>
+            <h3 class="card-title">Conteo de eventos por unidad</h3>
         </div>
 
         <div class="card-body">   
@@ -78,7 +78,7 @@
         </div><!-- CARD BODY -->
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-success">Buscar registros</button>
+            <button type="submit" class="btn btn-info btn-sm float-right">CONTAR EVENTOS</button>
         </div>
 
         </form>
@@ -89,9 +89,7 @@
     
 @stop
 
-@section('footer')
-<p>Copyright © <?php echo date('Y') ?> <strong>Servicios de Salud de Coahuila de Zaragoza</strong> | Subdirección de Calidad y Certificación [Nombre programa] | Unidad de Planeación [Departamento de Tecnologías de la Información]</p>
-@stop
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

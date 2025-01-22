@@ -44,9 +44,26 @@ Route::get('/incidentes/opciones/{categoria_id}', [SitioController::class, 'getO
  * 
  */
 
+// Deshabilitar la ruta de registro
 Auth::routes([
-    ['register' => false]
+    'register' => false,
+    'reset' => false,
+    'email' => false
 ]);
+
+// Redirigir manualmente a la página de login si alguien accede a /register
+Route::get('/register', function () {
+    return redirect()->route('login'); 
+});
+
+Route::get('/password/reset', function () {
+    return redirect()->route('login'); 
+});
+
+Route::get('/password/email', function () {
+    return redirect()->route('login'); 
+});
+
 
 // Rutas protegidas por autenticación
 Route::middleware('auth')->group(function () {
@@ -141,8 +158,10 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/eventoShow/{id}',[EventoController::class,'show'])->name('eventoShow');
 
     // Ruta para mostrar todos los eventos en la base de datos JURISDICCION
-
     Route::get('admin/eventoJurisdiccion',[EventoController::class,'jurisdiccion'])->name('eventoJurisdiccion');
+
+    // Ruta para generar el PDF
+    Route::get('admin/eventoPDF/{id}',[EventoController::class,'pdf'])->name('eventoPDF');
 
      /**
      * 

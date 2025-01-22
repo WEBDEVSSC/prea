@@ -76,7 +76,7 @@
                                     <td>J.{{ $usuario->clues_jurisdiccion }} - {{ $usuario->clues_nombre }}</td>
                                     
                                     <td>
-                                        <a href="{{ route('usuarioShow',['id'=>$usuario->id]) }}" class="btn btn-info btn-sm">DETALLES</a>
+                                        <a href="{{ route('usuarioShow',['id'=>$usuario->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -96,6 +96,8 @@
     <!-- -------------------------------------------------------------- -->
     
 @stop
+
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

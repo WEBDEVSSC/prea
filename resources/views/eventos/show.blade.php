@@ -22,22 +22,11 @@
             });
         </script>
     @endif
-    
 
-    <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('eventoIndex') }}">Panel de Control</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Detalles</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info">
 
         <div class="card-header">
             <h3 class="card-title">Datos generales</h3>
@@ -89,7 +78,7 @@
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info  mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Descripción del evento adverso</h3>
@@ -150,7 +139,7 @@
     <!-- -------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info  mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Descripción detallada del evento</h3>
@@ -174,7 +163,7 @@
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info  mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Tipo de incidente</h3>
@@ -202,7 +191,7 @@
     <!-- -------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Gravedad del daño</h3>
@@ -225,7 +214,7 @@
     <!-- -------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Factores del incidente</h3>
@@ -309,7 +298,7 @@
 
     <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Evitabilidad</h3>
@@ -348,7 +337,7 @@
     <!-- -------------------------------------------------------------- -->
      <!-- -------------------------------------------------------------- -->
 
-    <div class="card card-purple  mt-3">
+    <div class="card card-info  mt-3">
 
         <div class="card-header">
             <h3 class="card-title">Acciones de mejora</h3>
@@ -439,6 +428,8 @@
         <!-- -------------------------------------------------------------- -->
 
 @stop
+
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

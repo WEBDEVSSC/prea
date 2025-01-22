@@ -31,7 +31,9 @@
             <h3 class="card-title"></h3>
         </div>
 
-        <div class="card-body">   
+        <div class="card-body">  
+            
+            
             
             <div class="row">
                 <div class="col-md-12">
@@ -66,7 +68,8 @@
                                     <td>{{ $evento->folio }}</td>
                                     <td>{{ $evento->unidad }} - {{ $evento->unidad_nombre}}</td>
                                     <td>
-                                        <a href="{{ route('eventoShow',['id'=>$evento->id]) }}" class="btn btn-success btn-sm">Ver detalles</a>
+                                        <a href="{{ route('eventoShow',['id'=>$evento->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>
+                                        <a href="{{ route('eventoPDF',['id'=>$evento->id]) }}" class="btn btn-info btn-sm btn-block" target="_blank">PDF</a>
                                     </td>
                                 </tr>
                             @endforeach

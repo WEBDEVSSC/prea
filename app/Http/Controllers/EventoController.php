@@ -7,6 +7,7 @@ use App\Models\IncidenteCategoria;
 use App\Models\IncidenteOpcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EventoController extends Controller
 {
@@ -76,22 +77,6 @@ class EventoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show($id)
@@ -152,27 +137,15 @@ class EventoController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function pdf($id)
     {
-        //
-    }
+        // Consultamos los datos del evento
+        $evento = Evento::findOrFail($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // Cargar la vista y pasarle los datos
+        $pdf = PDF::loadView('eventos.pdf', ['evento' => $evento]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Mostramos el PDF generado
+        return $pdf->stream('evento_'.$evento->folio.'.pdf');
     }
 }

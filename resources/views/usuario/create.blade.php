@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('usuarioIndex') }}" class="btn btn-info float-right">PANEL DE CONTROL</a>
+            <a href="{{ route('usuarioIndex') }}" class="btn btn-info btn-sm float-right">PANEL DE CONTROL</a>
         </div>
     </div>
 
@@ -144,6 +144,8 @@
 
     
 @stop
+
+@include('layouts.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}
