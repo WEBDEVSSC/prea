@@ -339,6 +339,11 @@ return [
             'url' => 'admin/unidadIndex',
             'can' => 'isAdmin',
         ],
+        [
+            'text' => 'Categorias',
+            'url' => 'admin/categoriaIndex',
+            'can' => 'isAdmin',
+        ],
     ],
 
     /*

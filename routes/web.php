@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnioController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\HomeController;
@@ -192,6 +193,19 @@ Route::middleware('auth')->group(function () {
      */
 
     Route::get('admin/anio2024',[AnioController::class,'anio2024'])->name('anio2024');  
+
+    /**
+     * 
+     * 
+     * MODULO DE CATEGORIAS
+     * 
+     */
+
+    // Ruta para mostrar todas las categorias
+    Route::get('admin/categoriaIndex',[CategoriaController::class,'index'])->name('categoriaIndex');
+
+    // Ruta para mostrar los detalles de cada categoria
+    Route::get('admin/categoriaShow/{id}',[CategoriaController::class,'show'])->name('categoriaShow');
 
 });
 

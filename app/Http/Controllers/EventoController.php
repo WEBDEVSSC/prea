@@ -142,10 +142,19 @@ class EventoController extends Controller
         // Consultamos los datos del evento
         $evento = Evento::findOrFail($id);
 
+        // Ruta completa del archivo
+        $imagePath = public_path('img/qrcode-salud-coah.png');
+
+        // Leer el contenido de la imagen
+        $imageData = base64_encode(file_get_contents($imagePath));
+
         // Cargar la vista y pasarle los datos
-        $pdf = PDF::loadView('eventos.pdf', ['evento' => $evento]);
+        $pdf = PDF::loadView('eventos.pdf', [
+            'evento' => $evento, 
+            'imageData' => $imageData
+        ]);
 
         // Mostramos el PDF generado
-        return $pdf->stream('evento_'.$evento->folio.'.pdf');
+        return $pdf->stream($evento->folio.'.pdf');
     }
 }

@@ -42,7 +42,8 @@
 
         <table>
             <tr>
-                <td><h2>Plataforma de Registro de Eventos Adversos</h2></td>
+                <td><h2>Plataforma de Registro de Eventos Adversos</h2><br><small>Secretaría de Salud de Coahuila de Zaragoza</small></td>
+                <td><img src="data:image/png;base64,{{ $imageData }}" alt="QR Code" width="100px"></td>
             </tr>
         </table>
 
@@ -220,7 +221,129 @@
 
         <!-- ------------------------------------------------------------------ -->
 
+        <table>
+            <tr>
+                <td class="fondo-gris"><p>¿CONSIDERA QUE SE PUDO HABER EVITADO?</p></td>
+                <td><p>{{ $evento->evitar_evento }}</p></td>
+            </tr>
+            <tr>
+                <td class="fondo-gris"><p>¿COMO CONSIDERA QUE SE PUDO HABER EVITADO?</p></td>
+                <td><p>{{ $evento->como_evitar_evento }}</p></td>
+            </tr>
+            <tr>
+                <td class="fondo-gris"><p>¿SE LE PROPORCIONO INFORMACIÓN AL PACIENTE O SU FAMILIA?</p></td>
+                <td><p>{{ $evento->proporciono_informacion }}</p></td>
+            </tr>
+            <tr>
+                <td class="fondo-gris"><p>¿QUIEN LA PROPORCIONO?</p></td>
+                <td><p>{{ $evento->quien_proporciono }}</p></td>
+            </tr>
+        </table>
 
+        <!-- ------------------------------------------------------------------ -->
+
+        <div style="page-break-before: always;"></div>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        <table>
+            <tr>
+                <td class="fondo-gris"><p>¿SE REALIZÓ ALUGUNA ACCIÓN CORRECTIVA DESPUÉS DEL EVENTO ADVERSO?</p></td>
+                <td><p>{{ $evento->acciones_mejora }}</p></td>
+            </tr>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+
+
+        <table>
+            <tr>
+                <td class="fondo-gris"><p>ACCIONES DE MEJORA QUE SE REALIZARÓN</p></td>
+            </tr>
+            <tr>
+                <td>
+
+                    <ul>
+                        <li>
+                            <p>
+                            @if($evento->acciones_mejora_uno)
+                                Capacitación al personal de nuevo ingreso y estudiantes.
+                            @else
+                                <del>Capacitación al personal de nuevo ingreso y estudiantes.</del>
+                            @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                            @if($evento->acciones_mejora_dos)
+                                Mejoramiento de la infraestructura.
+                            @else
+                                <del>Mejoramiento de la infraestructura.</del>
+                            @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @if($evento->acciones_mejora_tres)
+                                    Gestión de los recursos(humanos, financieros y materiales) alineado a la mejora continua.
+                                @else
+                                    <del>Gestión de los recursos(humanos, financieros y materiales) alineado a la mejora continua.</del>
+                                @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @if($evento->acciones_mejora_cuatro)
+                                    Fortalecimiento de una cultura de calidad y seguridad del paciente mediante el Modelo de Gestión de la Calidad.
+                                @else
+                                    <del>Fortalecimiento de una cultura de calidad y seguridad del paciente mediante el Modelo de Gestión de la Calidad.</del>
+                                @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @if($evento->acciones_mejora_cinco)
+                                    Impulso al apego de las Guías de Práctica Clínica.
+                                @else
+                                    <del>Impulso al apego de las Guías de Práctica Clínica.</del>
+                                @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @if($evento->acciones_mejora_seis)
+                                    Implementación de mecanismos de supervisión operativa para el monitoreo de la calidad y la seguridad del paciente.
+                                @else
+                                    <del>Implementación de mecanismos de supervisión operativa para el monitoreo de la calidad y la seguridad del paciente.</del>
+                                @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @if($evento->acciones_mejora_siete)
+                                    Desarrollo de un Programa de Calidad y Seguridad del Paciente para el establecimiento.
+                                @else
+                                    <del>Desarrollo de un Programa de Calidad y Seguridad del Paciente para el establecimiento.</del>
+                                @endif
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @if($evento->acciones_mejora_ocho)
+                                    Capacitación a pacientes y familiares para prevenir eventos adversos.
+                                @else
+                                    <del>Capacitación a pacientes y familiares para prevenir eventos adversos.</del>
+                                @endif
+                            </p>
+                        </li>
+                    </ul>
+
+                </td>
+            </tr>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
 
     </body>
+
 </html>
