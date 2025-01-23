@@ -29,7 +29,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('usuarioCreate') }}" class="btn btn-info btn-sm float-right">NUEVO REGISTRO</a>
+            <a href="{{ route('categoriaCreate') }}" class="btn btn-info btn-sm float-right">NUEVO REGISTRO</a>
         </div>
     </div>
     

@@ -66,8 +66,7 @@
 
         <div class="card-footer">
 
-            <a href="{{ route('usuarioShow',['id'=>$categoria->id]) }}" class="btn btn-info btn-sm float-right">ELIMINAR</a>
-            <a href="{{ route('usuarioEdit',['id'=>$categoria->id]) }}" class="btn btn-info btn-sm float-right mr-2">EDITAR</a>
+            <a href="{{ route('categoriaEdit',['id'=>$categoria->id]) }}" class="btn btn-info btn-sm float-right mr-2">EDITAR</a>
             
         </div>
     </div>

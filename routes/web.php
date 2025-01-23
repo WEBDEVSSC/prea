@@ -207,6 +207,18 @@ Route::middleware('auth')->group(function () {
     // Ruta para mostrar los detalles de cada categoria
     Route::get('admin/categoriaShow/{id}',[CategoriaController::class,'show'])->name('categoriaShow');
 
+    // Ruta para el registro
+    Route::get('admin/categoriaCreate',[CategoriaController::class,'create'])->name('categoriaCreate');
+
+    // Ruta para el almacenar
+    Route::post('admin/categoriaStore',[CategoriaController::class,'store'])->name('categoriaStore');
+
+    // Ruta para editar el registro
+    Route::get('admin/categoriaEdit/{id}',[CategoriaController::class,'edit'])->name('categoriaEdit');
+
+    // Ruta para actualizar los datos
+    Route::put('admin/categoriaUpdate/{id}',[CategoriaController::class,'update'])->name('categoriaUpdate');
+
 });
 
 
