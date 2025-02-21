@@ -220,23 +220,3 @@ Route::middleware('auth')->group(function () {
     Route::put('admin/categoriaUpdate/{id}',[CategoriaController::class,'update'])->name('categoriaUpdate');
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
