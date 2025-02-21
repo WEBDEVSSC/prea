@@ -25,6 +25,7 @@
         <thead>
             <tr>
                 <th><strong>ID</strong></th>
+                <th><strong>FECHA</strong></th>
                 <th><strong>FOLIO</strong></th>
                 <th><strong>TIPO DE EVENTO</strong></th>
                 <th><strong>UNIDAD</strong></th>
@@ -40,7 +41,6 @@
                 <th><strong>OTRO</strong></th>
                 <th><strong>DESCRIPCION</strong></th>
                 <th><strong>CATEGORIA</strong></th>
-                <th><strong>OPCION</strong></th>
                 <th><strong>GRAVEDAD DEL DAÑO</strong></th>
 
                 <th><strong>RELACIONADO CON LAS CARACTERISTICAS DEL PACIENTE</strong></th>
@@ -73,6 +73,7 @@
             @foreach($eventos as $evento)
                 <tr>
                     <td>{{ $evento->id }}</td>
+                    <td>{{ $evento->created_at }}</td>
                     <td>{{ $evento->folio }}</td>
                     <td>{{ $evento->clasificacion_del_evento }}</td>
                     <td>{{ $evento->unidad }} - {{$evento->unidad_nombre}}</td>
@@ -88,7 +89,6 @@
                     <td>{{ $evento->persona_testigos_otro }}</td>
                     <td>{{ $evento->descripcion }}</td>
                     <td>{{ $evento->incidente_categoria_label }}</td>
-                    <td>{{ $evento->incidente_descripcion_label }}</td>
                     <td>{{ $evento->gravedad }}</td>
 
                     <td>{{ $evento->factores_incidente_uno }}</td>
