@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IncidenteController;
+use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SitioController;
 use App\Http\Controllers\UnidadController;
@@ -218,5 +219,31 @@ Route::middleware('auth')->group(function () {
 
     // Ruta para actualizar los datos
     Route::put('admin/categoriaUpdate/{id}',[CategoriaController::class,'update'])->name('categoriaUpdate');
+
+    // Ruta para eliminar una categoria
+    Route::get('admin/categoriaDelete/{id}',[CategoriaController::class,'delete'])->name('categoriaDelete');
+
+    /**
+     * 
+     * 
+     * MODULO DE OPCIONES
+     * 
+     * 
+     */
+
+     // Ruta para mostrar el formulario
+    Route::get('admin/opcionCreate/{id}',[OpcionController::class,'create'])->name('opcionCreate');
+
+    // Ruta para almacenar los datos
+    Route::post('admin/opcionStore/{id}', [OpcionController::class,'store'])->name('opcionStore');
+
+    // Ruta para el formulario de edicion
+    Route::get('admin/opcionEdit/{id}',[OpcionController::class,'edit'])->name('opcionEdit');
+
+    //Ruta para actualizar el registro
+    Route::put('admin/opcionUpdate/{id}',[OpcionController::class,'update'])->name('opcionUpdate');
+
+    // Ruta para eliminar un registro
+    Route::get('admin/opcionDelete/{id}',[OpcionController::class,'destroy'])->name('opcionDelete');
 
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\IncidenteOpcion;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -23,8 +24,11 @@ class CategoriaController extends Controller
         // Consultamos el registro
         $categoria = Categoria::findOrFail($id);
 
+        // Consultamos todas las opciones
+        $opciones = IncidenteOpcion::where('relacion', $id)->get();
+
         // Retronamos la vista con el objeto
-        return view('categoria.show', compact('categoria'));
+        return view('categoria.show', compact('categoria','opciones'));
     }
 
     public function create()
@@ -87,4 +91,23 @@ class CategoriaController extends Controller
 
     }
 
+    public function delete($id)
+    {
+        // Buscamos el ID
+        $categoria = Categoria::findOrFail($id);
+
+        // Verificar si la categoría existe
+        if (!$categoria) 
+        {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
+
+        // Eliminar la categoría
+        $categoria->delete();
+
+        // Redirigir con mensaje de éxito
+        return redirect()->route('categoriaIndex')->with('destroy', 'Registro eliminado correctamente');
+    }
+
+    
 }
