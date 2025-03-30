@@ -8,10 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
 
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.5.2/dist/select2-bootstrap4.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -88,7 +92,6 @@
             <div class="card-body">
 
             <label for="unidadSelect">Unidad:</label>
-
                 <select id="unidadSelect" name="unidad" class="form-control">
                     <option value="">Seleccione una unidad</option>
                 </select>
@@ -161,27 +164,28 @@
                   <p>¿En qué lugar o área ocurrió el evento adverso?	</p>
                   <select name="servicio" class="form-control">
                     <option value="" disabled {{ old('servicio') == '' ? 'selected' : '' }}>[ Seleccione una opción ]</option>
-                    <option value="ARCHIVO CLINICO" {{ old('servicio') == 'ARCHIVO CLINICO' ? 'selected' : '' }}>ARCHIVO CLINICO</option>
-                    <option value="CAJA" {{ old('servicio') == 'CAJA' ? 'selected' : '' }}>CAJA</option>
-                    <option value="CIRUGIA" {{ old('servicio') == 'CIRUGIA' ? 'selected' : '' }}>CIRUGÍA</option>
-                    <option value="ENFERMERIA" {{ old('servicio') == 'ENFERMERIA' ? 'selected' : '' }}>ENFERMERÍA</option>
-                    <option value="ESTACIONAMIENTO" {{ old('servicio') == 'ESTACIONAMIENTO' ? 'selected' : '' }}>ESTACIONAMIENTO</option>
+              
                     <option value="FARMACIA" {{ old('servicio') == 'FARMACIA' ? 'selected' : '' }}>FARMACIA</option>
-                    <option value="GINECOLOGIA/OBSTETRICIA" {{ old('servicio') == 'GINECOLOGIA/OBSTETRICIA' ? 'selected' : '' }}>GINECOLOGÍA / OBSTETRICIA</option>
                     <option value="HOSPITALIZACION" {{ old('servicio') == 'HOSPITALIZACION' ? 'selected' : '' }}>HOSPITALIZACIÓN</option>
                     <option value="IMAGENOLOGIA Y RAYOS X" {{ old('servicio') == 'IMAGENOLOGÍA Y RAYOS X' ? 'selected' : '' }}>IMAGENOLOGÍA Y RAYOS X</option>
                     <option value="LABORATORIO" {{ old('servicio') == 'LABORATORIO' ? 'selected' : '' }}>LABORATORIO</option>
-                    <option value="MEDICINA INTERNA" {{ old('servicio') == 'MEDICINA INTERNA' ? 'selected' : '' }}>MEDICINA INTERNA</option>
-                    <option value="MODULO DE INCAPACIDADES" {{ old('servicio') == 'MODULO DE INCAPACIDADES' ? 'selected' : '' }}>MÓDULO DE INCAPACIDADES</option>
-                    <option value="PEDIATRIA" {{ old('servicio') == 'PEDIATRIA' ? 'selected' : '' }}>PEDIATRÍA</option>
-                    <option value="RECEPCION" {{ old('servicio') == 'RECEPCION' ? 'selected' : '' }}>RECENPCIÓN</option>
-                    <option value="TRABAJO SOCIAL" {{ old('servicio') == 'TRABAJO SOCIAL' ? 'selected' : '' }}>TRABAJO SOCIAL</option>
                     <option value="URGENCIAS" {{ old('servicio') == 'URGENCIAS' ? 'selected' : '' }}>URGENCIAS</option>
                     <option value="CONSULTA EXTERNA" {{ old('servicio') == 'CONSULTA EXTERNA' ? 'selected' : '' }}>CONSULTA EXTERNA</option>
-                    <option value="VIGILANCIA" {{ old('servicio') == 'VIGILANCIA' ? 'selected' : '' }}>VIGILANCIA</option>
                     <option value="U.C.I. ADULTOS" {{ old('servicio') == 'U.C.I. ADULTOS' ? 'selected' : '' }}>U.C.I. ADULTOS</option>
                     <option value="U.C.I. PEDIATRICOS" {{ old('servicio') == 'U.C.I. PEDIATRICOS' ? 'selected' : '' }}>U.C.I. PEDIATRICOS</option>
                     <option value="U.C.I. NEONATALES" {{ old('servicio') == 'U.C.I. NEONATALES' ? 'selected' : '' }}>U.C.I. NEONATALES</option>
+
+                    <option value="QUIROFANO" {{ old('servicio') == 'QUIROFANO' ? 'selected' : '' }}>QUIROFANO</option>
+                    <option value="TOCOCIRUGÍA" {{ old('servicio') == 'TOCOCIRUGÍA' ? 'selected' : '' }}>TOCOCIRUGÍA</option>
+                    <option value="CEYE" {{ old('servicio') == 'CEYE' ? 'selected' : '' }}>CEYE</option>
+                    <option value="DENTAL" {{ old('servicio') == 'DENTAL' ? 'selected' : '' }}>DENTAL</option>
+                    <option value="CENDIS" {{ old('servicio') == 'CENDIS' ? 'selected' : '' }}>CENDIS</option>
+                    <option value="ALMACEN" {{ old('servicio') == 'ALMACEN' ? 'selected' : '' }}>ALMACEN</option>
+                    <option value="MEDICINA PREVENTIVA" {{ old('servicio') == 'MEDICINA PREVENTIVA' ? 'selected' : '' }}>MEDICINA PREVENTIVA</option>
+                    <option value="PATOLOGÍA" {{ old('servicio') == 'PATOLOGÍA' ? 'selected' : '' }}>PATOLOGÍA</option>
+                    <option value="SALUD REPRODUCTIVA" {{ old('servicio') == 'SALUD REPRODUCTIVA' ? 'selected' : '' }}>SALUD REPRODUCTIVA</option>
+                    <option value="NUTRICIÓN" {{ old('servicio') == 'NUTRICIÓN' ? 'selected' : '' }}>NUTRICIÓN</option>
+
                   </select>
                   <!-- -- -->
                     
@@ -233,8 +237,15 @@
                 <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
                 <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
                 <option value="CAMILLERO"{{ old('persona_involucrada') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
-                <option value="TECNICO"{{ old('persona_involucrada') == 'TECNICO' ? ' selected' : '' }}>TÉCNICO</option>
-                <option value="PASANTE"{{ old('persona_involucrada') == 'PASANTE' ? ' selected' : '' }}>PASANTE</option>
+
+                <option value="PERSONAL EN FORMACIÓN"{{ old('persona_involucrada') == 'PERSONAL EN FORMACIÓN' ? ' selected' : '' }}>PERSONAL EN FORMACIÓN</option>
+                }
+                <option value="QUIMICO"{{ old('persona_involucrada') == 'QUIMICO' ? ' selected' : '' }}>QUIMICO</option>
+                <option value="RADIOLOGO"{{ old('persona_involucrada') == 'RADIOLOGO' ? ' selected' : '' }}>RADIOLOGO</option>
+                <option value="ODONTOLOGO"{{ old('persona_involucrada') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
+                <option value="NUTRIOLOGO"{{ old('persona_involucrada') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
+                <option value="ADMINISTRATIVO"{{ old('persona_involucrada') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>
+                
                 <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
               </select>
             
@@ -269,12 +280,17 @@
       <p>Personas que presenciaron</p>
       <select id="personaTestigosSelect" name="persona_testigos" class="form-control" onchange="toggleTestigosInput()">
         <option value="">[ Seleccione una opción ]</option>
-        <option value="MEDICO"{{ old('persona_testigos') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
-        <option value="ENFERMERIA"{{ old('persona_testigos') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
-        <option value="CAMILLERO"{{ old('persona_testigos') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
-        <option value="TECNICO"{{ old('persona_testigos') == 'TECNICO' ? ' selected' : '' }}>TÉCNICO</option>
-        <option value="FAMILIAR"{{ old('persona_testigos') == 'FAMILIAR' ? ' selected' : '' }}>FAMILIAR</option>
-        <option value="OTRO"{{ old('persona_testigos') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
+        <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
+                <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
+                <option value="CAMILLERO"{{ old('persona_involucrada') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
+                <option value="PERSONAL EN FORMACIÓN"{{ old('persona_involucrada') == 'PERSONAL EN FORMACIÓN' ? ' selected' : '' }}>PERSONAL EN FORMACIÓN</option>                
+                <option value="QUIMICO"{{ old('persona_involucrada') == 'QUIMICO' ? ' selected' : '' }}>QUIMICO</option>
+                <option value="RADIOLOGO"{{ old('persona_involucrada') == 'RADIOLOGO' ? ' selected' : '' }}>RADIOLOGO</option>
+                <option value="ODONTOLOGO"{{ old('persona_involucrada') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
+                <option value="NUTRIOLOGO"{{ old('persona_involucrada') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
+                <option value="ADMINISTRATIVO"{{ old('persona_involucrada') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>                
+                <option value="FAMILIAR"{{ old('persona_involucrada') == 'FAMILIAR' ? ' selected' : '' }}>FAMILIAR</option>
+                <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
       </select>
     
       @error('persona_testigos')
@@ -921,6 +937,16 @@
   // Verifica el estado inicial al cargar la página
   window.addEventListener('DOMContentLoaded', (event) => {
     toggleTestigosInput();
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+      $('#unidadSelect').select2({
+          placeholder: "Seleccione una unidad",
+          allowClear: true,
+          theme: "bootstrap4"
+      });
   });
 </script>
 
