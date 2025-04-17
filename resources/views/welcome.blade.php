@@ -289,7 +289,7 @@
                 <option value="ODONTOLOGO"{{ old('persona_involucrada') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
                 <option value="NUTRIOLOGO"{{ old('persona_involucrada') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
                 <option value="ADMINISTRATIVO"{{ old('persona_involucrada') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>                
-                <option value="FAMILIAR"{{ old('persona_involucrada') == 'FAMILIAR' ? ' selected' : '' }}>FAMILIAR</option>
+                <option value="ACOMPAÑANTE"{{ old('persona_involucrada') == 'ACOMPAÑANTE' ? ' selected' : '' }}>ACOMPAÑANTE</option>
                 <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
       </select>
     
@@ -628,131 +628,7 @@
                 
             </div>
         </div>
-
-        <!-- ------------------------------------------------------------------------------- -->
-        <!-- ACCIONES DE MEJORA -->
-        <!-- ------------------------------------------------------------------------------- -->
-
-        <div class="card mt-3">
-            <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Acciones de mejora
-            </div>
-            <div class="card-body">
-            <div class="row">
-            <div class="col-md-12">
-              <p>¿Se realizó alguna acción correctiva después del evento adverso?</p>
-              <select name="acciones_mejora" class="form-control">
-                <option value="" {{ old('acciones_mejora') == '' ? 'selected' : '' }} disabled>[ Seleccione una opción ]</option>
-                <option value="SI" {{ old('acciones_mejora') == 'SI' ? 'selected' : '' }}>SI</option>
-                <option value="NO" {{ old('acciones_mejora') == 'NO' ? 'selected' : '' }}>NO</option>
-              </select>
-              @error('acciones_mejora')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-              @enderror
-            </div>
-          </div>
-
-          <br>
-
-          <p>¿Cuáles son las acciones de mejora que se realizaron? <small>Puede seleccionar más de una opción</small></p>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_uno" id="defaultCheck1" {{ old('acciones_mejora_uno') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Capacitación al personal de nuevo ingreso y estudiantes.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_dos" id="defaultCheck1" {{ old('acciones_mejora_dos') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Mejoramiento de la infraestructura.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_tres" id="defaultCheck1" {{ old('acciones_mejora_tres') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Gestión de los recursos(humanos, financieros y materiales) alineado a la mejora continua.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_cuatro" id="defaultCheck1" {{ old('acciones_mejora_cuatro') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Fortalecimiento de una cultura de calidad y seguridad del paciente mediante el Modelo de Gestión de la Calidad.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_cinco" id="defaultCheck1" {{ old('acciones_mejora_cinco') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Impulso al apego de las Guías de Práctica Clínica.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_seis" id="defaultCheck1" {{ old('acciones_mejora_seis') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Implementación de mecanismos de supervisión operativa para el monitoreo de la calidad y la seguridad del paciente.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_siete" id="defaultCheck1" {{ old('acciones_mejora_siete') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Desarrollo de un Programa de Calidad y Seguridad del Paciente para el establecimiento.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="SI" name="acciones_mejora_ocho" id="defaultCheck1" {{ old('acciones_mejora_ocho') ? 'checked' : '' }}>
-                <label class="form-check-label" for="defaultCheck1">
-                Capacitación a pacientes y familiares para prevenir eventos adversos.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          @if ($errors->has('acciones_mejora_uno') || $errors->has('acciones_mejora_dos') || $errors->has('acciones_mejora_tres') || $errors->has('acciones_mejora_cuatro') || $errors->has('acciones_mejora_cinco') || $errors->has('acciones_mejora_seis') || $errors->has('acciones_mejora_siete') || $errors->has('acciones_mejora_ocho'))        
-          <br>
-          <div class="alert alert-danger">
-              Debe seleccionar al menos una acción de mejora
-          </div>
-          @endif
-
-            </div>
-        </div>
+        
 
         <!-- ----------------------------------------------------------------------------------------- -->
 

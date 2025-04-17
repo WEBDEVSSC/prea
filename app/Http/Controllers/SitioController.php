@@ -85,15 +85,6 @@ class SitioController extends Controller
             'como_evitar_evento' => 'required|string',
             'proporciono_informacion'=>'required',
             'quien_proporciono'=>'required',
-            'acciones_mejora'=>'required',
-            'acciones_mejora_uno' => 'required_without_all:acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_siete,acciones_mejora_ocho',
-            'acciones_mejora_dos' => 'required_without_all:acciones_mejora_uno,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_siete,acciones_mejora_ocho',
-            'acciones_mejora_tres' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_siete,acciones_mejora_ocho',
-            'acciones_mejora_cuatro' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_siete,acciones_mejora_ocho',
-            'acciones_mejora_cinco' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_seis,acciones_mejora_siete,acciones_mejora_ocho',
-            'acciones_mejora_seis' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_siete,acciones_mejora_ocho',
-            'acciones_mejora_siete' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_ocho',
-            'acciones_mejora_ocho' => 'required_without_all:acciones_mejora_uno,acciones_mejora_dos,acciones_mejora_tres,acciones_mejora_cuatro,acciones_mejora_cinco,acciones_mejora_seis,acciones_mejora_siete',
         ], [
             'clasificacion_del_evento.required' => 'El campo de clasificación del evento es obligatorio.',
             'unidad.required' => 'El campo unidad es obligatorio.',
@@ -122,15 +113,6 @@ class SitioController extends Controller
             'como_evitar_evento.required' => 'Debe ingresar un comentario.',
             'proporciono_informacion.required' => 'Debe seleccionar una opción.',
             'quien_proporciono.required' => 'Debe seleccionar una opción.',
-            'acciones_mejora.required' => 'Debe seleccionar una opción.',
-            'acciones_mejora_uno.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_dos.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_tres.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_cuatro.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_cinco.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_seis.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_siete.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
-            'acciones_mejora_ocho.required_without_all' => 'Debe seleccionar al menos una acción de mejor.',
         ]);
 
         $causaRaiz = "NO";
@@ -196,15 +178,6 @@ class SitioController extends Controller
         $evento -> como_evitar_evento = $request->como_evitar_evento;
         $evento -> proporciono_informacion = $request->proporciono_informacion;
         $evento -> quien_proporciono = $request->quien_proporciono;
-        $evento -> acciones_mejora = $request->acciones_mejora;
-        $evento -> acciones_mejora_uno = $request->acciones_mejora_uno;
-        $evento -> acciones_mejora_dos = $request->acciones_mejora_dos;
-        $evento -> acciones_mejora_tres = $request->acciones_mejora_tres;
-        $evento -> acciones_mejora_cuatro = $request->acciones_mejora_cuatro;
-        $evento -> acciones_mejora_cinco = $request->acciones_mejora_cinco;
-        $evento -> acciones_mejora_seis = $request->acciones_mejora_seis;
-        $evento -> acciones_mejora_siete = $request->acciones_mejora_siete;
-        $evento -> acciones_mejora_ocho = $request->acciones_mejora_ocho;
         $evento -> folio = $folio;
         $evento -> consecutivo = $consecutivo;
         $evento -> status = $status;
