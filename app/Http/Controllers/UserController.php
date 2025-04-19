@@ -37,7 +37,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {        
         // Validamos los datos recibidos
         $request->validate([
             'nombre'=>'required|string',
@@ -57,6 +57,8 @@ class UserController extends Controller
             'rPassword.required'=>'Este campo es requerido',     
         ]);
 
+        //dd($request->cuasifalla);
+
         // Consultamos los datos de la CLUES
         $clues = Unidad::findOrFail($request->clues);
 
@@ -74,9 +76,9 @@ class UserController extends Controller
         $user->clues_jurisdiccion=$clues->jurisdiccion;
         $user->clues_nombre=$clues->nombre;
         $user->clues_categoria=$clues->categoria;
-        $user->cuasifalla = $request->has('cuasifalla');
-        $user->adverso = $request->has('adverso');
-        $user->centinela = $request->has('centinela');
+        $user->cuasifalla = $request->cuasifalla;
+        $user->adverso = $request->adverso;
+        $user->centinela = $request->centinela;
 
         // Guardamos el registro
         $user->save();

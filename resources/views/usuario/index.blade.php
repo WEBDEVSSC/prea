@@ -56,6 +56,9 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>CLUES</th>                                
+                                <th>C-F</th>                                
+                                <th>ADV</th>                                
+                                <th>CEN</th>                                
                                 <th></th>
                             </tr>
                         </thead>
@@ -74,6 +77,10 @@
                                     <td>{{ $usuario->name }}</td>
                                     <td>{{ $usuario->email }}</td>
                                     <td>J.{{ $usuario->clues_jurisdiccion }} - {{ $usuario->clues_nombre }}</td>
+                                    <td>{{ $usuario->cuasifalla }}</td>
+                                    <td>{{ $usuario->adverso }}</td>
+                                    <td>{{ $usuario->centinela }}</td>
+
                                     
                                     <td>
                                         <a href="{{ route('usuarioShow',['id'=>$usuario->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>

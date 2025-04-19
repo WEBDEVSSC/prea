@@ -146,23 +146,16 @@ class UnidadController extends Controller
         // Obtener el usuario autenticado
         $user = Auth::user();
 
-        // Administrador
-        if ($user->nivel == 1) 
-        {
-            $unidades = Unidad::orderBy('jurisdiccion', 'asc')
-                                ->orderBy('nombre', 'asc')
-                                ->get();
-        } 
-        // Jurisdiccion
-        elseif ($user->nivel == 2) 
-        {
-            $unidades = Unidad::where('jurisdiccion',$user->clues_jurisdiccion)->get();
-        } 
-        // Unidad
-        else 
-        {
+        $unidades = match ($user->nivel) {
+            1 => Unidad::orderBy('jurisdiccion', 'asc')
+                       ->orderBy('nombre', 'asc')
+                       ->get(),
+
+            2 => Unidad::where('jurisdiccion', $user->clues_jurisdiccion)->get(),
+            3 => Unidad::where('clues', $user->clues)->get(),
             
-        }
+            default => collect(), // vacío por si el nivel no es reconocido
+        };
 
         // Retornamos la vista con los registros
         return view('mis-unidades.index', compact('unidades'));

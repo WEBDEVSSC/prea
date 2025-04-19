@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use App\Models\IncidenteCategoria;
 use App\Models\IncidenteOpcion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class EventoController extends Controller
 {
@@ -17,17 +17,18 @@ class EventoController extends Controller
     public function index()
     {
         // Obtener el usuario autenticado
-        $user = FacadesAuth::user();
+        $user = AutH::user();
+
+        //dd($user->nivel);
 
         // Obtenemos la categoria en una variable
         $nivel = $user->nivel;
         $categoria = $user->categoria;
         $unidad = $user->clues;
+        $anio = Carbon::now()->year;
         
         // Opcion para ADMINISTRADOR 1
         if($nivel == 1){
-            
-            $anio = 2025;
 
             // Consultamos todos los registros de la tabla eventos
             $eventos = Evento::whereYear('created_at', $anio)
@@ -38,8 +39,6 @@ class EventoController extends Controller
         // Opcion para JURISDICCIONES
         elseif($nivel == 2){
 
-            $anio = 2025;
-
             // Consultamos todos los registros por jurisdiccion
             $eventos = Evento::whereYear('created_at', $anio)
                 ->where('categoria',$categoria)
@@ -48,15 +47,19 @@ class EventoController extends Controller
 
         }
         // Opcion para UNIDADES
-        else{
-
-            $anio = 2025;
+        elseif($nivel == 3){
             
             //Consultamos los registros por unidad
             $eventos = Evento::whereYear('created_at', $anio)
                 ->where('unidad',$unidad)
                 ->orderBy('id','desc')
                 ->get();
+
+        }
+        // Opcion para CUANDO NO TENGAN NIVEL
+        else{
+
+            abort(403, 'Nivel de acceso no permitido');
 
         }
         
