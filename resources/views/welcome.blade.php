@@ -372,6 +372,15 @@
               <br><div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
+        <!-- Select para Opciones -->
+          <div class="mb-3">
+            <input type="text" id="opcion_otra" name="opcion_otra" class="form-control" disabled>
+            @error('opcion')
+              <br><div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
             </div>
         </div>
 
@@ -700,6 +709,9 @@
                 $.each(data, function (index, categoria) {
                     $('#categoria').append('<option value="' + categoria.id + '">' + categoria.categoria + '</option>');
                 });
+
+                 // Agregamos la opción "OTRO INCIDENTE" después de cargar las categorías
+                $('#categoria').append('<option value="OTRO INCIDENTE">OTRO INCIDENTE</option>');
             });
 
             // SCRIPT PARA LLENAR LAS OPCIONES SEGUN CADA CATEGORIA
@@ -823,6 +835,19 @@
           allowClear: true,
           theme: "bootstrap4"
       });
+  });
+</script>
+
+<script>
+  document.getElementById('categoria').addEventListener('change', function() {
+      var opcionOtra = document.getElementById('opcion_otra');
+      
+      // Verificamos si la opción seleccionada es "OTRO INCIDENTE"
+      if (this.value === "OTRO INCIDENTE") {
+          opcionOtra.disabled = false;  // Habilitar el campo
+      } else {
+          opcionOtra.disabled = true;  // Deshabilitar el campo si no es "OTRO INCIDENTE"
+      }
   });
 </script>
 
