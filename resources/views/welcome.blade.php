@@ -25,8 +25,20 @@
 <br>
 
 <div class="container">
-  <div class="col-md-12">
-    <center><h3>Sistema de Notificación y Análisis de Eventos Adversos Relacionados con la Seguridad del Paciente</h3></center>
+  <div class="row">
+
+    <div class="col-md-12">
+      <center><img src="{{ asset('img/cintilla_prea.jpg') }}" alt="Logo" width="70%"></center>
+    </div>
+
+  </div>
+
+  <div class="row">
+  
+    <div class="col-md-12">
+      <center><h3>Sistema de Notificación y Análisis de Eventos Adversos Relacionados con la Seguridad del Paciente</h3></center>
+    </div>
+
   </div>
 </div>
 
@@ -164,28 +176,25 @@
                   <p>¿En qué lugar o área ocurrió el evento adverso?	</p>
                   <select name="servicio" class="form-control">
                     <option value="" disabled {{ old('servicio') == '' ? 'selected' : '' }}>[ Seleccione una opción ]</option>
-              
+                    <option value="ALMACEN" {{ old('servicio') == 'ALMACEN' ? 'selected' : '' }}>ALMACEN</option>
+                    <option value="CENDIS" {{ old('servicio') == 'CENDIS' ? 'selected' : '' }}>CENDIS</option>
+                    <option value="CEYE" {{ old('servicio') == 'CEYE' ? 'selected' : '' }}>CEYE</option>
+                    <option value="CONSULTA EXTERNA" {{ old('servicio') == 'CONSULTA EXTERNA' ? 'selected' : '' }}>CONSULTA EXTERNA</option>
+                    <option value="DENTAL" {{ old('servicio') == 'DENTAL' ? 'selected' : '' }}>DENTAL</option>
                     <option value="FARMACIA" {{ old('servicio') == 'FARMACIA' ? 'selected' : '' }}>FARMACIA</option>
                     <option value="HOSPITALIZACION" {{ old('servicio') == 'HOSPITALIZACION' ? 'selected' : '' }}>HOSPITALIZACIÓN</option>
-                    <option value="IMAGENOLOGIA Y RAYOS X" {{ old('servicio') == 'IMAGENOLOGÍA Y RAYOS X' ? 'selected' : '' }}>IMAGENOLOGÍA Y RAYOS X</option>
+                    <option value="IMAGENOLOGIA Y RAYOS X" {{ old('servicio') == 'IMAGENOLOGIA Y RAYOS X' ? 'selected' : '' }}>IMAGENOLOGÍA Y RAYOS X</option>
                     <option value="LABORATORIO" {{ old('servicio') == 'LABORATORIO' ? 'selected' : '' }}>LABORATORIO</option>
-                    <option value="URGENCIAS" {{ old('servicio') == 'URGENCIAS' ? 'selected' : '' }}>URGENCIAS</option>
-                    <option value="CONSULTA EXTERNA" {{ old('servicio') == 'CONSULTA EXTERNA' ? 'selected' : '' }}>CONSULTA EXTERNA</option>
-                    <option value="U.C.I. ADULTOS" {{ old('servicio') == 'U.C.I. ADULTOS' ? 'selected' : '' }}>U.C.I. ADULTOS</option>
-                    <option value="U.C.I. PEDIATRICOS" {{ old('servicio') == 'U.C.I. PEDIATRICOS' ? 'selected' : '' }}>U.C.I. PEDIATRICOS</option>
-                    <option value="U.C.I. NEONATALES" {{ old('servicio') == 'U.C.I. NEONATALES' ? 'selected' : '' }}>U.C.I. NEONATALES</option>
-
-                    <option value="QUIROFANO" {{ old('servicio') == 'QUIROFANO' ? 'selected' : '' }}>QUIROFANO</option>
-                    <option value="TOCOCIRUGÍA" {{ old('servicio') == 'TOCOCIRUGÍA' ? 'selected' : '' }}>TOCOCIRUGÍA</option>
-                    <option value="CEYE" {{ old('servicio') == 'CEYE' ? 'selected' : '' }}>CEYE</option>
-                    <option value="DENTAL" {{ old('servicio') == 'DENTAL' ? 'selected' : '' }}>DENTAL</option>
-                    <option value="CENDIS" {{ old('servicio') == 'CENDIS' ? 'selected' : '' }}>CENDIS</option>
-                    <option value="ALMACEN" {{ old('servicio') == 'ALMACEN' ? 'selected' : '' }}>ALMACEN</option>
                     <option value="MEDICINA PREVENTIVA" {{ old('servicio') == 'MEDICINA PREVENTIVA' ? 'selected' : '' }}>MEDICINA PREVENTIVA</option>
-                    <option value="PATOLOGÍA" {{ old('servicio') == 'PATOLOGÍA' ? 'selected' : '' }}>PATOLOGÍA</option>
-                    <option value="SALUD REPRODUCTIVA" {{ old('servicio') == 'SALUD REPRODUCTIVA' ? 'selected' : '' }}>SALUD REPRODUCTIVA</option>
                     <option value="NUTRICIÓN" {{ old('servicio') == 'NUTRICIÓN' ? 'selected' : '' }}>NUTRICIÓN</option>
-
+                    <option value="PATOLOGÍA" {{ old('servicio') == 'PATOLOGÍA' ? 'selected' : '' }}>PATOLOGÍA</option>
+                    <option value="QUIROFANO" {{ old('servicio') == 'QUIROFANO' ? 'selected' : '' }}>QUIROFANO</option>
+                    <option value="SALUD REPRODUCTIVA" {{ old('servicio') == 'SALUD REPRODUCTIVA' ? 'selected' : '' }}>SALUD REPRODUCTIVA</option>
+                    <option value="TOCOCIRUGÍA" {{ old('servicio') == 'TOCOCIRUGÍA' ? 'selected' : '' }}>TOCOCIRUGÍA</option>
+                    <option value="U.C.I. ADULTOS" {{ old('servicio') == 'U.C.I. ADULTOS' ? 'selected' : '' }}>U.C.I. ADULTOS</option>
+                    <option value="U.C.I. NEONATALES" {{ old('servicio') == 'U.C.I. NEONATALES' ? 'selected' : '' }}>U.C.I. NEONATALES</option>
+                    <option value="U.C.I. PEDIATRICOS" {{ old('servicio') == 'U.C.I. PEDIATRICOS' ? 'selected' : '' }}>U.C.I. PEDIATRICOS</option>
+                    <option value="URGENCIAS" {{ old('servicio') == 'URGENCIAS' ? 'selected' : '' }}>URGENCIAS</option>
                   </select>
                   <!-- -- -->
                     
@@ -234,19 +243,16 @@
               <p>Persona directamente involucrada</p>
               <select id="personaInvolucradaSelect" name="persona_involucrada" class="form-control" onchange="toggleOtroInput()">
                 <option value="">[ Seleccione una opción ]</option>
-                <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
-                <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
+                <option value="ADMINISTRATIVO"{{ old('persona_involucrada') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>
                 <option value="CAMILLERO"{{ old('persona_involucrada') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
-
+                <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
+                <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
+                <option value="NUTRIOLOGO"{{ old('persona_involucrada') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
+                <option value="ODONTOLOGO"{{ old('persona_involucrada') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
+                <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
                 <option value="PERSONAL EN FORMACIÓN"{{ old('persona_involucrada') == 'PERSONAL EN FORMACIÓN' ? ' selected' : '' }}>PERSONAL EN FORMACIÓN</option>
-                }
                 <option value="QUIMICO"{{ old('persona_involucrada') == 'QUIMICO' ? ' selected' : '' }}>QUIMICO</option>
                 <option value="RADIOLOGO"{{ old('persona_involucrada') == 'RADIOLOGO' ? ' selected' : '' }}>RADIOLOGO</option>
-                <option value="ODONTOLOGO"{{ old('persona_involucrada') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
-                <option value="NUTRIOLOGO"{{ old('persona_involucrada') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
-                <option value="ADMINISTRATIVO"{{ old('persona_involucrada') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>
-                
-                <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
               </select>
             
               @error('persona_involucrada')
@@ -280,17 +286,17 @@
       <p>Personas que presenciaron</p>
       <select id="personaTestigosSelect" name="persona_testigos" class="form-control" onchange="toggleTestigosInput()">
         <option value="">[ Seleccione una opción ]</option>
-        <option value="MEDICO"{{ old('persona_involucrada') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
-                <option value="ENFERMERÍA"{{ old('persona_involucrada') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
-                <option value="CAMILLERO"{{ old('persona_involucrada') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
-                <option value="PERSONAL EN FORMACIÓN"{{ old('persona_involucrada') == 'PERSONAL EN FORMACIÓN' ? ' selected' : '' }}>PERSONAL EN FORMACIÓN</option>                
-                <option value="QUIMICO"{{ old('persona_involucrada') == 'QUIMICO' ? ' selected' : '' }}>QUIMICO</option>
-                <option value="RADIOLOGO"{{ old('persona_involucrada') == 'RADIOLOGO' ? ' selected' : '' }}>RADIOLOGO</option>
-                <option value="ODONTOLOGO"{{ old('persona_involucrada') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
-                <option value="NUTRIOLOGO"{{ old('persona_involucrada') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
-                <option value="ADMINISTRATIVO"{{ old('persona_involucrada') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>                
-                <option value="ACOMPAÑANTE"{{ old('persona_involucrada') == 'ACOMPAÑANTE' ? ' selected' : '' }}>ACOMPAÑANTE</option>
-                <option value="OTRO"{{ old('persona_involucrada') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
+        <option value="ACOMPAÑANTE"{{ old('persona_testigos') == 'ACOMPAÑANTE' ? ' selected' : '' }}>ACOMPAÑANTE</option>
+        <option value="ADMINISTRATIVO"{{ old('persona_testigos') == 'ADMINISTRATIVO' ? ' selected' : '' }}>ADMINISTRATIVO</option>
+        <option value="CAMILLERO"{{ old('persona_testigos') == 'CAMILLERO' ? ' selected' : '' }}>CAMILLERO</option>
+        <option value="ENFERMERÍA"{{ old('persona_testigos') == 'ENFERMERÍA' ? ' selected' : '' }}>ENFERMERÍA</option>
+        <option value="MEDICO"{{ old('persona_testigos') == 'MEDICO' ? ' selected' : '' }}>MÉDICO</option>
+        <option value="NUTRIOLOGO"{{ old('persona_testigos') == 'NUTRIOLOGO' ? ' selected' : '' }}>NUTRIOLOGO</option>
+        <option value="ODONTOLOGO"{{ old('persona_testigos') == 'ODONTOLOGO' ? ' selected' : '' }}>ODONTOLOGO</option>
+        <option value="OTRO"{{ old('persona_testigos') == 'OTRO' ? ' selected' : '' }}>OTRO</option>
+        <option value="PERSONAL EN FORMACIÓN"{{ old('persona_testigos') == 'PERSONAL EN FORMACIÓN' ? ' selected' : '' }}>PERSONAL EN FORMACIÓN</option>
+        <option value="QUIMICO"{{ old('persona_testigos') == 'QUIMICO' ? ' selected' : '' }}>QUIMICO</option>
+        <option value="RADIOLOGO"{{ old('persona_testigos') == 'RADIOLOGO' ? ' selected' : '' }}>RADIOLOGO</option>        
       </select>
     
       @error('persona_testigos')
@@ -375,8 +381,9 @@
 
         <!-- Select para Opciones -->
           <div class="mb-3">
-            <input type="text" id="opcion_otra" name="opcion_otra" class="form-control" disabled>
-            @error('opcion')
+            <input type="text" id="incidente_otro" name="incidente_otro" class="form-control" 
+            value="{{ old('incidente_otro') }}" {{ old('categoria') == 'OTRO INCIDENTE' ? '' : 'disabled' }}>
+            @error('incidente_otro')
               <br><div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -704,32 +711,51 @@
     <!-- SCRIPT PARA LLENAR LAS CATEGORIAS DE INCIDENTES -->
     <script>
         $(document).ready(function () {
-            // Cargar las categorías al cargar la página
-            $.get("{{ route('incidentes.categorias') }}", function (data) {
-                $.each(data, function (index, categoria) {
-                    $('#categoria').append('<option value="' + categoria.id + '">' + categoria.categoria + '</option>');
-                });
+    let categoriaOld = "{{ old('categoria') }}";
+    let opcionOld = "{{ old('opcion') }}";
 
-                 // Agregamos la opción "OTRO INCIDENTE" después de cargar las categorías
-                $('#categoria').append('<option value="OTRO INCIDENTE">OTRO INCIDENTE</option>');
-            });
-
-            // SCRIPT PARA LLENAR LAS OPCIONES SEGUN CADA CATEGORIA
-            $('#categoria').change(function () {
-                var categoria_id = $(this).val();
-                if (categoria_id) {
-                    $.get("{{ url('incidentes/opciones') }}/" + categoria_id, function (data) {
-                        $('#opcion').removeAttr('disabled').empty();
-                        $.each(data, function (index, opcion) {
-                            $('#opcion').append('<option value="' + opcion.id + '">' + opcion.opcion + '</option>');
-                        });
-                    });
-                } else {
-                    $('#opcion').attr('disabled', 'disabled').empty();
-                    $('#opcion').append('<option value="">Seleccione una opción</option>');
-                }
-            });
+    // Cargar las categorías al cargar la página
+    $.get("{{ route('incidentes.categorias') }}", function (data) {
+        $.each(data, function (index, categoria) {
+            let selected = (categoria.id == categoriaOld) ? 'selected' : '';
+            $('#categoria').append('<option value="' + categoria.id + '" ' + selected + '>' + categoria.categoria + '</option>');
         });
+
+        // Si hay una categoría seleccionada, disparamos el cambio para cargar sus opciones
+        if (categoriaOld) {
+            $('#categoria').trigger('change');
+        }
+    });
+
+    // Al cambiar categoría, cargar opciones
+    $('#categoria').change(function () {
+        var categoria_id = $(this).val();
+        var categoria_text = $("#categoria option:selected").text();
+        var opcionOtra = document.getElementById('incidente_otro');
+
+        if (categoria_text.trim().toUpperCase() === "OTRO INCIDENTE") {
+            opcionOtra.disabled = false;
+        } else {
+            opcionOtra.disabled = true;
+            opcionOtra.value = "";
+        }
+
+        if (categoria_id) {
+            $.get("{{ url('incidentes/opciones') }}/" + categoria_id, function (data) {
+                $('#opcion').removeAttr('disabled').empty();
+                $('#opcion').append('<option value="">Seleccione una opción</option>');
+                $.each(data, function (index, opcion) {
+                    let selected = (opcion.id == opcionOld) ? 'selected' : '';
+                    $('#opcion').append('<option value="' + opcion.id + '" ' + selected + '>' + opcion.opcion + '</option>');
+                });
+            });
+        } else {
+            $('#opcion').attr('disabled', 'disabled').empty();
+            $('#opcion').append('<option value="">Seleccione una opción</option>');
+        }
+    });
+});
+
     </script>
     
     <!-- UNIDADES -->
@@ -835,19 +861,6 @@
           allowClear: true,
           theme: "bootstrap4"
       });
-  });
-</script>
-
-<script>
-  document.getElementById('categoria').addEventListener('change', function() {
-      var opcionOtra = document.getElementById('opcion_otra');
-      
-      // Verificamos si la opción seleccionada es "OTRO INCIDENTE"
-      if (this.value === "OTRO INCIDENTE") {
-          opcionOtra.disabled = false;  // Habilitar el campo
-      } else {
-          opcionOtra.disabled = true;  // Deshabilitar el campo si no es "OTRO INCIDENTE"
-      }
   });
 </script>
 
