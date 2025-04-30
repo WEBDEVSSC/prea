@@ -313,13 +313,14 @@ return [
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
+        ['header' => 'Configuración'],
         [
             'text' => 'Reporte',
             'url' => 'admin/reporteIndex',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
+            'can' => 'admin',
         ],
-        ['header' => 'Configuración'],
         [
             'text' => 'Usuarios',
             'url' => 'admin/usuarioIndex',
