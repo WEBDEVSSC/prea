@@ -319,30 +319,21 @@ return [
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-
-        ['header' => 'Años'],
-        [
-            'text' => '2024',
-            'url' => 'admin/anio2024',
-            'icon' => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-
         ['header' => 'Configuración'],
         [
             'text' => 'Usuarios',
             'url' => 'admin/usuarioIndex',
-            'can' => 'isAdmin',
+            'can' => 'admin',
         ],
         [
             'text' => 'Unidades',
             'url' => 'admin/unidadIndex',
-            'can' => 'isAdmin',
+            'can' => 'admin',
         ],
         [
             'text' => 'Categorias',
             'url' => 'admin/categoriaIndex',
-            'can' => 'isAdmin',
+            'can' => 'admin',
         ],
     ],
 

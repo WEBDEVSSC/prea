@@ -9,183 +9,198 @@
 @stop
 
 @section('content')
-    <!-- -------------------------------------------------------------------- -->
-
-    <div class="row">
-        <div class="col-md-3">
-
-            <div class="info-box">
-                <span class="info-box-icon bg-success"><i class="far fa-envelope"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">CUASI-FALLA</span>
-                    <span class="info-box-number">{{ $cuasiFalla }}</span>
-                </div>            
-            </div>
-
-        </div>
-        
-
-        <div class="col-md-3">
-
-            <div class="info-box">
-                <span class="info-box-icon bg-warning"><i class="far fa-envelope"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">ADVERSO</span>
-                    <span class="info-box-number">{{ $eventoAdverso }}</span>
-                </div>            
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="info-box">
-                <span class="info-box-icon bg-danger"><i class="far fa-envelope"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">CENTINELA</span>
-                    <span class="info-box-number">{{ $eventoCentinela }}</span>
-                </div>            
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="info-box">
-                <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">TOTAL</span>
-                    <span class="info-box-number">{{ $totalEvento }}</span>
-                </div>            
-            </div>
-
-        </div>
-    </div>
 
     <!-- -------------------------------------------------------------------- -->
 
-    <div class="row">
-        
-        <div class="col-md-3">
+    @if($usuario->role == "admin")
 
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Registros por jurisdicción</strong></h3>
-                </div>
-                <div class="card-body">
-                    
-                            <div>
-                                <canvas id="registrosPorJurisdiccion" width="400" height="400"></canvas>
-                            </div>
-                    
+        <!-- INICIO DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
 
+        <div class="row">
+            <div class="col-md-3">
+    
+                <div class="info-box">
+                    <span class="info-box-icon bg-success"><i class="far fa-envelope"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">CUASI-FALLA</span>
+                        <span class="info-box-number">{{ $cuasiFalla }}</span>
+                    </div>            
                 </div>
+    
             </div>
-
-        </div>
-        <div class="col-md-3">
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Registros por sexo</strong></h3>
+            
+    
+            <div class="col-md-3">
+    
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning"><i class="far fa-envelope"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">ADVERSO</span>
+                        <span class="info-box-number">{{ $eventoAdverso }}</span>
+                    </div>            
                 </div>
-                <div class="card-body">
-
-                
-                    <div>
-                        <canvas id="registrosPorSexo" width="400" height="400"></canvas>
+    
+            </div>
+    
+            <div class="col-md-3">
+    
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger"><i class="far fa-envelope"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">CENTINELA</span>
+                        <span class="info-box-number">{{ $eventoCentinela }}</span>
+                    </div>            
+                </div>
+    
+            </div>
+    
+            <div class="col-md-3">
+    
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">TOTAL</span>
+                        <span class="info-box-number">{{ $totalEvento }}</span>
+                    </div>            
+                </div>
+    
+            </div>
+        </div>
+    
+        <!-- -------------------------------------------------------------------- -->
+    
+        <div class="row">
+            
+            <div class="col-md-3">
+    
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Registros por jurisdicción</strong></h3>
                     </div>
-
-                    
-
+                    <div class="card-body">
+                        
+                                <div>
+                                    <canvas id="registrosPorJurisdiccion" width="400" height="400"></canvas>
+                                </div>
+                        
+    
+                    </div>
                 </div>
+    
             </div>
-
+            <div class="col-md-3">
+    
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Registros por sexo</strong></h3>
+                    </div>
+                    <div class="card-body">
+    
+                    
+                        <div>
+                            <canvas id="registrosPorSexo" width="400" height="400"></canvas>
+                        </div>
+    
+                        
+    
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="col-md-3">
+    
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Rangos de edad</strong></h3>
+                    </div>
+                    <div class="card-body">
+    
+                        
+                            
+                                <div>
+                                    <canvas id="registrosPorRangoDeEdad" width="400" height="400"></canvas>
+                                </div>
+                            
+                            
+                       
+                    
+                        
+    
+                        
+    
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="col-md-3">
+    
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Lugar o área del evento adverso</strong></h3>
+                    </div>
+                    <div class="card-body">
+    
+                                <div>
+                                    <canvas id="graficaAreaEventoAdverso" width="400" height="400"></canvas>
+                                </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+    
+            
         </div>
-
+    
+        <!-- -------------------------------------------------------------------- -->
+    
+        <div class="row">
         <div class="col-md-3">
-
+    
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><strong>Rangos de edad</strong></h3>
+                    <h3 class="card-title"><strong>Turno</strong></h3>
                 </div>
                 <div class="card-body">
-
-                    
-                        
+    
                             <div>
-                                <canvas id="registrosPorRangoDeEdad" width="400" height="400"></canvas>
+                                <canvas id="graficaTurno" width="400" height="400"></canvas>
                             </div>
-                        
-                        
-                   
-                
-                    
-
-                    
-
+    
                 </div>
             </div>
-
-        </div>
-
-        <div class="col-md-3">
-
+    
+            </div>
+    
+            <div class="col-md-6">
+    
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><strong>Lugar o área del evento adverso</strong></h3>
+                    <h3 class="card-title"><strong>Fecha</strong></h3>
                 </div>
                 <div class="card-body">
-
+    
                             <div>
-                                <canvas id="graficaAreaEventoAdverso" width="400" height="400"></canvas>
+                                <canvas id="myBarChart" width="400" height="185"></canvas>
                             </div>
-
+    
                 </div>
             </div>
-
+    
+            </div>
         </div>
 
+        <!-- FIN DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
+    
+    @else
+    
         
-    </div>
+    
+    @endif
 
-    <!-- -------------------------------------------------------------------- -->
-
-    <div class="row">
-    <div class="col-md-3">
-
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title"><strong>Turno</strong></h3>
-            </div>
-            <div class="card-body">
-
-                        <div>
-                            <canvas id="graficaTurno" width="400" height="400"></canvas>
-                        </div>
-
-            </div>
-        </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title"><strong>Fecha</strong></h3>
-            </div>
-            <div class="card-body">
-
-                        <div>
-                            <canvas id="myBarChart" width="400" height="185"></canvas>
-                        </div>
-
-            </div>
-        </div>
-
-        </div>
-    </div>
+    
 
 
 @stop

@@ -25,17 +25,17 @@ class AppServiceProvider extends ServiceProvider
     Schema::defaultStringLength(191);
 
     // Menu para Administradores
-    Gate::define('isAdmin', function ($user) {
+    Gate::define('admin', function ($user) {
         return $user->role === 'admin';
     });
 
     // Menu para Jurisdicciones
-    Gate::define('isJurisdiccion', function ($user) {
+    Gate::define('jurisdiccion', function ($user) {
         return $user->role === 'jurisdiccion';
     });
 
     // Menu para Unidades
-    Gate::define('isUnidad', function ($user) {
+    Gate::define('unidad', function ($user) {
         return $user->role === 'unidad';
     });
 }
