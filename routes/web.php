@@ -37,6 +37,10 @@ Route::get('/incidentes/categorias', [SitioController::class, 'getCategorias'])-
 // Llenamos el select de OPTIONES de CATEGORIAS
 Route::get('/incidentes/opciones/{categoria_id}', [SitioController::class, 'getOpciones'])->name('incidentes.opciones');
 
+Route::get('refresh-captcha', function () {
+    return response()->json(['captcha' => captcha_img()]);
+});
+
 
 /**
  * 

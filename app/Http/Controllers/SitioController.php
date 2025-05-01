@@ -59,6 +59,7 @@ class SitioController extends Controller
     public function store(Request $request)
     {        
         $request->validate([
+            'captcha' => 'required|captcha',
             'clasificacion_del_evento'=>'required',
             'unidad'=>'required',
             'edad'=>'required|integer',
@@ -121,6 +122,9 @@ class SitioController extends Controller
             'como_evitar_evento.required' => 'Debe ingresar un comentario.',
             'proporciono_informacion.required' => 'Debe seleccionar una opción.',
             'quien_proporciono.required' => 'Debe seleccionar una opción.',
+
+            'captcha.required' => 'Por favor, completa el CAPTCHA.',
+            'captcha.captcha' => 'El código CAPTCHA ingresado no es válido, por favor inténtalo nuevamente.'
         ]);
 
         //dd($request->opcion_otra);

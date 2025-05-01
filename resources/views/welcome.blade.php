@@ -649,6 +649,28 @@
         <!-- ----------------------------------------------------------------------------------------- -->
 
         <div class="row mt-3">
+          <div class="col-md-5"></div>
+          <div class="col-md-2">
+
+            <center>
+            <div>
+              <img src="{{ captcha_src('flat') }}" onclick="this.src='{{ captcha_src('flat') }}'+Math.random()" style="cursor:pointer;">
+            </div>
+            </center>
+
+            <br>
+
+            <input type="text" name="captcha" class="form-control" placeholder="CAPTURE CÓDIGO">
+
+            @error('captcha')
+                <div style="color:red">{{ $message }}</div>
+            @enderror
+
+          </div>
+          <div class="col-md-5"></div>
+        </div>
+
+        <div class="row mt-3">
           <div class="col-md-12">
             <center>
 
@@ -692,6 +714,15 @@
             </script>
         @endif
 
+        <script>
+          document.getElementById('reload').onclick = function () {
+              fetch('/refresh-captcha')
+                  .then(res => res.json())
+                  .then(data => {
+                      document.querySelector('form span').innerHTML = data.captcha;
+                  });
+          }
+      </script>
         <!-- Incluye jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -703,6 +734,8 @@
 
     <!-- Incluye Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    
 
     <!-- Incluye jQuery y Bootstrap JS 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
