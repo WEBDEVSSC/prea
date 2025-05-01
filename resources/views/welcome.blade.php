@@ -659,12 +659,6 @@
                   <span class="text-danger">{{ $message }}</span>
               @enderror
 
-
-              <script>
-                console.log("Renderizando reCAPTCHA...");
-              </script>
-              {!! NoCaptcha::display() !!}
-
             <button type="submit" class="btn btn-block mt-3" style="background-color: #6f42c1; color: #fff; border: none;">REGISTRAR EVENTO</button>
 
             </center>
