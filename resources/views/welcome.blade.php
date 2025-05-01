@@ -652,13 +652,6 @@
           <div class="col-md-12">
             <center>
 
-              {!! NoCaptcha::display() !!}
-              {!! NoCaptcha::renderJs() !!}
-
-              @error('g-recaptcha-response')
-                  <span class="text-danger">{{ $message }}</span>
-              @enderror
-
             <button type="submit" class="btn btn-block mt-3" style="background-color: #6f42c1; color: #fff; border: none;">REGISTRAR EVENTO</button>
 
             </center>
