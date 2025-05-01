@@ -27,7 +27,7 @@ class HomeController extends Controller
         $usuario = Auth::user();
         
         // Establecemos el año en curso
-        $anio = 2025;
+        $anio = date("Y");
         
         // Contamos el total de eventos CUASI-FALLA
         $cuasiFalla = Evento::where('clasificacion_del_evento','CUASI-FALLA')
@@ -149,23 +149,23 @@ class HomeController extends Controller
 
         // ---------------- GRAFICAS PARA EL LUGAR O AREA DEL EVENTO ADVERSO ---------------------
 
-        $archivoClinico = Evento:: where('servicio','ARCHIVO CLINICO')
+        $almacen = Evento:: where('servicio','ALMACEN')
             ->whereYear('created_at',$anio)
             ->count();
         
-        $caja = Evento:: where('servicio','CAJA')
+        $cendis = Evento:: where('servicio','CENDIS')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $cirugia = Evento:: where('servicio','CIRUGIA')
+        $ceye = Evento:: where('servicio','CEYE')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $enfermeria = Evento:: where('servicio','ENFERMERIA')
+        $consultaExterna = Evento:: where('servicio','CONSULTA EXTERNA')
             ->whereYear('created_at',$anio)
             ->count();
         
-        $estacionamiento = Evento:: where('servicio','ESTACIONAMIENTO')
+        $dental = Evento:: where('servicio','DENTAL')
             ->whereYear('created_at',$anio)
             ->count();
         
@@ -173,15 +173,11 @@ class HomeController extends Controller
             ->whereYear('created_at',$anio)
             ->count();
 
-        $ginecologiaObstetricia = Evento:: where('servicio','GINECOLOGIA/OBSTETRICIA')
-            ->whereYear('created_at',$anio)
-            ->count();
-
         $hospitalizacion = Evento:: where('servicio','HOSPITALIZACION')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $imagenologiaRayosX = Evento:: where('servicio','IMAGENOLOGIA Y RAYOS X')
+        $imagenologia = Evento:: where('servicio','IMAGENOLOGIA Y RAYOS X')
             ->whereYear('created_at',$anio)
             ->count();
 
@@ -189,47 +185,43 @@ class HomeController extends Controller
             ->whereYear('created_at',$anio)
             ->count();
 
-        $medicinaInterna = Evento:: where('servicio','MEDICINA INTERNA')
+        $medicinaPreventiva = Evento:: where('servicio','MEDICINA PREVENTIVA')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $moduloDeIncapacidades = Evento:: where('servicio','MODULO DE INCAPACIDADES')
+        $nutricion = Evento:: where('servicio','NUTRICION')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $pediatria = Evento:: where('servicio','PEDIATRIA')
+        $patologia = Evento:: where('servicio','PATOLOGIA')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $recepcion = Evento:: where('servicio','RECEPCION')
+        $quirofano = Evento:: where('servicio','QUIROFANO')
             ->whereYear('created_at',$anio)
             ->count();
 
-        $trabajoSocial = Evento:: where('servicio','TRABAJO SOCIAL')
+        $saludReproductiva = Evento:: where('servicio','SALUD REPRODUCTIVA')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tococirugia = Evento:: where('servicio','TOCOCIRUGIA')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $UCIAdultos = Evento:: where('servicio','U.C.I. ADULTOS')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $UCINeonatales = Evento:: where('servicio','U.C.I. NEONATALES')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $UCIPediatricos = Evento:: where('servicio','U.C.I. PEDIATRICOS')
             ->whereYear('created_at',$anio)
             ->count();
 
         $urgencias = Evento:: where('servicio','URGENCIAS')
-            ->whereYear('created_at',$anio)
-            ->count();
-
-        $consultaExterna = Evento:: where('servicio','CONSULTA EXTERNA')
-            ->whereYear('created_at',$anio)
-            ->count();
-
-        $vigilancia = Evento:: where('servicio','VIGILANCIA')
-            ->whereYear('created_at',$anio)
-            ->count();
-
-        $uciAdultos = Evento:: where('servicio','U.C.I. ADULTOS')
-            ->whereYear('created_at',$anio)
-            ->count();
-
-        $uciPediatricos = Evento:: where('servicio','U.C.I. PEDIATRICOS')
-            ->whereYear('created_at',$anio)
-            ->count();
-
-        $uciNeonatales = Evento:: where('servicio','U.C.I. NEONATALES')
             ->whereYear('created_at',$anio)
             ->count();
 
@@ -328,27 +320,27 @@ class HomeController extends Controller
             'totalJuventud',
             'totalAdultez',
             'totalPersonaMayor',
-            'archivoClinico',
-            'caja',
-            'cirugia',
-            'enfermeria',
-            'estacionamiento',
-            'farmacia',
-            'ginecologiaObstetricia',
-            'hospitalizacion',
-            'imagenologiaRayosX',
-            'laboratorio',
-            'medicinaInterna',
-            'moduloDeIncapacidades',
-            'pediatria',
-            'recepcion',
-            'trabajoSocial',
-            'urgencias',
+
+            'almacen',
+            'cendis',
+            'ceye',
             'consultaExterna',
-            'vigilancia',
-            'uciAdultos',
-            'uciPediatricos',
-            'uciNeonatales',
+            'dental',
+            'farmacia',
+            'hospitalizacion',
+            'imagenologia',
+            'laboratorio',
+            'medicinaPreventiva',
+            'nutricion',
+            'patologia',
+            'quirofano',
+            'saludReproductiva',
+            'tococirugia',
+            'UCIAdultos',
+            'UCINeonatales',
+            'UCIPediatricos',
+            'urgencias',
+
             'matutino',
             'vespertino',
             'nocturno',

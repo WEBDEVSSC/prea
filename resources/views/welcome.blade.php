@@ -186,11 +186,11 @@
                     <option value="IMAGENOLOGIA Y RAYOS X" {{ old('servicio') == 'IMAGENOLOGIA Y RAYOS X' ? 'selected' : '' }}>IMAGENOLOGÍA Y RAYOS X</option>
                     <option value="LABORATORIO" {{ old('servicio') == 'LABORATORIO' ? 'selected' : '' }}>LABORATORIO</option>
                     <option value="MEDICINA PREVENTIVA" {{ old('servicio') == 'MEDICINA PREVENTIVA' ? 'selected' : '' }}>MEDICINA PREVENTIVA</option>
-                    <option value="NUTRICIÓN" {{ old('servicio') == 'NUTRICIÓN' ? 'selected' : '' }}>NUTRICIÓN</option>
-                    <option value="PATOLOGÍA" {{ old('servicio') == 'PATOLOGÍA' ? 'selected' : '' }}>PATOLOGÍA</option>
+                    <option value="NUTRICION" {{ old('servicio') == 'NUTRICION' ? 'selected' : '' }}>NUTRICIÓN</option>
+                    <option value="PATOLOGIA" {{ old('servicio') == 'PATOLOGIA' ? 'selected' : '' }}>PATOLOGÍA</option>
                     <option value="QUIROFANO" {{ old('servicio') == 'QUIROFANO' ? 'selected' : '' }}>QUIROFANO</option>
                     <option value="SALUD REPRODUCTIVA" {{ old('servicio') == 'SALUD REPRODUCTIVA' ? 'selected' : '' }}>SALUD REPRODUCTIVA</option>
-                    <option value="TOCOCIRUGÍA" {{ old('servicio') == 'TOCOCIRUGÍA' ? 'selected' : '' }}>TOCOCIRUGÍA</option>
+                    <option value="TOCOCIRUGIA" {{ old('servicio') == 'TOCOCIRUGIA' ? 'selected' : '' }}>TOCOCIRUGÍA</option>
                     <option value="U.C.I. ADULTOS" {{ old('servicio') == 'U.C.I. ADULTOS' ? 'selected' : '' }}>U.C.I. ADULTOS</option>
                     <option value="U.C.I. NEONATALES" {{ old('servicio') == 'U.C.I. NEONATALES' ? 'selected' : '' }}>U.C.I. NEONATALES</option>
                     <option value="U.C.I. PEDIATRICOS" {{ old('servicio') == 'U.C.I. PEDIATRICOS' ? 'selected' : '' }}>U.C.I. PEDIATRICOS</option>
@@ -651,6 +651,14 @@
         <div class="row mt-3">
           <div class="col-md-12">
             <center>
+
+              {!! NoCaptcha::display() !!}
+              {!! NoCaptcha::renderJs() !!}
+
+              @error('g-recaptcha-response')
+                  <span class="text-danger">{{ $message }}</span>
+              @enderror
+
 
             <button type="submit" class="btn btn-block mt-3" style="background-color: #6f42c1; color: #fff; border: none;">REGISTRAR EVENTO</button>
 

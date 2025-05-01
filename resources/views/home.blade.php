@@ -68,6 +68,9 @@
         </div>
     
         <!-- -------------------------------------------------------------------- -->
+
+        
+        <!-- -------------------------------------------------------------------- -->
     
         <div class="row">
             
@@ -116,19 +119,10 @@
                     </div>
                     <div class="card-body">
     
-                        
-                            
                                 <div>
                                     <canvas id="registrosPorRangoDeEdad" width="400" height="400"></canvas>
                                 </div>
-                            
-                            
-                       
-                    
-                        
-    
-                        
-    
+
                     </div>
                 </div>
     
@@ -400,119 +394,120 @@
 
 <!-- GRAFICAS POR AREA DONDE OCURRIO EL EVENTO -->
 <script>
-    // Espera a que el contenido del DOM esté cargado
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('graficaAreaEventoAdverso').getContext('2d');
+        var ctx = document.getElementById('graficaAreaEventoAdverso').getContext('2d');
     
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: [
-                'Archivo Clínico', 
-                'Caja',  
-                'Cirugía',  
-                'Enfermería',  
-                'Estacionamiento',  
-                'Farmacia', 
-                'Ginecología/Obstetricia', 
-                'Hospitalización', 
-                'Imagenología/Rayos X', 
-                'Laboratorio', 
-                'Medicina Interna', 
-                'Módulo de Incapacidades', 
-                'Pediatría', 
-                'Recepción', 
-                'Trabajo Social', 
-                'Urgencias', 
-                'Consulta Externa', 
-                'Vigilancia', 
-                'UCI Adultos', 
-                'UCI Pediátricos', 
-                'UCI Neonatales',
-            ],
-            datasets: [{
-                label: 'Número de registros',
-                data: [
-                    {{$archivoClinico}}, 
-                    {{$caja}},  
-                    {{$cirugia}},  
-                    {{$enfermeria}},  
-                    {{$estacionamiento}},  
-                    {{$farmacia}}, 
-                    {{$ginecologiaObstetricia}}, 
-                    {{$hospitalizacion}}, 
-                    {{$imagenologiaRayosX}}, 
-                    {{$laboratorio}}, 
-                    {{$medicinaInterna}}, 
-                    {{$moduloDeIncapacidades}}, 
-                    {{$pediatria}}, 
-                    {{$recepcion}}, 
-                    {{$trabajoSocial}}, 
-                    {{$urgencias}}, 
-                    {{$consultaExterna}}, 
-                    {{$vigilancia}}, 
-                    {{$uciAdultos}}, 
-                    {{$uciPediatricos}}, 
-                    {{$uciNeonatales}}, 
-                ], 
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)', // Rosa claro
-                    'rgba(54, 162, 235, 0.2)', // Azul claro
-                    'rgba(255, 206, 86, 0.2)', // Amarillo claro
-                    'rgba(75, 192, 192, 0.2)', // Verde agua claro
-                    'rgba(153, 102, 255, 0.2)', // Lila claro
-                    'rgba(255, 159, 64, 0.2)', // Naranja claro
-                    'rgba(199, 199, 199, 0.2)', // Gris claro
-                    'rgba(255, 99, 71, 0.2)', // Tomate claro
-                    'rgba(32, 189, 185, 0.2)', // Aqua oscuro
-                    'rgba(255, 87, 34, 0.2)', // Coral
-                    'rgba(153, 255, 51, 0.2)', // Verde lima
-                    'rgba(255, 20, 147, 0.2)', // Deep pink
-                    'rgba(0, 255, 255, 0.2)', // Cian
-                    'rgba(255, 69, 0, 0.2)', // Rojo oscuro
-                    'rgba(138, 43, 226, 0.2)'  // Azul oscuro
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'almacen',
+                    'cendis',
+                    'ceye',
+                    'consultaExterna',
+                    'dental',
+                    'farmacia',
+                    'hospitalizacion',
+                    'imagenologia',
+                    'laboratorio',
+                    'medicinaPreventiva',
+                    'nutricion',
+                    'patologia',
+                    'quirofano',
+                    'saludReproductiva',
+                    'tococirugia',
+                    'UCIAdultos',
+                    'UCINeonatales',
+                    'UCIPediatricos',
+                    'urgencias',
                 ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)', // Rosa
-                    'rgba(54, 162, 235, 1)', // Azul
-                    'rgba(255, 206, 86, 1)', // Amarillo
-                    'rgba(75, 192, 192, 1)', // Verde agua
-                    'rgba(153, 102, 255, 1)', // Lila
-                    'rgba(255, 159, 64, 1)', // Naranja
-                    'rgba(199, 199, 199, 1)', // Gris
-                    'rgba(255, 99, 71, 1)', // Tomate
-                    'rgba(32, 189, 185, 1)', // Aqua oscuro
-                    'rgba(255, 87, 34, 1)', // Coral
-                    'rgba(153, 255, 51, 1)', // Verde lima
-                    'rgba(255, 20, 147, 1)', // Deep pink
-                    'rgba(0, 255, 255, 1)', // Cian
-                    'rgba(255, 69, 0, 1)', // Rojo oscuro
-                    'rgba(138, 43, 226, 1)'  // Azul oscuro
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                datasets: [{
+                    label: 'Número de registros',
+                    data: [
+                        {{ $almacen }},
+                        {{ $cendis }},
+                        {{ $ceye }},
+                        {{ $consultaExterna }},
+                        {{ $dental }},
+                        {{ $farmacia }},
+                        {{ $hospitalizacion }},
+                        {{ $imagenologia }},
+                        {{ $laboratorio }},
+                        {{ $medicinaPreventiva }},
+                        {{ $nutricion }},
+                        {{ $patologia }},
+                        {{ $quirofano }},
+                        {{ $saludReproductiva }},
+                        {{ $tococirugia }},
+                        {{ $UCIAdultos }},
+                        {{ $UCINeonatales }},
+                        {{ $UCIPediatricos }},
+                        {{ $urgencias }}
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',    // Rosa claro
+                        'rgba(54, 162, 235, 0.2)',    // Azul claro
+                        'rgba(255, 206, 86, 0.2)',    // Amarillo claro
+                        'rgba(75, 192, 192, 0.2)',    // Verde agua claro
+                        'rgba(153, 102, 255, 0.2)',   // Lila claro
+                        'rgba(255, 159, 64, 0.2)',    // Naranja claro
+                        'rgba(199, 199, 199, 0.2)',   // Gris claro
+                        'rgba(255, 99, 71, 0.2)',     // Tomate claro
+                        'rgba(32, 189, 185, 0.2)',    // Aqua oscuro
+                        'rgba(255, 87, 34, 0.2)',     // Coral
+                        'rgba(153, 255, 51, 0.2)',    // Verde lima
+                        'rgba(255, 20, 147, 0.2)',    // Deep pink
+                        'rgba(0, 255, 255, 0.2)',     // Cian
+                        'rgba(255, 69, 0, 0.2)',      // Rojo oscuro
+                        'rgba(138, 43, 226, 0.2)',    // Azul oscuro
+                        'rgba(0, 128, 128, 0.2)',     // Verde azulado
+                        'rgba(128, 0, 128, 0.2)',     // Púrpura
+                        'rgba(210, 105, 30, 0.2)',    // Marrón chocolate
+                        'rgba(244, 164, 96, 0.2)'     // Arena claro
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(199, 199, 199, 1)',
+                        'rgba(255, 99, 71, 1)',
+                        'rgba(32, 189, 185, 1)',
+                        'rgba(255, 87, 34, 1)',
+                        'rgba(153, 255, 51, 1)',
+                        'rgba(255, 20, 147, 1)',
+                        'rgba(0, 255, 255, 1)',
+                        'rgba(255, 69, 0, 1)',
+                        'rgba(138, 43, 226, 1)',
+                        'rgba(0, 128, 128, 1)',
+                        'rgba(128, 0, 128, 1)',
+                        'rgba(210, 105, 30, 1)',
+                        'rgba(244, 164, 96, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
                         }
                     }
                 }
             }
-        }
+        });
     });
-});
-
-</script>
+    </script>
+    
 
 <!-- GRAFICAS POR AREA DONDE OCURRIO EL EVENTO -->
 <script>
