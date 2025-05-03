@@ -59,6 +59,7 @@
                                 <th>C-F</th>                                
                                 <th>ADV</th>                                
                                 <th>CEN</th>                                
+                                <th>REP SEM</th>                                
                                 <th></th>
                             </tr>
                         </thead>
@@ -80,6 +81,7 @@
                                     <td>{{ $usuario->cuasifalla }}</td>
                                     <td>{{ $usuario->adverso }}</td>
                                     <td>{{ $usuario->centinela }}</td>
+                                    <td>{{ $usuario->reporte_semanal }}</td>
 
                                     
                                     <td>

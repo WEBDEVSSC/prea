@@ -50,6 +50,7 @@ class UserController extends Controller
             'cuasifalla' => 'nullable|boolean',
             'adverso' => 'nullable|boolean',
             'centinela' => 'nullable|boolean',
+            'reporte_semanal' => 'nullable|boolean',
         ],[
             'rPassword.same'=>'Las contraseñas no coinciden',
             'correo.unique'=>'El correo ya se encuentra registrado', 
@@ -79,6 +80,7 @@ class UserController extends Controller
         $user->cuasifalla = $request->cuasifalla;
         $user->adverso = $request->adverso;
         $user->centinela = $request->centinela;
+        $user->reporte_semanal = $request->reporte_semanal;
 
         // Guardamos el registro
         $user->save();
@@ -133,6 +135,7 @@ class UserController extends Controller
             'cuasifalla' => 'nullable|boolean',
             'adverso' => 'nullable|boolean',
             'centinela' => 'nullable|boolean',
+            'reporte_semanal' => 'nullable|boolean',
         ],[
             'rPassword.same'=>'Las contraseñas no coinciden',
             'correo.unique'=>'El correo ya se encuentra registrado', 
@@ -155,6 +158,7 @@ class UserController extends Controller
         $user->cuasifalla = $request->cuasifalla;
         $user->adverso = $request->adverso;
         $user->centinela = $request->centinela;
+        $user->reporte_semanal = $request->reporte_semanal;
 
         // Guarda los cambios
         $user->save();

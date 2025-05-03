@@ -8,6 +8,12 @@ use App\Models\Unidad;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReporteSemanalMailable;
+use App\Models\User;
+use Carbon\Carbon;
 
 class ReporteController extends Controller
 {
@@ -65,54 +71,6 @@ class ReporteController extends Controller
      }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    /**
      * Funcion para exportar el archivo de Excel de todos los eventos
      */
     public function reporteExcel(Request $request)
@@ -132,5 +90,78 @@ class ReporteController extends Controller
         
         // Retornamos la descarga del archivo Excel
         // return Excel::download(new EventoExport,'eventos.xlsx');
+    }
+
+    public function generarReporteSemanalPDF()
+    {
+        //dd(Carbon::now()->format('Y-m-d H:i:s'));
+        
+        $nombrePDF = 'REPORTE-PREA-' . date('Y-m-d') . '.pdf';
+        $rutaPDF = 'public/pdfs/'.$nombrePDF;
+
+        if (!Storage::exists('public/pdfs')) {
+            Storage::makeDirectory('public/pdfs');
+        }
+
+        // Obtener el lunes de la semana pasada
+        $lunesPasado = Carbon::now()->startOfWeek()->subWeek(); // Lunes anterior
+        $domingoPasado = Carbon::now()->startOfWeek()->subDay(); // Domingo anterior
+
+        // Opcional: Formateo
+        $lunesPasadoStr = $lunesPasado->format('d-m-Y');
+        $domingoPasadoStr = $domingoPasado->format('d-m-Y');
+
+        // Consultamos todos los eventos de la semana pasada
+        $eventosSemanaPasada = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])->get();
+        $contadorEventos = $eventosSemanaPasada->count();
+
+        $eventosAdverso = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])
+            ->where('clasificacion_del_Evento', 'EVENTO ADVERSO')
+            ->count();
+
+        $eventosCuasiFalla = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])
+            ->where('clasificacion_del_Evento', 'CUASI-FALLA')
+            ->count();
+
+        $eventosCentinela = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])
+            ->where('clasificacion_del_Evento', 'EVENTO CENTINELA')
+            ->count();
+
+        // Pasamos todos los datos al PDF
+        $pdf = Pdf::loadView('export.reporte-semanal', [
+            'nombre' => 'Juan Pérez',
+
+            'contadorEventos' => $contadorEventos,
+            'eventosAdverso' => $eventosAdverso,
+            'eventosCuasiFalla' => $eventosCuasiFalla,
+            'eventosCentinela' => $eventosCentinela,
+
+            'fechaInicio' => $lunesPasadoStr,
+            'fechaFin' => $domingoPasadoStr,
+            'eventos' => $eventosSemanaPasada
+        ]);
+
+        // Guardar PDF
+        Storage::put($rutaPDF, $pdf->output());
+
+        // Obtenemos todos los usuarios que acepten el correo de REPORTE SEMANAL
+        $correos = User::where('reporte_semanal', 1)->pluck('email')->toArray();
+
+        // Obtenemos el objeto usuario para sacar sus datos
+        $usuarios = User::where('reporte_semanal', 1)->get();
+
+        // Recorremos el arreglo de usuarios para ir cargando el nombre
+        foreach ($usuarios as $usuario) {
+            Mail::to($usuario->email)->send(
+                new ReporteSemanalMailable(
+                    $usuario->name,
+                    $rutaPDF,
+                    $lunesPasadoStr,
+                    $domingoPasadoStr
+                )
+            );
+        }
+
+        return 'PDF guardado y correo enviado exitosamente como ' . $nombrePDF;
     }
 }

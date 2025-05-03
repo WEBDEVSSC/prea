@@ -113,6 +113,12 @@ Route::middleware('auth')->group(function () {
     // Ruta para mostrar los detalles
     Route::get('admin/unidadShow/{id}',[UnidadController::class,'show'])->name('unidadShow');
 
+    // Ruta para crear el archivo PDF
+    //Route::get('admin/unidadShow/Reporte', [ReporteController::class, 'generarReporteSemanalPDF'])->name('generarReporteSemanalPDF');
+
+    Route::get('reporte-semanal', [ReporteController::class, 'generarReporteSemanalPDF'])
+    ->name('generarReporteSemanalPDF');
+
     /**
      * 
      * 

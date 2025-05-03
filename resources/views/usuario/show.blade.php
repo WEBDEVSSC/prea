@@ -127,6 +127,17 @@
                                 <label class="custom-control-label" for="centinela">Evento Centinela</label>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="custom-control custom-switch">
+                                <!-- Valor por defecto cuando no está marcado -->
+                                <input type="hidden" name="reporte_semanal" value="0">
+                                
+                                <!-- Checkbox -->
+                                <input name="reporte_semanal" type="checkbox" class="custom-control-input" id="reporte_semanal" value="1" 
+                                       {{ old('reporte_semanal', $user->reporte_semanal) == 1 ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="reporte_semanal">Reporte Semanal</label>
+                            </div>
+                        </div>
                     </div>               
 
                 </div>
