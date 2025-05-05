@@ -120,9 +120,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Buscamos el usuario por el ID
-        $user = User::findOrFail($id);
-
         // Validamos los datos ingresados
         $request->validate([
             'nombre' => 'required|string|max:255',
@@ -143,6 +140,14 @@ class UserController extends Controller
             'rPassword.required'=>'Este campo es requerido',     
         ]);
 
+        // Buscamos los datos del clues
+        $clues = Unidad::findOrFail($request->clues);
+
+        //dd($clues->clues);
+
+        // Buscamos el usuario por el ID
+        $user = User::findOrFail($id);
+
         // Actualizamos los datos
         $user->name = $request->nombre;
         $user->email = $request->correo;
@@ -154,7 +159,11 @@ class UserController extends Controller
 
         $user->categoria = $request->categoria;
         $user->nivel = $request->nivel;
-        $user->clues = $request->clues;
+        $user->clues = $clues->clues;
+        $user->clues_id = $request->clues;
+        $user->clues_jurisdiccion = $clues->jurisdiccion;
+        $user->clues_nombre = $clues->nombre;
+        $user->clues_categoria = $clues->categoria;
         $user->cuasifalla = $request->cuasifalla;
         $user->adverso = $request->adverso;
         $user->centinela = $request->centinela;
