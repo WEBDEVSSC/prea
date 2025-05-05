@@ -38,15 +38,30 @@
                 background-color: #D3D3D3; /* Gris claro */
                 font-weight: bold; /* Opcional: hace el texto en negrita */
             }
+
+            .sin-bordes td,
+            .sin-bordes th {
+                border: none;
+            }
+
+            .footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 8pt;
+                color: gray;
+            }
         </style>
 
-        <table>
+        <table class="sin-bordes">
             <tr>
                 <td><h2>Plataforma de Registro de Eventos Adversos</h2>
-                <br>
-                <small>Secretaría de Salud de Coahuila de Zaragoza</small>
-                <br>
-                <p>Fecha de reporte del {{ $fechaInicio}} al {{ $fechaFin }}</p></td>
+            </tr>
+            <tr>
+                <td><p>Secretaría de Salud de Coahuila de Zaragoza</p></td>
+                <td><p>Fecha de reporte del {{ $fechaInicio}} al {{ $fechaFin }}</p></td>
             </tr>
         </table>
 
@@ -66,5 +81,10 @@
                 <td><p>{{ $eventosCentinela }}</p></td>
             </tr>
         </table>
+
+        <div class="footer">
+            <p>Secretaría de Salud de Coahuila | Subdirección de Calidad | Unidad de Planeación</p>
+        </div>
+
     </body>
 </html>
