@@ -89,7 +89,7 @@
                             <p><strong>CLUES</strong></p>
                             <select name="clues" class="form-control">
                                 @foreach ($clues as $clue)
-                                    <option value="{{ $clue->id }}" {{ old('clues', $user->clues) == $clue->id ? 'selected' : '' }}>
+                                    <option value="{{ $clue->id }}" {{ old('clues', $user->clues_id) == $clue->id ? 'selected' : '' }}>
                                         {{ $clue->nombre }}
                                     </option>
                                 @endforeach
