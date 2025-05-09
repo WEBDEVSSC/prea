@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ReporteSemanalMailable extends Mailable
+class ReporteMensualMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,8 +28,8 @@ class ReporteSemanalMailable extends Mailable
 
     public function build()
     {
-        return $this->markdown('emails.reporte-semanal')
-                    ->subject('Reporte Semanal PREA')
+        return $this->markdown('emails.reporte-mensual')
+                    ->subject('Reporte Mensual PREA')
                     ->attachFromStorage($this->rutaPDF)
                 
                 ->with([

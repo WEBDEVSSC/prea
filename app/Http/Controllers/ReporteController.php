@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ReporteSemanalMailable;
+use App\Mail\ReporteMensualMailable;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -92,76 +92,124 @@ class ReporteController extends Controller
         // return Excel::download(new EventoExport,'eventos.xlsx');
     }
 
-    public function generarReporteSemanalPDF()
+    public function generarReporteMensualPDF()
     {
-        //dd(Carbon::now()->format('Y-m-d H:i:s'));
-        
-        $nombrePDF = 'REPORTE-PREA-' . date('Y-m-d') . '.pdf';
+        $nombrePDF = 'REPORTE-PREA-MENSUAL-' . date('Y-m-d') . '.pdf';
         $rutaPDF = 'public/pdfs/'.$nombrePDF;
 
         if (!Storage::exists('public/pdfs')) {
             Storage::makeDirectory('public/pdfs');
         }
 
-        // Obtener el lunes de la semana pasada
-        $lunesPasado = Carbon::now()->startOfWeek()->subWeek(); // Lunes anterior
-        $domingoPasado = Carbon::now()->startOfWeek()->subDay(); // Domingo anterior
+        // Obtener el primer y último día del mes anterior
+        $inicioMesAnterior = Carbon::now()->subMonthNoOverflow()->startOfMonth();
+        $finMesAnterior = Carbon::now()->subMonthNoOverflow()->endOfMonth();
 
-        // Opcional: Formateo
-        $lunesPasadoStr = $lunesPasado->format('d-m-Y');
-        $domingoPasadoStr = $domingoPasado->format('d-m-Y');
+        // Formateo para mostrar en el PDF
+        $inicioMesStr = $inicioMesAnterior->format('d-m-Y');
+        $finMesStr = $finMesAnterior->format('d-m-Y');
 
-        // Consultamos todos los eventos de la semana pasada
-        $eventosSemanaPasada = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])->get();
-        $contadorEventos = $eventosSemanaPasada->count();
+        // Consultamos todos los eventos del mes anterior
+        $eventosMes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])->get();
+        $contadorEventos = $eventosMes->count();
 
-        $eventosAdverso = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])
+        $eventosAdverso = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
             ->where('clasificacion_del_Evento', 'EVENTO ADVERSO')
             ->count();
 
-        $eventosCuasiFalla = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])
+        $eventosCuasiFalla = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
             ->where('clasificacion_del_Evento', 'CUASI-FALLA')
             ->count();
 
-        $eventosCentinela = Evento::whereBetween('created_at', [$lunesPasado, $domingoPasado])
+        $eventosCentinela = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
             ->where('clasificacion_del_Evento', 'EVENTO CENTINELA')
             ->count();
 
-        // Pasamos todos los datos al PDF
-        $pdf = Pdf::loadView('export.reporte-semanal', [
-            'nombre' => 'Juan Pérez',
+        $listaDeEventos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->get();
 
+            /**
+             * 
+             * 
+             * RANGOS DE EDAD
+             * 
+             */
+
+        $rangoEdadLactantes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [0, 1])
+            ->count();
+
+        $rangoEdadPreescolares = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [2, 4])
+            ->count();
+
+        $rangoEdadEscolares = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [5, 9])
+            ->count();
+
+        $rangoEdadPreAdolescentes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [10, 14])
+            ->count();
+
+        $rangoEdadAdolescentes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [15, 19])
+            ->count();
+
+        $rangoEdadAdultosJovenes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [20, 24])
+            ->count();
+
+        $rangoEdadAdultos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [25, 44])
+            ->count();
+
+        $rangoEdadAdultosMayores = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('edad', [45, 59])
+            ->count();
+
+        $rangoEdadAdultosMayoresInicio = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('edad', [60, 64])
+            ->count();
+    
+        $rangoEdadAdultosMayores = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('edad', '>=', 65)
+            ->count();
+
+
+        // Generar el PDF AQUI PASAMOS TODAS LAS VARIABLES 
+        $pdf = Pdf::loadView('export.reporte-mensual', [
+            'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
             'eventosAdverso' => $eventosAdverso,
             'eventosCuasiFalla' => $eventosCuasiFalla,
             'eventosCentinela' => $eventosCentinela,
-
-            'fechaInicio' => $lunesPasadoStr,
-            'fechaFin' => $domingoPasadoStr,
-            'eventos' => $eventosSemanaPasada
+            'listaDeEventos' => $listaDeEventos,
+            'fechaInicio' => $inicioMesStr,
+            'fechaFin' => $finMesStr,
+            'eventos' => $eventosMes,
+            'rangoEdadLactantes' => $rangoEdadLactantes
         ]);
 
-        // Guardar PDF
+        // Cambiar la orientación de la página a horizontal (landscape)
+        $pdf->setPaper('A4', 'landscape');
+
+        // Guardar el PDF
         Storage::put($rutaPDF, $pdf->output());
 
-        // Obtenemos todos los usuarios que acepten el correo de REPORTE SEMANAL
-        $correos = User::where('reporte_semanal', 1)->pluck('email')->toArray();
-
-        // Obtenemos el objeto usuario para sacar sus datos
         $usuarios = User::where('reporte_semanal', 1)->get();
 
-        // Recorremos el arreglo de usuarios para ir cargando el nombre
         foreach ($usuarios as $usuario) {
             Mail::to($usuario->email)->send(
-                new ReporteSemanalMailable(
+                new ReporteMensualMailable(
                     $usuario->name,
                     $rutaPDF,
-                    $lunesPasadoStr,
-                    $domingoPasadoStr
+                    $inicioMesStr,
+                    $finMesStr
                 )
             );
         }
 
-        return 'PDF guardado y correo enviado exitosamente como ' . $nombrePDF;
+        return 'Reporte mensual enviado correctamente: ' . $nombrePDF;
     }
+
 }

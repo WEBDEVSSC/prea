@@ -8,6 +8,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
+
+// PROGRAMAR EL ENVIO DEL REPORTE MENSUAL CADA DIA 1 DE MES A LAS 8 AM
 Schedule::command('reporte:ejecutar')
-    ->mondays()
-    ->at('08:00');
+    ->monthlyOn(8, '08:00');

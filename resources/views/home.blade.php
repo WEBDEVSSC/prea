@@ -10,7 +10,7 @@
 
 @section('content')
 
-<a href="{{ route('generarReporteSemanalPDF')}}">RUTA</a>
+<a href="{{ route('generarReporteMensualPDF')}}">RUTA</a>
 
     <!-- -------------------------------------------------------------------- -->
 

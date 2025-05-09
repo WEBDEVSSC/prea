@@ -67,16 +67,18 @@ class UserController extends Controller
         $user = new User();
 
         // Asignamos los valores a los campos
-        $user->name=$request->nombre;
-        $user->email=$request->correo;
-        $user->password=Hash::make($request->password);
-        $user->categoria=$request->categoria;
-        $user->nivel=$request->nivel;
-        $user->clues=$clues->clues;
-        $user->clues_id=$clues->id;
-        $user->clues_jurisdiccion=$clues->jurisdiccion;
-        $user->clues_nombre=$clues->nombre;
-        $user->clues_categoria=$clues->categoria;
+        $user->name = $request->nombre;
+        $user->email = $request->correo;
+        $user->password = Hash::make($request->password);
+        $user->categoria = $request->categoria;
+        $user->nivel  =$request->nivel;
+
+        $user->clues = $clues->clues;
+        $user->clues_id = $request->clues;
+        $user->clues_jurisdiccion = $clues->jurisdiccion;
+        $user->clues_nombre = $clues->nombre;
+        $user->clues_categoria = $clues->categoria;
+
         $user->cuasifalla = $request->cuasifalla;
         $user->adverso = $request->adverso;
         $user->centinela = $request->centinela;

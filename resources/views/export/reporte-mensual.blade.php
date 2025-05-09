@@ -82,6 +82,32 @@
             </tr>
         </table>
 
+        <p>RANGOS DE EDAD LACTANTES {{ $rangoEdadLactantes }}</p>
+
+        <p><strong>TODOS LOS EVENTOS</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th class="fondo-gris"><p>TIPO</p></th>
+                    <th class="fondo-gris"><p>FECHA</p></th>
+                    <th class="fondo-gris"><p>UNIDAD</p></th>
+                    <th class="fondo-gris"><p>FOLIO</p></th>
+                    <th class="fondo-gris"><p>CLASIFICACION</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($listaDeEventos as $evento)
+                    <tr>
+                        <td><p>{{ $evento->clasificacion_del_evento }}</p></td>
+                        <td><p>{{ $evento->fecha_hora }}</p></td>
+                        <td><p>{{ $evento->unidad_nombre}}</p></td>                        
+                        <td><p>{{ $evento->folio }}</p></td>
+                        <td><p>{{ $evento->incidente_categoria_label }}</p></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
         <div class="footer">
             <p>Secretaría de Salud de Coahuila | Subdirección de Calidad | Unidad de Planeación</p>
         </div>
