@@ -135,7 +135,7 @@
                                 <!-- Checkbox -->
                                 <input name="reporte_semanal" type="checkbox" class="custom-control-input" id="reporte_semanal" value="1" 
                                        {{ old('reporte_semanal', $user->reporte_semanal) == 1 ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="reporte_semanal">Reporte Semanal</label>
+                                <label class="custom-control-label" for="reporte_semanal">Reporte Mensual</label>
                             </div>
                         </div>
                     </div>               
