@@ -59,7 +59,7 @@
                                 <th>C-F</th>                                
                                 <th>ADV</th>                                
                                 <th>CEN</th>                                
-                                <th>REP SEM</th>                                
+                                <th>REP MEN</th>                                
                                 <th></th>
                             </tr>
                         </thead>
