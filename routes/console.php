@@ -11,4 +11,4 @@ Artisan::command('inspire', function () {
 
 // PROGRAMAR EL ENVIO DEL REPORTE MENSUAL CADA DIA 1 DE MES A LAS 8 AM
 Schedule::command('reporte:ejecutar')
-    ->monthlyOn(9, '09:25');
+    ->monthlyOn(1, '08:00');
