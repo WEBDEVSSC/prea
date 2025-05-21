@@ -131,48 +131,192 @@ class ReporteController extends Controller
             /**
              * 
              * 
+             * REPORTES POR JURISDICCIONES
+             * 
+             */
+
+        $totalJ1 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',1)
+            ->count();
+
+        $totalJ2 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',2)
+            ->count();
+
+        $totalJ3 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',3)
+            ->count();
+
+        $totalJ4 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',4)
+            ->count();
+
+        $totalJ5 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',5)
+            ->count();
+
+        $totalJ6 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',6)
+            ->count();
+
+        $totalJ7 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',7)
+            ->count();
+
+        $totalJ8 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('jurisdiccion',8)
+            ->count();
+
+            /**
+             * 
+             * 
+             * REPORTES POR SEXO
+             * 
+             */
+
+        $totalMasculino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('sexo','MASCULINO')
+            ->count();
+
+        $totalFemenino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('sexo','FEMENINO')
+            ->count();
+
+            /**
+             * 
+             * 
              * RANGOS DE EDAD
              * 
              */
 
-        $rangoEdadLactantes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [0, 1])
+        $totalPrimeraInfancia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [0, 5])
             ->count();
 
-        $rangoEdadPreescolares = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [2, 4])
+        $totalInfancia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [6, 11])
+            ->count();
+        
+        $totalAdolescencia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [12, 15])
             ->count();
 
-        $rangoEdadEscolares = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [5, 9])
+        $totalJuventud = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [16, 26])
             ->count();
 
-        $rangoEdadPreAdolescentes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [10, 14])
+        $totalAdultez = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [27, 59])
+            ->count();
+        
+        $totalPersonaMayor = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->whereBetween('edad', [60, 200])
             ->count();
 
-        $rangoEdadAdolescentes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [15, 19])
+            /**
+             * 
+             * 
+             * POR TURNO
+             * 
+             */
+
+        $totalMatutino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('turno','MATUTINO')
             ->count();
 
-        $rangoEdadAdultosJovenes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [20, 24])
+        $totalVespertino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('turno','VESPERTINO')
+            ->count();
+        
+        $totalNocturno = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('turno','NOCTURNO')
             ->count();
 
-        $rangoEdadAdultos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->whereBetween('edad', [25, 44])
+        $totalJornadaAcumulada = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('turno','JORNADA ACUMULADA')
             ->count();
 
-        $rangoEdadAdultosMayores = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->where('edad', [45, 59])
+            /**
+             * 
+             * 
+             * LUGAR O AREA DEL EVENTO ADVERSO
+             * 
+             */
+
+        $almacen = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','ALMACEN')
+            ->count();
+        
+        $cendis = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','CENDIS')
             ->count();
 
-        $rangoEdadAdultosMayoresInicio = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->where('edad', [60, 64])
+        $ceye = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','CEYE')
             ->count();
-    
-        $rangoEdadAdultosMayores = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
-            ->where('edad', '>=', 65)
+
+        $consultaExterna = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','CONSULTA EXTERNA')
+            ->count();
+        
+        $dental = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','DENTAL')
+            ->count();
+        
+        $farmacia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','FARMACIA')
+            ->count();
+
+        $hospitalizacion = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','HOSPITALIZACION')
+            ->count();
+
+        $imagenologia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','IMAGENOLOGIA Y RAYOS X')
+            ->count();
+
+        $laboratorio = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','LABORATORIO')
+            ->count();
+
+        $medicinaPreventiva = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','MEDICINA PREVENTIVA')
+            ->count();
+
+        $nutricion = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','NUTRICION')
+            ->count();
+
+        $patologia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','PATOLOGIA')
+            ->count();
+
+        $quirofano = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','QUIROFANO')
+            ->count();
+
+        $saludReproductiva = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','SALUD REPRODUCTIVA')
+            ->count();
+
+        $tocoCirugia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','TOCOCIRUGIA')
+            ->count();
+
+        $UCIAdultos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','U.C.I. ADULTOS')
+            ->count();
+
+        $UCINeonatales = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','U.C.I. NEONATALES')
+            ->count();
+
+        $UCIPediatricos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','U.C.I. PEDIATRICOS')
+            ->count();
+
+        $urgencias = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+            ->where('servicio','URGENCIAS')
             ->count();
 
 
@@ -187,11 +331,54 @@ class ReporteController extends Controller
             'fechaInicio' => $inicioMesStr,
             'fechaFin' => $finMesStr,
             'eventos' => $eventosMes,
-            'rangoEdadLactantes' => $rangoEdadLactantes
+
+            'totalJ1'=> $totalJ1,
+            'totalJ2'=> $totalJ2,
+            'totalJ3'=> $totalJ3,
+            'totalJ4'=> $totalJ4,
+            'totalJ5'=> $totalJ5,
+            'totalJ6'=> $totalJ6,
+            'totalJ7'=> $totalJ7,
+            'totalJ8'=> $totalJ8,
+
+            'totalMasculino' => $totalMasculino,
+            'totalFemenino' => $totalFemenino,
+
+            'totalPrimeraInfancia' => $totalPrimeraInfancia,
+            'totalInfancia' => $totalInfancia,
+            'totalAdolescencia' => $totalAdolescencia,
+            'totalJuventud' => $totalJuventud,
+            'totalAdultez' => $totalAdultez,
+            'totalPersonaMayor' => $totalPersonaMayor,
+
+            'totalMatutino' => $totalMatutino,
+            'totalVespertino' => $totalVespertino,
+            'totalNocturno' => $totalNocturno,
+            'totalJornadaAcumulada' => $totalJornadaAcumulada,
+
+            'almacen' => $almacen,
+            'cendis' => $cendis,
+            'ceye' => $ceye,
+            'consultaExterna' => $consultaExterna,
+            'dental' => $dental,
+            'farmacia' => $farmacia,
+            'hospitalizacion' => $hospitalizacion,
+            'imagenologia' => $imagenologia,
+            'laboratorio' => $laboratorio,
+            'medicinaPreventiva' => $medicinaPreventiva,
+            'nutricion' => $nutricion,
+            'patologia' => $patologia,
+            'quirofano' => $quirofano,
+            'saludReproductiva' => $saludReproductiva,
+            'tocoCirugia' => $tocoCirugia,
+            'UCIAdultos' => $UCIAdultos,
+            'UCINeonatales' => $UCINeonatales,
+            'UCIPediatricos' => $UCIPediatricos,
+            'urgencias' => $urgencias,
         ]);
 
         // Cambiar la orientación de la página a horizontal (landscape)
-        $pdf->setPaper('A4', 'landscape');
+        //$pdf->setPaper('A4', 'landscape');
 
         // Guardar el PDF
         Storage::put($rutaPDF, $pdf->output());

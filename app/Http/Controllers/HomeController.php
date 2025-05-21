@@ -135,7 +135,7 @@ class HomeController extends Controller
             ->whereYear('created_at',$anio)
             ->count();
 
-        $totalJuventud = Evento:: whereBetween('edad', [14, 26])
+        $totalJuventud = Evento:: whereBetween('edad', [16, 26])
             ->whereYear('created_at',$anio)
             ->count();
 

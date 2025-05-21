@@ -55,13 +55,15 @@
             }
         </style>
 
+        <!-- ------------------------------------------------------------------ -->
+        <center><img src="{{ public_path('img/cintilla_prea.jpg') }}" width="50%" alt="Cintilla PREA"></center>
+
         <table class="sin-bordes">
             <tr>
-                <td><h2>Plataforma de Registro de Eventos Adversos</h2>
-            </tr>
-            <tr>
-                <td><p>Secretaría de Salud de Coahuila de Zaragoza</p></td>
-                <td><p>Fecha de reporte del {{ $fechaInicio}} al {{ $fechaFin }}</p></td>
+                <td>
+                    <center><h2>Plataforma de Registro de Eventos Adversos</h2></center> 
+                    <center><p>Fecha de reporte del {{ $fechaInicio}} al {{ $fechaFin }}</p></center> 
+                </td>
             </tr>
         </table>
 
@@ -82,9 +84,168 @@
             </tr>
         </table>
 
-        <p>RANGOS DE EDAD LACTANTES {{ $rangoEdadLactantes }}</p>
+        <!-- ------------------------------------------------------------------ -->
 
-        <p><strong>TODOS LOS EVENTOS</strong></p>
+        <h6><strong>REGISTROS POR JURISDICCION</strong></h6>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="fondo-gris"><p>J1 - PIEDRAS NEGRAS</p></th>
+                    <th class="fondo-gris"><p>J2 - ACUÑA</p></th>
+                    <th class="fondo-gris"><p>J3 - SABINAS</p></th>
+                    <th class="fondo-gris"><p>J4 - MONCLOVA</p></th>
+                    <th class="fondo-gris"><p>J5 - C. CIÉNEGAS</p></th>
+                    <th class="fondo-gris"><p>J6 - TORREÓN</p></th>
+                    <th class="fondo-gris"><p>J7 - FCO. I. MADERO</p></th>
+                    <th class="fondo-gris"><p>J8 - SALTILLO</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><p>{{ $totalJ1 }}</p></td>
+                    <td><p>{{ $totalJ2 }}</p></td>
+                    <td><p>{{ $totalJ3 }}</p></td>
+                    <td><p>{{ $totalJ4 }}</p></td>
+                    <td><p>{{ $totalJ5 }}</p></td>
+                    <td><p>{{ $totalJ6 }}</p></td>
+                    <td><p>{{ $totalJ7 }}</p></td>
+                    <td><p>{{ $totalJ8 }}</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        <h6><strong>POR SEXO</strong></h6>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="fondo-gris"><p>MASCULINO</p></th>
+                    <th class="fondo-gris"><p>FEMENINO</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><p>{{ $totalMasculino }}</p></td>
+                    <td><p>{{ $totalFemenino }}</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        <h6><strong>POR RANGOS DE EDAD</strong></h6>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="fondo-gris"><p>PRIMERA INFANCIA<br>(0-5)</p></th>
+                    <th class="fondo-gris"><p>INFANCIA<br>(6-11)</p></th>
+                    <th class="fondo-gris"><p>ADOLESCENCIA<br>(12-15)</p></th>
+                    <th class="fondo-gris"><p>JUVENTUD<br>(16-26)</p></th>
+                    <th class="fondo-gris"><p>ADULTEZ<br>(27-59)</p></th>
+                    <th class="fondo-gris"><p>ADULTO MAYOR<br>(60-200)</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><p>{{ $totalPrimeraInfancia }}</p></td>
+                    <td><p>{{ $totalInfancia }}</p></td>
+                    <td><p>{{ $totalAdolescencia }}</p></td>
+                    <td><p>{{ $totalJuventud }}</p></td>
+                    <td><p>{{ $totalAdultez }}</p></td>
+                    <td><p>{{ $totalPersonaMayor }}</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        <h6><strong>TURNO</strong></h6>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="fondo-gris"><p>MATUTINO</p></th>
+                    <th class="fondo-gris"><p>VESPERTINO</p></th>
+                    <th class="fondo-gris"><p>NOCTURNO</p></th>
+                    <th class="fondo-gris"><p>JORNADA ACUMULADA</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><p>{{ $totalMatutino }}</p></td>
+                    <td><p>{{ $totalVespertino }}</p></td>
+                    <td><p>{{ $totalNocturno }}</p></td>
+                    <td><p>{{ $totalJornadaAcumulada }}</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        <h6><strong>LUGAR O AREA DEL EVENTO</strong></h6>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="fondo-gris"><p>ALMACEN</p></th>
+                    <td><p>{{ $almacen }}</p></td>
+                    <th class="fondo-gris"><p>CENDIS</p></th>
+                    <td><p>{{ $cendis }}</p></td>
+                    <th class="fondo-gris"><p>CEYE</p></th>
+                    <td><p>{{ $ceye }}</p></td>
+                    <th class="fondo-gris"><p>CONSULTA EXTERNA</p></th>
+                    <td><p>{{ $consultaExterna }}</p></td>
+                    <th class="fondo-gris"><p>DENTAL</p></th>
+                    <td><p>{{ $dental }}</p></td>
+                </tr>
+                <tr>
+                    <th class="fondo-gris"><p>FARMACIA</p></th>
+                    <td><p>{{ $farmacia }}</p></td>
+                    <th class="fondo-gris"><p>HOSPITALIZACIÓN</p></th>
+                    <td><p>{{ $hospitalizacion }}</p></td>
+                    <th class="fondo-gris"><p>IMAGENOLOGIÍA</p></th>
+                    <td><p>{{ $imagenologia }}</p></td>
+                    <th class="fondo-gris"><p>LABORATORIO</p></th>
+                    <td><p>{{ $laboratorio }}</p></td>
+                    <th class="fondo-gris"><p>MEDICINA PREVENTIVA</p></th>
+                    <td><p>{{ $medicinaPreventiva }}</p></td>
+                </tr>
+                <tr>
+                    <th class="fondo-gris"><p>NUTRICIÓN</p></th>
+                    <td><p>{{ $nutricion }}</p></td>
+                    <th class="fondo-gris"><p>PATOLOGÍA</p></th>
+                    <td><p>{{ $patologia }}</p></td>
+                    <th class="fondo-gris"><p>QUIROFANO</p></th>
+                    <td><p>{{ $quirofano }}</p></td>
+                    <th class="fondo-gris"><p>SALUD REPRODUCTIVA</p></th>
+                    <td><p>{{ $saludReproductiva }}</p></td>
+                    <th class="fondo-gris"><p>TOCOCIRUGÍA</p></th> 
+                    <td><p>{{ $tocoCirugia }}</p></td>                   
+                </tr>
+                <tr>      
+                    <th class="fondo-gris"><p>UCI ADULTOS</p></th>
+                    <td><p>{{ $UCIAdultos }}</p></td>
+                    <th class="fondo-gris"><p>UCI NEONATALES</p></th>
+                    <td><p>{{ $UCINeonatales }}</p></td>
+                    <th class="fondo-gris"><p>UCI PEDIATRICOS</p></th>
+                    <td><p>{{ $UCIPediatricos }}</p></td>
+                    <th class="fondo-gris"><p>URGENCIAS</p></th>
+                    <td><p>{{ $urgencias }}</p></td>
+                    <th class="fondo-gris"><p></p></th>
+                    <td><p></p></td>
+                </tr>
+            </thead>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+        <div style="page-break-after: always;"></div>
+        <!-- ------------------------------------------------------------------ -->
+
+        <h6><strong>TODOS LOS EVENTOS</strong></h6>
         <table>
             <thead>
                 <tr>
