@@ -227,7 +227,7 @@ class SitioController extends Controller
             //-----------------------------------------------------------------------------------------------------------
 
             // Enviamos mensajes por TELEGRAM
-            $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+            $token = env('TELEGRAM_BOT_TOKEN');
             $chat_ids = ['13673422'];
             $mensaje = 'Se ha registrado un Evento Cuasi-Falla' . "\n" .
                        'Folio: ' . $folio . "\n" .
@@ -261,7 +261,7 @@ class SitioController extends Controller
             //-----------------------------------------------------------------------------------------------------------
 
             // Enviamos mensajes por TELEGRAM
-            $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+            $token = env('TELEGRAM_BOT_TOKEN');
             $chat_ids = ['13673422'];
             $mensaje = 'Se ha registrado un Evento Adverso' . "\n" .
                        'Folio: ' . $folio . "\n" .
@@ -295,7 +295,7 @@ class SitioController extends Controller
             //-----------------------------------------------------------------------------------------------------------
 
             // Enviamos mensajes por TELEGRAM
-            $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+            $token = env('TELEGRAM_BOT_TOKEN');
             $chat_ids = ['13673422', '8126748217'];
             $mensaje = 'Se ha registrado un Evento Centinela' . "\n" .
                        'Folio: ' . $folio . "\n" .
@@ -323,22 +323,16 @@ class SitioController extends Controller
 
     public function enviarTelegram()
     {
-        $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
-        $chat_ids = ['13673422', '8126748217'];
-        $mensaje = 'Mensaje de prueba P.R.E.A. Coah Bot Telegram';
+        $token = env('TELEGRAM_BOT_TOKEN');
+        $chat_id = '13673422';
+        $mensaje = 'Mensaje de prueba P.R.E.A. S.S.C.';
 
-        foreach ($chat_ids as $chat_id) 
-        {
-            $response = Http::withOptions([
-                'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
-            ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id' => $chat_id,
-                'text' => $mensaje,
-            ]);
-
-            // Puedes revisar cada respuesta si gustas
-            dump("Mensaje enviado a {$chat_id}", $response->json());
-        }
+        $response = Http::withOptions([
+            'verify' => false, // <--- desactiva verificación SSL
+        ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+            'chat_id' => $chat_id,
+            'text' => $mensaje,
+        ]);
 
         dd($response->json());
     }
