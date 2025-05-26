@@ -10,8 +10,6 @@
 
 @section('content')
 
-<a href="{{ route('generarReporteMensualPDF')}}">RUTA</a>
-
     <!-- -------------------------------------------------------------------- -->
 
     @if($usuario->role == "admin")

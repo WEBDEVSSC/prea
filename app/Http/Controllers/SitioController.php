@@ -13,6 +13,7 @@ use App\Models\Unidad;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
 class SitioController extends Controller
@@ -222,6 +223,30 @@ class SitioController extends Controller
             
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new cuasiFallaMail($folio));
+
+            //-----------------------------------------------------------------------------------------------------------
+
+            // Enviamos mensajes por TELEGRAM
+            $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+            $chat_ids = ['13673422'];
+            $mensaje = 'Se ha registrado un Evento Cuasi-Falla' . "\n" .
+                       'Folio: ' . $folio . "\n" .
+                       'Revisa el sistema para más detalles.';
+
+            foreach ($chat_ids as $chat_id) 
+            {
+                $response = Http::withOptions([
+                    'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
+                ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje,
+                ]);
+
+                // Puedes revisar cada respuesta si gustas
+                //dump("Mensaje enviado a {$chat_id}", $response->json());
+            }
+
+             //-----------------------------------------------------------------------------------------------------------
         }
 
             // Verificar la clasificación del evento para "EVENTO ADVERSO"
@@ -232,6 +257,30 @@ class SitioController extends Controller
             
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new adversoMail($folio));
+
+            //-----------------------------------------------------------------------------------------------------------
+
+            // Enviamos mensajes por TELEGRAM
+            $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+            $chat_ids = ['13673422'];
+            $mensaje = 'Se ha registrado un Evento Adverso' . "\n" .
+                       'Folio: ' . $folio . "\n" .
+                       'Revisa el sistema para más detalles.';
+
+            foreach ($chat_ids as $chat_id) 
+            {
+                $response = Http::withOptions([
+                    'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
+                ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje,
+                ]);
+
+                // Puedes revisar cada respuesta si gustas
+                //dump("Mensaje enviado a {$chat_id}", $response->json());
+            }
+
+             //-----------------------------------------------------------------------------------------------------------
         }
 
         // Verificar la clasificación del evento
@@ -242,9 +291,55 @@ class SitioController extends Controller
             
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio));
+
+            //-----------------------------------------------------------------------------------------------------------
+
+            // Enviamos mensajes por TELEGRAM
+            $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+            $chat_ids = ['13673422', '8126748217'];
+            $mensaje = 'Se ha registrado un Evento Centinela' . "\n" .
+                       'Folio: ' . $folio . "\n" .
+                       'Revisa el sistema para más detalles.';
+
+            foreach ($chat_ids as $chat_id) 
+            {
+                $response = Http::withOptions([
+                    'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
+                ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje,
+                ]);
+
+                // Puedes revisar cada respuesta si gustas
+                //dump("Mensaje enviado a {$chat_id}", $response->json());
+            }
+
+             //-----------------------------------------------------------------------------------------------------------
         }
 
         // Redireccionamos con el evento 
         return redirect()->route('create')->with('success', 'Folio : '.$folio);
+    }
+
+    public function enviarTelegram()
+    {
+        $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+        $chat_ids = ['13673422', '8126748217'];
+        $mensaje = 'Mensaje de prueba P.R.E.A. Coah Bot Telegram';
+
+        foreach ($chat_ids as $chat_id) 
+        {
+            $response = Http::withOptions([
+                'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
+            ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+                'chat_id' => $chat_id,
+                'text' => $mensaje,
+            ]);
+
+            // Puedes revisar cada respuesta si gustas
+            dump("Mensaje enviado a {$chat_id}", $response->json());
+        }
+
+        dd($response->json());
     }
 }
