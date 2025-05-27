@@ -128,6 +128,7 @@ class UserController extends Controller
             'correo' => 'required|email|max:255|unique:users,email,' . $id,
             'password'=> 'nullable|string|confirmed',
             'rPassword'=>'nullable|string|same:password',
+            'chat_id'=>'nullable|integer',
             'categoria'=>'required|integer',
             'nivel'=>'required|integer',
             'clues'=>'required|string',            
@@ -139,7 +140,8 @@ class UserController extends Controller
             'rPassword.same'=>'Las contraseñas no coinciden',
             'correo.unique'=>'El correo ya se encuentra registrado', 
             'password.required'=>'Este campo es requerido',     
-            'rPassword.required'=>'Este campo es requerido',     
+            'rPassword.required'=>'Este campo es requerido',  
+            'chat_id.integer'=>'Este campo debe ser numerico',   
         ]);
 
         // Buscamos los datos del clues
@@ -160,6 +162,7 @@ class UserController extends Controller
         }
 
         $user->categoria = $request->categoria;
+        $user->chat_id = $request->chat_id;
         $user->nivel = $request->nivel;
         $user->clues = $clues->clues;
         $user->clues_id = $request->clues;
@@ -170,6 +173,9 @@ class UserController extends Controller
         $user->adverso = $request->adverso;
         $user->centinela = $request->centinela;
         $user->reporte_semanal = $request->reporte_semanal;
+        $user->bot_cuasifalla = $request->bot_cuasifalla;
+        $user->bot_adverso = $request->bot_adverso;
+        $user->bot_centinela = $request->bot_centinela;
 
         // Guarda los cambios
         $user->save();

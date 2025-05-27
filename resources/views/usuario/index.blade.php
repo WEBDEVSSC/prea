@@ -56,10 +56,10 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>CLUES</th>                                
-                                <th>C-F</th>                                
-                                <th>ADV</th>                                
-                                <th>CEN</th>                                
-                                <th>REP MEN</th>                                
+                                <th><center>C-F</center></th>                                
+                                <th><center>ADV</center></th>                                
+                                <th><center>CEN</center></th>                                
+                                <th><center>REP MEN</center></th>                           
                                 <th></th>
                             </tr>
                         </thead>
@@ -78,10 +78,85 @@
                                     <td>{{ $usuario->name }}</td>
                                     <td>{{ $usuario->email }}</td>
                                     <td>J.{{ $usuario->clues_jurisdiccion }} - {{ $usuario->clues_nombre }}</td>
-                                    <td>{{ $usuario->cuasifalla }}</td>
-                                    <td>{{ $usuario->adverso }}</td>
-                                    <td>{{ $usuario->centinela }}</td>
-                                    <td>{{ $usuario->reporte_semanal }}</td>
+                                    <td>
+                                        <center>
+                                        @if ($usuario->cuasifalla == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-envelope"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-envelope"></i>
+                                            </button>
+                                        @endif
+                                        @if ($usuario->bot_cuasifalla == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-asterisk"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-asterisk"></i>
+                                            </button>
+                                        @endif
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                        @if ($usuario->adverso == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-envelope"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-envelope"></i>
+                                            </button>
+                                        @endif
+                                        @if ($usuario->bot_adverso == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-asterisk"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-asterisk"></i>
+                                            </button>
+                                        @endif
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                        @if ($usuario->centinela == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-envelope"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-envelope"></i>
+                                            </button>
+                                        @endif
+                                        @if ($usuario->bot_centinela == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-asterisk"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-asterisk"></i>
+                                            </button>
+                                        @endif
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                        @if ($usuario->reporte_semanal == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fa fa-bookmark"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-bookmark"></i>
+                                            </button>
+                                        @endif
+                                        </center>
+                                    </td>
 
                                     
                                     <td>

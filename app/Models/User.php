@@ -21,6 +21,21 @@ class User extends Authenticatable
         'email',
         'password',
         'categoria',
+        'nivel',
+        'clues',
+        'clues_id',
+        'clues_jurisdiccion',
+        'clues_nombre',
+        'clues_categoria',
+        'cuasifalla',
+        'adverso',
+        'centinela',
+        'reporte_semanal',
+        'chat_id',
+        'bot_cuasifalla',
+        'bot_adverso',
+        'bot_centinela',
+        'role'
     ];
 
     /**

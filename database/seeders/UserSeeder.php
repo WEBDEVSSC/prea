@@ -28,6 +28,8 @@ class UserSeeder extends Seeder
             'cuasifalla' => 1,
             'adverso' => 1,
             'centinela' => 1,
+            'reporte_semanal' => 1,
+            'chat_id' => '00000000',
             'role' => 'admin'
         ]);
     }
