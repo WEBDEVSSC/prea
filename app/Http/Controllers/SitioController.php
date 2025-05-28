@@ -228,10 +228,21 @@ class SitioController extends Controller
 
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = ['13673422'];
-            $mensaje = 'Se ha registrado un Evento Cuasi-Falla' . "\n" .
-                       'Folio: ' . $folio . "\n" .
-                       'Revisa el sistema para más detalles.';
+
+            // Obtener todos los usuarios con bot_cuasifalla = 1 y chat_id no nulo
+            $chat_ids = User::where('bot_cuasifalla', 1)
+                            ->whereNotNull('chat_id')
+                            ->pluck('chat_id')
+                            ->toArray();
+            
+            // Mensaje
+            $mensaje = '🏥 P.R.E.A. | S.S.C.' . "\n" .
+                       '' . "\n" .
+                       '🟢 Se ha registrado un Evento Cuasi-Falla' . "\n" .
+                       '' . "\n" .
+                       '📝 Folio: ' . $folio . "\n" .
+                       '🏥 Unidad: ' . $unidadNombre . "\n" .
+                       '🔖 Categoria: ' . $categoriaLabel->categoria;
 
             foreach ($chat_ids as $chat_id) 
             {
@@ -240,6 +251,14 @@ class SitioController extends Controller
                 ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
                     'chat_id' => $chat_id,
                     'text' => $mensaje,
+                    'reply_markup' => json_encode([
+                        'inline_keyboard' => [[
+                            [
+                                'text' => '🔗 Ver detalles',
+                                'url' => 'http://127.0.0.1:8000/admin/eventoShow/' . $id = $evento->id
+                            ]
+                        ]]
+                    ]),
                 ]);
 
                 // Puedes revisar cada respuesta si gustas
@@ -262,10 +281,20 @@ class SitioController extends Controller
 
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = ['13673422'];
-            $mensaje = 'Se ha registrado un Evento Adverso' . "\n" .
-                       'Folio: ' . $folio . "\n" .
-                       'Revisa el sistema para más detalles.';
+
+            // Obtener todos los usuarios con bot_cuasifalla = 1 y chat_id no nulo
+            $chat_ids = User::where('bot_adverso', 1)
+                            ->whereNotNull('chat_id')
+                            ->pluck('chat_id')
+                            ->toArray();
+
+            $mensaje = '🏥 P.R.E.A. | S.S.C.' . "\n" .
+                       '' . "\n" .
+                       '🟠 Se ha registrado un Evento Adverso' . "\n" .
+                       '' . "\n" .
+                       '📝 Folio: ' . $folio . "\n" .
+                       '🏥 Unidad: ' . $unidadNombre . "\n" .
+                       '🔖 Categoria: ' . $categoriaLabel->categoria;
 
             foreach ($chat_ids as $chat_id) 
             {
@@ -274,6 +303,14 @@ class SitioController extends Controller
                 ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
                     'chat_id' => $chat_id,
                     'text' => $mensaje,
+                    'reply_markup' => json_encode([
+                        'inline_keyboard' => [[
+                            [
+                                'text' => '🔗 Ver detalles',
+                                'url' => 'http://127.0.0.1:8000/admin/eventoShow/' . $id = $evento->id
+                            ]
+                        ]]
+                    ]),
                 ]);
 
                 // Puedes revisar cada respuesta si gustas
@@ -296,10 +333,20 @@ class SitioController extends Controller
 
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = ['13673422', '8126748217'];
-            $mensaje = 'Se ha registrado un Evento Centinela' . "\n" .
-                       'Folio: ' . $folio . "\n" .
-                       'Revisa el sistema para más detalles.';
+
+            // Obtener todos los usuarios con bot_cuasifalla = 1 y chat_id no nulo
+            $chat_ids = User::where('bot_centinela', 1)
+                            ->whereNotNull('chat_id')
+                            ->pluck('chat_id')
+                            ->toArray();
+
+            $mensaje = '🏥 P.R.E.A. | S.S.C.' . "\n" .
+                       '' . "\n" .
+                       '🔴 Se ha registrado un Evento Centinela' . "\n" .
+                       '' . "\n" .
+                       '📝 Folio: ' . $folio . "\n" .
+                       '🏥 Unidad: ' . $unidadNombre . "\n" .
+                       '🔖 Categoria: ' . $categoriaLabel->categoria;
 
             foreach ($chat_ids as $chat_id) 
             {
@@ -308,6 +355,14 @@ class SitioController extends Controller
                 ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
                     'chat_id' => $chat_id,
                     'text' => $mensaje,
+                    'reply_markup' => json_encode([
+                        'inline_keyboard' => [[
+                            [
+                                'text' => '🔗 Ver detalles',
+                                'url' => 'http://127.0.0.1:8000/admin/eventoShow/' . $id = $evento->id
+                            ]
+                        ]]
+                    ]),
                 ]);
 
                 // Puedes revisar cada respuesta si gustas
