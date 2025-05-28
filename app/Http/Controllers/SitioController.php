@@ -359,7 +359,7 @@ class SitioController extends Controller
                         'inline_keyboard' => [[
                             [
                                 'text' => '🔗 Ver detalles',
-                                'url' => 'http://127.0.0.1:8000/admin/eventoShow/' . $id = $evento->id
+                                'url' => url('public/admin/eventoShow/' . $evento->id)
                             ]
                         ]]
                     ]),
