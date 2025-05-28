@@ -255,7 +255,7 @@ class SitioController extends Controller
                         'inline_keyboard' => [[
                             [
                                 'text' => '🔗 Ver detalles',
-                                'url' => url('public/admin/eventoShow/' . $evento->id)
+                                'url' => url('admin/eventoShow/' . $evento->id)
                             ]
                         ]]
                     ]),
@@ -307,7 +307,7 @@ class SitioController extends Controller
                         'inline_keyboard' => [[
                             [
                                 'text' => '🔗 Ver detalles',
-                                'url' => url('public/admin/eventoShow/' . $evento->id)
+                                'url' => url('admin/eventoShow/' . $evento->id)
                             ]
                         ]]
                     ]),
@@ -359,7 +359,7 @@ class SitioController extends Controller
                         'inline_keyboard' => [[
                             [
                                 'text' => '🔗 Ver detalles',
-                                'url' => url('public/admin/eventoShow/' . $evento->id)
+                                'url' => url('admin/eventoShow/' . $evento->id)
                             ]
                         ]]
                     ]),
