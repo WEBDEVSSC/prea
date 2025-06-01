@@ -41,20 +41,22 @@
                 <th><strong>OTRO</strong></th>
                 <th><strong>DESCRIPCION</strong></th>
                 <th><strong>CATEGORIA</strong></th>
+                <th><strong>DESCRIPCIÓN</strong></th>
+                <th><strong>(OTRO)</strong></th>
                 <th><strong>GRAVEDAD DEL DAÑO</strong></th>
 
                 <th><strong>RELACIONADO CON LAS CARACTERISTICAS DEL PACIENTE</strong></th>
                 <th><strong>RELACIONADO CON LA APLICACIÓN DE LAS INDICACIONES...</strong></th>
-                <th><strong>Individuales asociadas con los integrantes del equipo.</strong></th>
-                <th><strong>Relacionados con el trabajo en equipo.</strong></th>
-                <th><strong>Relacionados con el ambiente de trabajo y el entorno.</strong></th>
-                <th><strong>Organizacionales del establecimiento de atención médica.</strong></th>
-                <th><strong>Institucionales o del ambiente externo.</strong></th>
+                <th><strong>INDIVIDUALES ASOCIADAS CON LOS INTEGRANTES DEL EQUIPO.</strong></th>
+                <th><strong>RELACIONADOS CON EL TRABAJO EN EQUIPO.</strong></th>
+                <th><strong>RELACIONADOS CON EL AMBIENTE DE TRABAJO Y EL ENTORNO.</strong></th>
+                <th><strong>ORGANIZACIONALES DEL ESTABLECIMIENTO DE ATENCIÓN MÉDICA.</strong></th>
+                <th><strong>INSTITUCIONALES O DEL AMBIENTE EXTERNO.</strong></th>
 
-                <th><strong>¿Considera que se pudo haber evitado el evento adverso?</strong></th>
-                <th><strong>¿Cómo considera que pudo haberse evitado el evento adverso?</strong></th>
-                <th><strong>¿Se le proporcionó información al paciente o a su familiar relacionada con el evento adverso?</strong></th>
-                <th><strong>¿Quién la proporcionó?</strong></th>
+                <th><strong>¿CONSIDERA QUE SE PUDO HABER EVITADO EL EVENTO ADVERSO?</strong></th>
+                <th><strong>¿CÓMO CONSIDERA QUE PUDO HABERSE EVITADO EL EVENTO ADVERSO?</strong></th>
+                <th><strong>¿SE LE PROPORCIONÓ INFORMACIÓN AL PACIENTE O A SU FAMILIAR RELACIONADA CON EL EVENTO ADVERSO?</strong></th>
+                <th><strong>¿QUIÉN LA PROPORCIONÓ?</strong></th>
 
             </tr>
         </thead>
@@ -78,6 +80,9 @@
                     <td>{{ $evento->persona_testigos_otro }}</td>
                     <td>{{ $evento->descripcion }}</td>
                     <td>{{ $evento->incidente_categoria_label }}</td>
+                    <td>{{ $evento->incidente_descripcion_label }}</td>
+                    <td>{{ $evento->incidente_otro }}</td>
+
                     <td>{{ $evento->gravedad }}</td>
 
                     <td>{{ $evento->factores_incidente_uno }}</td>
