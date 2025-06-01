@@ -56,17 +56,6 @@
                 <th><strong>¿Se le proporcionó información al paciente o a su familiar relacionada con el evento adverso?</strong></th>
                 <th><strong>¿Quién la proporcionó?</strong></th>
 
-                <th><strong>¿Se realizó alguna acción correctiva después del evento adverso?</strong></th>
-
-                <th><strong>Capacitación al personal de nuevo ingreso y estudiantes.</strong></th>
-                <th><strong>Mejoramiento de la infraestructura.</strong></th>
-                <th><strong>Gestión de los recursos(humanos, financieros y materiales) alineado a la mejora continua.</strong></th>
-                <th><strong>Fortalecimiento de una cultura de calidad y seguridad del paciente mediante el Modelo de Gestión de la Calidad.</strong></th>
-                <th><strong>Impulso al apego de las Guías de Práctica Clínica.</strong></th>
-                <th><strong>Implementación de mecanismos de supervisión operativa para el monitoreo de la calidad y la seguridad del paciente.</strong></th>
-                <th><strong>Desarrollo de un Programa de Calidad y Seguridad del Paciente para el establecimiento.</strong></th>
-                <th><strong>Capacitación a pacientes y familiares para prevenir eventos adversos.</strong></th>
-
             </tr>
         </thead>
         <tbody>
@@ -103,17 +92,6 @@
                     <td>{{ $evento->como_evitar_evento }}</td>
                     <td>{{ $evento->proporciono_informacion }}</td>
                     <td>{{ $evento->quien_proporciono }}</td>
-
-                    <td>{{ $evento->acciones_mejora }}</td>
-
-                    <td>{{ $evento->acciones_mejora_uno }}</td>
-                    <td>{{ $evento->acciones_mejora_dos }}</td>
-                    <td>{{ $evento->acciones_mejora_tres }}</td>
-                    <td>{{ $evento->acciones_mejora_cuatro }}</td>
-                    <td>{{ $evento->acciones_mejora_cinco }}</td>
-                    <td>{{ $evento->acciones_mejora_seis }}</td>
-                    <td>{{ $evento->acciones_mejora_siete }}</td>
-                    <td>{{ $evento->acciones_mejora_ocho }}</td>
 
                 </tr>
             @endforeach

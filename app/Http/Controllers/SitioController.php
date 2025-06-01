@@ -330,6 +330,8 @@ class SitioController extends Controller
             Mail::to($correos)->send(new eventoCentinelaMail($folio));
 
             //-----------------------------------------------------------------------------------------------------------
+            // ENVIAR NOTIFICACIONES POR TELEGRAM BOT
+            //-----------------------------------------------------------------------------------------------------------
 
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
@@ -369,7 +371,6 @@ class SitioController extends Controller
                 //dump("Mensaje enviado a {$chat_id}", $response->json());
             }
 
-             //-----------------------------------------------------------------------------------------------------------
         }
 
         // Redireccionamos con el evento 
