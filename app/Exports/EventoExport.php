@@ -75,10 +75,10 @@ class EventoExport implements FromView, WithStyles
             'Z1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'E6C229']]],
             'AA1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'E6C229']]],
 
-            'AB1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFCC5C']]],
-            'AC1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFCC5C']]],
-            'AD1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFCC5C']]],
-            'AE1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFCC5C']]],
+            'AB1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '2CA8E0']]],
+            'AC1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '2CA8E0']]],
+            'AD1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '2CA8E0']]],
+            'AE1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '2CA8E0']]],
         ];
     }
 }
