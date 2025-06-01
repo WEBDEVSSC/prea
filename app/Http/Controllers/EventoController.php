@@ -160,4 +160,12 @@ class EventoController extends Controller
         // Mostramos el PDF generado
         return $pdf->stream($evento->folio.'.pdf');
     }
+
+    public function destroy($id)
+    {
+        $evento = Evento::find($id);
+        $evento->delete(); 
+
+        return redirect()->route('eventoIndex')->with('destroy', 'El registro de elimino correctamente');
+    }
 }

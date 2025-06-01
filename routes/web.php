@@ -178,6 +178,9 @@ Route::middleware('auth')->group(function () {
     // Ruta para generar el PDF
     Route::get('admin/eventoPDF/{id}',[EventoController::class,'pdf'])->name('eventoPDF');
 
+    // Ruta para eliminarun evento
+    Route::delete('admin/eventoDestroy/{id}',[EventoController::class,'destroy'])->name('eventoDestroy');
+
      /**
      * 
      *
