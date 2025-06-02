@@ -57,7 +57,7 @@ class HomeController extends Controller
 
         if ($totalEvento > 0) 
         {
-               $porcentajeMasculino = ($totalMasculino / $totalEvento) * 100;
+            $porcentajeMasculino = ($totalMasculino / $totalEvento) * 100;
         } 
         else 
         {
@@ -294,9 +294,32 @@ class HomeController extends Controller
             ->count();
 
         // --------------------------- PASAMOS TODOS LOS VALORES A LA VISTA -----------------------
+
+        $anio = 2025;
+        $datosPorTipo = [
+            'Adverso' => [],
+            'Cuasifalla' => [],
+            'Centinela' => []
+        ];
+
+        foreach ([
+            'Adverso' => 'EVENTO ADVERSO',
+            'Cuasifalla' => 'CUASI-FALLA',
+            'Centinela' => 'EVENTO CENTINELA'
+        ] as $clave => $tipo) {
+            for ($mes = 1; $mes <= 12; $mes++) {
+                $datosPorTipo[$clave][] = Evento::whereYear('created_at', $anio)
+                    ->whereMonth('created_at', $mes)
+                    ->where('clasificacion_del_evento', $tipo)
+                    ->count();
+            }
+        }
+
+
         
 
         return view('home', compact(
+            'datosPorTipo',
             'usuario',
             'cuasiFalla',
             'eventoAdverso',

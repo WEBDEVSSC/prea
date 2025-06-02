@@ -168,16 +168,16 @@
     
             </div>
     
-            <div class="col-md-6">
+            <div class="col-md-9">
     
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><strong>Fecha</strong></h3>
+                    <h3 class="card-title"><strong>Resumen por mes</strong></h3>
                 </div>
                 <div class="card-body">
     
                             <div>
-                                <canvas id="myBarChart" width="400" height="185"></canvas>
+                                <canvas id="myBarCharts" width="400" height="407"></canvas>
                             </div>
     
                 </div>
@@ -185,6 +185,24 @@
     
             </div>
         </div>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header"><strong></strong></div>
+                    <div class="card-body">
+                        
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------ -->
+
+        
 
         <!-- FIN DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
     
@@ -208,6 +226,67 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+   <script>
+    // Esta línea convierte la variable PHP $datosPorTipo en una variable JS válida
+    const datosPorTipo = @json($datosPorTipo);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myBarCharts');
+        if (!ctx) {
+            console.error('No se encontró el elemento con ID "myBarCharts"');
+            return;
+        }
+
+        // Configuración global para Chart.js 3+
+        Chart.defaults.font.family = 'Nunito, sans-serif';
+        Chart.defaults.color = '#000';
+        Chart.defaults.font.size = 12;
+
+        // Aquí ya usamos la variable que viene desde el backend
+        new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [
+                    {
+                        label: 'Adverso',
+                        data: datosPorTipo.Adverso,
+                        backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Cuasifalla',
+                        data: datosPorTipo.Cuasifalla,
+                        backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Centinela',
+                        data: datosPorTipo.Centinela,
+                        backgroundColor: 'rgba(255, 206, 86, 0.8)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 
     <!-- GRAFICAS POR SEXO -->
     <script>
@@ -652,5 +731,8 @@
         });
     });
 </script>
+
+
+
 
 @stop
