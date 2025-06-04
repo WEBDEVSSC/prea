@@ -69,6 +69,75 @@
 
         <!-- ------------------------------------------------------------------ -->
 
+        <h6><strong>EVENTOS REGISTRADOS</strong></h6>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td width="25%" class="fondo-gris"><p>TOTAL</p></td>
+                    <td width="25%"><p>{{ $contadorEventos }}</p></td>
+                    <td colspan="2" rowspan="4"><center><img src="{{ $imageBase64Eventos }}" style="width: 100%; height: auto;"></center></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>ADVERSO</p></td>
+                <td><p>{{ $eventosAdverso }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>CUASI-FALLA</p></td>
+                    <td><p>{{ $eventosCuasiFalla }}</p></td>
+                </tr>
+                <tr>
+                <td class="fondo-gris"><p>CENTINELA</p></td>
+                <td><p>{{ $eventosCentinela }}</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+            
+        <!-- ------------------------------------------------------------------ -->
+
+        <h6><strong>EVENTOS POR JUSRIDICCIÓN</strong></h6>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td width="25%" class="fondo-gris"><p>J1 - PIEDRAS NEGRAS</p></td>
+                    <td width="25%"><p>{{ $totalJ1 }}</p></td>
+                    <td colspan="2" rowspan="8"><center><img src="{{ $imageBase64Jurisdiccion }}" style="width: 100%; height: auto;"></center></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J2 - ACUÑA</p></td>
+                <td><p>{{ $totalJ2 }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J3 - SABINAS</p></td>
+                    <td><p>{{ $totalJ3 }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J4 - MONCLOVA</p></td>
+                    <td><p>{{ $totalJ4 }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J5 - C. CIÉNEGAS</p></td>
+                    <td><p>{{ $totalJ5 }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J6 - TORREÓN</p></td>
+                    <td><p>{{ $totalJ6 }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J7 - FCO. I. MADERO</p></td>
+                    <td><p>{{ $totalJ7 }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>J8 - SALTILLO</p></td>
+                    <td><p>{{ $totalJ8 }}</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ------------------------------------------------------------------ -->
+
         <table>
             <tr>
                 <td class="fondo-gris"><p>TOTAL DE EVENTOS</p></td>

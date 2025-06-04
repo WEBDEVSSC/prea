@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ReporteMensualMailable;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class ReporteController extends Controller
 {
@@ -319,9 +320,80 @@ class ReporteController extends Controller
             ->where('servicio','URGENCIAS')
             ->count();
 
+        // Gráfica de tipos de eventos
+        $chartConfigEventos = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['Adversos', 'Cuasi-Falla', 'Centinela'],
+                'datasets' => [[
+                    'label' => 'Eventos',
+                    'data' => [$eventosAdverso, $eventosCuasiFalla, $eventosCentinela],
+                    'backgroundColor' => ['#facc15', '#f97316', '#f87171'],
+                ]]
+                ],
+                'options' => [
+                    'plugins' => [
+                        'datalabels' => [
+                            'display' => false
+                        ]
+                    ]
+                ]
+        ];
+
+        $responseEventos = Http::withOptions(['verify' => false])
+            ->timeout(10)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigEventos)
+            ]);
+
+        if ($responseEventos->successful()) {
+            $imageBase64Eventos = 'data:image/png;base64,' . base64_encode($responseEventos->body());
+        } else {
+            \Log::error('Error al generar la gráfica de eventos: ' . $responseEventos->status());
+            $imageBase64Eventos = null;
+        }
+
+        // Gráfica por jurisdicción
+        $chartConfigJurisdiccion = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8'],
+                'datasets' => [[
+                    'label' => 'Jurisdicciones',
+                    'data' => [$totalJ1, $totalJ2, $totalJ3, $totalJ4, $totalJ5, $totalJ6, $totalJ7, $totalJ8],
+                    'backgroundColor' => [
+                        '#facc15', '#f97316', '#f87171', '#34d399',
+                        '#60a5fa', '#a78bfa', '#f472b6', '#fb923c'
+                    ],
+                ]]
+                ],
+                    'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'display' => false
+                    ]
+                ]
+            ]
+        ];
+
+        $responseJurisdiccion = Http::withOptions(['verify' => false])
+            ->timeout(10)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigJurisdiccion)
+            ]);
+
+        if ($responseJurisdiccion->successful()) {
+            $imageBase64Jurisdiccion = 'data:image/png;base64,' . base64_encode($responseJurisdiccion->body());
+        } else {
+            \Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseJurisdiccion->status());
+            $imageBase64Jurisdiccion = null;
+        }
+
 
         // Generar el PDF AQUI PASAMOS TODAS LAS VARIABLES 
         $pdf = Pdf::loadView('export.reporte-mensual', [
+            'imageBase64Eventos' => $imageBase64Eventos,
+            'imageBase64Jurisdiccion' => $imageBase64Jurisdiccion,
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
             'eventosAdverso' => $eventosAdverso,
