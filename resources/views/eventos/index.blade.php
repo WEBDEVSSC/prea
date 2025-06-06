@@ -70,12 +70,16 @@
                                     <td>
                                         <a href="{{ route('eventoShow',['id'=>$evento->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>
                                         <a href="{{ route('eventoPDF',['id'=>$evento->id]) }}" class="btn btn-warning btn-sm btn-block" target="_blank">PDF</a>
-                                        
-                                        <form action="{{ route('eventoDestroy', $evento->id) }}" method="POST" class="form-eliminar d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
-                                        </form>
+                                        <hr>
+                                        @auth
+                                            @if (auth()->user()->role === 'admin')
+                                                <form action="{{ route('eventoDestroy', $evento->id) }}" method="POST" class="form-eliminar d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
+                                                </form>
+                                            @endif
+                                        @endauth
         
 
                                     </td>

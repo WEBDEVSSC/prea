@@ -15,6 +15,7 @@ use App\Mail\ReporteMensualMailable;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ReporteController extends Controller
 {
@@ -349,7 +350,7 @@ class ReporteController extends Controller
         if ($responseEventos->successful()) {
             $imageBase64Eventos = 'data:image/png;base64,' . base64_encode($responseEventos->body());
         } else {
-            \Log::error('Error al generar la gráfica de eventos: ' . $responseEventos->status());
+            Log::error('Error al generar la gráfica de eventos: ' . $responseEventos->status());
             $imageBase64Eventos = null;
         }
 
@@ -385,7 +386,7 @@ class ReporteController extends Controller
         if ($responseJurisdiccion->successful()) {
             $imageBase64Jurisdiccion = 'data:image/png;base64,' . base64_encode($responseJurisdiccion->body());
         } else {
-            \Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseJurisdiccion->status());
+            Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseJurisdiccion->status());
             $imageBase64Jurisdiccion = null;
         }
 
