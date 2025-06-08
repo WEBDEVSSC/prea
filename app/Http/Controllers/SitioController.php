@@ -160,8 +160,6 @@ class SitioController extends Controller
         // Consultamos los datos de la descripcion
         $opcionLabel = IncidenteOpcion::findOrFail($request->opcion);
 
-        
-
         // Creamos una instancia con el modelo evento y asignamos los valores a cada campo
         $evento = new Evento();
         $evento -> clasificacion_del_evento = $request->clasificacion_del_evento;
@@ -219,13 +217,14 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'CUASI-FALLA') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            $correos = User::where('cuasifalla', 1)->pluck('email')->toArray();
+            //$correos = User::where('cuasifalla', 1)->pluck('email')->toArray();
+            $correos = ['soportewebssc@gmail.com'];
             
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new cuasiFallaMail($folio));
 
             //-----------------------------------------------------------------------------------------------------------
-
+            /*
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
 
@@ -265,6 +264,8 @@ class SitioController extends Controller
                 //dump("Mensaje enviado a {$chat_id}", $response->json());
             }
 
+            */
+
              //-----------------------------------------------------------------------------------------------------------
         }
 
@@ -272,13 +273,14 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'EVENTO ADVERSO') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            $correos = User::where('adverso', 1)->pluck('email')->toArray();
-            
+            //$correos = User::where('adverso', 1)->pluck('email')->toArray();
+            $correos = ['soportewebssc@gmail.com'];
+
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new adversoMail($folio));
 
             //-----------------------------------------------------------------------------------------------------------
-
+            /*
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
 
@@ -317,6 +319,8 @@ class SitioController extends Controller
                 //dump("Mensaje enviado a {$chat_id}", $response->json());
             }
 
+            */
+
              //-----------------------------------------------------------------------------------------------------------
         }
 
@@ -324,15 +328,16 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'EVENTO CENTINELA') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            $correos = User::where('centinela', 1)->pluck('email')->toArray();
-            
+            //$correos = User::where('centinela', 1)->pluck('email')->toArray();
+            $correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com'];
+
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio));
 
             //-----------------------------------------------------------------------------------------------------------
             // ENVIAR NOTIFICACIONES POR TELEGRAM BOT
             //-----------------------------------------------------------------------------------------------------------
-
+            /*
             // Enviamos mensajes por TELEGRAM
             $token = env('TELEGRAM_BOT_TOKEN');
 
@@ -369,7 +374,7 @@ class SitioController extends Controller
 
                 // Puedes revisar cada respuesta si gustas
                 //dump("Mensaje enviado a {$chat_id}", $response->json());
-            }
+            }*/
 
         }
 
