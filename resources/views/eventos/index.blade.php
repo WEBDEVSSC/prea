@@ -48,6 +48,7 @@
                                 <th>Folio</th>
                                 <th>Unidad</th>
                                 <th>Categoria</th>
+                                <th>Registro</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -69,6 +70,7 @@
                                     <td>{{ $evento->folio }}</td>
                                     <td>{{ $evento->unidad }} - {{ $evento->unidad_nombre}}</td>
                                     <td>{{ $evento->incidente_categoria_label }}<br>{{ $evento->incidente_descripcion_label }}</td>
+                                    <td>{{ $evento->created_at }}</td>
                                     <td>
                                         <a href="{{ route('eventoShow',['id'=>$evento->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>
                                         <a href="{{ route('eventoPDF',['id'=>$evento->id]) }}" class="btn btn-warning btn-sm btn-block" target="_blank">PDF</a>

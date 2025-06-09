@@ -142,7 +142,8 @@ class SitioController extends Controller
         $maxConsecutivo = Evento::whereYear('created_at', Carbon::now()->year)
                                     ->max('consecutivo');
 
-        $consecutivo = $maxConsecutivo+1;
+        // Agregamos la viarbiable en caso de que cambie de año el folio sea 1
+        $consecutivo = ($maxConsecutivo ?? 0) + 1;
 
         $numeroFormateado = str_pad($consecutivo, 4, '0', STR_PAD_LEFT);
 
