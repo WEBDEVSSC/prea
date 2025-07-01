@@ -469,7 +469,8 @@ class ReporteController extends Controller
             );
         }
 
-        return 'Reporte mensual enviado correctamente: ' . $nombrePDF;
+        $this->info('Reporte mensual enviado a: ' . $usuario->email); // → Se imprime en la consola
+        Log::info('Reporte mensual enviado a: ' . $usuario->email);   // → Se guarda en el log
     }
 
 }
