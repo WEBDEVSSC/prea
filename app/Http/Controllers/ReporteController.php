@@ -469,8 +469,8 @@ class ReporteController extends Controller
             );
         }
 
-        $this->info('Reporte mensual enviado a: ' . $usuario->email); // → Se imprime en la consola
-        Log::info('Reporte mensual enviado a: ' . $usuario->email);   // → Se guarda en el log
+        Log::info('📧 Reporte mensual enviado a: ' . $usuario->email);
+        //$this->info('Reporte mensual enviado a: ' . $usuario->email); // → Se imprime en la consola
     }
 
 }
