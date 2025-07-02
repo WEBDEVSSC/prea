@@ -458,7 +458,8 @@ class ReporteController extends Controller
 
         $usuarios = User::where('reporte_semanal', 1)->get();
 
-        foreach ($usuarios as $usuario) {
+        foreach ($usuarios as $usuario) 
+        {
             Mail::to($usuario->email)->send(
                 new ReporteMensualMailable(
                     $usuario->name,
@@ -467,9 +468,11 @@ class ReporteController extends Controller
                     $finMesStr
                 )
             );
+
+            Log::info('📧 Reporte mensual enviado a: ' . $usuario->email);
         }
 
-        Log::info('📧 Reporte mensual enviado a: ' . $usuario->email);
+        
         //$this->info('Reporte mensual enviado a: ' . $usuario->email); // → Se imprime en la consola
     }
 

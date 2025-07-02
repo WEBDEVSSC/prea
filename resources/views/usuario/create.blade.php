@@ -61,7 +61,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-3">
                             <p>Categoría</p>
                             <input type="text" name="categoria" id="categoria" class="form-control" value="{{ old('categoria') }}">
@@ -122,6 +122,13 @@
                                 <input type="hidden" name="centinela" value="0"> <!-- Valor por defecto cuando no está marcado -->
                                 <input name="centinela" type="checkbox" class="custom-control-input" id="centinela" value="1" {{ old('centinela') == 1 ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="centinela">Evento Centinela</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" name="reporte_semanal" value="0"> <!-- Valor por defecto cuando no está marcado -->
+                                <input name="reporte_semanal" type="checkbox" class="custom-control-input" id="reporte_semanal" value="1" {{ old('reporte_semanal') == 1 ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="reporte_semanal">Reporte Mensual</label>
                             </div>
                         </div>
                     </div>               
