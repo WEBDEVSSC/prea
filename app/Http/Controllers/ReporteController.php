@@ -390,11 +390,47 @@ class ReporteController extends Controller
             $imageBase64Jurisdiccion = null;
         }
 
+        // Gráfica por sexo
+        $chartConfigSexo = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['Masculino', 'Femenino'],
+                'datasets' => [[
+                    'label' => 'Jurisdicciones',
+                    'data' => [$totalMasculino, $totalFemenino],
+                    'backgroundColor' => [
+                        '#60a5fa', '#f472b6'
+                    ],
+                ]]
+                ],
+                    'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'display' => false
+                    ]
+                ]
+            ]
+        ];
+
+        $responseSexo = Http::withOptions(['verify' => false])
+            ->timeout(30)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigSexo)
+            ]);
+
+        if ($responseSexo->successful()) {
+            $imageBase64Sexo = 'data:image/png;base64,' . base64_encode($responseSexo->body());
+        } else {
+            Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseSexo->status());
+            $imageBase64Sexo = null;
+        }
+
 
         // Generar el PDF AQUI PASAMOS TODAS LAS VARIABLES 
         $pdf = Pdf::loadView('export.reporte-mensual', [
             'imageBase64Eventos' => $imageBase64Eventos,
             'imageBase64Jurisdiccion' => $imageBase64Jurisdiccion,
+            'imageBase64Sexo' => $imageBase64Sexo,
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
             'eventosAdverso' => $eventosAdverso,

@@ -61,7 +61,7 @@
         <table class="sin-bordes">
             <tr>
                 <td>
-                    <center><h2>Plataforma de Registro de Eventos Adversos</h2></center> 
+                    <center><h2>PLATAFORMA DE REGISTRO DE EVENTOS ADVERSOS</h2></center> 
                     <center><p>Fecha de reporte del {{ $fechaInicio}} al {{ $fechaFin }}</p></center> 
                 </td>
             </tr>
@@ -96,7 +96,7 @@
             
         <!-- ------------------------------------------------------------------ -->
 
-        <h6><strong>EVENTOS POR JUSRIDICCIÓN</strong></h6>
+        <h6><strong>EVENTOS POR JURISDICCIÓN</strong></h6>
 
         <table>
             <tbody>
@@ -138,66 +138,17 @@
 
         <!-- ------------------------------------------------------------------ -->
 
-        <table>
-            <tr>
-                <td class="fondo-gris"><p>TOTAL DE EVENTOS</p></td>
-                <td class="fondo-gris"><p>ADVERSO</p></td>
-                <td class="fondo-gris"><p>CUASI-FALLA</p></td>
-                <td class="fondo-gris"><p>CENTINELA</p></td>
-            </tr>
-            <tr>
-                <td><p>{{ $contadorEventos }}</p></td>
-                <td><p>{{ $eventosAdverso }}</p></td>
-                <td><p>{{ $eventosCuasiFalla }}</p></td>
-                <td><p>{{ $eventosCentinela }}</p></td>
-            </tr>
-        </table>
-
-        <!-- ------------------------------------------------------------------ -->
-
-        <h6><strong>REGISTROS POR JURISDICCION</strong></h6>
-
-        <table>
-            <thead>
-                <tr>
-                    <th class="fondo-gris"><p>J1 - PIEDRAS NEGRAS</p></th>
-                    <th class="fondo-gris"><p>J2 - ACUÑA</p></th>
-                    <th class="fondo-gris"><p>J3 - SABINAS</p></th>
-                    <th class="fondo-gris"><p>J4 - MONCLOVA</p></th>
-                    <th class="fondo-gris"><p>J5 - C. CIÉNEGAS</p></th>
-                    <th class="fondo-gris"><p>J6 - TORREÓN</p></th>
-                    <th class="fondo-gris"><p>J7 - FCO. I. MADERO</p></th>
-                    <th class="fondo-gris"><p>J8 - SALTILLO</p></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><p>{{ $totalJ1 }}</p></td>
-                    <td><p>{{ $totalJ2 }}</p></td>
-                    <td><p>{{ $totalJ3 }}</p></td>
-                    <td><p>{{ $totalJ4 }}</p></td>
-                    <td><p>{{ $totalJ5 }}</p></td>
-                    <td><p>{{ $totalJ6 }}</p></td>
-                    <td><p>{{ $totalJ7 }}</p></td>
-                    <td><p>{{ $totalJ8 }}</p></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- ------------------------------------------------------------------ -->
-
         <h6><strong>POR SEXO</strong></h6>
 
         <table>
-            <thead>
-                <tr>
-                    <th class="fondo-gris"><p>MASCULINO</p></th>
-                    <th class="fondo-gris"><p>FEMENINO</p></th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
-                    <td><p>{{ $totalMasculino }}</p></td>
+                    <td width="25%" class="fondo-gris"><p>MASCULINO</p></td>
+                    <td width="25%"><p>{{ $totalMasculino }}</p></td>
+                    <td colspan="2" rowspan="2"><center><img src="{{ $imageBase64Sexo }}" style="width: 100%; height: auto;"></center></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>FEMENINO</p></td>
                     <td><p>{{ $totalFemenino }}</p></td>
                 </tr>
             </tbody>
