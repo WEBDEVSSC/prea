@@ -342,7 +342,7 @@ class ReporteController extends Controller
         ];
 
         $responseEventos = Http::withOptions(['verify' => false])
-            ->timeout(10)
+            ->timeout(30)
             ->get('https://quickchart.io/chart', [
                 'c' => json_encode($chartConfigEventos)
             ]);
@@ -378,7 +378,7 @@ class ReporteController extends Controller
         ];
 
         $responseJurisdiccion = Http::withOptions(['verify' => false])
-            ->timeout(10)
+            ->timeout(30)
             ->get('https://quickchart.io/chart', [
                 'c' => json_encode($chartConfigJurisdiccion)
             ]);
