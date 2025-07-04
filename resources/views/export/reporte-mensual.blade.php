@@ -96,7 +96,7 @@
             
         <!-- ------------------------------------------------------------------ -->
 
-        <h6><strong>EVENTOS POR JURISDICCIÓN</strong></h6>
+        <h6><strong>POR JURISDICCIÓN</strong></h6>
 
         <table>
             <tbody>
@@ -190,47 +190,27 @@
             </tbody>
         </table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="fondo-gris"><p>PRIMERA INFANCIA<br>(0-5)</p></th>
-                    <th class="fondo-gris"><p>INFANCIA<br>(6-11)</p></th>
-                    <th class="fondo-gris"><p>ADOLESCENCIA<br>(12-15)</p></th>
-                    <th class="fondo-gris"><p>JUVENTUD<br>(16-26)</p></th>
-                    <th class="fondo-gris"><p>ADULTEZ<br>(27-59)</p></th>
-                    <th class="fondo-gris"><p>ADULTO MAYOR<br>(60-200)</p></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><p>{{ $totalPrimeraInfancia }}</p></td>
-                    <td><p>{{ $totalInfancia }}</p></td>
-                    <td><p>{{ $totalAdolescencia }}</p></td>
-                    <td><p>{{ $totalJuventud }}</p></td>
-                    <td><p>{{ $totalAdultez }}</p></td>
-                    <td><p>{{ $totalPersonaMayor }}</p></td>
-                </tr>
-            </tbody>
-        </table>
-
         <!-- ------------------------------------------------------------------ -->
 
         <h6><strong>TURNO</strong></h6>
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="fondo-gris"><p>MATUTINO</p></th>
-                    <th class="fondo-gris"><p>VESPERTINO</p></th>
-                    <th class="fondo-gris"><p>NOCTURNO</p></th>
-                    <th class="fondo-gris"><p>JORNADA ACUMULADA</p></th>
-                </tr>
-            </thead>
+         <table>
             <tbody>
                 <tr>
-                    <td><p>{{ $totalMatutino }}</p></td>
+                    <td width="25%" class="fondo-gris"><p>MATUTINO</p></td>
+                    <td width="25%"><p>{{ $totalMatutino }}</p></td>
+                    <td colspan="2" rowspan="4"><center><img src="{{ $imageBase64Turno }}" style="width: 100%; height: auto;"></center></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>VESPERTINO</p></td>
                     <td><p>{{ $totalVespertino }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>NOCTURNO</p></td>
                     <td><p>{{ $totalNocturno }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>JORNADA ACUMULADA</p></td>
                     <td><p>{{ $totalJornadaAcumulada }}</p></td>
                 </tr>
             </tbody>

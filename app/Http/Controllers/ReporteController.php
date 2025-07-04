@@ -460,6 +460,41 @@ class ReporteController extends Controller
             $imageBase64RangoDeEdad = null;
         }
 
+        // Gráfica por turno
+        $chartConfigTurno = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['Matutino', 'Vespertino', 'Nocturno', 'Jornada Acumulada'],
+                'datasets' => [[
+                    'label' => 'Jurisdicciones',
+                    'data' => [$totalMatutino, $totalVespertino, $totalNocturno, $totalJornadaAcumulada],
+                    'backgroundColor' => [
+                        '#f43f5e', '#10b981', '#3b82f6', '#8b5cf6'
+                        ],
+                ]]
+                ],
+                    'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'display' => false
+                    ]
+                ]
+            ]
+        ];
+
+        $responseTurno = Http::withOptions(['verify' => false])
+            ->timeout(30)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigTurno)
+            ]);
+
+        if ($responseTurno->successful()) {
+            $imageBase64Turno = 'data:image/png;base64,' . base64_encode($responseTurno->body());
+        } else {
+            Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseTurno->status());
+            $imageBase64Turno = null;
+        }
+
 
         // Generar el PDF AQUI PASAMOS TODAS LAS VARIABLES 
         $pdf = Pdf::loadView('export.reporte-mensual', [
@@ -467,6 +502,7 @@ class ReporteController extends Controller
             'imageBase64Jurisdiccion' => $imageBase64Jurisdiccion,
             'imageBase64RangoDeEdad' => $imageBase64RangoDeEdad,
             'imageBase64Sexo' => $imageBase64Sexo,
+            'imageBase64Turno' => $imageBase64Turno,
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
             'eventosAdverso' => $eventosAdverso,
