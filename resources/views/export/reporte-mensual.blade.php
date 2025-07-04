@@ -165,7 +165,7 @@
                 <tr>
                     <td width="25%" class="fondo-gris"><p>PRIMERA INFANCIA<br>(0-5)</p></td>
                     <td width="25%"><p>{{ $totalPrimeraInfancia }}</p></td>
-                    <td colspan="2" rowspan="6"><center><img src="{{ $imageBase64Sexo }}" style="width: 100%; height: auto;"></center></td>
+                    <td colspan="2" rowspan="6"><center><img src="{{ $imageBase64RangoDeEdad }}" style="width: 100%; height: auto;"></center></td>
                 </tr>
                 <tr>
                     <td class="fondo-gris"><p>INFANCIA<br>(6-11)</p></td>
