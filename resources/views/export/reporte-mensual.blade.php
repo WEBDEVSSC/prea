@@ -137,6 +137,8 @@
         </table>
 
         <!-- ------------------------------------------------------------------ -->
+        <div style="page-break-before: always;"></div>
+        <!-- ------------------------------------------------------------------ -->
 
         <h6><strong>POR SEXO</strong></h6>
 
@@ -157,6 +159,36 @@
         <!-- ------------------------------------------------------------------ -->
 
         <h6><strong>POR RANGOS DE EDAD</strong></h6>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td width="25%" class="fondo-gris"><p>PRIMERA INFANCIA<br>(0-5)</p></td>
+                    <td width="25%"><p>{{ $totalPrimeraInfancia }}</p></td>
+                    <td colspan="2" rowspan="6"><center><img src="{{ $imageBase64Sexo }}" style="width: 100%; height: auto;"></center></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>INFANCIA<br>(6-11)</p></td>
+                    <td><p>{{ $totalInfancia }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>ADOLESCENCIA<br>(12-15)</p></td>
+                    <td><p>{{ $totalAdolescencia }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>JUVENTUD<br>(16-26)</p></td>
+                    <td><p>{{ $totalJuventud }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>ADULTEZ<br>(27-59)</p></td>
+                    <td><p>{{ $totalAdultez }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>ADULTO MAYOR<br>(+ 60)</p></td>
+                    <td><p>{{ $totalPersonaMayor }}</p></td>
+                </tr>
+            </tbody>
+        </table>
 
         <table>
             <thead>

@@ -425,11 +425,47 @@ class ReporteController extends Controller
             $imageBase64Sexo = null;
         }
 
+        // Gráfica por rango de edad
+        $chartConfigRangoDeEdad = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['Primera Infancia', 'Infancia','Adolescencia','Juventud','Adultez','Adulto Mayor'],
+                'datasets' => [[
+                    'label' => 'Jurisdicciones',
+                    'data' => [$totalPrimeraInfancia, $totalInfancia, $totalAdolescencia, $totalJuventud, $totalAdultez, $totalPersonaMayor],
+                    'backgroundColor' => [
+                        '#facc15', '#f97316', '#f87171', '#34d399', '#60a5fa', '#a78bfa'
+                    ],
+                ]]
+                ],
+                    'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'display' => false
+                    ]
+                ]
+            ]
+        ];
+
+        $responseRangoDeEdad = Http::withOptions(['verify' => false])
+            ->timeout(30)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigRangoDeEdad)
+            ]);
+
+        if ($responseRangoDeEdad->successful()) {
+            $imageBase64RangoDeEdad = 'data:image/png;base64,' . base64_encode($responseRangoDeEdad->body());
+        } else {
+            Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseRangoDeEdad->status());
+            $imageBase64RangoDeEdad = null;
+        }
+
 
         // Generar el PDF AQUI PASAMOS TODAS LAS VARIABLES 
         $pdf = Pdf::loadView('export.reporte-mensual', [
             'imageBase64Eventos' => $imageBase64Eventos,
             'imageBase64Jurisdiccion' => $imageBase64Jurisdiccion,
+            'imageBase64RangoDeEdad' => $imageBase64RangoDeEdad,
             'imageBase64Sexo' => $imageBase64Sexo,
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
