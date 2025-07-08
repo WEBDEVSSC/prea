@@ -2,8 +2,10 @@
 
 <x-mail::panel>
 
-<p>Se ha realizado un registro de tipo : <strong>EVENTO ADVERSO</strong></p>
+<p>Tipo : <strong>EVENTO ADVERSO</strong></p>
 <p>Folio : {{$folio}}</p>
+<p>Unidad : {{$unidadNombre}}</p>
+<p>Categoria : {{$categoriaNombre}}</p>
 
 </x-mail::panel>
 

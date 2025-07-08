@@ -2,8 +2,10 @@
 
 <x-mail::panel>
 
-<p>Se ha realizado un registro de tipo : <strong>CUASI-FALLA</strong></p>
+<p>Tipo : <strong>CUASI-FALLA</strong></p>
 <p>Folio : {{$folio}}</p>
+<p>Unidad : {{$unidadNombre}}</p>
+<p>Categoria : {{$categoriaNombre}}</p>
 
 </x-mail::panel>
 

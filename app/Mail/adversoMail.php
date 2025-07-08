@@ -14,14 +14,18 @@ class adversoMail extends Mailable
     use Queueable, SerializesModels;
 
     public $folio;
+    public $unidadNombre;
+    public $categoriaNombre;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($folio)
+    public function __construct($folio, $unidadNombre,$categoriaNombre)
     {
         //
         $this->folio = $folio;
+        $this->unidadNombre = $unidadNombre;
+        $this->categoriaNombre = $categoriaNombre;
     }
 
     /**

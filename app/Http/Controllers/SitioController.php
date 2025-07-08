@@ -157,6 +157,7 @@ class SitioController extends Controller
 
         // Consultamos los datos de categorias
         $categoriaLabel = IncidenteCategoria::findOrFail($request->categoria);
+        $categoriaNombre = $categoriaLabel->categoria;
 
         // Consultamos los datos de la descripcion
         $opcionLabel = IncidenteOpcion::findOrFail($request->opcion);
@@ -222,7 +223,7 @@ class SitioController extends Controller
             $correos = ['soportewebssc@gmail.com'];
             
             // Enviamos el correo de confirmación para Evento Adverso
-            Mail::to($correos)->send(new cuasiFallaMail($folio));
+            Mail::to($correos)->send(new cuasiFallaMail($folio, $unidadNombre,$categoriaNombre));
 
             //-----------------------------------------------------------------------------------------------------------
             /*
@@ -278,7 +279,7 @@ class SitioController extends Controller
             $correos = ['soportewebssc@gmail.com'];
 
             // Enviamos el correo de confirmación para Evento Adverso
-            Mail::to($correos)->send(new adversoMail($folio));
+            Mail::to($correos)->send(new adversoMail($folio, $unidadNombre,$categoriaNombre));
 
             //-----------------------------------------------------------------------------------------------------------
             /*
@@ -329,11 +330,11 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'EVENTO CENTINELA') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            //$correos = User::where('centinela', 1)->pluck('email')->toArray();
+            // $correos = User::where('centinela', 1)->pluck('email')->toArray();
             $correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com'];
 
             // Enviamos el correo de confirmacion
-            Mail::to($correos)->send(new eventoCentinelaMail($folio));
+            Mail::to($correos)->send(new eventoCentinelaMail($folio, $unidadNombre,$categoriaNombre));
 
             //-----------------------------------------------------------------------------------------------------------
             // ENVIAR NOTIFICACIONES POR TELEGRAM BOT

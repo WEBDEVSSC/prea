@@ -476,7 +476,7 @@ class ReporteController extends Controller
                     'options' => [
                 'plugins' => [
                     'datalabels' => [
-                        'display' => false
+                        'display' => false,
                     ]
                 ]
             ]
