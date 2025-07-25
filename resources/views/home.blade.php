@@ -14,6 +14,8 @@
 
     @if($usuario->role == "admin")
 
+    
+
         <!-- INICIO DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
 
         <div class="row">
@@ -68,6 +70,23 @@
         </div>
     
         <!-- -------------------------------------------------------------------- -->
+
+        <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><strong>Resumen por mes</strong></h3>
+                </div>
+                <div class="card-body">
+    
+                            <div>
+                                <canvas id="myBarCharts" width="400" height="200"></canvas>
+                            </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
 
         
         <!-- -------------------------------------------------------------------- -->
@@ -221,18 +240,6 @@
         </div>
 
         <!-- ------------------------------------------------------------------ -->
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"><strong></strong></div>
-                    <div class="card-body">
-                        
-                    </div>
-                    <div class="card-footer"></div>
-                </div>
-            </div>
-        </div>
 
         <!-- ------------------------------------------------------------------ -->
 
