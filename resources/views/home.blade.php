@@ -167,8 +167,25 @@
             </div>
     
             </div>
+
+            <div class="col-md-3">
     
-            <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><strong>Tipo de Incidente</strong></h3>
+                </div>
+                <div class="card-body">
+    
+                            <div>
+                                <canvas id="registrosPorTipoIncidente" width="400" height="400"></canvas>
+                            </div>
+    
+                </div>
+            </div>
+    
+            </div>
+    
+            <div class="col-md-6">
     
             <div class="card">
                 <div class="card-header">
@@ -732,7 +749,69 @@
     });
 </script>
 
+<!-- GRAFICAS POR TIPO DE INCIDENTE -->
+    <script>
+    // Espera a que el contenido del DOM esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+    // Obtén el contexto del canvas
+    var ctx = document.getElementById('registrosPorTipoIncidente').getContext('2d');
+    
+    // Crea la gráfica de dona
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO'],
+            datasets: [{
+                label: 'Número de votos',
+                data: [{{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}},{{$tipoDEB}},{{$tipoACC}},{{$tipoPFR}},{{$tipoSAP}},{{$tipoNUT}},{{$tipoASC}},{{$tipoMCI}},{{$tipoOTRO}},], 
+                backgroundColor: [
+                    'rgba(133, 193, 233, 0.2)',  // Azul cielo
+                    'rgba(195, 155, 211, 0.2)',  // Lila
+                    'rgba(249, 231, 159, 0.2)',  // Amarillo claro
+                    'rgba(125, 206, 160, 0.2)',  // Verde menta
+                    'rgba(245, 183, 177, 0.2)',  // Rosa pálido
+                    'rgba(255, 204, 153, 0.2)',  // Naranja claro
+                    'rgba(174, 214, 241, 0.2)',  // Azul bebé
+                    'rgba(210, 180, 222, 0.2)',  // Lavanda
+                    'rgba(255, 234, 167, 0.2)',  // Maíz
+                    'rgba(186, 220, 88, 0.2)',   // Verde lima claro
+                    'rgba(255, 118, 117, 0.2)'   // Rojo coral claro
+                ],
+                borderColor: [
+                    'rgba(133, 193, 233, 1)',
+                    'rgba(195, 155, 211, 1)',
+                    'rgba(249, 231, 159, 1)',
+                    'rgba(125, 206, 160, 1)',
+                    'rgba(245, 183, 177, 1)',
+                    'rgba(255, 204, 153, 1)',
+                    'rgba(174, 214, 241, 1)',
+                    'rgba(210, 180, 222, 1)',
+                    'rgba(255, 234, 167, 1)',
+                    'rgba(186, 220, 88, 1)',
+                    'rgba(255, 118, 117, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
 
+</script>
 
 
 @stop

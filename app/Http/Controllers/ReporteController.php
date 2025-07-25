@@ -104,30 +104,33 @@ class ReporteController extends Controller
         }
 
         // Obtener el primer y último día del mes anterior
-        $inicioMesAnterior = Carbon::now()->subMonthNoOverflow()->startOfMonth();
-        $finMesAnterior = Carbon::now()->subMonthNoOverflow()->endOfMonth();
+        //$inicioMesAnterior = Carbon::now()->subMonthNoOverflow()->startOfMonth();
+        //$finMesAnterior = Carbon::now()->subMonthNoOverflow()->endOfMonth();
+
+        $inicioMesAnterior = Carbon::now()->subMonthNoOverflow()->startOfMonth()->startOfDay(); // 1er día del mes anterior a las 00:00:00
+        $finMesAnterior = Carbon::now()->subMonthNoOverflow()->endOfMonth()->endOfDay(); // último día del mes anterior a las 23:59:59
 
         // Formateo para mostrar en el PDF
         $inicioMesStr = $inicioMesAnterior->format('d-m-Y');
         $finMesStr = $finMesAnterior->format('d-m-Y');
 
         // Consultamos todos los eventos del mes anterior
-        $eventosMes = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])->get();
+        $eventosMes = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])->get();
         $contadorEventos = $eventosMes->count();
 
-        $eventosAdverso = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $eventosAdverso = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('clasificacion_del_Evento', 'EVENTO ADVERSO')
             ->count();
 
-        $eventosCuasiFalla = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $eventosCuasiFalla = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('clasificacion_del_Evento', 'CUASI-FALLA')
             ->count();
 
-        $eventosCentinela = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $eventosCentinela = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('clasificacion_del_Evento', 'EVENTO CENTINELA')
             ->count();
 
-        $listaDeEventos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $listaDeEventos = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->get();
 
             /**
@@ -137,35 +140,35 @@ class ReporteController extends Controller
              * 
              */
 
-        $totalJ1 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ1 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',1)
             ->count();
 
-        $totalJ2 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ2 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',2)
             ->count();
 
-        $totalJ3 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ3 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',3)
             ->count();
 
-        $totalJ4 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ4 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',4)
             ->count();
 
-        $totalJ5 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ5 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',5)
             ->count();
 
-        $totalJ6 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ6 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',6)
             ->count();
 
-        $totalJ7 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ7 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',7)
             ->count();
 
-        $totalJ8 = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJ8 = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('jurisdiccion',8)
             ->count();
 
@@ -176,11 +179,11 @@ class ReporteController extends Controller
              * 
              */
 
-        $totalMasculino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalMasculino = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('sexo','MASCULINO')
             ->count();
 
-        $totalFemenino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalFemenino = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('sexo','FEMENINO')
             ->count();
 
@@ -191,27 +194,27 @@ class ReporteController extends Controller
              * 
              */
 
-        $totalPrimeraInfancia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalPrimeraInfancia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->whereBetween('edad', [0, 5])
             ->count();
 
-        $totalInfancia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalInfancia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->whereBetween('edad', [6, 11])
             ->count();
         
-        $totalAdolescencia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalAdolescencia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->whereBetween('edad', [12, 15])
             ->count();
 
-        $totalJuventud = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJuventud = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->whereBetween('edad', [16, 26])
             ->count();
 
-        $totalAdultez = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalAdultez = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->whereBetween('edad', [27, 59])
             ->count();
         
-        $totalPersonaMayor = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalPersonaMayor = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->whereBetween('edad', [60, 200])
             ->count();
 
@@ -222,19 +225,19 @@ class ReporteController extends Controller
              * 
              */
 
-        $totalMatutino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalMatutino = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('turno','MATUTINO')
             ->count();
 
-        $totalVespertino = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalVespertino = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('turno','VESPERTINO')
             ->count();
         
-        $totalNocturno = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalNocturno = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('turno','NOCTURNO')
             ->count();
 
-        $totalJornadaAcumulada = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $totalJornadaAcumulada = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('turno','JORNADA ACUMULADA')
             ->count();
 
@@ -245,79 +248,79 @@ class ReporteController extends Controller
              * 
              */
 
-        $almacen = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $almacen = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','ALMACEN')
             ->count();
         
-        $cendis = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $cendis = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','CENDIS')
             ->count();
 
-        $ceye = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $ceye = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','CEYE')
             ->count();
 
-        $consultaExterna = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $consultaExterna = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','CONSULTA EXTERNA')
             ->count();
         
-        $dental = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $dental = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','DENTAL')
             ->count();
         
-        $farmacia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $farmacia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','FARMACIA')
             ->count();
 
-        $hospitalizacion = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $hospitalizacion = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','HOSPITALIZACION')
             ->count();
 
-        $imagenologia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $imagenologia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','IMAGENOLOGIA Y RAYOS X')
             ->count();
 
-        $laboratorio = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $laboratorio = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','LABORATORIO')
             ->count();
 
-        $medicinaPreventiva = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $medicinaPreventiva = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','MEDICINA PREVENTIVA')
             ->count();
 
-        $nutricion = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $nutricion = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','NUTRICION')
             ->count();
 
-        $patologia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $patologia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','PATOLOGIA')
             ->count();
 
-        $quirofano = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $quirofano = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','QUIROFANO')
             ->count();
 
-        $saludReproductiva = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $saludReproductiva = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','SALUD REPRODUCTIVA')
             ->count();
 
-        $tocoCirugia = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $tocoCirugia = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','TOCOCIRUGIA')
             ->count();
 
-        $UCIAdultos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $UCIAdultos = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','U.C.I. ADULTOS')
             ->count();
 
-        $UCINeonatales = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $UCINeonatales = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','U.C.I. NEONATALES')
             ->count();
 
-        $UCIPediatricos = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $UCIPediatricos = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','U.C.I. PEDIATRICOS')
             ->count();
 
-        $urgencias = Evento::whereBetween('created_at', [$inicioMesAnterior, $finMesAnterior])
+        $urgencias = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','URGENCIAS')
             ->count();
 

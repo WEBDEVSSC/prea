@@ -293,6 +293,52 @@ class HomeController extends Controller
             ->whereMonth('created_at', 12) 
             ->count();
 
+        // ------------------------------ GRAFICAS PARA TIPO DE INCIDENTE ---------------------------------------
+
+        $tipoAESP = Evento:: where('incidente_categoria',1)
+            ->whereYear('created_at',$anio)
+            ->count();
+        
+        $tipoMMU = Evento:: where('incidente_categoria',2)
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tipoPCI = Evento:: where('incidente_categoria',3)
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tipoDEB = Evento:: where('incidente_categoria',4)
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tipoACC = Evento:: where('incidente_categoria',5)
+            ->whereYear('created_at',$anio)
+            ->count();
+        
+        $tipoPFR = Evento:: where('incidente_categoria',6)
+            ->whereYear('created_at',$anio)
+            ->count();
+        
+        $tipoSAP = Evento:: where('incidente_categoria',7)
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tipoNUT = Evento:: where('incidente_categoria',8)
+            ->whereYear('created_at',$anio)
+            ->count();
+        
+        $tipoASC = Evento:: where('incidente_categoria',9)
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tipoMCI = Evento:: where('incidente_categoria',10)
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $tipoOTRO = Evento:: where('incidente_categoria',12)
+            ->whereYear('created_at',$anio)
+            ->count();
+
         // --------------------------- PASAMOS TODOS LOS VALORES A LA VISTA -----------------------
 
         $anio = 2025;
@@ -380,6 +426,18 @@ class HomeController extends Controller
             'octubre2024',
             'noviembre2024',
             'diciembre2024',
+
+            'tipoAESP',      
+            'tipoMMU',
+            'tipoPCI',
+            'tipoDEB',
+            'tipoACC',
+            'tipoPFR',
+            'tipoSAP',
+            'tipoNUT' ,       
+            'tipoASC',
+            'tipoMCI',
+            'tipoOTRO',
         ));
     }
 }
