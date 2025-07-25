@@ -339,6 +339,28 @@ class HomeController extends Controller
             ->whereYear('created_at',$anio)
             ->count();
 
+         // ------------------------------ GRAFICAS PARA GRAVEDAD DEL DAÑO ---------------------------------------
+
+        $sinDano = Evento:: where('gravedad','SIN DAÑO')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $bajo = Evento:: where('gravedad','BAJO')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $moderado = Evento:: where('gravedad','MODERADO')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $grave = Evento:: where('gravedad','GRAVE')
+            ->whereYear('created_at',$anio)
+            ->count();
+
+        $muerte = Evento:: where('gravedad','MUERTE')
+            ->whereYear('created_at',$anio)
+            ->count();
+
         // --------------------------- PASAMOS TODOS LOS VALORES A LA VISTA -----------------------
 
         $anio = 2025;
@@ -438,6 +460,12 @@ class HomeController extends Controller
             'tipoASC',
             'tipoMCI',
             'tipoOTRO',
+
+            'sinDano', 
+            'bajo',
+            'moderado',
+            'grave',
+            'muerte',
         ));
     }
 }

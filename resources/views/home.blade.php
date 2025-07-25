@@ -184,8 +184,25 @@
             </div>
     
             </div>
+
+             <div class="col-md-3">
     
-            <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><strong>Gravedad del daño</strong></h3>
+                </div>
+                <div class="card-body">
+    
+                            <div>
+                                <canvas id="registrosPorGravedadDelDano" width="400" height="400"></canvas>
+                            </div>
+    
+                </div>
+            </div>
+    
+            </div>
+    
+            <div class="col-md-3">
     
             <div class="card">
                 <div class="card-header">
@@ -789,6 +806,58 @@
                     'rgba(255, 234, 167, 1)',
                     'rgba(186, 220, 88, 1)',
                     'rgba(255, 118, 117, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
+</script>
+
+<!-- GRAFICAS POR GRAVEDAD DEL DAÑO -->
+    <script>
+    // Espera a que el contenido del DOM esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+    // Obtén el contexto del canvas
+    var ctx = document.getElementById('registrosPorGravedadDelDano').getContext('2d');
+    
+    // Crea la gráfica de dona
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Sin Daño','Bajo','Moderado','Grave','Muerte'],
+            datasets: [{
+                label: 'Número de votos',
+                data: [{{$sinDano}}, {{$bajo}}, {{$moderado}},{{$grave}},{{$muerte}}], 
+                backgroundColor: [
+                    'rgba(133, 193, 233, 0.2)',  // Azul cielo
+                    'rgba(195, 155, 211, 0.2)',  // Lila
+                    'rgba(249, 231, 159, 0.2)',  // Amarillo claro
+                    'rgba(125, 206, 160, 0.2)',  // Verde menta
+                    'rgba(245, 183, 177, 0.2)',  // Rosa pálido
+                ],
+                borderColor: [
+                    'rgba(133, 193, 233, 1)',
+                    'rgba(195, 155, 211, 1)',
+                    'rgba(249, 231, 159, 1)',
+                    'rgba(125, 206, 160, 1)',
+                    'rgba(245, 183, 177, 1)',
                 ],
                 borderWidth: 1
             }]
