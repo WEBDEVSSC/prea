@@ -361,6 +361,48 @@ class HomeController extends Controller
             ->whereYear('created_at',$anio)
             ->count();
 
+        // ------------------------------ PERSONA DIRECTAMETE INVOLUCRADA ---------------------------------------
+
+        $PDIAdministrativo = Evento:: where('persona_involucrada','ADMINISTRATIVO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDICamillero = Evento:: where('persona_involucrada','CAMILLERO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIEnfermeria = Evento:: where('persona_involucrada','ENFERMERÍA')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIMedico = Evento:: where('persona_involucrada','MEDICO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+        
+        $PDINutriologo = Evento:: where('persona_involucrada','NUTRIOLOGO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIOdontologo = Evento:: where('persona_involucrada','ODONTOLOGO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIOtro = Evento:: where('persona_involucrada','OTRO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIPersonalEnFormacion = Evento:: where('persona_involucrada','PERSONAL EN FORMACIÓN')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIQuimico = Evento:: where('persona_involucrada','QUIMICO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $PDIRadiologo = Evento:: where('persona_involucrada','RADIOLOGO')
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
         // --------------------------- PASAMOS TODOS LOS VALORES A LA VISTA -----------------------
 
         $anio = 2025;
@@ -466,6 +508,17 @@ class HomeController extends Controller
             'moderado',
             'grave',
             'muerte',
+
+            'PDIAdministrativo',
+            'PDICamillero',
+            'PDIEnfermeria',
+            'PDIMedico',      
+            'PDINutriologo',
+            'PDIOdontologo',
+            'PDIOtro',
+            'PDIPersonalEnFormacion',
+            'PDIQuimico',
+            'PDIRadiologo',
         ));
     }
 }

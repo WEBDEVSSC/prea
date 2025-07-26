@@ -230,7 +230,7 @@
                 <div class="card-body">
     
                             <div>
-                                <canvas id="myBarCharts" width="400" height="407"></canvas>
+                                <canvas id="registrosPersonaDirectamenteInvolucrada" width="400" height="407"></canvas>
                             </div>
     
                 </div>
@@ -261,8 +261,7 @@
 @include('layouts.footer')
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
 @stop
 
 @section('js')
@@ -345,12 +344,12 @@
                 label: 'Número de votos',
                 data: [{{$totalMasculino}}, {{$totalFemenino}}], 
                 backgroundColor: [
-                    'rgba(133, 193, 233, 0.2)',
-                    'rgba(195, 155, 211, 0.2)'
+                    'rgba(54, 162, 235, 0.5)',  // Azul Chart.js (más visible)
+                    'rgba(153, 102, 255, 0.5)'  // Morado Chart.js (más visible)
                 ],
                 borderColor: [
-                    'rgba(133, 193, 233, 1)',
-                    'rgba(195, 155, 211, 1)'
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -364,7 +363,10 @@
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
@@ -409,24 +411,24 @@
                     {{$totalJurisdiccionOcho}},  
                 ], 
                 backgroundColor: [
-                    'rgba(133, 193, 233, 0.2)', // Color 1
-                    'rgba(195, 155, 211, 0.2)', // Color 2
-                    'rgba(255, 159, 64, 0.2)',  // Color 3
-                    'rgba(75, 192, 192, 0.2)',  // Color 4
-                    'rgba(255, 99, 132, 0.2)',  // Color 5
-                    'rgba(54, 162, 235, 0.2)',  // Color 6
-                    'rgba(255, 206, 86, 0.2)',  // Color 7
-                    'rgba(153, 102, 255, 0.2)'  // Color 8
+                    'rgba(54, 162, 235, 0.5)',   // Azul (Color 1)
+                    'rgba(153, 102, 255, 0.5)',  // Morado (Color 2)
+                    'rgba(255, 159, 64, 0.5)',   // Naranja (Color 3)
+                    'rgba(75, 192, 192, 0.5)',   // Verde agua (Color 4)
+                    'rgba(255, 99, 132, 0.5)',   // Rojo (Color 5)
+                    'rgba(54, 162, 235, 0.5)',   // Azul (Color 6) - repetido para mantener paleta
+                    'rgba(255, 206, 86, 0.5)',   // Amarillo (Color 7)
+                    'rgba(153, 102, 255, 0.5)'   // Morado (Color 8) - repetido
                 ],
                 borderColor: [
-                    'rgba(133, 193, 233, 1)', // Color 1
-                    'rgba(195, 155, 211, 1)', // Color 2
-                    'rgba(255, 159, 64, 1)',  // Color 3
-                    'rgba(75, 192, 192, 1)',  // Color 4
-                    'rgba(255, 99, 132, 1)',  // Color 5
-                    'rgba(54, 162, 235, 1)',  // Color 6
-                    'rgba(255, 206, 86, 1)',  // Color 7
-                    'rgba(153, 102, 255, 1)'  // Color 8
+                    'rgba(54, 162, 235, 1)',     // Azul (Color 1)
+                    'rgba(153, 102, 255, 1)',    // Morado (Color 2)
+                    'rgba(255, 159, 64, 1)',     // Naranja (Color 3)
+                    'rgba(75, 192, 192, 1)',     // Verde agua (Color 4)
+                    'rgba(255, 99, 132, 1)',     // Rojo (Color 5)
+                    'rgba(54, 162, 235, 1)',     // Azul (Color 6)
+                    'rgba(255, 206, 86, 1)',     // Amarillo (Color 7)
+                    'rgba(153, 102, 255, 1)'     // Morado (Color 8)
                 ],
                 borderWidth: 1
             }]
@@ -440,7 +442,10 @@
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
@@ -474,20 +479,20 @@
                     {{$totalPersonaMayor}}, 
                 ], 
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)', // Color 1
-                    'rgba(54, 162, 235, 0.2)', // Color 2
-                    'rgba(255, 206, 86, 0.2)', // Color 3
-                    'rgba(75, 192, 192, 0.2)', // Color 4
-                    'rgba(153, 102, 255, 0.2)', // Color 5
-                    'rgba(255, 159, 64, 0.2)', // Color 6
+                    'rgba(255, 99, 132, 0.5)',   // Color 1 - Rojo
+                    'rgba(54, 162, 235, 0.5)',   // Color 2 - Azul
+                    'rgba(255, 206, 86, 0.5)',   // Color 3 - Amarillo
+                    'rgba(75, 192, 192, 0.5)',   // Color 4 - Verde agua
+                    'rgba(153, 102, 255, 0.5)',  // Color 5 - Morado
+                    'rgba(255, 159, 64, 0.5)'    // Color 6 - Naranja
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)', // Color 1
-                    'rgba(54, 162, 235, 1)', // Color 2
-                    'rgba(255, 206, 86, 1)', // Color 3
-                    'rgba(75, 192, 192, 1)', // Color 4
-                    'rgba(153, 102, 255, 1)', // Color 5
-                    'rgba(255, 159, 64, 1)', // Color 6
+                    'rgba(255, 99, 132, 1)',     // Color 1
+                    'rgba(54, 162, 235, 1)',     // Color 2
+                    'rgba(255, 206, 86, 1)',     // Color 3
+                    'rgba(75, 192, 192, 1)',     // Color 4
+                    'rgba(153, 102, 255, 1)',    // Color 5
+                    'rgba(255, 159, 64, 1)'      // Color 6
                 ],
                 borderWidth: 1
             }]
@@ -501,7 +506,10 @@
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
@@ -565,25 +573,25 @@
                         {{ $urgencias }}
                     ],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',    // Rosa claro
-                        'rgba(54, 162, 235, 0.2)',    // Azul claro
-                        'rgba(255, 206, 86, 0.2)',    // Amarillo claro
-                        'rgba(75, 192, 192, 0.2)',    // Verde agua claro
-                        'rgba(153, 102, 255, 0.2)',   // Lila claro
-                        'rgba(255, 159, 64, 0.2)',    // Naranja claro
-                        'rgba(199, 199, 199, 0.2)',   // Gris claro
-                        'rgba(255, 99, 71, 0.2)',     // Tomate claro
-                        'rgba(32, 189, 185, 0.2)',    // Aqua oscuro
-                        'rgba(255, 87, 34, 0.2)',     // Coral
-                        'rgba(153, 255, 51, 0.2)',    // Verde lima
-                        'rgba(255, 20, 147, 0.2)',    // Deep pink
-                        'rgba(0, 255, 255, 0.2)',     // Cian
-                        'rgba(255, 69, 0, 0.2)',      // Rojo oscuro
-                        'rgba(138, 43, 226, 0.2)',    // Azul oscuro
-                        'rgba(0, 128, 128, 0.2)',     // Verde azulado
-                        'rgba(128, 0, 128, 0.2)',     // Púrpura
-                        'rgba(210, 105, 30, 0.2)',    // Marrón chocolate
-                        'rgba(244, 164, 96, 0.2)'     // Arena claro
+                        'rgba(255, 99, 132, 0.5)',    // Rosa claro
+                        'rgba(54, 162, 235, 0.5)',    // Azul claro
+                        'rgba(255, 206, 86, 0.5)',    // Amarillo claro
+                        'rgba(75, 192, 192, 0.5)',    // Verde agua claro
+                        'rgba(153, 102, 255, 0.5)',   // Lila claro
+                        'rgba(255, 159, 64, 0.5)',    // Naranja claro
+                        'rgba(199, 199, 199, 0.5)',   // Gris claro
+                        'rgba(255, 99, 71, 0.5)',     // Tomate claro
+                        'rgba(32, 189, 185, 0.5)',    // Aqua oscuro
+                        'rgba(255, 87, 34, 0.5)',     // Coral
+                        'rgba(153, 255, 51, 0.5)',    // Verde lima
+                        'rgba(255, 20, 147, 0.5)',    // Deep pink
+                        'rgba(0, 255, 255, 0.5)',     // Cian
+                        'rgba(255, 69, 0, 0.5)',      // Rojo oscuro
+                        'rgba(138, 43, 226, 0.5)',    // Azul oscuro
+                        'rgba(0, 128, 128, 0.5)',     // Verde azulado
+                        'rgba(128, 0, 128, 0.5)',     // Púrpura
+                        'rgba(210, 105, 30, 0.5)',    // Marrón chocolate
+                        'rgba(244, 164, 96, 0.5)'     // Arena claro
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -618,8 +626,11 @@
                     tooltip: {
                         callbacks: {
                             label: function(tooltipItem) {
-                                return tooltipItem.label + ': ' + tooltipItem.raw;
-                            }
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                        }
                         }
                     }
                 }
@@ -656,16 +667,16 @@
                     {{$jornadaAcumulada}},  
                 ], 
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)', // Rosa claro
-                    'rgba(54, 162, 235, 0.2)', // Azul claro
-                    'rgba(255, 206, 86, 0.2)', // Amarillo claro
-                    'rgba(75, 192, 192, 0.2)', // Verde agua claro
+                    'rgba(229, 57, 53, 0.5)',    // Red 600 (más intenso)
+                    'rgba(30, 136, 229, 0.5)',   // Blue 600 (más intenso)
+                    'rgba(253, 216, 53, 0.5)',   // Yellow 600 (más intenso)
+                    'rgba(0, 137, 123, 0.5)'     // Teal 600 (más intenso)
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)', // Rosa
-                    'rgba(54, 162, 235, 1)', // Azul
-                    'rgba(255, 206, 86, 1)', // Amarillo
-                    'rgba(75, 192, 192, 1)', // Verde agua
+                    'rgba(229, 57, 53, 1)',      // Red 600
+                    'rgba(30, 136, 229, 1)',     // Blue 600
+                    'rgba(253, 216, 53, 1)',     // Yellow 600
+                    'rgba(0, 137, 123, 1)'       // Teal 600
                 ],
                 borderWidth: 1
             }]
@@ -679,7 +690,10 @@
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
@@ -731,34 +745,34 @@
                         {{$diciembre2024}}
                     ], // Datos para la gráfica
                     backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)', // Color para Enero
-                            'rgba(54, 162, 235, 0.2)', // Color para Febrero
-                            'rgba(255, 206, 86, 0.2)', // Color para Marzo
-                            'rgba(75, 192, 192, 0.2)', // Color para Abril
-                            'rgba(153, 102, 255, 0.2)', // Color para Mayo
-                            'rgba(255, 159, 64, 0.2)', // Color para Junio
-                            'rgba(255, 99, 132, 0.2)', // Color para Julio
-                            'rgba(54, 162, 235, 0.2)', // Color para Agosto
-                            'rgba(255, 206, 86, 0.2)', // Color para Septiembre
-                            'rgba(75, 192, 192, 0.2)', // Color para Octubre
-                            'rgba(153, 102, 255, 0.2)', // Color para Noviembre
-                            'rgba(255, 159, 64, 0.2)'  // Color para Diciembre
-                        ],
+                        'rgba(255, 99, 132, 0.5)',    // Enero - rojo base
+                        'rgba(54, 162, 235, 0.5)',    // Febrero - azul base
+                        'rgba(255, 206, 86, 0.5)',    // Marzo - amarillo base
+                        'rgba(75, 192, 192, 0.5)',    // Abril - verde agua base
+                        'rgba(153, 102, 255, 0.5)',   // Mayo - morado base
+                        'rgba(255, 159, 64, 0.5)',    // Junio - naranja base
+                        'rgba(255, 121, 135, 0.5)',   // Julio - rojo un poco más claro
+                        'rgba(78, 169, 243, 0.5)',    // Agosto - azul más claro
+                        'rgba(255, 215, 120, 0.5)',   // Septiembre - amarillo más suave
+                        'rgba(85, 204, 204, 0.5)',    // Octubre - verde agua más claro
+                        'rgba(178, 138, 255, 0.5)',   // Noviembre - morado más claro
+                        'rgba(255, 180, 100, 0.5)'    // Diciembre - naranja más suave
+                    ],
                     borderColor: [
-                            'rgba(255, 99, 132, 1)', // Color del borde para Enero
-                            'rgba(54, 162, 235, 1)', // Color del borde para Febrero
-                            'rgba(255, 206, 86, 1)', // Color del borde para Marzo
-                            'rgba(75, 192, 192, 1)', // Color del borde para Abril
-                            'rgba(153, 102, 255, 1)', // Color del borde para Mayo
-                            'rgba(255, 159, 64, 1)', // Color del borde para Junio
-                            'rgba(255, 99, 132, 1)', // Color del borde para Julio
-                            'rgba(54, 162, 235, 1)', // Color del borde para Agosto
-                            'rgba(255, 206, 86, 1)', // Color del borde para Septiembre
-                            'rgba(75, 192, 192, 1)', // Color del borde para Octubre
-                            'rgba(153, 102, 255, 1)', // Color del borde para Noviembre
-                            'rgba(255, 159, 64, 1)'  // Color del borde para Diciembre
-                        ],
-                    borderWidth: 1 // Ancho del borde
+                        'rgba(255, 99, 132, 1)',      // Enero
+                        'rgba(54, 162, 235, 1)',      // Febrero
+                        'rgba(255, 206, 86, 1)',      // Marzo
+                        'rgba(75, 192, 192, 1)',      // Abril
+                        'rgba(153, 102, 255, 1)',     // Mayo
+                        'rgba(255, 159, 64, 1)',      // Junio
+                        'rgba(255, 99, 132, 1)',      // Julio (mismo rojo que enero en borde)
+                        'rgba(54, 162, 235, 1)',      // Agosto
+                        'rgba(255, 206, 86, 1)',      // Septiembre
+                        'rgba(75, 192, 192, 1)',      // Octubre
+                        'rgba(153, 102, 255, 1)',     // Noviembre
+                        'rgba(255, 159, 64, 1)'       // Diciembre
+                    ],
+                    borderWidth: 1
                 }]
             },
             options: {
@@ -789,30 +803,30 @@
                 label: 'Número de votos',
                 data: [{{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}},{{$tipoDEB}},{{$tipoACC}},{{$tipoPFR}},{{$tipoSAP}},{{$tipoNUT}},{{$tipoASC}},{{$tipoMCI}},{{$tipoOTRO}},], 
                 backgroundColor: [
-                    'rgba(133, 193, 233, 0.2)',  // Azul cielo
-                    'rgba(195, 155, 211, 0.2)',  // Lila
-                    'rgba(249, 231, 159, 0.2)',  // Amarillo claro
-                    'rgba(125, 206, 160, 0.2)',  // Verde menta
-                    'rgba(245, 183, 177, 0.2)',  // Rosa pálido
-                    'rgba(255, 204, 153, 0.2)',  // Naranja claro
-                    'rgba(174, 214, 241, 0.2)',  // Azul bebé
-                    'rgba(210, 180, 222, 0.2)',  // Lavanda
-                    'rgba(255, 234, 167, 0.2)',  // Maíz
-                    'rgba(186, 220, 88, 0.2)',   // Verde lima claro
-                    'rgba(255, 118, 117, 0.2)'   // Rojo coral claro
+                    'rgba(244, 67, 54, 0.5)',    // Red 500
+                    'rgba(233, 30, 99, 0.5)',    // Pink 500
+                    'rgba(156, 39, 176, 0.5)',   // Purple 500
+                    'rgba(103, 58, 183, 0.5)',   // Deep Purple 500
+                    'rgba(63, 81, 181, 0.5)',    // Indigo 500
+                    'rgba(33, 150, 243, 0.5)',   // Blue 500
+                    'rgba(3, 169, 244, 0.5)',    // Light Blue 500
+                    'rgba(0, 188, 212, 0.5)',    // Cyan 500
+                    'rgba(0, 150, 136, 0.5)',    // Teal 500
+                    'rgba(76, 175, 80, 0.5)',    // Green 500
+                    'rgba(139, 195, 74, 0.5)'    // Light Green 500
                 ],
                 borderColor: [
-                    'rgba(133, 193, 233, 1)',
-                    'rgba(195, 155, 211, 1)',
-                    'rgba(249, 231, 159, 1)',
-                    'rgba(125, 206, 160, 1)',
-                    'rgba(245, 183, 177, 1)',
-                    'rgba(255, 204, 153, 1)',
-                    'rgba(174, 214, 241, 1)',
-                    'rgba(210, 180, 222, 1)',
-                    'rgba(255, 234, 167, 1)',
-                    'rgba(186, 220, 88, 1)',
-                    'rgba(255, 118, 117, 1)'
+                    'rgba(244, 67, 54, 1)',
+                    'rgba(233, 30, 99, 1)',
+                    'rgba(156, 39, 176, 1)',
+                    'rgba(103, 58, 183, 1)',
+                    'rgba(63, 81, 181, 1)',
+                    'rgba(33, 150, 243, 1)',
+                    'rgba(3, 169, 244, 1)',
+                    'rgba(0, 188, 212, 1)',
+                    'rgba(0, 150, 136, 1)',
+                    'rgba(76, 175, 80, 1)',
+                    'rgba(139, 195, 74, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -826,7 +840,10 @@
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
@@ -853,18 +870,18 @@
                 label: 'Número de votos',
                 data: [{{$sinDano}}, {{$bajo}}, {{$moderado}},{{$grave}},{{$muerte}}], 
                 backgroundColor: [
-                    'rgba(133, 193, 233, 0.2)',  // Azul cielo
-                    'rgba(195, 155, 211, 0.2)',  // Lila
-                    'rgba(249, 231, 159, 0.2)',  // Amarillo claro
-                    'rgba(125, 206, 160, 0.2)',  // Verde menta
-                    'rgba(245, 183, 177, 0.2)',  // Rosa pálido
+                    'rgba(255, 99, 132, 0.5)',   // Rosa vivo (similar coral suave)
+                    'rgba(54, 162, 235, 0.5)',   // Azul brillante (similar turquesa pastel)
+                    'rgba(75, 192, 192, 0.5)',   // Verde agua (similar verde lima suave)
+                    'rgba(255, 206, 86, 0.5)',   // Amarillo vibrante (similar mostaza claro)
+                    'rgba(153, 102, 255, 0.5)'   // Violeta fuerte (similar violeta pastel)
                 ],
                 borderColor: [
-                    'rgba(133, 193, 233, 1)',
-                    'rgba(195, 155, 211, 1)',
-                    'rgba(249, 231, 159, 1)',
-                    'rgba(125, 206, 160, 1)',
-                    'rgba(245, 183, 177, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(153, 102, 255, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -878,7 +895,75 @@
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw;
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
+</script>
+
+<!-- GRAFICAS PERSONA DIRECTAMENTE INVOLUCRADA -->
+    <script>
+    // Espera a que el contenido del DOM esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+    // Obtén el contexto del canvas
+    var ctx = document.getElementById('registrosPersonaDirectamenteInvolucrada').getContext('2d');
+    
+    // Crea la gráfica de dona
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Administrativo','Camillero','Enfermería','Médico','Nutriólogo','Odontólogo','Otro','Personal En Formación','Químico','Radiólogo'],
+            datasets: [{
+                label: 'Número de votos',
+                data: [{{$PDIAdministrativo}}, {{$PDICamillero}}, {{$PDIEnfermeria}},{{$PDIMedico}},{{$PDINutriologo}},{{$PDIOdontologo}},{{$PDIOtro}},{{$PDIPersonalEnFormacion}},{{$PDIQuimico}},{{$PDIRadiologo}}], 
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',   // Rojo vibrante
+                    'rgba(255, 159, 64, 0.5)',   // Naranja
+                    'rgba(255, 205, 86, 0.5)',   // Amarillo
+                    'rgba(75, 192, 192, 0.5)',   // Verde agua
+                    'rgba(54, 162, 235, 0.5)',   // Azul cielo
+                    'rgba(153, 102, 255, 0.5)',  // Morado
+                    'rgba(201, 203, 207, 0.5)',  // Gris suave
+                    'rgba(255, 99, 255, 0.5)',   // Rosa fuerte
+                    'rgba(0, 191, 255, 0.5)',    // Azul profundo
+                    'rgba(60, 179, 113, 0.5)'    // Verde medio
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(201, 203, 207, 1)',
+                    'rgba(255, 99, 255, 1)',
+                    'rgba(0, 191, 255, 1)',
+                    'rgba(60, 179, 113, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
+                            const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
