@@ -331,7 +331,7 @@ class SitioController extends Controller
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
             // $correos = User::where('centinela', 1)->pluck('email')->toArray();
-            $correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com'];
+            $correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com','raul.rdz@saludcoahuila.gob.mx'];
 
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio, $unidadNombre,$categoriaNombre));
