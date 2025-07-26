@@ -219,8 +219,8 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'CUASI-FALLA') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            //$correos = User::where('cuasifalla', 1)->pluck('email')->toArray();
-            $correos = ['soportewebssc@gmail.com'];
+            $correos = User::where('cuasifalla', 1)->pluck('email')->toArray();
+            //$correos = ['soportewebssc@gmail.com'];
             
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new cuasiFallaMail($folio, $unidadNombre,$categoriaNombre));
@@ -275,8 +275,8 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'EVENTO ADVERSO') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            //$correos = User::where('adverso', 1)->pluck('email')->toArray();
-            $correos = ['soportewebssc@gmail.com'];
+            $correos = User::where('adverso', 1)->pluck('email')->toArray();
+            //$correos = ['soportewebssc@gmail.com'];
 
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new adversoMail($folio, $unidadNombre,$categoriaNombre));
@@ -330,8 +330,8 @@ class SitioController extends Controller
         if ($request->clasificacion_del_evento === 'EVENTO CENTINELA') {
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
-            // $correos = User::where('centinela', 1)->pluck('email')->toArray();
-            $correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com','raul.rdz@saludcoahuila.gob.mx'];
+            $correos = User::where('centinela', 1)->pluck('email')->toArray();
+            //$correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com','raul.rdz@saludcoahuila.gob.mx'];
 
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio, $unidadNombre,$categoriaNombre));
