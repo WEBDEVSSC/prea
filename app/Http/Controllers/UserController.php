@@ -162,7 +162,6 @@ class UserController extends Controller
         }
 
         $user->categoria = $request->categoria;
-        $user->chat_id = $request->chat_id;
         $user->nivel = $request->nivel;
         $user->clues = $clues->clues;
         $user->clues_id = $request->clues;
@@ -173,9 +172,6 @@ class UserController extends Controller
         $user->adverso = $request->adverso;
         $user->centinela = $request->centinela;
         $user->reporte_semanal = $request->reporte_semanal;
-        $user->bot_cuasifalla = $request->bot_cuasifalla;
-        $user->bot_adverso = $request->bot_adverso;
-        $user->bot_centinela = $request->bot_centinela;
 
         // Guarda los cambios
         $user->save();

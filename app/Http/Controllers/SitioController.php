@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class SitioController extends Controller
 {
@@ -335,6 +336,15 @@ class SitioController extends Controller
 
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio, $unidadNombre,$categoriaNombre));
+
+            // Registrar en el log
+            Log::info('Correo enviado para evento centinela', [
+                'folio' => $folio,
+                'unidad' => $unidadNombre,
+                'categoría' => $categoriaNombre,
+                'destinatarios' => is_array($correos) ? implode(', ', $correos) : $correos,
+                'fecha' => now()->toDateTimeString(),
+            ]);
 
             //-----------------------------------------------------------------------------------------------------------
             // ENVIAR NOTIFICACIONES POR TELEGRAM BOT

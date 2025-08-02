@@ -82,20 +82,11 @@
                                         <center>
                                         @if ($usuario->cuasifalla == 1)
                                             <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-envelope"></i>
+                                                <i class="fa fa-heart" aria-hidden="true"></i>
                                             </button>
                                         @else
                                             <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-envelope"></i>
-                                            </button>
-                                        @endif
-                                        @if ($usuario->bot_cuasifalla == 1)
-                                            <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-asterisk"></i>
-                                            </button>
-                                        @else
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-asterisk"></i>
+                                                <i class="fa fa-heart" aria-hidden="true"></i>
                                             </button>
                                         @endif
                                         </center>
@@ -104,20 +95,11 @@
                                         <center>
                                         @if ($usuario->adverso == 1)
                                             <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-envelope"></i>
+                                                <i class="fa fa-plus-square" aria-hidden="true"></i>
                                             </button>
                                         @else
                                             <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-envelope"></i>
-                                            </button>
-                                        @endif
-                                        @if ($usuario->bot_adverso == 1)
-                                            <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-asterisk"></i>
-                                            </button>
-                                        @else
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-asterisk"></i>
+                                                <i class="fa fa-plus-square" aria-hidden="true"></i>
                                             </button>
                                         @endif
                                         </center>
@@ -126,20 +108,11 @@
                                         <center>
                                         @if ($usuario->centinela == 1)
                                             <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-envelope"></i>
+                                                <i class="fa fa-ambulance" aria-hidden="true"></i>
                                             </button>
                                         @else
                                             <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-envelope"></i>
-                                            </button>
-                                        @endif
-                                        @if ($usuario->bot_centinela == 1)
-                                            <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-asterisk"></i>
-                                            </button>
-                                        @else
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-asterisk"></i>
+                                                <i class="fa fa-ambulance" aria-hidden="true"></i>
                                             </button>
                                         @endif
                                         </center>
@@ -148,11 +121,11 @@
                                         <center>
                                         @if ($usuario->reporte_semanal == 1)
                                             <button class="btn btn-success btn-sm">
-                                                <i class="fa fa-bookmark"></i>
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </button>
                                         @else
                                             <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-bookmark"></i>
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
                                             </button>
                                         @endif
                                         </center>

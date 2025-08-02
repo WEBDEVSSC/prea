@@ -65,8 +65,7 @@
                             <p><small>Por motivos de seguridad la contraseña no se muestra</small></p>
                         </div>
                         <div class="col-md-3">
-                            <p><strong>Chat ID</strong></p>
-                            {{ $user->chat_id }}
+                            
                         </div>
                         
                     </div>
@@ -145,43 +144,6 @@
                     </div>         
                     
                     <!-- ---------------------------------------------- -->
-
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <div class="custom-control custom-switch">
-                                <!-- Valor por defecto cuando no está marcado -->
-                                <input type="hidden" name="bot_cuasifalla" value="0">
-                                
-                                <!-- Checkbox -->
-                                <input name="bot_cuasifalla" type="checkbox" class="custom-control-input" id="bot_cuasifalla" value="1" 
-                                       {{ old('bot_cuasifalla', $user->bot_cuasifalla) == 1 ? 'checked' : '' }}>                                
-                                <label class="custom-control-label" for="bot_cuasifalla">Bot Cuasi-Falla</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="custom-control custom-switch">
-                                <!-- Valor por defecto cuando no está marcado -->
-                                <input type="hidden" name="bot_adverso" value="0">
-                                
-                                <!-- Checkbox -->
-                                <input name="bot_adverso" type="checkbox" class="custom-control-input" id="bot_adverso" value="1" 
-                                       {{ old('bot_adverso', $user->bot_adverso) == 1 ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="bot_adverso">Bot Evento Adverso</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="custom-control custom-switch">
-                                <!-- Valor por defecto cuando no está marcado -->
-                                <input type="hidden" name="bot_centinela" value="0">
-                                
-                                <!-- Checkbox -->
-                                <input name="bot_centinela" type="checkbox" class="custom-control-input" id="bot_centinela" value="1" 
-                                       {{ old('bot_centinela', $user->bot_centinela) == 1 ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="bot_centinela">Bot Evento Centinela</label>
-                            </div>
-                        </div>
-                        
-                    </div>  
 
                 </div>
             </div>
