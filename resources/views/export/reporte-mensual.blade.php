@@ -218,7 +218,7 @@
 
         <!-- ------------------------------------------------------------------ -->
 
-        <h6><strong>LUGAR O AREA DEL EVENTO</strong></h6>
+        <h6><strong>DISTRIBUCIÓN POR LUGAR O AREA DEL EVENTO</strong></h6>
 
         <table>
             <thead>
@@ -271,6 +271,14 @@
                     <td><p></p></td>
                 </tr>
             </thead>
+
+            <tbody>
+                <tr>
+                    <td colspan="10" style="text-align: center; padding-top: 20px;">
+                        <img src="{{ $imageBase64Lugar }}" style="width: 80%; height: auto; margin-top: 10px;">
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
         <!-- ------------------------------------------------------------------ -->

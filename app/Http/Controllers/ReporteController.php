@@ -324,7 +324,10 @@ class ReporteController extends Controller
             ->where('servicio','URGENCIAS')
             ->count();
 
-        // Gráfica de tipos de eventos
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA EVENTOS TOTAL  */
+        /** **********************************************************************************************  */
+
         $chartConfigEventos = [
             'type' => 'pie',
             'data' => [
@@ -357,7 +360,10 @@ class ReporteController extends Controller
             $imageBase64Eventos = null;
         }
 
-        // Gráfica por jurisdicción
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA JURISDICCION TOTAL  */
+        /** **********************************************************************************************  */
+
         $chartConfigJurisdiccion = [
             'type' => 'pie',
             'data' => [
@@ -393,7 +399,10 @@ class ReporteController extends Controller
             $imageBase64Jurisdiccion = null;
         }
 
-        // Gráfica por sexo
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA SEXO TOTAL  */
+        /** **********************************************************************************************  */
+
         $chartConfigSexo = [
             'type' => 'pie',
             'data' => [
@@ -428,7 +437,10 @@ class ReporteController extends Controller
             $imageBase64Sexo = null;
         }
 
-        // Gráfica por rango de edad
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA RANGOS DE EDAD TOTAL  */
+        /** **********************************************************************************************  */
+
         $chartConfigRangoDeEdad = [
             'type' => 'pie',
             'data' => [
@@ -463,7 +475,10 @@ class ReporteController extends Controller
             $imageBase64RangoDeEdad = null;
         }
 
-        // Gráfica por turno
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA TURNO TOTAL  */
+        /** **********************************************************************************************  */
+
         $chartConfigTurno = [
             'type' => 'pie',
             'data' => [
@@ -498,6 +513,86 @@ class ReporteController extends Controller
             $imageBase64Turno = null;
         }
 
+        
+
+         /** **********************************************************************************************  */
+        /** GRAFICA PARA LUGAR O AREA TOTAL  */
+        /** **********************************************************************************************  */
+
+        // Gráfica por turno
+        $chartConfigLugar = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => [
+                    'Almacén',
+                    'Cendis',
+                    'Ceye',
+                    'Consulta Externa',
+                    'Dental',
+                    'Farmacia',
+                    'Hospitalización',
+                    'Imagenología',
+                    'Laboratorio',
+                    'Medicina Preventiva',
+                    'Nutrición',
+                    'Patología',
+                    'Quirófano',
+                    'Salud Reproductiva',
+                    'Toco-Cirugía',
+                    'UCI Adultos',
+                    'UCI Neonatales',
+                    'UCI Pediátricos',
+                    'Urgencias',
+                ],
+                'datasets' => [[
+                    'label' => 'Lugar del Evento',
+                    'data' => [$almacen, $cendis, $ceye, $consultaExterna, $dental, $farmacia, $hospitalizacion, $imagenologia, $laboratorio, $medicinaPreventiva, $nutricion, $patologia, $quirofano, $saludReproductiva, $tocoCirugia, $UCIAdultos, $UCINeonatales, $UCIPediatricos, $urgencias],
+                    'backgroundColor' => [
+                        '#f43f5e', // rosa fuerte
+                        '#10b981', // verde esmeralda
+                        '#3b82f6', // azul brillante
+                        '#8b5cf6', // morado
+                        '#f59e0b', // amarillo mostaza
+                        '#ef4444', // rojo intenso
+                        '#14b8a6', // verde azulado
+                        '#6366f1', // índigo
+                        '#84cc16', // verde lima
+                        '#ec4899', // rosa
+                        '#0ea5e9', // azul celeste
+                        '#eab308', // dorado
+                        '#a855f7', // púrpura
+                        '#22c55e', // verde
+                        '#e11d48', // rojo cereza
+                        '#3f3f46', // gris oscuro
+                        '#f97316', // naranja
+                        '#4ade80', // verde suave
+                    ],
+                ]]
+                ],
+                    'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'display' => false,
+                    ]
+                ]
+            ]
+        ];
+
+        $responseLugar = Http::withOptions(['verify' => false])
+            ->timeout(30)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigLugar)
+            ]);
+
+        if ($responseLugar->successful()) {
+            $imageBase64Lugar = 'data:image/png;base64,' . base64_encode($responseLugar->body());
+        } else {
+            Log::error('Error al generar la gráfica de jurisdicciones: ' . $responseLugar->status());
+            $imageBase64Lugar = null;
+        }
+
+
+
 
         // Generar el PDF AQUI PASAMOS TODAS LAS VARIABLES 
         $pdf = Pdf::loadView('export.reporte-mensual', [
@@ -506,6 +601,7 @@ class ReporteController extends Controller
             'imageBase64RangoDeEdad' => $imageBase64RangoDeEdad,
             'imageBase64Sexo' => $imageBase64Sexo,
             'imageBase64Turno' => $imageBase64Turno,
+            'imageBase64Lugar' => $imageBase64Lugar,
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
             'eventosAdverso' => $eventosAdverso,
