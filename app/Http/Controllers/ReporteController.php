@@ -87,11 +87,12 @@ class ReporteController extends Controller
         $inicio = $validated['inicio'];
         $fin = $validated['fin'];
 
+        $inicioFormato = date('d-m-Y', strtotime($inicio));
+        $finFormato = date('d-m-Y', strtotime($fin));
+
         // Exportar el archivo Excel
-        return Excel::download(new EventoExport($inicio, $fin), 'eventos-'.$inicio.'-to-'.$fin.'.xlsx');
-        
-        // Retornamos la descarga del archivo Excel
-        // return Excel::download(new EventoExport,'eventos.xlsx');
+        return Excel::download(new EventoExport($inicio, $fin), 'EVENTOS-PREA-'.$inicioFormato.'-A-'.$finFormato.'.xlsx');
+
     }
 
     public function generarReporteMensualPDF()
@@ -602,6 +603,7 @@ class ReporteController extends Controller
             'imageBase64Sexo' => $imageBase64Sexo,
             'imageBase64Turno' => $imageBase64Turno,
             'imageBase64Lugar' => $imageBase64Lugar,
+            
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
             'eventosAdverso' => $eventosAdverso,
