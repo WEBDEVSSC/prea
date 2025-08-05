@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         // Buscamos todos los registros de la base de datos
-        $usuarios = User::all();
+        $usuarios = User::orderBy('nivel', 'asc')->get();
 
         // Retornamos la vista y mandamos los datos
         return view('usuario.index', compact('usuarios'));
