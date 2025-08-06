@@ -649,13 +649,24 @@
           <div class="col-md-5"></div>
           <div class="col-md-2">
 
-            <label for="captcha">Captcha:</label><br>
-    <img src="{{ captcha_src() }}" alt="captcha"><br>
-    <input type="text" name="captcha" placeholder="Escribe el texto de la imagen"><br>
-
-    @error('captcha')
+            {!! NoCaptcha::display() !!}
+    @error('g-recaptcha-response')
         <span class="text-danger">{{ $message }}</span>
     @enderror
+
+            <center>
+            <div>
+              <img src="{{ captcha_src('flat') }}" onclick="this.src='{{ captcha_src('flat') }}'+Math.random()" style="cursor:pointer;">
+            </div>
+            </center>
+
+            <br>
+
+            <input type="text" name="captcha" class="form-control" placeholder="CAPTURE CÓDIGO">
+
+            @error('captcha')
+                <div style="color:red">{{ $message }}</div>
+            @enderror
 
           </div>
           <div class="col-md-5"></div>
