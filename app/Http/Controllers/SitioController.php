@@ -50,7 +50,7 @@ class SitioController extends Controller
      * Mostramos el formualario publico
      */
     public function create()
-    {
+    {        
         // Retornamos la vista WELCOME con el formulario publico
         return view('welcome');
     }
@@ -61,7 +61,7 @@ class SitioController extends Controller
     public function store(Request $request)
     {        
         $request->validate([
-            'captcha' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'clasificacion_del_evento'=>'required',
             'unidad'=>'required',
             'edad'=>'required|integer',
@@ -125,8 +125,8 @@ class SitioController extends Controller
             'proporciono_informacion.required' => 'Debe seleccionar una opción.',
             'quien_proporciono.required' => 'Debe seleccionar una opción.',
 
-            'captcha.required' => 'Por favor, completa el CAPTCHA.',
-            'captcha.captcha' => 'El código CAPTCHA ingresado no es válido, por favor inténtalo nuevamente.'
+            'g-recaptcha-response.required' => 'Por favor verifica que no eres un robot.',
+            'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.',
         ]);
 
         //dd($request->opcion_otra);

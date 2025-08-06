@@ -641,29 +641,25 @@
                 
             </div>
         </div>
-        
 
         <!-- ----------------------------------------------------------------------------------------- -->
 
         <div class="row mt-3">
-          <div class="col-md-5"></div>
-          <div class="col-md-2">
+          <div class="col-md-12">
 
-            <!-- -------------------------------------------------------------------- -->
+            <center>
 
-            <img src="{{ captcha_src('flat') }}" onclick="this.src='{{ captcha_src('flat') }}'+Math.random()" style="cursor:pointer;">
-            <input type="text" name="captcha" placeholder="Ingrese el código">
-            @error('captcha')
-              <span class="text-danger">{{ $message }}</span>
-            @enderror
+            {!! NoCaptcha::display() !!}
 
+            @if ($errors->has('g-recaptcha-response'))
+                <span class="text-danger">
+                    {{ $errors->first('g-recaptcha-response') }}
+                </span>
+            @endif
 
-            <!-- -------------------------------------------------------------------- -->
-
-            
+            </center>
 
           </div>
-          <div class="col-md-5"></div>
         </div>
 
         <div class="row mt-3">
@@ -683,7 +679,7 @@
     </form>
 
     <!-- Carga el script -->
-
+{!! NoCaptcha::renderJs() !!}
 
     <!-- ------------------------------------------------------------------------- -->
     
