@@ -649,8 +649,11 @@
           <div class="col-md-5"></div>
           <div class="col-md-2">
 
-            {!! NoCaptcha::display() !!}
-    @error('g-recaptcha-response')
+            <label for="captcha">Captcha:</label><br>
+    <img src="{{ captcha_src() }}" alt="captcha"><br>
+    <input type="text" name="captcha" placeholder="Escribe el texto de la imagen"><br>
+
+    @error('captcha')
         <span class="text-danger">{{ $message }}</span>
     @enderror
 
@@ -673,9 +676,6 @@
     </div>
 
     </form>
-
-    <!-- Carga el script -->
-    {!! NoCaptcha::renderJs() !!}
 
     <!-- ------------------------------------------------------------------------- -->
     
