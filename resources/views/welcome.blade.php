@@ -649,11 +649,6 @@
           <div class="col-md-5"></div>
           <div class="col-md-2">
 
-            {!! NoCaptcha::display() !!}
-    @error('g-recaptcha-response')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
-
             <center>
             <div>
               <img src="{{ captcha_src('flat') }}" onclick="this.src='{{ captcha_src('flat') }}'+Math.random()" style="cursor:pointer;">
