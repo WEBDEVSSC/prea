@@ -61,7 +61,7 @@ class SitioController extends Controller
     public function store(Request $request)
     {        
         $request->validate([
-            'captcha' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'clasificacion_del_evento'=>'required',
             'unidad'=>'required',
             'edad'=>'required|integer',
