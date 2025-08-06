@@ -649,19 +649,18 @@
           <div class="col-md-5"></div>
           <div class="col-md-2">
 
-            <center>
-            <div>
-              <img src="{{ captcha_src('flat') }}" onclick="this.src='{{ captcha_src('flat') }}'+Math.random()" style="cursor:pointer;">
-            </div>
-            </center>
+            <!-- -------------------------------------------------------------------- -->
 
-            <br>
-
-            <input type="text" name="captcha" class="form-control" placeholder="CAPTURE CÓDIGO">
-
+            <img src="{{ captcha_src('flat') }}" onclick="this.src='{{ captcha_src('flat') }}'+Math.random()" style="cursor:pointer;">
+            <input type="text" name="captcha" placeholder="Ingrese el código">
             @error('captcha')
-                <div style="color:red">{{ $message }}</div>
+              <span class="text-danger">{{ $message }}</span>
             @enderror
+
+
+            <!-- -------------------------------------------------------------------- -->
+
+            
 
           </div>
           <div class="col-md-5"></div>
@@ -682,6 +681,9 @@
     </div>
 
     </form>
+
+    <!-- Carga el script -->
+
 
     <!-- ------------------------------------------------------------------------- -->
     
