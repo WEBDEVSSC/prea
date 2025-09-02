@@ -189,7 +189,6 @@ class SitioController extends Controller
         $evento -> incidente_categoria = $request->categoria;
         $evento -> incidente_categoria_label = $categoriaLabel->categoria;
         $evento -> incidente_descripcion = $request->opcion;
-        //$evento -> incidente_descripcion_label = $opcionLabel;
         $evento -> incidente_descripcion_label = $opcionLabel->opcion;
         $evento -> incidente_otro = $request->incidente_otro;
 

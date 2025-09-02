@@ -403,6 +403,20 @@ class HomeController extends Controller
             ->whereYear('fecha_hora',$anio)
             ->count();
 
+        // ------------------------------ POR NIVEL DE UNIDAD ---------------------------------------
+
+        $primerNivel = Evento:: where('nivel',1)
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $segundoNivel = Evento:: where('nivel',2)
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
+        $tercerNivel = Evento:: where('nivel',3)
+            ->whereYear('fecha_hora',$anio)
+            ->count();
+
         // --------------------------- PASAMOS TODOS LOS VALORES A LA VISTA -----------------------
 
         $anio = 2025;
@@ -519,6 +533,10 @@ class HomeController extends Controller
             'PDIPersonalEnFormacion',
             'PDIQuimico',
             'PDIRadiologo',
+
+            'primerNivel',
+            'segundoNivel',
+            'tercerNivel',
         ));
     }
 }

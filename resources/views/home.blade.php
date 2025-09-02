@@ -29,8 +29,7 @@
                     </div>            
                 </div>
     
-            </div>
-            
+            </div>            
     
             <div class="col-md-3">
     
@@ -72,7 +71,21 @@
         <!-- -------------------------------------------------------------------- -->
 
         <div class="row">
-        <div class="col-md-12">
+            <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><strong>Reportes por Nivel de Atención</strong></h3>
+                </div>
+                <div class="card-body">
+    
+                            <div>
+                                <canvas id="registrosPorNivelDeAtencion" width="400" height="400"></canvas>
+                            </div>
+    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title"><strong>Resumen por mes</strong></h3>
@@ -80,7 +93,7 @@
                 <div class="card-body">
     
                             <div>
-                                <canvas id="myBarCharts" width="400" height="200"></canvas>
+                                <canvas id="myBarCharts" width="400" height="350"></canvas>
                             </div>
     
                 </div>
@@ -248,13 +261,9 @@
         <!-- FIN DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
     
     @else
-    
-        
+
     
     @endif
-
-    
-
 
 @stop
 
@@ -365,6 +374,58 @@
                         label: function(tooltipItem) {
                             const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
                             const value = tooltipItem.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
+</script>
+
+<!-- GRAFICAS POR NIVEL DE ATENCION -->
+    <script>
+    // Espera a que el contenido del DOM esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+    // Obtén el contexto del canvas
+    var ctx = document.getElementById('registrosPorNivelDeAtencion').getContext('2d');
+    
+    // Crea la gráfica de dona
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
+            datasets: [{
+                label: 'Número de votos',
+                data: [{{$primerNivel}}, {{$segundoNivel}}, {{$tercerNivel}}], 
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)',   // Azul
+                    'rgba(153, 102, 255, 0.5)',  // Morado
+                    'rgba(255, 159, 64, 0.5)'    // Naranja
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            const dataset = tooltipItem.chart.data.datasets[tooltipItem.datasetIndex];
+                            const total = dataset.data.reduce((a, b) => a + b, 0);
+                            const value = dataset.data[tooltipItem.dataIndex];
                             const percentage = ((value / total) * 100).toFixed(1);
                             return `${tooltipItem.label}: ${value} (${percentage}%)`;
                         }
