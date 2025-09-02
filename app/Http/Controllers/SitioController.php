@@ -129,8 +129,6 @@ class SitioController extends Controller
             'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.',
         ]);
 
-        //dd($request->opcion_otra);
-
         // Consultamos el clues de la unidad
         $unidad = Unidad::findOrFail($request->unidad);
         $unidadClues = $unidad->clues;
@@ -166,6 +164,7 @@ class SitioController extends Controller
 
         // Creamos una instancia con el modelo evento y asignamos los valores a cada campo
         $evento = new Evento();
+
         $evento -> clasificacion_del_evento = $request->clasificacion_del_evento;
 
         $evento -> unidad = $unidadClues;
@@ -226,50 +225,6 @@ class SitioController extends Controller
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new cuasiFallaMail($folio, $unidadNombre,$categoriaNombre));
 
-            //-----------------------------------------------------------------------------------------------------------
-            /*
-            // Enviamos mensajes por TELEGRAM
-            $token = env('TELEGRAM_BOT_TOKEN');
-
-            // Obtener todos los usuarios con bot_cuasifalla = 1 y chat_id no nulo
-            $chat_ids = User::where('bot_cuasifalla', 1)
-                            ->whereNotNull('chat_id')
-                            ->pluck('chat_id')
-                            ->toArray();
-            
-            // Mensaje
-            $mensaje = '🏥 P.R.E.A. | S.S.C.' . "\n" .
-                       '' . "\n" .
-                       '🟢 Se ha registrado un Evento Cuasi-Falla' . "\n" .
-                       '' . "\n" .
-                       '📝 Folio: ' . $folio . "\n" .
-                       '🏥 Unidad: ' . $unidadNombre . "\n" .
-                       '🔖 Categoria: ' . $categoriaLabel->categoria;
-
-            foreach ($chat_ids as $chat_id) 
-            {
-                $response = Http::withOptions([
-                    'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
-                ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
-                    'text' => $mensaje,
-                    'reply_markup' => json_encode([
-                        'inline_keyboard' => [[
-                            [
-                                'text' => '🔗 Ver detalles',
-                                'url' => url('admin/eventoShow/' . $evento->id)
-                            ]
-                        ]]
-                    ]),
-                ]);
-
-                // Puedes revisar cada respuesta si gustas
-                //dump("Mensaje enviado a {$chat_id}", $response->json());
-            }
-
-            */
-
-             //-----------------------------------------------------------------------------------------------------------
         }
 
             // Verificar la clasificación del evento para "EVENTO ADVERSO"
@@ -282,49 +237,6 @@ class SitioController extends Controller
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new adversoMail($folio, $unidadNombre,$categoriaNombre));
 
-            //-----------------------------------------------------------------------------------------------------------
-            /*
-            // Enviamos mensajes por TELEGRAM
-            $token = env('TELEGRAM_BOT_TOKEN');
-
-            // Obtener todos los usuarios con bot_cuasifalla = 1 y chat_id no nulo
-            $chat_ids = User::where('bot_adverso', 1)
-                            ->whereNotNull('chat_id')
-                            ->pluck('chat_id')
-                            ->toArray();
-
-            $mensaje = '🏥 P.R.E.A. | S.S.C.' . "\n" .
-                       '' . "\n" .
-                       '🟠 Se ha registrado un Evento Adverso' . "\n" .
-                       '' . "\n" .
-                       '📝 Folio: ' . $folio . "\n" .
-                       '🏥 Unidad: ' . $unidadNombre . "\n" .
-                       '🔖 Categoria: ' . $categoriaLabel->categoria;
-
-            foreach ($chat_ids as $chat_id) 
-            {
-                $response = Http::withOptions([
-                    'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
-                ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
-                    'text' => $mensaje,
-                    'reply_markup' => json_encode([
-                        'inline_keyboard' => [[
-                            [
-                                'text' => '🔗 Ver detalles',
-                                'url' => url('admin/eventoShow/' . $evento->id)
-                            ]
-                        ]]
-                    ]),
-                ]);
-
-                // Puedes revisar cada respuesta si gustas
-                //dump("Mensaje enviado a {$chat_id}", $response->json());
-            }
-
-            */
-
-             //-----------------------------------------------------------------------------------------------------------
         }
 
         // Verificar la clasificación del evento
@@ -336,76 +248,11 @@ class SitioController extends Controller
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio, $unidadNombre,$categoriaNombre));
 
-            // Registrar en el log
-            Log::info('Correo enviado para evento centinela', [
-                'folio' => $folio,
-                'unidad' => $unidadNombre,
-                'categoría' => $categoriaNombre,
-                'destinatarios' => is_array($correos) ? implode(', ', $correos) : $correos,
-                'fecha' => now()->toDateTimeString(),
-            ]);
-
-            //-----------------------------------------------------------------------------------------------------------
-            // ENVIAR NOTIFICACIONES POR TELEGRAM BOT
-            //-----------------------------------------------------------------------------------------------------------
-            /*
-            // Enviamos mensajes por TELEGRAM
-            $token = env('TELEGRAM_BOT_TOKEN');
-
-            // Obtener todos los usuarios con bot_cuasifalla = 1 y chat_id no nulo
-            $chat_ids = User::where('bot_centinela', 1)
-                            ->whereNotNull('chat_id')
-                            ->pluck('chat_id')
-                            ->toArray();
-
-            $mensaje = '🏥 P.R.E.A. | S.S.C.' . "\n" .
-                       '' . "\n" .
-                       '🔴 Se ha registrado un Evento Centinela' . "\n" .
-                       '' . "\n" .
-                       '📝 Folio: ' . $folio . "\n" .
-                       '🏥 Unidad: ' . $unidadNombre . "\n" .
-                       '🔖 Categoria: ' . $categoriaLabel->categoria;
-
-            foreach ($chat_ids as $chat_id) 
-            {
-                $response = Http::withOptions([
-                    'verify' => false, // Desactiva verificación SSL (útil para pruebas locales)
-                ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
-                    'text' => $mensaje,
-                    'reply_markup' => json_encode([
-                        'inline_keyboard' => [[
-                            [
-                                'text' => '🔗 Ver detalles',
-                                'url' => url('admin/eventoShow/' . $evento->id)
-                            ]
-                        ]]
-                    ]),
-                ]);
-
-                // Puedes revisar cada respuesta si gustas
-                //dump("Mensaje enviado a {$chat_id}", $response->json());
-            }*/
-
         }
 
-        // Redireccionamos con el evento 
-        return redirect()->route('create')->with('success', 'Folio : '.$folio);
-    }
-
-    public function enviarTelegram()
-    {
-        $token = env('TELEGRAM_BOT_TOKEN');
-        $chat_id = '13673422';
-        $mensaje = 'Mensaje de prueba P.R.E.A. S.S.C.';
-
-        $response = Http::withOptions([
-            'verify' => false, // <--- desactiva verificación SSL
-        ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-            'chat_id' => $chat_id,
-            'text' => $mensaje,
-        ]);
-
-        dd($response->json());
+        // Reidreccionamos a la vista
+        return redirect()
+            ->route('create')
+            ->withSuccess("Folio generado: {$folio}");
     }
 }
