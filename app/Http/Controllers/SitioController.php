@@ -137,6 +137,7 @@ class SitioController extends Controller
         $unidadJurisdiccion = $unidad->jurisdiccion;
         $unidadCategoria = $unidad->categoria;
         $unidadNombre = $unidad->nombre;
+        $unidadNivel = $unidad->nivel;
 
         // SSC-PREA-CLUES-CONSECUTIVO
 
@@ -170,6 +171,7 @@ class SitioController extends Controller
         $evento -> unidad = $unidadClues;
         $evento -> unidad_nombre = $unidadNombre;
         $evento -> jurisdiccion = $unidadJurisdiccion;
+        $evento -> nivel = $unidadNivel;
 
         $evento -> edad = $request->edad;
         $evento -> sexo = $request->sexo;
@@ -221,7 +223,6 @@ class SitioController extends Controller
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
             $correos = User::where('cuasifalla', 1)->pluck('email')->toArray();
-            //$correos = ['soportewebssc@gmail.com'];
             
             // Enviamos el correo de confirmación para Evento Adverso
             Mail::to($correos)->send(new cuasiFallaMail($folio, $unidadNombre,$categoriaNombre));
@@ -332,7 +333,6 @@ class SitioController extends Controller
 
             // Obtenemos todos los usuarios que acepten el correo de ADVERSOS
             $correos = User::where('centinela', 1)->pluck('email')->toArray();
-            //$correos = ['soportewebssc@gmail.com','brendavila_@hotmail.com','mochely_45@hotmail.com','direccion.calidadss@gmail.com','raul.rdz@saludcoahuila.gob.mx'];
 
             // Enviamos el correo de confirmacion
             Mail::to($correos)->send(new eventoCentinelaMail($folio, $unidadNombre,$categoriaNombre));
