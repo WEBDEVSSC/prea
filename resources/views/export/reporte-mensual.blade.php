@@ -96,6 +96,33 @@
             
         <!-- ------------------------------------------------------------------ -->
 
+        <h6><strong>NIVEL DE ATENCIÓN</strong></h6>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td width="25%" class="fondo-gris"><p>TOTAL</p></td>
+                    <td width="25%"><p>{{ $contadorEventos }}</p></td>
+                    <td colspan="2" rowspan="4"><center><img src="{{ $imageBase64NivelDeAtencion }}" style="width: 100%; height: auto;"></center></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>PRIMER NIVEL</p></td>
+                <td><p>{{ $totalPrimerNivel }}</p></td>
+                </tr>
+                <tr>
+                    <td class="fondo-gris"><p>SEGUNDO NIVEL</p></td>
+                    <td><p>{{ $totalSegundoNivel }}</p></td>
+                </tr>
+                <tr>
+                <td class="fondo-gris"><p>TERCER NIVEL</p></td>
+                <td><p>{{ $totalTercerNivel }}</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+            
+        <!-- ------------------------------------------------------------------ -->
+
         <h6><strong>POR JURISDICCIÓN</strong></h6>
 
         <table>

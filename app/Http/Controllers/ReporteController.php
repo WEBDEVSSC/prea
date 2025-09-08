@@ -191,6 +191,25 @@ class ReporteController extends Controller
             /**
              * 
              * 
+             * REPORTES POR NIVEL DE ATENCION
+             * 
+             */
+
+        $totalPrimerNivel = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->where('nivel',1)
+            ->count();
+
+        $totalSegundoNivel = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->where('nivel',2)
+            ->count();
+
+        $totalTercerNivel = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->where('nivel',3)
+            ->count();
+
+            /**
+             * 
+             * 
              * RANGOS DE EDAD
              * 
              */
@@ -324,6 +343,42 @@ class ReporteController extends Controller
         $urgencias = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->where('servicio','URGENCIAS')
             ->count();
+
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA TOTAL POR NIVEL DE ATENCION  */
+        /** **********************************************************************************************  */
+
+        $chartConfigNivelDeAtencion = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
+                'datasets' => [[
+                    'label' => 'Nivel de atencion',
+                    'data' => [$totalPrimerNivel, $totalSegundoNivel, $totalTercerNivel],
+                    'backgroundColor' => ['#eab308', '#a855f7', '#f97316',],
+                ]]
+                ],
+                'options' => [
+                    'plugins' => [
+                        'datalabels' => [
+                            'display' => false
+                        ]
+                    ]
+                ]
+        ];
+
+        $responseNivelDeAtencion = Http::withOptions(['verify' => false])
+            ->timeout(30)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigNivelDeAtencion)
+            ]);
+
+        if ($responseNivelDeAtencion->successful()) {
+            $imageBase64NivelDeAtencion = 'data:image/png;base64,' . base64_encode($responseNivelDeAtencion->body());
+        } else {
+            Log::error('Error al generar la gráfica de eventos: ' . $responseNivelDeAtencion->status());
+            $imageBase64NivelDeAtencion = null;
+        }
 
         /** **********************************************************************************************  */
         /** GRAFICA PARA EVENTOS TOTAL  */
@@ -657,6 +712,11 @@ class ReporteController extends Controller
             'UCINeonatales' => $UCINeonatales,
             'UCIPediatricos' => $UCIPediatricos,
             'urgencias' => $urgencias,
+
+            'totalPrimerNivel' => $totalPrimerNivel,
+            'totalSegundoNivel' => $totalSegundoNivel,
+            'totalTercerNivel' => $totalTercerNivel,
+            'imageBase64NivelDeAtencion' => $imageBase64NivelDeAtencion
         ]);
 
         // Cambiar la orientación de la página a horizontal (landscape)
