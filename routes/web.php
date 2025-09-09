@@ -40,11 +40,6 @@ Route::get('/incidentes/opciones/{categoria_id}', [SitioController::class, 'getO
 // Ruta para enviar los TELEGRAM
 // Route::get('/telegram', [SitioController::class, 'enviarTelegram'])->name('enviarTelegram');
 
-Route::get('refresh-captcha', function () {
-    return response()->json(['captcha' => captcha_img()]);
-});
-
-
 /**
  * 
  * 
@@ -180,6 +175,14 @@ Route::middleware('auth')->group(function () {
 
     // Ruta para eliminarun evento
     Route::delete('admin/eventoDestroy/{id}',[EventoController::class,'destroy'])->name('eventoDestroy');
+
+    // Ruta para mostrar los eventos por categoria
+    Route::get('admin/eventos-cuasi-falla',[EventoController::class,'indexCuasiFalla'])->name('indexCuasiFalla');
+
+    Route::get('admin/eventos-adversos',[EventoController::class,'indexAdversos'])->name('indexAdversos');
+
+    Route::get('admin/eventos-centinelas',[EventoController::class,'indexCentinelas'])->name('indexCentinelas');
+
 
      /**
      * 

@@ -19,8 +19,6 @@ class EventoController extends Controller
         // Obtener el usuario autenticado
         $user = AutH::user();
 
-        //dd($user->nivel);
-
         // Obtenemos la categoria en una variable
         $nivel = $user->nivel;
         $categoria = $user->categoria;
@@ -167,5 +165,167 @@ class EventoController extends Controller
         $evento->delete(); 
 
         return redirect()->route('eventoIndex')->with('destroy', 'El registro de elimino correctamente');
+    }
+
+    public function indexCuasiFalla()
+    {
+        // Obtener el usuario autenticado
+        $user = AutH::user();
+
+        // Obtenemos la categoria en una variable
+        $nivel = $user->nivel;
+        $categoria = $user->categoria;
+        $unidad = $user->clues;
+        $anio = Carbon::now()->year;
+        
+        // Opcion para ADMINISTRADOR 1
+        if($nivel == 1){
+
+            // Consultamos todos los registros de la tabla eventos
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','CUASI-FALLA')    
+                ->orderBy('id', 'desc')
+                ->get();
+
+        }
+        // Opcion para JURISDICCIONES
+        elseif($nivel == 2){
+
+            // Consultamos todos los registros por jurisdiccion
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','CUASI-FALLA')  
+                ->where('categoria',$categoria)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para UNIDADES
+        elseif($nivel == 3){
+            
+            //Consultamos los registros por unidad
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','CUASI-FALLA')  
+                ->where('unidad',$unidad)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para CUANDO NO TENGAN NIVEL
+        else{
+
+            abort(403, 'Nivel de acceso no permitido');
+
+        }
+        
+        //Mandamos llamar la vista y pasamos los parametros en un arreglo
+        return view('eventos.cuasi-falla',['eventos' => $eventos]);
+    }
+
+    public function indexAdversos()
+    {
+        // Obtener el usuario autenticado
+        $user = AutH::user();
+
+        // Obtenemos la categoria en una variable
+        $nivel = $user->nivel;
+        $categoria = $user->categoria;
+        $unidad = $user->clues;
+        $anio = Carbon::now()->year;
+        
+        // Opcion para ADMINISTRADOR 1
+        if($nivel == 1){
+
+            // Consultamos todos los registros de la tabla eventos
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','EVENTO ADVERSO')    
+                ->orderBy('id', 'desc')
+                ->get();
+
+        }
+        // Opcion para JURISDICCIONES
+        elseif($nivel == 2){
+
+            // Consultamos todos los registros por jurisdiccion
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','EVENTO ADVERSO')  
+                ->where('categoria',$categoria)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para UNIDADES
+        elseif($nivel == 3){
+            
+            //Consultamos los registros por unidad
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','EVENTO ADVERSO')  
+                ->where('unidad',$unidad)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para CUANDO NO TENGAN NIVEL
+        else{
+
+            abort(403, 'Nivel de acceso no permitido');
+
+        }
+        
+        //Mandamos llamar la vista y pasamos los parametros en un arreglo
+        return view('eventos.adverso',['eventos' => $eventos]);
+    }
+
+    public function indexCentinelas()
+    {
+        // Obtener el usuario autenticado
+        $user = AutH::user();
+
+        // Obtenemos la categoria en una variable
+        $nivel = $user->nivel;
+        $categoria = $user->categoria;
+        $unidad = $user->clues;
+        $anio = Carbon::now()->year;
+        
+        // Opcion para ADMINISTRADOR 1
+        if($nivel == 1){
+
+            // Consultamos todos los registros de la tabla eventos
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','EVENTO CENTINELA')    
+                ->orderBy('id', 'desc')
+                ->get();
+
+        }
+        // Opcion para JURISDICCIONES
+        elseif($nivel == 2){
+
+            // Consultamos todos los registros por jurisdiccion
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','EVENTO CENTINELA')  
+                ->where('categoria',$categoria)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para UNIDADES
+        elseif($nivel == 3){
+            
+            //Consultamos los registros por unidad
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('clasificacion_del_evento','EVENTO CENTINELA')  
+                ->where('unidad',$unidad)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para CUANDO NO TENGAN NIVEL
+        else{
+
+            abort(403, 'Nivel de acceso no permitido');
+
+        }
+        
+        //Mandamos llamar la vista y pasamos los parametros en un arreglo
+        return view('eventos.centinela',['eventos' => $eventos]);
     }
 }

@@ -14,11 +14,69 @@
 
     @if($usuario->role == "admin")
 
+    <div class="row">
+        <div class="col-md-3">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{ $cuasiFalla }}</h3>
+
+                <p>Cuasi-Falla</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="{{ route('indexCuasiFalla') }}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3 style="color: white;">{{ $eventoAdverso }}</h3>
+
+                <p style="color: white;">Adverso</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="{{ route('indexAdversos') }}" class="small-box-footer text-white" style="color: white !important;">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{ $eventoCentinela }}</h3>
+
+                <p>Centinela</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="{{ route('indexCentinelas') }}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+            </div> 
+        </div>
+
+        <div class="col-md-3">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{$totalEvento}}</h3>
+
+                <p>Total</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="{{ route('eventoIndex') }}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
     
 
         <!-- INICIO DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-3">
     
                 <div class="info-box">
@@ -26,6 +84,7 @@
                     <div class="info-box-content">
                         <span class="info-box-text">CUASI-FALLA</span>
                         <span class="info-box-number">{{ $cuasiFalla }}</span>
+                        <a href="">Detalles</a>
                     </div>            
                 </div>
     
@@ -38,6 +97,7 @@
                     <div class="info-box-content">
                         <span class="info-box-text">ADVERSO</span>
                         <span class="info-box-number">{{ $eventoAdverso }}</span>
+                        <a href="">Detalles</a>
                     </div>            
                 </div>
     
@@ -50,6 +110,7 @@
                     <div class="info-box-content">
                         <span class="info-box-text">CENTINELA</span>
                         <span class="info-box-number">{{ $eventoCentinela }}</span>
+                        <a href="">Detalles</a>
                     </div>            
                 </div>
     
@@ -62,11 +123,12 @@
                     <div class="info-box-content">
                         <span class="info-box-text">TOTAL</span>
                         <span class="info-box-number">{{ $totalEvento }}</span>
+                        <a class="badge badge-danger" href="">Detalles</a>
                     </div>            
                 </div>
     
             </div>
-        </div>
+        </div> --}}
     
         <!-- -------------------------------------------------------------------- -->
 
