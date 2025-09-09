@@ -391,7 +391,7 @@ class ReporteController extends Controller
                 'datasets' => [[
                     'label' => 'Eventos',
                     'data' => [$eventosAdverso, $eventosCuasiFalla, $eventosCentinela],
-                    'backgroundColor' => ['#facc15', '#f97316', '#f87171'],
+                    'backgroundColor' => ['#38bdf8', '#facc15', '#ef4444'],
                 ]]
                 ],
                 'options' => [

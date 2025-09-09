@@ -362,27 +362,29 @@
             data: {
                 labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
                 datasets: [
-                    {
-                        label: 'Adverso',
-                        data: datosPorTipo.Adverso,
-                        backgroundColor: 'rgba(255, 99, 132, 0.8)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
+
                     {
                         label: 'Cuasifalla',
                         data: datosPorTipo.Cuasifalla,
-                        backgroundColor: 'rgba(54, 162, 235, 0.8)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.8)',  // Verde
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Adverso',
+                        data: datosPorTipo.Adverso,
+                        backgroundColor: 'rgba(250, 204, 21, 0.8)',  // Amarillo
+                        borderColor: 'rgba(250, 204, 21, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Centinela',
                         data: datosPorTipo.Centinela,
-                        backgroundColor: 'rgba(255, 206, 86, 0.8)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.8)',   // Rojo
+                        borderColor: 'rgba(239, 68, 68, 1)',
                         borderWidth: 1
                     }
+
                 ]
             },
             options: {
@@ -464,14 +466,14 @@
                 label: 'Número de votos',
                 data: [{{$primerNivel}}, {{$segundoNivel}}, {{$tercerNivel}}], 
                 backgroundColor: [
-                    'rgba(54, 162, 235, 0.5)',   // Azul
-                    'rgba(153, 102, 255, 0.5)',  // Morado
-                    'rgba(255, 159, 64, 0.5)'    // Naranja
+                    'rgba(56, 189, 248, 0.5)',   // Azul cielo (#38bdf8)
+                    'rgba(250, 204, 21, 0.5)',   // Amarillo (#facc15)
+                    'rgba(239, 68, 68, 0.5)'     // Rojo (#ef4444)
                 ],
                 borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(56, 189, 248, 1)',     // Azul cielo
+                    'rgba(250, 204, 21, 1)',     // Amarillo
+                    'rgba(239, 68, 68, 1)'       // Rojo
                 ],
                 borderWidth: 1
             }]
