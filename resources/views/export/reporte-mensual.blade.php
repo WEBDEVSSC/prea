@@ -1,347 +1,338 @@
-<html>
-    <body>
-        <style>
-            body {
-                font-family: Helvetica, sans-serif; /* Fuente estándar */
-            }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Eventos Adversos</title>
+    <style>
+        @page {
+            margin: 60px 40px;
+        }
 
-            h1 {
-                color: blue;
-                font-family: 'Times-Roman', serif; /* Fuente Times-Roman */
-            }
+        body {
+            font-family: "Helvetica", Arial, sans-serif;
+            font-size: 9pt;
+            color: #2e2e2e;
+            line-height: 1.4;
+        }
 
-            p {
-                font-size: 8pt;
-                margin: 0; /* Eliminar márgenes */
-                padding: 0; /* Eliminar padding */
-                line-height: 1.2; /* Controla el espaciado entre líneas */
-            }
+        /* ---------------------- PORTADA ---------------------- */
+        .portada {
+            text-align: center;
+            margin-top: 200px;
+        }
 
-            table {
-                width: 100%;
-                margin-bottom: 10px;
-                border-collapse: collapse; /* Esto asegura que las líneas entre celdas sean continuas */
-            }
+        .portada .cintilla {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 60px;
+        }
 
-            td {
-                padding: 8px; /* Espaciado interno de las celdas */
-                border: 1px solid black; /* Línea negra alrededor de cada celda */
-            }
+        .portada .cintilla img {
+            width: 60%;
+        }
 
-            th {
-                padding: 8px;
-                border: 1px solid black; /* Líneas también para las cabeceras (si las tienes) */
-                text-align: left;
-            }
+        .portada h1 {
+            font-size: 20pt;
+            color: #6A1B9A;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
 
-            .fondo-gris {
-                background-color: #D3D3D3; /* Gris claro */
-                font-weight: bold; /* Opcional: hace el texto en negrita */
-            }
+        .portada h2 {
+            font-size: 12pt;
+            color: #8E24AA;
+            margin-top: 10px;
+        }
 
-            .sin-bordes td,
-            .sin-bordes th {
-                border: none;
-            }
+        .portada .info {
+            margin-top: 100px;
+            font-size: 10pt;
+            color: #555;
+        }
 
-            .footer {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 8pt;
-                color: gray;
-            }
-        </style>
+        /* ---------------------- ENCABEZADO ---------------------- */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-        <!-- ------------------------------------------------------------------ -->
-        <center><img src="{{ public_path('img/cintilla_prea.jpg') }}" width="50%" alt="Cintilla PREA"></center>
+        .header img {
+            width: 45%;
+            margin-bottom: 10px;
+        }
 
-        <table class="sin-bordes">
-            <tr>
-                <td>
-                    <center><h2>PLATAFORMA DE REGISTRO DE EVENTOS ADVERSOS</h2></center> 
-                    <center><p>Fecha de reporte del {{ $fechaInicio}} al {{ $fechaFin }}</p></center> 
-                </td>
-            </tr>
-        </table>
+        .title {
+            font-size: 16pt;
+            color: #6A1B9A;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-        <!-- ------------------------------------------------------------------ -->
+        .subtitle {
+            font-size: 11pt;
+            color: #8E24AA;
+        }
 
-        <h6><strong>EVENTOS REGISTRADOS</strong></h6>
+        /* ---------------------- TITULOS ---------------------- */
+        h2 {
+            font-size: 12pt;
+            color: #6A1B9A;
+            border-bottom: 2px solid #6A1B9A;
+            text-transform: uppercase;
+            margin-top: 30px;
+            padding-bottom: 4px;
+        }
 
-        <table>
-            <tbody>
-                <tr>
-                    <td width="25%" class="fondo-gris"><p>TOTAL</p></td>
-                    <td width="25%"><p>{{ $contadorEventos }}</p></td>
-                    <td colspan="2" rowspan="4"><center><img src="{{ $imageBase64Eventos }}" style="width: 100%; height: auto;"></center></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>ADVERSO</p></td>
-                <td><p>{{ $eventosAdverso }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>CUASI-FALLA</p></td>
-                    <td><p>{{ $eventosCuasiFalla }}</p></td>
-                </tr>
-                <tr>
-                <td class="fondo-gris"><p>CENTINELA</p></td>
-                <td><p>{{ $eventosCentinela }}</p></td>
-            </tr>
-            </tbody>
-        </table>
+        h3 {
+            font-size: 10pt;
+            color: #8E24AA;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
 
-            
-        <!-- ------------------------------------------------------------------ -->
+        /* ---------------------- TABLAS ---------------------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            margin-top: 8px;
+        }
 
-        <h6><strong>NIVEL DE ATENCIÓN</strong></h6>
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: left;
+        }
 
-        <table>
-            <tbody>
-                <tr>
-                    <td width="25%" class="fondo-gris"><p>TOTAL</p></td>
-                    <td width="25%"><p>{{ $contadorEventos }}</p></td>
-                    <td colspan="2" rowspan="4"><center><img src="{{ $imageBase64NivelDeAtencion }}" style="width: 100%; height: auto;"></center></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>PRIMER NIVEL</p></td>
-                <td><p>{{ $totalPrimerNivel }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>SEGUNDO NIVEL</p></td>
-                    <td><p>{{ $totalSegundoNivel }}</p></td>
-                </tr>
-                <tr>
-                <td class="fondo-gris"><p>TERCER NIVEL</p></td>
-                <td><p>{{ $totalTercerNivel }}</p></td>
-            </tr>
-            </tbody>
-        </table>
-            
-        <!-- ------------------------------------------------------------------ -->
-        <div style="page-break-before: always;"></div>
-        <!-- ------------------------------------------------------------------ -->
+        th {
+            background-color: #E1BEE7;
+            color: #4A148C;
+            font-weight: bold;
+            text-align: center;
+        }
 
-        <h6><strong>POR JURISDICCIÓN</strong></h6>
+        .fondo-gris {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #333;
+            width: 25%;
+        }
 
-        <table>
-            <tbody>
-                <tr>
-                    <td width="25%" class="fondo-gris"><p>J1 - PIEDRAS NEGRAS</p></td>
-                    <td width="25%"><p>{{ $totalJ1 }}</p></td>
-                    <td colspan="2" rowspan="8"><center><img src="{{ $imageBase64Jurisdiccion }}" style="width: 100%; height: auto;"></center></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J2 - ACUÑA</p></td>
-                <td><p>{{ $totalJ2 }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J3 - SABINAS</p></td>
-                    <td><p>{{ $totalJ3 }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J4 - MONCLOVA</p></td>
-                    <td><p>{{ $totalJ4 }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J5 - C. CIÉNEGAS</p></td>
-                    <td><p>{{ $totalJ5 }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J6 - TORREÓN</p></td>
-                    <td><p>{{ $totalJ6 }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J7 - FCO. I. MADERO</p></td>
-                    <td><p>{{ $totalJ7 }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>J8 - SALTILLO</p></td>
-                    <td><p>{{ $totalJ8 }}</p></td>
-                </tr>
-            </tbody>
-        </table>
+        .center {
+            text-align: center;
+        }
 
-        
+        .chart {
+            width: 90%;
+            height: auto;
+            margin: 5px 0;
+        }
 
-        <h6><strong>POR SEXO</strong></h6>
+        /* ---------------------- PÁGINAS ---------------------- */
+        .page-break {
+            page-break-before: always;
+        }
 
-        <table>
-            <tbody>
-                <tr>
-                    <td width="25%" class="fondo-gris"><p>MASCULINO</p></td>
-                    <td width="25%"><p>{{ $totalMasculino }}</p></td>
-                    <td colspan="2" rowspan="2"><center><img src="{{ $imageBase64Sexo }}" style="width: 100%; height: auto;"></center></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>FEMENINO</p></td>
-                    <td><p>{{ $totalFemenino }}</p></td>
-                </tr>
-            </tbody>
-        </table>
+        /* ---------------------- PIE DE PÁGINA ---------------------- */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 8pt;
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
 
-        <!-- ------------------------------------------------------------------ -->
-        <div style="page-break-before: always;"></div>
-        <!-- ------------------------------------------------------------------ -->
-
-        <h6><strong>POR RANGOS DE EDAD</strong></h6>
-
-        <table>
-            <tbody>
-                <tr>
-                    <td width="25%" class="fondo-gris"><p>PRIMERA INFANCIA<br>(0-5)</p></td>
-                    <td width="25%"><p>{{ $totalPrimeraInfancia }}</p></td>
-                    <td colspan="2" rowspan="6"><center><img src="{{ $imageBase64RangoDeEdad }}" style="width: 100%; height: auto;"></center></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>INFANCIA<br>(6-11)</p></td>
-                    <td><p>{{ $totalInfancia }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>ADOLESCENCIA<br>(12-15)</p></td>
-                    <td><p>{{ $totalAdolescencia }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>JUVENTUD<br>(16-26)</p></td>
-                    <td><p>{{ $totalJuventud }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>ADULTEZ<br>(27-59)</p></td>
-                    <td><p>{{ $totalAdultez }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>ADULTO MAYOR<br>(+ 60)</p></td>
-                    <td><p>{{ $totalPersonaMayor }}</p></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- ------------------------------------------------------------------ -->
-
-        <h6><strong>TURNO</strong></h6>
-
-         <table>
-            <tbody>
-                <tr>
-                    <td width="25%" class="fondo-gris"><p>MATUTINO</p></td>
-                    <td width="25%"><p>{{ $totalMatutino }}</p></td>
-                    <td colspan="2" rowspan="4"><center><img src="{{ $imageBase64Turno }}" style="width: 100%; height: auto;"></center></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>VESPERTINO</p></td>
-                    <td><p>{{ $totalVespertino }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>NOCTURNO</p></td>
-                    <td><p>{{ $totalNocturno }}</p></td>
-                </tr>
-                <tr>
-                    <td class="fondo-gris"><p>JORNADA ACUMULADA</p></td>
-                    <td><p>{{ $totalJornadaAcumulada }}</p></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- ------------------------------------------------------------------ -->
-        <div style="page-break-before: always;"></div>
-        <!-- ------------------------------------------------------------------ -->
-
-        <h6><strong>DISTRIBUCIÓN POR LUGAR O AREA DEL EVENTO</strong></h6>
-
-        <table>
-            <thead>
-                <tr>
-                    <th class="fondo-gris"><p>ALMACEN</p></th>
-                    <td><p>{{ $almacen }}</p></td>
-                    <th class="fondo-gris"><p>CENDIS</p></th>
-                    <td><p>{{ $cendis }}</p></td>
-                    <th class="fondo-gris"><p>CEYE</p></th>
-                    <td><p>{{ $ceye }}</p></td>
-                    <th class="fondo-gris"><p>CONSULTA EXTERNA</p></th>
-                    <td><p>{{ $consultaExterna }}</p></td>
-                    <th class="fondo-gris"><p>DENTAL</p></th>
-                    <td><p>{{ $dental }}</p></td>
-                </tr>
-                <tr>
-                    <th class="fondo-gris"><p>FARMACIA</p></th>
-                    <td><p>{{ $farmacia }}</p></td>
-                    <th class="fondo-gris"><p>HOSPITALIZACIÓN</p></th>
-                    <td><p>{{ $hospitalizacion }}</p></td>
-                    <th class="fondo-gris"><p>IMAGENOLOGIÍA</p></th>
-                    <td><p>{{ $imagenologia }}</p></td>
-                    <th class="fondo-gris"><p>LABORATORIO</p></th>
-                    <td><p>{{ $laboratorio }}</p></td>
-                    <th class="fondo-gris"><p>MEDICINA PREVENTIVA</p></th>
-                    <td><p>{{ $medicinaPreventiva }}</p></td>
-                </tr>
-                <tr>
-                    <th class="fondo-gris"><p>NUTRICIÓN</p></th>
-                    <td><p>{{ $nutricion }}</p></td>
-                    <th class="fondo-gris"><p>PATOLOGÍA</p></th>
-                    <td><p>{{ $patologia }}</p></td>
-                    <th class="fondo-gris"><p>QUIROFANO</p></th>
-                    <td><p>{{ $quirofano }}</p></td>
-                    <th class="fondo-gris"><p>SALUD REPRODUCTIVA</p></th>
-                    <td><p>{{ $saludReproductiva }}</p></td>
-                    <th class="fondo-gris"><p>TOCOCIRUGÍA</p></th> 
-                    <td><p>{{ $tocoCirugia }}</p></td>                   
-                </tr>
-                <tr>      
-                    <th class="fondo-gris"><p>UCI ADULTOS</p></th>
-                    <td><p>{{ $UCIAdultos }}</p></td>
-                    <th class="fondo-gris"><p>UCI NEONATALES</p></th>
-                    <td><p>{{ $UCINeonatales }}</p></td>
-                    <th class="fondo-gris"><p>UCI PEDIATRICOS</p></th>
-                    <td><p>{{ $UCIPediatricos }}</p></td>
-                    <th class="fondo-gris"><p>URGENCIAS</p></th>
-                    <td><p>{{ $urgencias }}</p></td>
-                    <th class="fondo-gris"><p></p></th>
-                    <td><p></p></td>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td colspan="10" style="text-align: center; padding-top: 20px;">
-                        <img src="{{ $imageBase64Lugar }}" style="width: 80%; height: auto; margin-top: 10px;">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- ------------------------------------------------------------------ -->
-        <div style="page-break-after: always;"></div>
-        <!-- ------------------------------------------------------------------ -->
-
-        <h6><strong>TODOS LOS EVENTOS</strong></h6>
-        <table>
-            <thead>
-                <tr>
-                    <th class="fondo-gris"><p>TIPO</p></th>
-                    <th class="fondo-gris"><p>FECHA</p></th>
-                    <th class="fondo-gris"><p>UNIDAD</p></th>
-                    <th class="fondo-gris"><p>FOLIO</p></th>
-                    <th class="fondo-gris"><p>CLASIFICACION</p></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($listaDeEventos as $evento)
-                    <tr>
-                        <td><p>{{ $evento->clasificacion_del_evento }}</p></td>
-                        <td><p>{{ $evento->fecha_hora }}</p></td>
-                        <td><p>{{ $evento->unidad_nombre}}</p></td>                        
-                        <td><p>{{ $evento->folio }}</p></td>
-                        <td><p>{{ $evento->incidente_categoria_label }}</p></td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <div class="footer">
-            <p>Secretaría de Salud de Coahuila | Subdirección de Calidad | Unidad de Planeación</p>
+    <!-- ============================================================= -->
+    <!--                          PORTADA                              -->
+    <!-- ============================================================= -->
+    <div class="portada">
+        <div class="cintilla">
+            <img src="{{ public_path('img/cintilla_prea.jpg') }}" alt="Cintilla Institucional">
         </div>
+        <h1>Secretaría de Salud de Coahuila</h1>
+        <h2>Subsecretaría de Atención a la Salud - Subdirección de Calidad</h2>
+        <div class="info">
+            <p><strong>Reporte de Eventos Adversos</strong></p>
+            <p>Periodo del <strong>{{ $fechaInicio }}</strong> al <strong>{{ $fechaFin }}</strong></p>
+            <p>Generado automáticamente por la Plataforma de Registro de Eventos Adversos</p>
+        </div>
+    </div>
 
-    </body>
+    <div class="page-break"></div>
+
+    <!-- ============================================================= -->
+    <!--                          CONTENIDO                            -->
+    <!-- ============================================================= -->
+
+    <h2>Resumen general</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td class="fondo-gris">Total de eventos</td>
+                <td>{{ $contadorEventos }}</td>
+                <td class="fondo-gris">Adversos</td>
+                <td>{{ $eventosAdverso }}</td>
+            </tr>
+            <tr>
+                <td class="fondo-gris">Cuasi-falla</td>
+                <td>{{ $eventosCuasiFalla }}</td>
+                <td class="fondo-gris">Centinela</td>
+                <td>{{ $eventosCentinela }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64Eventos }}" class="chart">
+    </div>
+
+    <div class="page-break"></div>
+    <h2>Distribución por nivel de atención</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td class="fondo-gris">Primer nivel</td>
+                <td>{{ $totalPrimerNivel }}</td>
+                <td class="fondo-gris">Segundo nivel</td>
+                <td>{{ $totalSegundoNivel }}</td>
+            </tr>
+            <tr>
+                <td class="fondo-gris">Tercer nivel</td>
+                <td>{{ $totalTercerNivel }}</td>
+                <td class="fondo-gris">Total</td>
+                <td>{{ $contadorEventos }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64NivelDeAtencion }}" class="chart">
+    </div>
+
+    <div class="page-break"></div>
+    <h2>Distribución geográfica</h2>
+    <h3>Por Jurisdicción Sanitaria</h3>
+    <table>
+        <tbody>
+            <tr><td class="fondo-gris">J1 - Piedras Negras</td><td>{{ $totalJ1 }}</td></tr>
+            <tr><td class="fondo-gris">J2 - Acuña</td><td>{{ $totalJ2 }}</td></tr>
+            <tr><td class="fondo-gris">J3 - Sabinas</td><td>{{ $totalJ3 }}</td></tr>
+            <tr><td class="fondo-gris">J4 - Monclova</td><td>{{ $totalJ4 }}</td></tr>
+            <tr><td class="fondo-gris">J5 - Cuatro Ciénegas</td><td>{{ $totalJ5 }}</td></tr>
+            <tr><td class="fondo-gris">J6 - Torreón</td><td>{{ $totalJ6 }}</td></tr>
+            <tr><td class="fondo-gris">J7 - Fco. I. Madero</td><td>{{ $totalJ7 }}</td></tr>
+            <tr><td class="fondo-gris">J8 - Saltillo</td><td>{{ $totalJ8 }}</td></tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64Jurisdiccion }}" class="chart">
+    </div>
+
+    <div class="page-break"></div>
+    <h2>Distribución demográfica</h2>
+
+    <h3>Por sexo</h3>
+    <table>
+        <tbody>
+            <tr><td class="fondo-gris">Masculino</td><td>{{ $totalMasculino }}</td></tr>
+            <tr><td class="fondo-gris">Femenino</td><td>{{ $totalFemenino }}</td></tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64Sexo }}" class="chart">
+    </div>
+
+    <div class="page-break"></div>
+    <h3>Por rango de edad</h3>
+    <table>
+        <tbody>
+            <tr><td class="fondo-gris">Primera infancia (0-5)</td><td>{{ $totalPrimeraInfancia }}</td></tr>
+            <tr><td class="fondo-gris">Infancia (6-11)</td><td>{{ $totalInfancia }}</td></tr>
+            <tr><td class="fondo-gris">Adolescencia (12-15)</td><td>{{ $totalAdolescencia }}</td></tr>
+            <tr><td class="fondo-gris">Juventud (16-26)</td><td>{{ $totalJuventud }}</td></tr>
+            <tr><td class="fondo-gris">Adultez (27-59)</td><td>{{ $totalAdultez }}</td></tr>
+            <tr><td class="fondo-gris">Adulto mayor (+60)</td><td>{{ $totalPersonaMayor }}</td></tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64RangoDeEdad }}" class="chart">
+    </div>
+
+    <div class="page-break"></div>
+    <h2>Distribución laboral</h2>
+
+    <h3>Por turno</h3>
+    <table>
+        <tbody>
+            <tr><td class="fondo-gris">Matutino</td><td>{{ $totalMatutino }}</td></tr>
+            <tr><td class="fondo-gris">Vespertino</td><td>{{ $totalVespertino }}</td></tr>
+            <tr><td class="fondo-gris">Nocturno</td><td>{{ $totalNocturno }}</td></tr>
+            <tr><td class="fondo-gris">Jornada acumulada</td><td>{{ $totalJornadaAcumulada }}</td></tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64Turno }}" class="chart">
+    </div>
+
+    <div class="page-break"></div>
+    <h2>Distribución por área del evento</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="fondo-gris">Área</th><th class="fondo-gris">Total</th>
+                <th class="fondo-gris">Área</th><th class="fondo-gris">Total</th>
+                <th class="fondo-gris">Área</th><th class="fondo-gris">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Almacén</td><td>{{ $almacen }}</td><td>CENDIS</td><td>{{ $cendis }}</td><td>CEYE</td><td>{{ $ceye }}</td></tr>
+            <tr><td>Consulta externa</td><td>{{ $consultaExterna }}</td><td>Dental</td><td>{{ $dental }}</td><td>Farmacia</td><td>{{ $farmacia }}</td></tr>
+            <tr><td>Hospitalización</td><td>{{ $hospitalizacion }}</td><td>Imagenología</td><td>{{ $imagenologia }}</td><td>Laboratorio</td><td>{{ $laboratorio }}</td></tr>
+            <tr><td>Medicina preventiva</td><td>{{ $medicinaPreventiva }}</td><td>Nutrición</td><td>{{ $nutricion }}</td><td>Patología</td><td>{{ $patologia }}</td></tr>
+            <tr><td>Quirófano</td><td>{{ $quirofano }}</td><td>Salud reproductiva</td><td>{{ $saludReproductiva }}</td><td>Tococirugía</td><td>{{ $tocoCirugia }}</td></tr>
+            <tr><td>UCI Adultos</td><td>{{ $UCIAdultos }}</td><td>UCI Neonatales</td><td>{{ $UCINeonatales }}</td><td>UCI Pediátricos</td><td>{{ $UCIPediatricos }}</td></tr>
+            <tr><td>Urgencias</td><td>{{ $urgencias }}</td><td colspan="4"></td></tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <img src="{{ $imageBase64Lugar }}" class="chart" style="width: 80%;">
+    </div>
+
+    <div class="page-break"></div>
+    <h2>Listado detallado de eventos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="fondo-gris">Tipo</th>
+                <th class="fondo-gris">Fecha</th>
+                <th class="fondo-gris">Unidad</th>
+                <th class="fondo-gris">Folio</th>
+                <th class="fondo-gris">Clasificación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($listaDeEventos as $evento)
+            <tr>
+                <td>{{ $evento->clasificacion_del_evento }}</td>
+                <td>{{ $evento->fecha_hora }}</td>
+                <td>{{ $evento->unidad_nombre }}</td>
+                <td>{{ $evento->folio }}</td>
+                <td>{{ $evento->incidente_categoria_label }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- ============================================================= -->
+    <div class="footer">
+        Secretaría de Salud de Coahuila | Subdirección de Calidad | Unidad de Planeación
+    </div>
+
+</body>
 </html>
