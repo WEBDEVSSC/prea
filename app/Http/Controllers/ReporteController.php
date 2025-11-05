@@ -806,7 +806,21 @@ class ReporteController extends Controller
             'totalPrimerNivel' => $totalPrimerNivel,
             'totalSegundoNivel' => $totalSegundoNivel,
             'totalTercerNivel' => $totalTercerNivel,
-            'imageBase64NivelDeAtencion' => $imageBase64NivelDeAtencion
+            'imageBase64NivelDeAtencion' => $imageBase64NivelDeAtencion,
+
+            'tipoAESP' => $tipoAESP,
+            'tipoMMU' => $tipoMMU,
+            'tipoPCI' => $tipoPCI,
+            'tipoDEB' => $tipoDEB,
+            'tipoACC' => $tipoACC,
+            'tipoPFR' => $tipoPFR,
+            'tipoSAP' => $tipoSAP,
+            'tipoNUT' => $tipoNUT,
+            'tipoASC' => $tipoASC,
+            'tipoMCI' => $tipoMCI,
+            'tipoOTRO' => $tipoOTRO,
+
+            
         ]);
 
         // Cambiar la orientación de la página a horizontal (landscape)
