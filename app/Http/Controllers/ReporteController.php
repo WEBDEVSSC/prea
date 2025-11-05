@@ -344,6 +344,95 @@ class ReporteController extends Controller
             ->where('servicio','URGENCIAS')
             ->count();
 
+        /**
+         * 
+         * 
+         * TIPO DE INCIDENTE
+         * 
+         */
+
+        // ------------------------------ GRAFICAS PARA TIPO DE INCIDENTE ---------------------------------------
+
+        $tipoAESP = Evento:: where('incidente_categoria',1)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+        
+        $tipoMMU = Evento:: where('incidente_categoria',2)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        $tipoPCI = Evento:: where('incidente_categoria',3)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        $tipoDEB = Evento:: where('incidente_categoria',4)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        $tipoACC = Evento:: where('incidente_categoria',5)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+        
+        $tipoPFR = Evento:: where('incidente_categoria',6)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+        
+        $tipoSAP = Evento:: where('incidente_categoria',7)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        $tipoNUT = Evento:: where('incidente_categoria',8)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+        
+        $tipoASC = Evento:: where('incidente_categoria',9)
+           ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        $tipoMCI = Evento:: where('incidente_categoria',10)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        $tipoOTRO = Evento:: where('incidente_categoria',12)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
+        /** **********************************************************************************************  */
+        /** GRAFICA PARA TIPO DE INCIDENTE  */
+        /** **********************************************************************************************  */
+
+        $chartConfigTipoDeIncidente = [
+            'type' => 'pie',
+            'data' => [
+                'labels' => ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO'],
+                'datasets' => [[
+                    'label' => 'Tipo de Incidente',
+                    'data' => [$tipoAESP, $tipoMMU, $tipoPCI, $tipoDEB, $tipoACC, $tipoPFR, $tipoSAP, $tipoNUT, $tipoASC, $tipoMCI, $tipoOTRO],
+                    'backgroundColor' => ['#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#0ea5e9', '#3b82f6', '#6366f1', '#a855f7', '#ec4899', '#6b7280'],
+                ]]
+                ],
+                'options' => [
+                    'plugins' => [
+                        'datalabels' => [
+                            'display' => false
+                        ]
+                    ]
+                ]
+        ];
+
+        $responseTipoDeIncidente = Http::withOptions(['verify' => false])
+            ->timeout(30)
+            ->get('https://quickchart.io/chart', [
+                'c' => json_encode($chartConfigTipoDeIncidente)
+            ]);
+
+        if ($responseTipoDeIncidente->successful()) {
+            $imageBase64TipoDeIncidente = 'data:image/png;base64,' . base64_encode($responseTipoDeIncidente->body());
+        } else {
+            Log::error('Error al generar la gráfica de eventos: ' . $responseTipoDeIncidente->status());
+            $imageBase64TipoDeIncidente = null;
+        }
+
         /** **********************************************************************************************  */
         /** GRAFICA PARA TOTAL POR NIVEL DE ATENCION  */
         /** **********************************************************************************************  */
@@ -658,6 +747,7 @@ class ReporteController extends Controller
             'imageBase64Sexo' => $imageBase64Sexo,
             'imageBase64Turno' => $imageBase64Turno,
             'imageBase64Lugar' => $imageBase64Lugar,
+            'imageBase64TipoDeIncidente'=>$imageBase64TipoDeIncidente,
             
             'nombre' => 'Juan Pérez',
             'contadorEventos' => $contadorEventos,
