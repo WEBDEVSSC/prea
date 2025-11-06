@@ -177,24 +177,37 @@
         <table style="width: 100%; border-collapse: collapse; font-size: 10pt;">
             <thead>
                 <tr style="background-color: #f4f4f4;">
+                    <th style="border: 1px solid #ccc; padding: 6px; text-align: center;">Color</th>
                     <th style="border: 1px solid #ccc; padding: 6px; text-align: left;">Tipo de Evento</th>
                     <th style="border: 1px solid #ccc; padding: 6px; text-align: center;">Cantidad</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td style="border: 1px solid #ccc; text-align:center;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:#cccccc; border-radius:2px;"></span>
+                    </td>
                     <td style="border: 1px solid #ccc; padding: 5px;">Total de Eventos</td>
                     <td style="border: 1px solid #ccc; text-align:center;">{{ $contadorEventos }}</td>
                 </tr>
                 <tr>
+                    <td style="border: 1px solid #ccc; text-align:center;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:#38bdf8; border-radius:2px;"></span>
+                    </td>
                     <td style="border: 1px solid #ccc; padding: 5px;">Eventos Adversos</td>
                     <td style="border: 1px solid #ccc; text-align:center;">{{ $eventosAdverso }}</td>
                 </tr>
                 <tr>
+                    <td style="border: 1px solid #ccc; text-align:center;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:#facc15; border-radius:2px;"></span>
+                    </td>
                     <td style="border: 1px solid #ccc; padding: 5px;">Cuasi-falla</td>
                     <td style="border: 1px solid #ccc; text-align:center;">{{ $eventosCuasiFalla }}</td>
                 </tr>
                 <tr>
+                    <td style="border: 1px solid #ccc; text-align:center;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:#ef4444; border-radius:2px;"></span>
+                    </td>
                     <td style="border: 1px solid #ccc; padding: 5px;">Centinela</td>
                     <td style="border: 1px solid #ccc; text-align:center;">{{ $eventosCentinela }}</td>
                 </tr>

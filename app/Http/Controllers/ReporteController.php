@@ -476,7 +476,7 @@ class ReporteController extends Controller
         $chartConfigEventos = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['Adversos', 'Cuasi-Falla', 'Centinela'],
+                //'labels' => ['Adversos', 'Cuasi-Falla', 'Centinela'],
                 'datasets' => [[
                     'label' => 'Eventos',
                     'data' => [$eventosAdverso, $eventosCuasiFalla, $eventosCentinela],
@@ -666,65 +666,62 @@ class ReporteController extends Controller
 
         // Gráfica por turno
         $chartConfigLugar = [
-    'type' => 'pie',
-    'data' => [
-        'labels' => [
-            'Almacén', 'Cendis', 'Ceye', 'Consulta Externa', 'Dental', 'Farmacia',
-            'Hospitalización', 'Imagenología', 'Laboratorio', 'Medicina Preventiva',
-            'Nutrición', 'Patología', 'Quirófano', 'Salud Reproductiva', 'Toco-Cirugía',
-            'UCI Adultos', 'UCI Neonatales', 'UCI Pediátricos', 'Urgencias'
-        ],
-        'datasets' => [[
-            'label' => 'Lugar del Evento',
+            'type' => 'pie',
             'data' => [
-                $almacen, $cendis, $ceye, $consultaExterna, $dental, $farmacia,
-                $hospitalizacion, $imagenologia, $laboratorio, $medicinaPreventiva,
-                $nutricion, $patologia, $quirofano, $saludReproductiva, $tocoCirugia,
-                $UCIAdultos, $UCINeonatales, $UCIPediatricos, $urgencias
-            ],
-            'backgroundColor' => [
-                '#f43f5e','#10b981','#3b82f6','#8b5cf6','#f59e0b','#ef4444',
-                '#14b8a6','#6366f1','#84cc16','#ec4899','#0ea5e9','#eab308',
-                '#a855f7','#22c55e','#e11d48','#3f3f46','#f97316','#4ade80',
-            ],
-            'borderColor' => '#ffffff',
-            'borderWidth' => 2,
-        ]]
-    ],
-    'options' => [
-        'plugins' => [
-            'legend' => [
-                'position' => 'right',
                 'labels' => [
-                    'boxWidth' => 14,
-                    'font' => [
-                        'size' => 10
+                    'Almacén',
+                    'Cendis',
+                    'Ceye',
+                    'Consulta Externa',
+                    'Dental',
+                    'Farmacia',
+                    'Hospitalización',
+                    'Imagenología',
+                    'Laboratorio',
+                    'Medicina Preventiva',
+                    'Nutrición',
+                    'Patología',
+                    'Quirófano',
+                    'Salud Reproductiva',
+                    'Toco-Cirugía',
+                    'UCI Adultos',
+                    'UCI Neonatales',
+                    'UCI Pediátricos',
+                    'Urgencias',
+                ],
+                'datasets' => [[
+                    'label' => 'Lugar del Evento',
+                    'data' => [$almacen, $cendis, $ceye, $consultaExterna, $dental, $farmacia, $hospitalizacion, $imagenologia, $laboratorio, $medicinaPreventiva, $nutricion, $patologia, $quirofano, $saludReproductiva, $tocoCirugia, $UCIAdultos, $UCINeonatales, $UCIPediatricos, $urgencias],
+                    'backgroundColor' => [
+                        '#f43f5e', // rosa fuerte
+                        '#10b981', // verde esmeralda
+                        '#3b82f6', // azul brillante
+                        '#8b5cf6', // morado
+                        '#f59e0b', // amarillo mostaza
+                        '#ef4444', // rojo intenso
+                        '#14b8a6', // verde azulado
+                        '#6366f1', // índigo
+                        '#84cc16', // verde lima
+                        '#ec4899', // rosa
+                        '#0ea5e9', // azul celeste
+                        '#eab308', // dorado
+                        '#a855f7', // púrpura
+                        '#22c55e', // verde
+                        '#e11d48', // rojo cereza
+                        '#3f3f46', // gris oscuro
+                        '#f97316', // naranja
+                        '#4ade80', // verde suave
+                    ],
+                ]]
+                ],
+                    'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'display' => false,
                     ]
                 ]
-            ],
-            'title' => [
-                'display' => true,
-                'text' => 'Distribución por Área del Evento',
-                'font' => [
-                    'size' => 14,
-                    'weight' => 'bold'
-                ]
-            ],
-            'datalabels' => [
-                'display' => true,
-                'color' => '#fff',
-                'font' => ['size' => 10],
-                'formatter' => 'function(value) {
-                    if (value === 0) return "";
-                    return value;
-                }'
             ]
-        ],
-        'layout' => [
-            'padding' => 10
-        ]
-    ]
-];
+        ];
 
         $responseLugar = Http::withOptions(['verify' => false])
             ->timeout(30)
