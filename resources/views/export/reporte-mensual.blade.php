@@ -213,7 +213,7 @@
         </table>
 
         <div style="text-align:center; margin-top:20px;">
-            <img src="{{ $imageBase64Eventos }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+            <img src="{{ $imageBase64Eventos }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
         </div>
 
 
@@ -262,7 +262,7 @@
 
 
     <div style="text-align:center; margin-top:20px;">
-        <img src="{{ $imageBase64NivelDeAtencion }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+        <img src="{{ $imageBase64NivelDeAtencion }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
     </div>
 
 
@@ -347,7 +347,7 @@
 
 
     <div style="text-align:center; margin-top:20px;">
-        <img src="{{ $imageBase64Jurisdiccion }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+        <img src="{{ $imageBase64Jurisdiccion }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
     </div>
 
 
@@ -390,7 +390,7 @@
 
 
     <div style="text-align:center; margin-top:20px;">
-        <img src="{{ $imageBase64Sexo }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+        <img src="{{ $imageBase64Sexo }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
     </div>
 
     <!-- ----------------------------------------------------------------------------------------------------------- -->
@@ -460,7 +460,7 @@
 
 
     <div style="text-align:center; margin-top:20px;">
-        <img src="{{ $imageBase64RangoDeEdad }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+        <img src="{{ $imageBase64RangoDeEdad }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
     </div>
 
     <!-- ----------------------------------------------------------------------------------------------------------- -->
@@ -516,7 +516,7 @@
 
 
     <div style="text-align:center; margin-top:20px;">
-        <img src="{{ $imageBase64Turno }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+        <img src="{{ $imageBase64Turno }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
     </div>
 
 
@@ -634,7 +634,7 @@
 
 
 <div style="text-align:center; margin-top:20px;">
-    <img src="{{ $imageBase64Lugar }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+    <img src="{{ $imageBase64Lugar }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
 </div>
 
 
@@ -739,7 +739,7 @@
 
 
     <div style="text-align:center; margin-top:20px;">
-        <img src="{{ $imageBase64TipoDeIncidente }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
+        <img src="{{ $imageBase64TipoDeIncidente }}" class="chart" style="width: 800px; height: 600px; object-fit: contain;">
     </div>
 
     <!-- ----------------------------------------------------------------------------------------------------------- -->
