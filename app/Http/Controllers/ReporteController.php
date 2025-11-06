@@ -404,7 +404,7 @@ class ReporteController extends Controller
         $chartConfigTipoDeIncidente = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO'],
+                //'labels' => ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO'],
                 'datasets' => [[
                     'label' => 'Tipo de Incidente',
                     'data' => [$tipoAESP, $tipoMMU, $tipoPCI, $tipoDEB, $tipoACC, $tipoPFR, $tipoSAP, $tipoNUT, $tipoASC, $tipoMCI, $tipoOTRO],
@@ -440,7 +440,7 @@ class ReporteController extends Controller
         $chartConfigNivelDeAtencion = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
+                //'labels' => ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
                 'datasets' => [[
                     'label' => 'Nivel de atencion',
                     'data' => [$totalPrimerNivel, $totalSegundoNivel, $totalTercerNivel],
@@ -512,13 +512,12 @@ class ReporteController extends Controller
         $chartConfigJurisdiccion = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8'],
+                //'labels' => ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8'],
                 'datasets' => [[
                     'label' => 'Jurisdicciones',
                     'data' => [$totalJ1, $totalJ2, $totalJ3, $totalJ4, $totalJ5, $totalJ6, $totalJ7, $totalJ8],
                     'backgroundColor' => [
-                        '#facc15', '#f97316', '#f87171', '#34d399',
-                        '#60a5fa', '#a78bfa', '#f472b6', '#fb923c'
+                        '#facc15', '#f97316', '#f87171', '#34d399', '#60a5fa', '#a78bfa', '#f472b6', '#fb923c'
                     ],
                 ]]
                 ],
@@ -551,7 +550,7 @@ class ReporteController extends Controller
         $chartConfigSexo = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['Masculino', 'Femenino'],
+                //'labels' => ['Masculino', 'Femenino'],
                 'datasets' => [[
                     'label' => 'Jurisdicciones',
                     'data' => [$totalMasculino, $totalFemenino],
@@ -589,7 +588,7 @@ class ReporteController extends Controller
         $chartConfigRangoDeEdad = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['Primera Infancia', 'Infancia','Adolescencia','Juventud','Adultez','Adulto Mayor'],
+                //'labels' => ['Primera Infancia', 'Infancia','Adolescencia','Juventud','Adultez','Adulto Mayor'],
                 'datasets' => [[
                     'label' => 'Jurisdicciones',
                     'data' => [$totalPrimeraInfancia, $totalInfancia, $totalAdolescencia, $totalJuventud, $totalAdultez, $totalPersonaMayor],
@@ -627,7 +626,7 @@ class ReporteController extends Controller
         $chartConfigTurno = [
             'type' => 'pie',
             'data' => [
-                'labels' => ['Matutino', 'Vespertino', 'Nocturno', 'Jornada Acumulada'],
+                //'labels' => ['Matutino', 'Vespertino', 'Nocturno', 'Jornada Acumulada'],
                 'datasets' => [[
                     'label' => 'Jurisdicciones',
                     'data' => [$totalMatutino, $totalVespertino, $totalNocturno, $totalJornadaAcumulada],
@@ -668,30 +667,29 @@ class ReporteController extends Controller
         $chartConfigLugar = [
             'type' => 'pie',
             'data' => [
-                'labels' => [
-                    'Almacén',
-                    'Cendis',
-                    'Ceye',
-                    'Consulta Externa',
-                    'Dental',
-                    'Farmacia',
-                    'Hospitalización',
-                    'Imagenología',
-                    'Laboratorio',
-                    'Medicina Preventiva',
-                    'Nutrición',
-                    'Patología',
-                    'Quirófano',
-                    'Salud Reproductiva',
-                    'Toco-Cirugía',
-                    'UCI Adultos',
-                    'UCI Neonatales',
-                    'UCI Pediátricos',
-                    'Urgencias',
-                ],
+                //'labels' => ['Almacén','Cendis','Ceye','Consulta Externa','Dental','Farmacia','Hospitalización','Imagenología','Laboratorio','Medicina Preventiva','Nutrición','Patología','Quirófano','Salud Reproductiva','Toco-Cirugía','UCI Adultos','UCI Neonatales','UCI Pediátricos','Urgencias',],
                 'datasets' => [[
                     'label' => 'Lugar del Evento',
-                    'data' => [$almacen, $cendis, $ceye, $consultaExterna, $dental, $farmacia, $hospitalizacion, $imagenologia, $laboratorio, $medicinaPreventiva, $nutricion, $patologia, $quirofano, $saludReproductiva, $tocoCirugia, $UCIAdultos, $UCINeonatales, $UCIPediatricos, $urgencias],
+                    'data' => [
+                        $almacen, 
+                        $cendis, 
+                        $ceye, 
+                        $consultaExterna, 
+                        $dental, 
+                        $farmacia, 
+                        $hospitalizacion, 
+                        $imagenologia, 
+                        $laboratorio, 
+                        $medicinaPreventiva, 
+                        $nutricion, 
+                        $patologia, 
+                        $quirofano, 
+                        $saludReproductiva, 
+                        $tocoCirugia, 
+                        $UCIAdultos, 
+                        $UCINeonatales, 
+                        $UCIPediatricos, 
+                        $urgencias],
                     'backgroundColor' => [
                         '#f43f5e', // rosa fuerte
                         '#10b981', // verde esmeralda
@@ -711,6 +709,7 @@ class ReporteController extends Controller
                         '#3f3f46', // gris oscuro
                         '#f97316', // naranja
                         '#4ade80', // verde suave
+                        '#6b7280', // URGENCIAS
                     ],
                 ]]
                 ],
