@@ -77,6 +77,59 @@ class EventoController extends Controller
         return view('eventos.index',['eventos' => $eventos]);
     }
 
+    public function eventoArchivo()
+    {
+        // Obtener el usuario autenticado
+        $user = Auth::user();
+
+        // Obtenemos el año
+        $anio = "2025";
+
+        // Obtenemos la categoria en una variable
+        $nivel = $user->nivel;
+        $categoria = $user->categoria;
+        $unidad = $user->clues;
+        
+        // Opcion para ADMINISTRADOR 1
+        if($nivel == 1){
+
+            // Consultamos todos los registros de la tabla eventos
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->orderBy('id', 'desc')
+                ->get();
+
+        }
+        // Opcion para JURISDICCIONES
+        elseif($nivel == 2){
+
+            // Consultamos todos los registros por jurisdiccion
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('categoria',$categoria)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para UNIDADES
+        elseif($nivel == 3){
+            
+            //Consultamos los registros por unidad
+            $eventos = Evento::whereYear('created_at', $anio)
+                ->where('unidad',$unidad)
+                ->orderBy('id','desc')
+                ->get();
+
+        }
+        // Opcion para CUANDO NO TENGAN NIVEL
+        else{
+
+            abort(403, 'Nivel de acceso no permitido');
+
+        }
+        
+        //Mandamos llamar la vista y pasamos los parametros en un arreglo
+        return view('eventos.archivo',['eventos' => $eventos]);
+    }
+
     /**
      * Display the specified resource.
      */

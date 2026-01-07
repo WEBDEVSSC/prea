@@ -85,6 +85,16 @@ Route::middleware('auth')->group(function () {
     /**
      * 
      * 
+     * DASHBOARD
+     * 
+     * 
+     */
+
+   
+
+    /**
+     * 
+     * 
      * MODULO DE UNIDADES
      * 
      * 
@@ -182,6 +192,8 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/eventos-adversos',[EventoController::class,'indexAdversos'])->name('indexAdversos');
 
     Route::get('admin/eventos-centinelas',[EventoController::class,'indexCentinelas'])->name('indexCentinelas');
+
+     Route::get('admin/eventoArchivo', [EventoController::class, 'eventoArchivo'])->name('eventoArchivo');
 
 
      /**
