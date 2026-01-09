@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -419,7 +420,8 @@ class HomeController extends Controller
 
         // --------------------------- PASAMOS TODOS LOS VALORES A LA VISTA -----------------------
 
-        $anio = 2025;
+        $anio = Carbon::now()->year;
+
         $datosPorTipo = [
             'Adverso' => [],
             'Cuasifalla' => [],
