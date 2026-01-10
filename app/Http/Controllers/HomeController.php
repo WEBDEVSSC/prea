@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -441,10 +442,38 @@ class HomeController extends Controller
             }
         }
 
+    // Contabilizamos todos los eventos de Enero a Diciembre del 2024 
 
+    // CUASI FALLA
+
+    $datos = Evento::select(
+        DB::raw('YEAR(fecha_hora) as anio'),
+        DB::raw('MONTH(fecha_hora) as mes'),
+        DB::raw('COUNT(*) as total')
+    )
+    ->where('clasificacion_del_evento', 'CUASI-FALLA')
+    ->whereIn(DB::raw('YEAR(fecha_hora)'), [2024, 2025, 2026])
+    ->groupBy('anio', 'mes')
+    ->orderBy('anio')
+    ->orderBy('mes')
+    ->get();
+
+/* 👉 Inicializar estructura vacía */
+$datosCuasiFallaHistorico = [
+    2024 => array_fill(0, 12, 0),
+    2025 => array_fill(0, 12, 0),
+    2026 => array_fill(0, 12, 0),
+];
+
+/* 👉 Llenar con datos reales */
+foreach ($datos as $fila) {
+    $mesIndex = $fila->mes - 1; // 0 a 11
+    $datosCuasiFallaHistorico[$fila->anio][$mesIndex] = $fila->total;
+}
         
 
         return view('home', compact(
+            'datosCuasiFallaHistorico',    
             'datosPorTipo',
             'usuario',
             'cuasiFalla',

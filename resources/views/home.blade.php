@@ -165,6 +165,45 @@
 
         
         <!-- -------------------------------------------------------------------- -->
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Comparativo Anual CuasiFalla</strong></h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div>
+                            <canvas id="myBarChartsCuasiFallaHistorico" width="400" height="350"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Comparativo Anual Adverso</strong></h3>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><strong>Comparativo Anual Centinela</strong></h3>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- -------------------------------------------------------------------- -->
     
         <div class="row">
             
@@ -399,6 +438,78 @@
         });
     });
 </script>
+
+<script>
+    const datosCuasiFallaHistorico = @json($datosCuasiFallaHistorico);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myBarChartsCuasiFallaHistorico');
+        if (!ctx) {
+            console.error('No se encontró el elemento con ID "myBarChartsCuasiFallaHistorico"');
+            return;
+        }
+
+        // Configuración global para Chart.js 3+
+        Chart.defaults.font.family = 'Nunito, sans-serif';
+        Chart.defaults.color = '#000';
+        Chart.defaults.font.size = 12;
+
+        /*
+            Se espera que desde el backend venga algo así:
+
+            datosCuasiFallaHistorico = {
+                2024: [12, 7, 15, 9, 4, 6, 8, 5, 10, 11, 3, 2],
+                2025: [9, 11, 8, 6, 7, 10, 5, 4, 9, 6, 2, 1],
+                2026: [4, 2, 6, 3, 5, 7, 2, 1, 4, 3, 1, 0]
+            };
+        */
+
+        new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [
+                    {
+                        label: '2024',
+                        data: datosCuasiFallaHistorico[2024],
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)',   // Azul
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2025',
+                        data: datosCuasiFallaHistorico[2025],
+                        backgroundColor: 'rgba(34, 197, 94, 0.8)',   // Verde
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2026',
+                        data: datosCuasiFallaHistorico[2026],
+                        backgroundColor: 'rgba(239, 68, 68, 0.8)',   // Rojo
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 
 
     <!-- GRAFICAS POR SEXO -->
