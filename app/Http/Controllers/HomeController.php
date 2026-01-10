@@ -442,9 +442,19 @@ class HomeController extends Controller
             }
         }
 
-    // Contabilizamos todos los eventos de Enero a Diciembre del 2024 
+    /**
+     * 
+     * 
+     * 
+     * CONTABILIZAMOS TODOS LOS EVENTOS DE ENERO A DICIEMBRE
+     * 
+     * 
+     */
+    
 
+    // ================================
     // CUASI FALLA
+    // ================================
 
     $datos = Evento::select(
         DB::raw('YEAR(fecha_hora) as anio'),
@@ -458,45 +468,151 @@ class HomeController extends Controller
     ->orderBy('mes')
     ->get();
 
-/* 👉 Inicializar estructura vacía */
-$datosCuasiFallaHistorico = [
-    2024 => array_fill(0, 12, 0),
-    2025 => array_fill(0, 12, 0),
-    2026 => array_fill(0, 12, 0),
-];
+    /* 👉 Inicializar estructura vacía */
+    $datosCuasiFallaHistorico = [
+        2024 => array_fill(0, 12, 0),
+        2025 => array_fill(0, 12, 0),
+        2026 => array_fill(0, 12, 0),
+    ];
 
-/* 👉 Llenar con datos reales */
-foreach ($datos as $fila) {
-    $mesIndex = $fila->mes - 1; // 0 a 11
-    $datosCuasiFallaHistorico[$fila->anio][$mesIndex] = $fila->total;
-}
+    /* 👉 Llenar con datos reales */
+    foreach ($datos as $fila) {
+        $mesIndex = $fila->mes - 1; // 0 a 11
+        $datosCuasiFallaHistorico[$fila->anio][$mesIndex] = $fila->total;
+    }
 
-$datosManual2024 = [
-    4, // Ene
-    4,  // Feb
-    1, // Mar
-    36,  // Abr
-    45,  // May
-    7,  // Jun
-    4,  // Jul
-    67,  // Ago
-    18, // Sep
-    23, // Oct
-    43,  // Nov
-    48   // Dic
-];
+    $datosManual2024 = [
+        4, // Ene
+        4,  // Feb
+        1, // Mar
+        36,  // Abr
+        45,  // May
+        7,  // Jun
+        4,  // Jul
+        67,  // Ago
+        18, // Sep
+        23, // Oct
+        43,  // Nov
+        48   // Dic
+    ];
 
 
-$datosCuasiFallaHistorico[2024] = $datosManual2024;
+    $datosCuasiFallaHistorico[2024] = $datosManual2024;
 
-$datosCuasiFallaHistorico[2025][0] = 13; // Ene
-$datosCuasiFallaHistorico[2025][1] = 29; // Feb
-$datosCuasiFallaHistorico[2025][2] = 65; // Mar
-$datosCuasiFallaHistorico[2025][3] = 33; // Abr
+    $datosCuasiFallaHistorico[2025][0] = 13; // Ene
+    $datosCuasiFallaHistorico[2025][1] = 29; // Feb
+    $datosCuasiFallaHistorico[2025][2] = 65; // Mar
+    $datosCuasiFallaHistorico[2025][3] = 33; // Abr
+
+    // ================================
+    // ADVERSO
+    // ================================
+
+    $datosAdverso = Evento::select(
+        DB::raw('YEAR(fecha_hora) as anio'),
+        DB::raw('MONTH(fecha_hora) as mes'),
+        DB::raw('COUNT(*) as total')
+    )
+    ->where('clasificacion_del_evento', 'EVENTO ADVERSO')
+    ->whereIn(DB::raw('YEAR(fecha_hora)'), [2024, 2025, 2026])
+    ->groupBy('anio', 'mes')
+    ->orderBy('anio')
+    ->orderBy('mes')
+    ->get();
+
+    /* 👉 Inicializar estructura vacía */
+    $datosAdversoHistorico = [
+        2024 => array_fill(0, 12, 0),
+        2025 => array_fill(0, 12, 0),
+        2026 => array_fill(0, 12, 0),
+    ];
+
+    /* 👉 Llenar con datos reales de BD */
+    foreach ($datosAdverso as $fila) {
+        $mesIndex = $fila->mes - 1;
+        $datosAdversoHistorico[$fila->anio][$mesIndex] = $fila->total;
+    }
+
+    /* 👉 Datos manuales 2024 */
+    $datosAdversoHistorico[2024] = [
+        8,  // Ene
+        27,  // Feb
+        19,  // Mar
+        55, // Abr
+        56, // May
+        66,  // Jun
+        75,  // Jul
+        55, // Ago
+        67, // Sep
+        43, // Oct
+        52, // Nov
+        61  // Dic
+    ];
+
+    /* 👉 Meses manuales específicos 2025 */
+    $datosAdversoHistorico[2025][0] = 26; // Ene
+    $datosAdversoHistorico[2025][1] = 77; // Feb
+    $datosAdversoHistorico[2025][2] = 78; // Mar
+    $datosAdversoHistorico[2025][3] = 49; // Abr
+
+    // ================================
+    // CENTINELA
+    // ================================
+
+    $datosCentinela = Evento::select(
+            DB::raw('YEAR(fecha_hora) as anio'),
+            DB::raw('MONTH(fecha_hora) as mes'),
+            DB::raw('COUNT(*) as total')
+        )
+        ->where('clasificacion_del_evento', 'EVENTO CENTINELA')
+        ->whereIn(DB::raw('YEAR(fecha_hora)'), [2024, 2025, 2026])
+        ->groupBy('anio', 'mes')
+        ->orderBy('anio')
+        ->orderBy('mes')
+        ->get();
+
+    /* 👉 Inicializar estructura vacía */
+    $datosCentinelaHistorico = [
+        2024 => array_fill(0, 12, 0),
+        2025 => array_fill(0, 12, 0),
+        2026 => array_fill(0, 12, 0),
+    ];
+
+    /* 👉 Llenar con datos reales */
+    foreach ($datosCentinela as $fila) {
+        $mesIndex = $fila->mes - 1; // 0 a 11
+        $datosCentinelaHistorico[$fila->anio][$mesIndex] = $fila->total;
+    }
+
+    /* 👉 Datos manuales 2024 */
+    $datosCentinelaHistorico[2024] = [
+        0,  // Ene
+        0,  // Feb
+        0,  // Mar
+        4,  // Abr
+        3,  // May
+        1,  // Jun
+        2,  // Jul
+        6,  // Ago
+        4,  // Sep
+        2,  // Oct
+        2,  // Nov
+        4   // Dic
+    ];
+
+    /* 👉 Meses específicos 2025 */
+    $datosCentinelaHistorico[2025][0] = 5; // Ene
+    $datosCentinelaHistorico[2025][1] = 7; // Feb
+    $datosCentinelaHistorico[2025][2] = 3; // Mar
+    $datosCentinelaHistorico[2025][3] = 1; // Abr
+
 
 
         return view('home', compact(
-            'datosCuasiFallaHistorico',    
+            'datosCuasiFallaHistorico',
+            'datosAdversoHistorico',
+            'datosCentinelaHistorico',
+
             'datosPorTipo',
             'usuario',
             'cuasiFalla',

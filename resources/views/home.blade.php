@@ -188,7 +188,13 @@
                     <div class="card-header">
                         <h3 class="card-title"><strong>Comparativo Anual Adverso</strong></h3>
                     </div>
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        
+                        <div>
+                            <canvas id="myBarChartsAdversoHistorico" width="400" height="350"></canvas>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -197,7 +203,13 @@
                     <div class="card-header">
                         <h3 class="card-title"><strong>Comparativo Anual Centinela</strong></h3>
                     </div>
-                    <div class="card-body"></div>
+                    <div class="card-body">
+
+                        <div>
+                            <canvas id="myBarChartsCentinelaHistorico" width="400" height="350"></canvas>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -509,6 +521,131 @@
         });
     });
 </script>
+
+<script>
+    const datosAdversoHistorico = @json($datosAdversoHistorico);
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myBarChartsAdversoHistorico');
+        if (!ctx) {
+            console.error('No se encontró el elemento con ID "myBarChartsAdversoHistorico"');
+            return;
+        }
+
+        // Configuración global Chart.js 3+
+        Chart.defaults.font.family = 'Nunito, sans-serif';
+        Chart.defaults.color = '#000';
+        Chart.defaults.font.size = 12;
+
+        new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [
+                    {
+                        label: '2024',
+                        data: datosAdversoHistorico[2024],
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)', // Amarillo
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2025',
+                        data: datosAdversoHistorico[2025],
+                        backgroundColor: 'rgba(34, 197, 94, 0.8)', // Verde
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2026',
+                        data: datosAdversoHistorico[2026],
+                        backgroundColor: 'rgba(239, 68, 68, 0.8)', // Rojo
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+<script>
+    const datosCentinelaHistorico = @json($datosCentinelaHistorico);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myBarChartsCentinelaHistorico');
+        if (!ctx) {
+            console.error('No se encontró el elemento con ID "myBarChartsCentinelaHistorico"');
+            return;
+        }
+
+        // Configuración global Chart.js
+        Chart.defaults.font.family = 'Nunito, sans-serif';
+        Chart.defaults.color = '#000';
+        Chart.defaults.font.size = 12;
+
+        new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [
+                    {
+                        label: '2024',
+                        data: datosCentinelaHistorico[2024],
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)', // Morado
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2025',
+                        data: datosCentinelaHistorico[2025],
+                        backgroundColor: 'rgba(34, 197, 94, 0.8)', // Amarillo
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2026',
+                        data: datosCentinelaHistorico[2026],
+                        backgroundColor: 'rgba(239, 68, 68, 0.8)', // Azul claro
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 
 
 
