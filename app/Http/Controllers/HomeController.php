@@ -470,7 +470,30 @@ foreach ($datos as $fila) {
     $mesIndex = $fila->mes - 1; // 0 a 11
     $datosCuasiFallaHistorico[$fila->anio][$mesIndex] = $fila->total;
 }
-        
+
+$datosManual2024 = [
+    4, // Ene
+    4,  // Feb
+    1, // Mar
+    36,  // Abr
+    45,  // May
+    7,  // Jun
+    4,  // Jul
+    67,  // Ago
+    18, // Sep
+    23, // Oct
+    43,  // Nov
+    48   // Dic
+];
+
+
+$datosCuasiFallaHistorico[2024] = $datosManual2024;
+
+$datosCuasiFallaHistorico[2025][0] = 13; // Ene
+$datosCuasiFallaHistorico[2025][1] = 29; // Feb
+$datosCuasiFallaHistorico[2025][2] = 65; // Mar
+$datosCuasiFallaHistorico[2025][3] = 33; // Abr
+
 
         return view('home', compact(
             'datosCuasiFallaHistorico',    
