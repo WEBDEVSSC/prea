@@ -341,6 +341,10 @@ class HomeController extends Controller
             ->whereYear('created_at',$anio)
             ->count();
 
+        $tipoHEMO = Evento:: where('incidente_categoria',13)
+            ->whereYear('created_at',$anio)
+            ->count();
+
          // ------------------------------ GRAFICAS PARA GRAVEDAD DEL DAÑO ---------------------------------------
 
         $sinDano = Evento:: where('gravedad','SIN DAÑO')
@@ -686,6 +690,7 @@ class HomeController extends Controller
             'tipoASC',
             'tipoMCI',
             'tipoOTRO',
+            'tipoHEMO',
 
             'sinDano', 
             'bajo',

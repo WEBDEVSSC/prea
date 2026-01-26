@@ -1171,10 +1171,10 @@
     var myDoughnutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO'],
+            labels: ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO','HEMO'],
             datasets: [{
                 label: 'Número de votos',
-                data: [{{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}},{{$tipoDEB}},{{$tipoACC}},{{$tipoPFR}},{{$tipoSAP}},{{$tipoNUT}},{{$tipoASC}},{{$tipoMCI}},{{$tipoOTRO}},], 
+                data: [{{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}},{{$tipoDEB}},{{$tipoACC}},{{$tipoPFR}},{{$tipoSAP}},{{$tipoNUT}},{{$tipoASC}},{{$tipoMCI}},{{$tipoOTRO}},{{$tipoHEMO}},], 
                 backgroundColor: [
                     'rgba(244, 67, 54, 0.5)',    // Red 500
                     'rgba(233, 30, 99, 0.5)',    // Pink 500
@@ -1186,7 +1186,8 @@
                     'rgba(0, 188, 212, 0.5)',    // Cyan 500
                     'rgba(0, 150, 136, 0.5)',    // Teal 500
                     'rgba(76, 175, 80, 0.5)',    // Green 500
-                    'rgba(139, 195, 74, 0.5)'    // Light Green 500
+                    'rgba(139, 195, 74, 0.5)',   // Light Green 500
+                    'rgba(255, 193, 7, 0.5)'     // Amber 500
                 ],
                 borderColor: [
                     'rgba(244, 67, 54, 1)',
@@ -1199,7 +1200,8 @@
                     'rgba(0, 188, 212, 1)',
                     'rgba(0, 150, 136, 1)',
                     'rgba(76, 175, 80, 1)',
-                    'rgba(139, 195, 74, 1)'
+                    'rgba(139, 195, 74, 1)',
+                    'rgba(255, 193, 7, 1)'
                 ],
                 borderWidth: 1
             }]
