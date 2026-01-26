@@ -397,6 +397,10 @@ class ReporteController extends Controller
             ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
             ->count();
 
+        $tipoHEMO = Evento:: where('incidente_categoria',13)
+            ->whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
+            ->count();
+
         /** **********************************************************************************************  */
         /** GRAFICA PARA TIPO DE INCIDENTE  */
         /** **********************************************************************************************  */
@@ -407,8 +411,8 @@ class ReporteController extends Controller
                 //'labels' => ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO'],
                 'datasets' => [[
                     'label' => 'Tipo de Incidente',
-                    'data' => [$tipoAESP, $tipoMMU, $tipoPCI, $tipoDEB, $tipoACC, $tipoPFR, $tipoSAP, $tipoNUT, $tipoASC, $tipoMCI, $tipoOTRO],
-                    'backgroundColor' => ['#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#0ea5e9', '#3b82f6', '#6366f1', '#a855f7', '#ec4899', '#6b7280'],
+                    'data' => [$tipoAESP, $tipoMMU, $tipoPCI, $tipoDEB, $tipoACC, $tipoPFR, $tipoSAP, $tipoNUT, $tipoASC, $tipoMCI, $tipoOTRO, $tipoHEMO,],
+                    'backgroundColor' => ['#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#0ea5e9', '#3b82f6', '#6366f1', '#a855f7', '#ec4899', '#6b7280','#06b6d4'],
                 ]]
                 ],
                 'options' => [
@@ -818,6 +822,7 @@ class ReporteController extends Controller
             'tipoASC' => $tipoASC,
             'tipoMCI' => $tipoMCI,
             'tipoOTRO' => $tipoOTRO,
+            'tipoHEMO' => $tipoHEMO,
 
             
         ]);

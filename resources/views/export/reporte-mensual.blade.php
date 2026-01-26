@@ -729,6 +729,13 @@
             </tr>
             <tr>
                 <td style="border: 1px solid #ccc; text-align:center;">
+                    <span style="display:inline-block; width:14px; height:14px; background-color:#06b6d4; border-radius:3px;"></span>
+                </td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Hemoderivados</td>
+                <td style="border: 1px solid #ccc; text-align:center;">{{ $tipoHEMO }}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; text-align:center;">
                     <span style="display:inline-block; width:14px; height:14px; background-color:#6b7280; border-radius:3px;"></span>
                 </td>
                 <td style="border: 1px solid #ccc; padding: 5px;">Otro Incidente</td>
@@ -736,7 +743,6 @@
             </tr>
         </tbody>
     </table>
-
 
     <div style="text-align:center; margin-top:20px;">
         <img src="{{ $imageBase64TipoDeIncidente }}" class="chart" style="width: 500px; height: 300px; object-fit: contain;">
