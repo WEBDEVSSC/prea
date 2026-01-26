@@ -126,8 +126,8 @@ class UserController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'correo' => 'required|email|max:255|unique:users,email,' . $id,
-            'password'=> 'nullable|string|confirmed',
-            'rPassword'=>'nullable|string|same:password',
+            'password'  => 'nullable|string',
+            'rPassword' => 'nullable|string|same:password',
             'chat_id'=>'nullable|integer',
             'categoria'=>'required|integer',
             'nivel'=>'required|integer',
@@ -142,6 +142,7 @@ class UserController extends Controller
             'password.required'=>'Este campo es requerido',     
             'rPassword.required'=>'Este campo es requerido',  
             'chat_id.integer'=>'Este campo debe ser numerico',   
+            'rPassword.same' => 'Las contraseñas no coinciden',
         ]);
 
         // Buscamos los datos del clues
