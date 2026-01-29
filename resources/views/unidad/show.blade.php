@@ -66,10 +66,9 @@
 
         <div class="card-footer">
 
-            <a href="{{ route('unidadDestroy',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right">ELIMINAR</a>
-            <a href="{{ route('unidadEdit',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right mr-2">EDITAR</a>
+             <a href="#" class="btn btn-danger btn-sm float-right btn-delete-unidad" data-id="{{ $unidad->id }}"> ELIMINAR </a>
 
-            <a href="#" class="btn btn-info btn-sm float-right btn-delete-unidad" data-id="{{ $unidad->id }}"> ELIMINARRRRRR </a>
+            <a href="{{ route('unidadEdit',['id'=>$unidad->id]) }}" class="btn btn-dark btn-sm float-right mr-2">EDITAR</a>
 
             <form id="delete-form-{{ $unidad->id }}"
                 action="{{ route('unidadDestroy', ['id' => $unidad->id]) }}"
