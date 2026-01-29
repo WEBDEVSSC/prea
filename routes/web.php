@@ -116,7 +116,7 @@ Route::middleware('auth')->group(function () {
     Route::put('admin/unidadUpdate/{id}',[UnidadController::class,'update'])->name('unidadUpdate');
 
     //Ruta oara eliminar un registro de la DB
-    Route::get('admin/unidadDestroy/{id}',[UnidadController::class,'destroy'])->name('unidadDestroy');
+    Route::delete('admin/unidadDestroy/{id}',[UnidadController::class,'destroy'])->name('unidadDestroy');
 
     // Ruta para mostrar los detalles
     Route::get('admin/unidadShow/{id}',[UnidadController::class,'show'])->name('unidadShow');

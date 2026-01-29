@@ -68,6 +68,16 @@
 
             <a href="{{ route('unidadDestroy',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right">ELIMINAR</a>
             <a href="{{ route('unidadEdit',['id'=>$unidad->id]) }}" class="btn btn-info btn-sm float-right mr-2">EDITAR</a>
+
+            <a href="#" class="btn btn-info btn-sm float-right btn-delete-unidad" data-id="{{ $unidad->id }}"> ELIMINARRRRRR </a>
+
+            <form id="delete-form-{{ $unidad->id }}"
+                action="{{ route('unidadDestroy', ['id' => $unidad->id]) }}"
+                method="POST"
+                style="display:none;">
+                @csrf
+                @method('DELETE')
+            </form>
             
         </div>
 
@@ -89,4 +99,33 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.btn-delete-unidad').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    let id = this.getAttribute('data-id');
+
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: 'Esta acción no eliminará el registro definitivamente',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('delete-form-' + id).submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    
 @stop
