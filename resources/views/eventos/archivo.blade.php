@@ -2,6 +2,8 @@
 
 @section('plugins.Sweetalert2', true)
 
+@section('plugins.Datatables', true)
+
 @section('title', 'Eventos')
 
 @section('content_header')
@@ -40,7 +42,7 @@
                     @if($eventos->isEmpty())
                         <p>No hay eventos disponibles.</p>
                     @else
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -48,6 +50,7 @@
                                 <th>Folio</th>
                                 <th>Unidad</th>
                                 <th>Categoria</th>
+                                <th>Subcategoria</th>
                                 <th>Registro</th>
                                 <th></th>
                             </tr>
@@ -69,7 +72,8 @@
                                     </td>
                                     <td>{{ $evento->folio }}</td>
                                     <td>{{ $evento->unidad }} - {{ $evento->unidad_nombre}}</td>
-                                    <td>{{ $evento->incidente_categoria_label }}<br>{{ $evento->incidente_descripcion_label }}</td>
+                                    <td>{{ $evento->incidente_categoria_label }}</td>
+                                    <td>{{ $evento->incidente_descripcion_label }}</td>
                                     <td>{{ $evento->created_at }}</td>
                                     <td>
                                         <a href="{{ route('eventoShow',['id'=>$evento->id]) }}" class="btn btn-info btn-sm btn-block">DETALLES</a>
@@ -143,5 +147,37 @@
                 });
             });
         });
+    </script>
+
+    <script>$(document).ready( function () {
+        $(document).ready(function() {
+        $('#table').DataTable({
+            "language": {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": activar para ordenar la columna de manera descendente"
+                }
+            }
+        });
+    });
+    } );
     </script>
 @stop
