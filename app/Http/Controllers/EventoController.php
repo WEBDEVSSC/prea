@@ -94,7 +94,7 @@ class EventoController extends Controller
         if($nivel == 1){
 
             // Consultamos todos los registros de la tabla eventos
-            $eventos = Evento::whereYear('created_at', $anio)
+            $eventos = Evento::whereYear('fecha_hora', $anio)
                 ->orderBy('id', 'desc')
                 ->get();
 
@@ -103,7 +103,7 @@ class EventoController extends Controller
         elseif($nivel == 2){
 
             // Consultamos todos los registros por jurisdiccion
-            $eventos = Evento::whereYear('created_at', $anio)
+            $eventos = Evento::whereYear('fecha_hora', $anio)
                 ->where('categoria',$categoria)
                 ->orderBy('id','desc')
                 ->get();
@@ -113,7 +113,7 @@ class EventoController extends Controller
         elseif($nivel == 3){
             
             //Consultamos los registros por unidad
-            $eventos = Evento::whereYear('created_at', $anio)
+            $eventos = Evento::whereYear('fecha_hora', $anio)
                 ->where('unidad',$unidad)
                 ->orderBy('id','desc')
                 ->get();

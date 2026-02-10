@@ -24,7 +24,7 @@ class EventoExport implements FromView, WithStyles
     public function view(): View
     {
         // Filtramos los eventos por el rango de fechas
-        $eventos = Evento::whereBetween('created_at', [$this->inicio, $this->fin])
+        $eventos = Evento::whereBetween('fecha_hora', [$this->inicio, $this->fin])
                          ->orderBy('id', 'desc')
                          ->get();
 

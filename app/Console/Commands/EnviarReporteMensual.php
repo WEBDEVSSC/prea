@@ -13,6 +13,8 @@ class EnviarReporteMensual extends Command
 
     public function handle()
     {
+        ini_set('memory_limit', '1024M');
+    
         // Instanciar el controlador y ejecutar el método
         $controller = App::make(ReporteController::class);
         $controller->generarReporteMensualPDF();
