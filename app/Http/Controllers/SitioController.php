@@ -183,8 +183,8 @@ class SitioController extends Controller
             'evitar_evento.required' => 'Debe indicar si es posible evitar el evento.',
 
             'como_evitar_evento.required' => 'Debe describir cómo evitar el evento.',
-            'como_evitar_evento.string' => 'El campo "Cómo evitar el evento" debe ser texto.',
-            'como_evitar_evento.max' => 'El campo "Cómo evitar el evento" no debe exceder 255 caracteres.',
+            'como_evitar_evento.string' => 'El campo debe ser texto.',
+            'como_evitar_evento.max' => 'El campo no debe exceder 100 caracteres.',
 
             'proporciono_informacion.required' => 'Debe indicar si se proporcionó información.',
 
