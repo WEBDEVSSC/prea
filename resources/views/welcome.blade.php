@@ -297,7 +297,6 @@
     <div class="col-md-6">
       <p><small>En caso de que su respuesta anterior fuera "OTRO", favor de ingresar el cargo del personal</small></p>
       <input type="text" id="personaTestigosOtro" name="persona_testigos_otro" class="form-control" value="{{ old('persona_testigos_otro') }}" disabled maxlength="100">
-      >
       
       @error('persona_testigos_otro')
         <br><div class="alert alert-danger">{{ $message }}</div>
