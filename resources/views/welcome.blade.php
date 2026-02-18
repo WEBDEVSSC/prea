@@ -128,7 +128,7 @@
 
             <div class="col-md-6">
               <p>Edad <small>Años cumplidos</small></p>
-              <input type="number" name="edad" class="form-control" value="{{ old('edad') }}">
+              <input type="number" name="edad" class="form-control" value="{{ old('edad') }}" min="0" max="99" oninput="this.value = this.value.slice(0,2)">
 
               <!-- -- -->
                 
@@ -259,14 +259,7 @@
             
             <div class="col-md-6">
               <p><small>En caso de que su respuesta anterior fuera "OTRO", favor de ingresar el cargo del personal</small></p>
-              <input 
-                type="text" 
-                id="personaInvolucradaOtro" 
-                name="persona_involucrada_otro" 
-                class="form-control" 
-                value="{{ old('persona_involucrada_otro') }}" 
-                disabled
-              >
+              <input type="text" id="personaInvolucradaOtro" name="persona_involucrada_otro" class="form-control" value="{{ old('persona_involucrada_otro') }}" disabled maxlength="100">
               
               @error('persona_involucrada_otro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -303,13 +296,7 @@
     
     <div class="col-md-6">
       <p><small>En caso de que su respuesta anterior fuera "OTRO", favor de ingresar el cargo del personal</small></p>
-      <input 
-        type="text" 
-        id="personaTestigosOtro" 
-        name="persona_testigos_otro" 
-        class="form-control" 
-        value="{{ old('persona_testigos_otro') }}" 
-        disabled
+      <input type="text" id="personaTestigosOtro" name="persona_testigos_otro" class="form-control" value="{{ old('persona_testigos_otro') }}" disabled maxlength="100">
       >
       
       @error('persona_testigos_otro')
@@ -334,7 +321,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                <textarea name="descripcion" class="form-control" rows="5"> {{ old('descripcion') }}</textarea>
+                <textarea name="descripcion" class="form-control" rows="5" maxlength="1500"> {{ old('descripcion') }}</textarea>
                 
                 @error('descripcion')
                   <br><div class="alert alert-danger">{{ $message }}</div>
@@ -378,8 +365,7 @@
 
         <!-- Select para Opciones -->
           <div class="mb-3">
-            <input type="text" id="incidente_otro" name="incidente_otro" class="form-control" 
-            value="{{ old('incidente_otro') }}" {{ old('categoria') == 'OTRO INCIDENTE' ? '' : 'disabled' }}>
+            <input type="text" maxlength="100" id="incidente_otro" name="incidente_otro" class="form-control" value="{{ old('incidente_otro') }}" {{ old('categoria') == 'OTRO INCIDENTE' ? '' : 'disabled' }}>
             @error('incidente_otro')
               <br><div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -596,7 +582,7 @@
           <div class="row">
             <div class="col-md-12">
               <p>¿Cómo considera que pudo haberse evitado el evento adverso?</p>
-              <input type="text" name="como_evitar_evento" class="form-control"  onkeypress="return ' áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.includes(event.key)" value="{{ old('como_evitar_evento') }}">
+              <input type="text" maxlength="100" name="como_evitar_evento" class="form-control"  onkeypress="return ' áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.includes(event.key)" value="{{ old('como_evitar_evento') }}">
               @error('como_evitar_evento')
                 <br><div class="alert alert-danger">{{ $message }}</div>
               @enderror
