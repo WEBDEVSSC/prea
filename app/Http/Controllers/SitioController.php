@@ -91,7 +91,7 @@ class SitioController extends Controller
             'factores_incidente_ocho' => 'required_without_all:factores_incidente_uno,factores_incidente_dos,factores_incidente_tres,factores_incidente_cuatro,factores_incidente_cinco,factores_incidente_seis,factores_incidente_siete',
 
             'evitar_evento'=>'required',
-            'como_evitar_evento' => 'required|string|max:255',
+            'como_evitar_evento' => 'required|string|max:100',
             'proporciono_informacion'=>'required',
             'quien_proporciono'=>'required',
         ], [
