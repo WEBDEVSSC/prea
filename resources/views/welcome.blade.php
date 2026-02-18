@@ -365,7 +365,7 @@
 
         <!-- Select para Opciones -->
           <div class="mb-3">
-            <input type="text" maxlength="100" id="incidente_otro" name="incidente_otro" class="form-control" value="{{ old('incidente_otro') }}" {{ old('categoria') == 'OTRO INCIDENTE' ? '' : 'disabled' }}>
+            <input type="text" maxlength="250" id="incidente_otro" name="incidente_otro" onkeypress="return ' áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.includes(event.key)" class="form-control" value="{{ old('incidente_otro') }}" {{ old('categoria') == 'OTRO INCIDENTE' ? '' : 'disabled' }}>
             @error('incidente_otro')
               <br><div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -582,7 +582,7 @@
           <div class="row">
             <div class="col-md-12">
               <p>¿Cómo considera que pudo haberse evitado el evento adverso?</p>
-              <input type="text" maxlength="100" name="como_evitar_evento" class="form-control"  onkeypress="return ' áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.includes(event.key)" value="{{ old('como_evitar_evento') }}">
+              <input type="text" maxlength="250" name="como_evitar_evento" class="form-control" onkeypress="return ' áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ,.;-'.includes(event.key)" value="{{ old('como_evitar_evento') }}">
               @error('como_evitar_evento')
                 <br><div class="alert alert-danger">{{ $message }}</div>
               @enderror

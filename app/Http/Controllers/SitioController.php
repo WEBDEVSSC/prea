@@ -73,11 +73,11 @@ class SitioController extends Controller
             'persona_involucrada_otro'=>'string|nullable|max:100',
             'persona_testigos'=>'required',
             'persona_testigos_otro'=>'string|nullable|max:100',
-            'descripcion' => 'required|string|max:1000',
+            'descripcion' => 'required|string|max:1500',
 
             'categoria' => 'required|string',
             'opcion'=>'required|string',
-            'incidente_otro' => 'required_if:categoria,OTRO INCIDENTE|string|max:100',
+            'incidente_otro' => 'required_if:categoria,OTRO INCIDENTE|string|max:250',
 
             'gravedad'=>'required',
 
@@ -91,7 +91,7 @@ class SitioController extends Controller
             'factores_incidente_ocho' => 'required_without_all:factores_incidente_uno,factores_incidente_dos,factores_incidente_tres,factores_incidente_cuatro,factores_incidente_cinco,factores_incidente_seis,factores_incidente_siete',
 
             'evitar_evento'=>'required',
-            'como_evitar_evento' => 'required|string|max:100',
+            'como_evitar_evento' => 'required|string|max:250',
             'proporciono_informacion'=>'required',
             'quien_proporciono'=>'required',
         ], [
