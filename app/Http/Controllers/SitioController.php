@@ -70,14 +70,14 @@ class SitioController extends Controller
             'turno'=>'required',
             'fecha_hora' => 'required|date_format:Y-m-d\TH:i',
             'persona_involucrada'=>'required',
-            'persona_involucrada_otro'=>'string|nullable|max:255',
+            'persona_involucrada_otro'=>'string|nullable|max:100',
             'persona_testigos'=>'required',
-            'persona_testigos_otro'=>'string|nullable|max:255',
+            'persona_testigos_otro'=>'string|nullable|max:100',
             'descripcion' => 'required|string|max:1000',
 
             'categoria' => 'required|string',
             'opcion'=>'required|string',
-            'incidente_otro' => 'required_if:categoria,OTRO INCIDENTE|string|max:255',
+            'incidente_otro' => 'required_if:categoria,OTRO INCIDENTE|string|max:100',
 
             'gravedad'=>'required',
 
