@@ -95,7 +95,7 @@ class SitioController extends Controller
             'proporciono_informacion'=>'required',
             'quien_proporciono'=>'required',
         ], [
-            'clasificacion_del_evento.required' => 'El campo de clasificación del evento es obligatorio.',
+            /*'clasificacion_del_evento.required' => 'El campo de clasificación del evento es obligatorio.',
             'unidad.required' => 'El campo unidad es obligatorio.',
             'edad.required' => 'El campo edad es obligatorio.',
             'edad.integer' => 'El campo edad debe ser un número.',
@@ -126,7 +126,72 @@ class SitioController extends Controller
             'quien_proporciono.required' => 'Debe seleccionar una opción.',
 
             'g-recaptcha-response.required' => 'Por favor verifica que no eres un robot.',
-            'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.',
+            'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.',*/
+
+            'clasificacion_del_evento.required' => 'La clasificación del evento es obligatoria.',
+
+            'unidad.required' => 'La unidad es obligatoria.',
+
+            'edad.required' => 'La edad es obligatoria.',
+            'edad.integer' => 'La edad debe ser un número entero.',
+            'edad.max_digits' => 'La edad no puede tener más de 2 dígitos.',
+
+            'sexo.required' => 'El sexo es obligatorio.',
+
+            'servicio.required' => 'El servicio es obligatorio.',
+
+            'turno.required' => 'El turno es obligatorio.',
+
+            'fecha_hora.required' => 'La fecha y hora son obligatorias.',
+            'fecha_hora.date_format' => 'La fecha y hora deben tener el formato correcto.',
+
+            'persona_involucrada.required' => 'Debe seleccionar quién estuvo involucrado.',
+
+            'persona_involucrada_otro.string' => 'El campo "Otro (persona involucrada)" debe ser texto.',
+            'persona_involucrada_otro.max' => 'El campo "Otro (persona involucrada)" no debe exceder 255 caracteres.',
+
+            'persona_testigos.required' => 'Debe indicar si hubo testigos.',
+
+            'persona_testigos_otro.string' => 'El campo "Otro (testigos)" debe ser texto.',
+            'persona_testigos_otro.max' => 'El campo "Otro (testigos)" no debe exceder 255 caracteres.',
+
+            'descripcion.required' => 'La descripción del incidente es obligatoria.',
+            'descripcion.string' => 'La descripción debe ser texto.',
+            'descripcion.max' => 'La descripción no debe exceder 1000 caracteres.',
+
+            'categoria.required' => 'La categoría es obligatoria.',
+            'categoria.string' => 'La categoría debe ser texto.',
+
+            'opcion.required' => 'Debe seleccionar una opción.',
+            'opcion.string' => 'La opción debe ser texto.',
+
+            'incidente_otro.required_if' => 'Debe especificar el incidente cuando selecciona "OTRO INCIDENTE".',
+            'incidente_otro.string' => 'El campo "Otro incidente" debe ser texto.',
+            'incidente_otro.max' => 'El campo "Otro incidente" no debe exceder 255 caracteres.',
+
+            'gravedad.required' => 'La gravedad del incidente es obligatoria.',
+
+            'factores_incidente_uno.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_dos.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_tres.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_cuatro.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_cinco.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_seis.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_siete.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+            'factores_incidente_ocho.required_without_all' => 'Debe seleccionar al menos un factor del incidente.',
+
+            'evitar_evento.required' => 'Debe indicar si es posible evitar el evento.',
+
+            'como_evitar_evento.required' => 'Debe describir cómo evitar el evento.',
+            'como_evitar_evento.string' => 'El campo "Cómo evitar el evento" debe ser texto.',
+            'como_evitar_evento.max' => 'El campo "Cómo evitar el evento" no debe exceder 255 caracteres.',
+
+            'proporciono_informacion.required' => 'Debe indicar si se proporcionó información.',
+
+            'quien_proporciono.required' => 'Debe indicar quién proporcionó la información.',
+
+            'g-recaptcha-response.required' => 'Por favor verifica que no eres un robot.',
+            'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.'
         ]);
 
         // Consultamos el clues de la unidad
