@@ -68,6 +68,10 @@ Route::get('/password/email', function () {
     return redirect()->route('login'); 
 });
 
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/log-viewer', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+});
+
 
 // Rutas protegidas por autenticación
 Route::middleware('auth')->group(function () {
