@@ -73,7 +73,7 @@ class SitioController extends Controller
             'persona_involucrada_otro'=>'string|nullable|max:255',
             'persona_testigos'=>'required',
             'persona_testigos_otro'=>'string|nullable|max:255',
-            'descripcion' => 'required|text|max:1000',
+            'descripcion' => 'required|string|max:1000',
 
             'categoria' => 'required|string',
             'opcion'=>'required|string',
