@@ -345,6 +345,12 @@ return [
             'icon' => 'fas fa-stethoscope',
             'can' => 'admin',
         ],
+        [
+            'text' => 'Log Viewer',
+            'url' => 'log-viewer',
+            'icon' => 'fas fa-file-alt',
+            'can' => 'admin',
+        ],
     ],
 
     /*
