@@ -167,6 +167,8 @@ Route::middleware('auth')->group(function () {
     // Ruta para mostrar los detalles de un registro
     Route::get('admin/usuarioShow/{id}',[UserController::class,'show'])->name('usuarioShow');
 
+    Route::delete('admin/usuarioDelete/{id}',[UserController::class,'destroy'])->name('usuarioDelete');
+
     /**
     * 
     *

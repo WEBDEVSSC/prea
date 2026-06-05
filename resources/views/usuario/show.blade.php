@@ -46,10 +46,7 @@
             <div class="row">
                 <div class="col-md-12">
                     
-                <form action="{{ route('usuariosUpdate', $user->id) }}" method="POST">
-
-                    @csrf
-                    @method('PUT')
+                
 
                     <div class="row">
                         <div class="col-md-3">
@@ -152,13 +149,23 @@
 
         <div class="card-footer">
 
-            <a href="{{ route('usuarioShow',['id'=>$user->id]) }}" class="btn btn-info btn-sm float-right">ELIMINAR</a>
+            <form action="{{ route('usuarioDelete', ['id' => $user->id]) }}"
+                method="POST"
+                class="d-inline form-eliminar">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger btn-sm float-right">
+                    ELIMINAR
+                </button>
+            </form>
+
             <a href="{{ route('usuarioEdit',['id'=>$user->id]) }}" class="btn btn-info btn-sm float-right mr-2">EDITAR</a>
             
         </div>
     </div>
 
-</form>
+
 
     <!-- -------------------------------------------------------------- -->
 
@@ -174,4 +181,36 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('.form-eliminar').forEach(form => {
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'El usuario será eliminado permanentemente.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+
+    });
+
+});
+</script>
 @stop
