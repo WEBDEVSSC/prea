@@ -119,15 +119,15 @@ class ReporteController extends Controller
         $contadorEventos = $eventosMes->count();
 
         $eventosAdverso = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
-            ->where('clasificacion_del_Evento', 'EVENTO ADVERSO')
+            ->where('clasificacion_del_evento', 'EVENTO ADVERSO')
             ->count();
 
         $eventosCuasiFalla = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
-            ->where('clasificacion_del_Evento', 'CUASI-FALLA')
+            ->where('clasificacion_del_evento', 'CUASI-FALLA')
             ->count();
 
         $eventosCentinela = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])
-            ->where('clasificacion_del_Evento', 'EVENTO CENTINELA')
+            ->where('clasificacion_del_evento', 'EVENTO CENTINELA')
             ->count();
 
         $listaDeEventos = Evento::whereBetween('fecha_hora', [$inicioMesAnterior, $finMesAnterior])

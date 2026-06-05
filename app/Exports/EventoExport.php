@@ -6,6 +6,7 @@ use App\Models\Evento;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Carbon\Carbon;
 
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
@@ -24,9 +25,16 @@ class EventoExport implements FromView, WithStyles
     public function view(): View
     {
         // Filtramos los eventos por el rango de fechas
-        $eventos = Evento::whereBetween('fecha_hora', [$this->inicio, $this->fin])
-                         ->orderBy('id', 'desc')
-                         ->get();
+        //$eventos = Evento::whereBetween('fecha_hora', [$this->inicio, $this->fin])
+                         //->orderBy('id', 'desc')
+                        // ->get();
+
+         $eventos = Evento::whereBetween('fecha_hora', [
+                        Carbon::parse($this->inicio)->startOfDay(),
+                        Carbon::parse($this->fin)->endOfDay(),
+                    ])
+                    ->orderBy('id', 'desc')
+                    ->get();
 
         // Pasamos los eventos a la vista
         return view('export.eventos-export', [
