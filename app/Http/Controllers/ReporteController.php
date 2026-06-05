@@ -107,8 +107,8 @@ class ReporteController extends Controller
         //$inicioMesAnterior = Carbon::now()->subMonthNoOverflow()->startOfMonth()->startOfDay(); // 1er día del mes anterior a las 00:00:00
         //$finMesAnterior = Carbon::now()->subMonthNoOverflow()->endOfMonth()->endOfDay(); // último día del mes anterior a las 23:59:59
 
-        $inicioMesAnterior = Carbon::create(2025, 1, 1)->startOfDay();  // 1er día del mes anterior a las 00:00:00
-        $finMesAnterior = Carbon::create(2025, 12, 31)->endOfDay(); // último día del mes anterior a las 23:59:59
+        $inicioMesAnterior = Carbon::create(2026, 1, 1)->startOfDay();  // 1er día del mes anterior a las 00:00:00
+        $finMesAnterior = Carbon::create(2026, 4, 30)->endOfDay(); // último día del mes anterior a las 23:59:59
 
         // Formateo para mostrar en el PDF
         $inicioMesStr = $inicioMesAnterior->format('d-m-Y');
