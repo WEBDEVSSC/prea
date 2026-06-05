@@ -80,6 +80,7 @@
                                 <option value="1" {{ old('nivel', $user->nivel) == '1' ? 'selected' : '' }}>Administrador SSC</option>
                                 <option value="2" {{ old('nivel', $user->nivel) == '2' ? 'selected' : '' }}>Jurisdicción</option>
                                 <option value="3" {{ old('nivel', $user->nivel) == '3' ? 'selected' : '' }}>Unidad</option>
+                                <option value="4" {{ old('nivel', $user->nivel) == '4' ? 'selected' : '' }}>Visualizador</option>
                             </select>
                             @error('nivel')
                                 <br>

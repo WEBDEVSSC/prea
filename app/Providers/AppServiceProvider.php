@@ -38,5 +38,10 @@ class AppServiceProvider extends ServiceProvider
     Gate::define('unidad', function ($user) {
         return $user->role === 'unidad';
     });
+
+    // Menu para Visualizador
+    Gate::define('visualizador', function ($user) {
+        return $user->role === 'visualizador';
+    });
 }
 }
