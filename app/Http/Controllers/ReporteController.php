@@ -42,15 +42,26 @@ class ReporteController extends Controller
             'fecha_fin.required'=>'Seleccione una fecha',
             'fecha_fin.after_or_equal'=>'Debe ser mayor a la fecha de inicio',
          ]);
-
-        // Asegura que la fecha_fin incluya todo el día
-        $fechaFin = \Carbon\Carbon::parse($request->fecha_fin)->endOfDay();
         
-        // Formatear fecha de inicio
+         // Formateamos fechas
         $fechaInicio = \Carbon\Carbon::parse($request->fecha_inicio)->format('d-m-Y'); 
+        $fechaFin = \Carbon\Carbon::parse($request->fecha_fin)->endOfDay();
+    
 
          // Búsqueda de eventos
-        $eventos = Evento::whereBetween('created_at', [$request->fecha_inicio, $fechaFin])->get();
+        $eventos = Evento::whereBetween('fecha_hora', [$request->fecha_inicio, $fechaFin])->get();
+
+        $adversos = Evento::whereBetween('fecha_hora', [$request->fecha_inicio, $fechaFin])
+            ->where('clasificacion_del_evento', 'EVENTO ADVERSO')
+            ->count();
+
+        $cuasiFalla = Evento::whereBetween('fecha_hora', [$request->fecha_inicio, $fechaFin])
+            ->where('clasificacion_del_evento', 'CUASI-FALLA')
+            ->count();
+        
+        $centinela = Evento::whereBetween('fecha_hora', [$request->fecha_inicio, $fechaFin])
+            ->where('clasificacion_del_evento', 'EVENTO CENTINELA')
+            ->count();
 
         // Contar eventos por unidad
         $conteoPorUnidad = $eventos->groupBy('unidad')->map(function ($grupo) {
@@ -62,6 +73,118 @@ class ReporteController extends Controller
         // Obtener los nombres de las unidades para la vista
         $unidades = Unidad::whereIn('clues', $conteoPorUnidad->keys())->pluck('nombre', 'clues');
 
+        $resumenJurisdiccion1 = $eventos
+            ->where('jurisdiccion', 1)
+            ->groupBy('unidad_nombre')
+            ->map(function ($unidad) {
+
+                return [
+                    'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                    'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                    'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                    'total' => $unidad->count(),
+                ];
+            })
+            ->sortByDesc('total');
+
+            $resumenJurisdiccion2 = $eventos
+                ->where('jurisdiccion', 2)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');
+
+            $resumenJurisdiccion3 = $eventos
+                ->where('jurisdiccion', 3)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');
+
+            $resumenJurisdiccion4 = $eventos
+                ->where('jurisdiccion', 4)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');
+
+            $resumenJurisdiccion5 = $eventos
+                ->where('jurisdiccion', 5)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');
+
+            $resumenJurisdiccion6 = $eventos
+                ->where('jurisdiccion', 6)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');
+
+            $resumenJurisdiccion7 = $eventos
+                ->where('jurisdiccion', 7)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');
+
+             $resumenJurisdiccion8 = $eventos
+                ->where('jurisdiccion', 8)
+                ->groupBy('unidad_nombre')
+                ->map(function ($unidad) {
+
+                    return [
+                        'adversos' => $unidad->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count(),
+                        'cuasi_falla' => $unidad->where('clasificacion_del_evento', 'CUASI-FALLA')->count(),
+                        'centinela' => $unidad->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count(),
+                        'total' => $unidad->count(),
+                    ];
+                })
+                ->sortByDesc('total');   
+
         // Retorno de la vista con los eventos y el conteo por unidad
         return view('reporte.show', [
             'fechaInicio'=> $fechaInicio,
@@ -69,6 +192,18 @@ class ReporteController extends Controller
             'eventos' => $eventos,
             'conteoPorUnidad' => $conteoPorUnidad,
             'unidades' => $unidades,
+            'adversos' => $adversos,
+            'cuasiFalla' => $cuasiFalla,
+            'centinela' => $centinela,
+            'resumenJurisdiccion1' => $resumenJurisdiccion1,
+            'resumenJurisdiccion2' => $resumenJurisdiccion2,
+            'resumenJurisdiccion3' => $resumenJurisdiccion3,
+            'resumenJurisdiccion4' => $resumenJurisdiccion4,
+            'resumenJurisdiccion5' => $resumenJurisdiccion5,
+            'resumenJurisdiccion6' => $resumenJurisdiccion6,
+            'resumenJurisdiccion7' => $resumenJurisdiccion7,
+            'resumenJurisdiccion8' => $resumenJurisdiccion8,
+
         ]);
      }
 
