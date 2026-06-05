@@ -56,6 +56,7 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>CLUES</th>                                
+                                <th>ROL</th>                                
                                 <th><center>C-F</center></th>                                
                                 <th><center>ADV</center></th>                                
                                 <th><center>CEN</center></th>                                
@@ -78,6 +79,7 @@
                                     <td>{{ $usuario->name }}</td>
                                     <td>{{ $usuario->email }}</td>
                                     <td>J.{{ $usuario->clues_jurisdiccion }} - {{ $usuario->clues_nombre }}</td>
+                                    <td>{{ $usuario->role }}</td>
                                     <td>
                                         <center>
                                         @if ($usuario->cuasifalla == 1)
