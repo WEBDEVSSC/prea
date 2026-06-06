@@ -198,6 +198,99 @@
 
 <!-- -------------------------------------------------------------- -->
 
+<div class="card shadow-sm mt-3">
+    <div class="card-header bg-success text-white py-2">
+        <h6 class="mb-0">
+            Conteo de Eventos por Nivel
+        </h6>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+
+            <table class="table table-sm table-bordered table-striped mb-0">
+
+                <thead class="bg-light">
+                    <tr>
+                        <th>Nivel</th>
+                        <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        <th class="text-center">Centinela</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">%</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @php
+                        $totalGeneral = collect($resumenNivel)->sum('total');
+                    @endphp
+
+                    @foreach($resumenNivel as $nivel => $datos)
+
+                    <tr>
+                        <td>{{ $nivel }}</td>
+
+                        <td class="text-center">
+                            {{ $datos['cuasi_falla'] }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ $datos['adversos'] }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ $datos['centinela'] }}
+                        </td>
+
+                        <td class="text-center font-weight-bold">
+                            {{ $datos['total'] }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ number_format(($datos['total'] / $totalGeneral) * 100, 2) }}%
+                        </td>
+                    </tr>
+
+                    @endforeach
+
+                </tbody>
+
+                <tfoot class="bg-light font-weight-bold">
+                    <tr>
+                        <td>TOTAL GENERAL</td>
+
+                        <td class="text-center">
+                            {{ collect($resumenNivel)->sum('cuasi_falla') }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ collect($resumenNivel)->sum('adversos') }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ collect($resumenNivel)->sum('centinela') }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ $totalGeneral }}
+                        </td>
+
+                        <td class="text-center">
+                            100.00%
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- --------------------------------------------------------------- -->
+
 
 <div class="card shadow-sm mt-3">
     <div class="card-header bg-dark text-white py-2">

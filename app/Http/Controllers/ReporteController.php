@@ -204,6 +204,31 @@ class ReporteController extends Controller
                 })
                 ->sortKeys();
 
+            $resumenNivel = $eventos
+                ->groupBy('nivel')
+                ->map(function ($items) {
+
+                    $cuasiFalla = $items
+                        ->where('clasificacion_del_evento', 'CUASI-FALLA')
+                        ->count();
+
+                    $adversos = $items
+                        ->where('clasificacion_del_evento', 'EVENTO ADVERSO')
+                        ->count();
+
+                    $centinela = $items
+                        ->where('clasificacion_del_evento', 'EVENTO CENTINELA')
+                        ->count();
+
+                    return [
+                        'cuasi_falla' => $cuasiFalla,
+                        'adversos' => $adversos,
+                        'centinela' => $centinela,
+                        'total' => $items->count(),
+                    ];
+                })
+                ->sortKeys();
+
         // Retorno de la vista con los eventos y el conteo por unidad
         return view('reporte.show', [
             'fechaInicio'=> $fechaInicio,
@@ -224,6 +249,7 @@ class ReporteController extends Controller
             'resumenJurisdiccion8' => $resumenJurisdiccion8,
             'categorias' => $categorias,
             'descripciones' => $descripciones,
+            'resumenNivel' => $resumenNivel,
 
         ]);
      }
