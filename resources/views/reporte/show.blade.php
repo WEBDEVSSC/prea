@@ -5,7 +5,7 @@
 @section('title', 'Eventos')
 
 @section('content_header')
-    <h1><strong>Reporte</strong></h1>
+    <h1><strong>Reporte Estadístico</strong></h1>
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Panel de Control</li>
+                    <li class="breadcrumb-item active" aria-current="page">Del {{$fechaInicio}} al {{$fechaFin}}</li>
                 </ol>
             </nav>
         </div>
