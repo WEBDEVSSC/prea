@@ -81,106 +81,129 @@
 
 <!-- -------------------------------------------------------------- -->
 
+<div class="row">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <strong>Conteo de Eventos por Jurisdicción</strong>
+            </div>
 
+            <div class="card-body">
+                <div class="table-responsive">
 
-<div class="row-mt-3">
-    <div class="card">
-        <div class="card-header">
-            <strong>Conteo de Eventos por Jurisdicción</strong>
+                    @php
+                        $totalGeneral = $eventos->count();
+                    @endphp
+
+                    <table class="table table-sm table-bordered table-striped mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Jurisdicción</th>
+                                <th class="text-center">Cuasi-Fallas</th>
+                                <th class="text-center">Adversos</th>
+                                <th class="text-center">Centinela</th>
+                                <th class="text-center">Total de Eventos</th>
+                                <th class="text-center">%</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @for($i = 1; $i <= 8; $i++)
+
+                                @php
+                                    $jurisdiccion = $eventos->where('jurisdiccion', $i);
+
+                                    $cuasiFalla = $jurisdiccion
+                                        ->where('clasificacion_del_evento', 'CUASI-FALLA')
+                                        ->count();
+
+                                    $adversos = $jurisdiccion
+                                        ->where('clasificacion_del_evento', 'EVENTO ADVERSO')
+                                        ->count();
+
+                                    $centinela = $jurisdiccion
+                                        ->where('clasificacion_del_evento', 'EVENTO CENTINELA')
+                                        ->count();
+
+                                    $total = $jurisdiccion->count();
+
+                                    $porcentaje = $totalGeneral > 0
+                                        ? ($total / $totalGeneral) * 100
+                                        : 0;
+                                @endphp
+
+                                <tr>
+                                    <td>Jurisdicción {{ $i }}</td>
+
+                                    <td class="text-center">
+                                        {{ $cuasiFalla }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        {{ $adversos }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        {{ $centinela }}
+                                    </td>
+
+                                    <td class="text-center font-weight-bold">
+                                        {{ $total }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        {{ number_format($porcentaje, 2) }}%
+                                    </td>
+                                </tr>
+
+                            @endfor
+
+                        </tbody>
+
+                        <tfoot class="bg-light font-weight-bold">
+                            <tr>
+                                <td>TOTAL GENERAL</td>
+
+                                <td class="text-center">
+                                    {{ $eventos->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}
+                                </td>
+
+                                <td class="text-center">
+                                    {{ $eventos->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}
+                                </td>
+
+                                <td class="text-center">
+                                    {{ $eventos->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}
+                                </td>
+
+                                <td class="text-center">
+                                    {{ $totalGeneral }}
+                                </td>
+
+                                <td class="text-center">
+                                    100.00%
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-footer"></div>
         </div>
-        <div class="card-body">
-
-            <div class="table">
-        <table class="table table-sm table-bordered table-striped mb-0">
-                <thead class="bg-light">
-                <tr>
-                    <th>Jurisdicción</th>
-                    <th>Cuasi-Fallas</th>
-                    <th>Adversos</th>                    
-                    <th>Centinela</th>
-                    <th>Total de Eventos</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jurisdicción 1</td>
-                    <td>{{ $eventos->where('jurisdiccion', 1)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 1)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 1)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 1)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 2</td>
-                    <td>{{ $eventos->where('jurisdiccion', 2)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 2)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 2)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 2)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 3</td>
-                    <td>{{ $eventos->where('jurisdiccion', 3)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 3)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 3)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 3)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 4</td>
-                    <td>{{ $eventos->where('jurisdiccion', 4)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 4)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 4)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 4)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 5</td>
-                    <td>{{ $eventos->where('jurisdiccion', 5)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 5)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 5)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 5)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 6</td>
-                    <td>{{ $eventos->where('jurisdiccion', 6)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 6)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 6)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 6)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 7</td>
-                    <td>{{ $eventos->where('jurisdiccion', 7)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 7)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 7)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 7)->count() }}</td>
-                </tr>
-                <tr>
-                    <td>Jurisdicción 8</td>
-                    <td>{{ $eventos->where('jurisdiccion', 8)->where('clasificacion_del_evento', 'CUASI-FALLA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 8)->where('clasificacion_del_evento', 'EVENTO ADVERSO')->count() }}</td>
-                    
-                    <td>{{ $eventos->where('jurisdiccion', 8)->where('clasificacion_del_evento', 'EVENTO CENTINELA')->count() }}</td>
-                    <td>{{ $eventos->where('jurisdiccion', 8)->count() }}</td>
-                </tr>
-                <!-- Agrega más filas para otras jurisdicciones si es necesario -->
-            </tbody>
-        </table>
-    </div>
-
-        </div>
-        <div class="card-footer"></div>
     </div>
 </div>
 
 <!-- -------------------------------------------------------------- -->
 
-<div class="card shadow-sm">
-    <div class="card-header bg-primary text-white">
-        <strong>Jurisdicción 1 - Eventos por Unidad</strong>
+
+<div class="card shadow-sm mt-3">
+    <div class="card-header bg-dark text-white py-2">
+        <h6 class="mb-0">
+            CLASIFICACIÓN
+        </h6>
     </div>
 
     <div class="card-body p-0">
@@ -188,41 +211,206 @@
             <table class="table table-sm table-bordered table-striped mb-0">
                 <thead class="bg-light">
                     <tr>
-                        <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
-                        <th class="text-center">Cuasi-Falla</th>
-                        <th class="text-center">Centinela</th>
+                        <th></th>
                         <th class="text-center">Total</th>
+                        <th class="text-center">%</th>
                     </tr>
                 </thead>
+
                 <tbody>
-
-                    @foreach($resumenJurisdiccion1 as $unidad => $datos)
+                    @foreach($categorias as $categoria => $total)
                     <tr>
-                        <td>{{ $unidad }}</td>
-
-                        <td class="text-center">
-                            {{ $datos['adversos'] }}
-                        </td>
-
-                        <td class="text-center">
-                            {{ $datos['cuasi_falla'] }}
-                        </td>
-
-                        <td class="text-center">
-                            {{ $datos['centinela'] }}
-                        </td>
+                        <td>{{ $categoria }}</td>
 
                         <td class="text-center font-weight-bold">
-                            {{ $datos['total'] }}
+                            {{ $total }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ number_format(($total / $categorias->sum()) * 100, 2) }}%
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
+
+                <tfoot class="bg-light font-weight-bold">
+                    <tr>
+                        <td>TOTAL</td>
+
+                        <td class="text-center">
+                            {{ $categorias->sum() }}
+                        </td>
+
+                        <td class="text-center">
+                            100.00%
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
+</div>
+
+
+<!-- -------------------------------------------------------------- -->
+
+<div class="card shadow-sm mt-3">
+    <div class="card-header bg-warning text-white py-2">
+        <h6 class="mb-0">
+            Conteo por Descripción del Incidente
+        </h6>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+
+            <style>
+.table td,
+.table th {
+    padding-left: .5rem !important;
+}
+</style>
+
+            <table class="table table-sm table-bordered table-striped mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">%</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+    @php
+        $totalGeneral = $eventos->count();
+    @endphp
+
+    @foreach($descripciones as $categoria => $items)
+
+        @php
+            $primeraFila = true;
+            $rowspan = $items->count();
+        @endphp
+
+        @foreach($items as $descripcion => $total)
+
+            <tr>
+
+                @if($primeraFila)
+                    <td rowspan="{{ $rowspan }}" class="align-middle font-weight-bold bg-light">
+                        {{ $categoria }}
+                    </td>
+                    @php $primeraFila = false; @endphp
+                @endif
+
+                <td>
+                    {{ $descripcion }}
+                </td>
+
+                <td class="text-center">
+                    {{ $total }}
+                </td>
+
+                <td class="text-center">
+                    {{ number_format(($total / $totalGeneral) * 100, 2) }}%
+                </td>
+
+            </tr>
+
+        @endforeach
+
+    @endforeach
+
+</tbody>
+
+                <tfoot class="bg-light font-weight-bold">
+                    <tr>
+                        <td colspan="2">TOTAL GENERAL</td>
+                        <td class="text-center">
+                            {{ $totalGeneral }}
+                        </td>
+                        <td class="text-center">
+                            100.00%
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------------------------------------------------- -->
+
+<div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+        <strong>Jurisdicción 1 - Eventos por Unidad</strong>
+    </div>
+
+    <div class="card-body p-0">
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered table-striped mb-0">
+            <thead class="bg-light">
+                <tr>
+                    <th width="50%">Unidad</th>
+                    <th class="text-center">Cuasi-Falla</th>
+                    <th class="text-center">Adversos</th>
+                    
+                    <th class="text-center">Centinela</th>
+                    <th class="text-center">Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach($resumenJurisdiccion1 as $unidad => $datos)
+                <tr>
+                    <td>{{ $unidad }}</td>
+
+                    <td class="text-center">
+                        {{ $datos['cuasi_falla'] }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ $datos['adversos'] }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ $datos['centinela'] }}
+                    </td>
+
+                    <td class="text-center font-weight-bold">
+                        {{ $datos['total'] }}
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+
+            <tfoot class="bg-light font-weight-bold">
+                <tr>
+                    <td>TOTAL</td>
+
+                     <td class="text-center">
+                        {{ collect($resumenJurisdiccion1)->sum('cuasi_falla') }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ collect($resumenJurisdiccion1)->sum('adversos') }}
+                    </td>
+                   
+                    <td class="text-center">
+                        {{ collect($resumenJurisdiccion1)->sum('centinela') }}
+                    </td>
+                    <td class="text-center">
+                        {{ collect($resumenJurisdiccion1)->sum('total') }}
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+</div>
 </div>
 
 <!-- -------------------------------------------------------------- -->
@@ -240,8 +428,8 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -251,8 +439,9 @@
                     @foreach($resumenJurisdiccion2 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -264,12 +453,13 @@
                 <tfoot class="bg-light font-weight-bold">
                     <tr>
                         <td>TOTAL</td>
+                         <td class="text-center">
+                            {{ collect($resumenJurisdiccion2)->sum('cuasi_falla') }}
+                        </td>
                         <td class="text-center">
                             {{ collect($resumenJurisdiccion2)->sum('adversos') }}
                         </td>
-                        <td class="text-center">
-                            {{ collect($resumenJurisdiccion2)->sum('cuasi_falla') }}
-                        </td>
+                       
                         <td class="text-center">
                             {{ collect($resumenJurisdiccion2)->sum('centinela') }}
                         </td>
@@ -287,7 +477,7 @@
 <!-- -------------------------------------------------------------- -->
 
 <div class="card shadow-sm">
-    <div class="card-header bg-info text-white py-2">
+    <div class="card-header bg-success text-white py-2">
         <h6 class="mb-0">
             Jurisdicción 3 - Eventos por Unidad
         </h6>
@@ -299,8 +489,9 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -310,8 +501,9 @@
                     @foreach($resumenJurisdiccion3 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -324,11 +516,12 @@
                     <tr>
                         <td>TOTAL</td>
                         <td class="text-center">
-                            {{ collect($resumenJurisdiccion3)->sum('adversos') }}
-                        </td>
-                        <td class="text-center">
                             {{ collect($resumenJurisdiccion3)->sum('cuasi_falla') }}
                         </td>
+                        <td class="text-center">
+                            {{ collect($resumenJurisdiccion3)->sum('adversos') }}
+                        </td>
+                        
                         <td class="text-center">
                             {{ collect($resumenJurisdiccion3)->sum('centinela') }}
                         </td>
@@ -346,7 +539,7 @@
 <!-- -------------------------------------------------------------- -->
 
 <div class="card shadow-sm">
-    <div class="card-header bg-warning py-2">
+    <div class="card-header bg-success py-2">
         <h6 class="mb-0 text-white">
             Jurisdicción 4 - Eventos por Unidad
         </h6>
@@ -358,8 +551,9 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -369,8 +563,9 @@
                     @foreach($resumenJurisdiccion4 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -382,8 +577,8 @@
                 <tfoot class="bg-light font-weight-bold">
                     <tr>
                         <td>TOTAL</td>
-                        <td class="text-center">{{ collect($resumenJurisdiccion4)->sum('adversos') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion4)->sum('cuasi_falla') }}</td>
+                        <td class="text-center">{{ collect($resumenJurisdiccion4)->sum('adversos') }}</td>                        
                         <td class="text-center">{{ collect($resumenJurisdiccion4)->sum('centinela') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion4)->sum('total') }}</td>
                     </tr>
@@ -397,7 +592,7 @@
 <!-- -------------------------------------------------------------- -->
 
 <div class="card shadow-sm">
-    <div class="card-header bg-secondary">
+    <div class="card-header bg-success py-2">
         <h6 class="mb-0 text-white">
             Jurisdicción 5 - Eventos por Unidad
         </h6>
@@ -409,8 +604,9 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -420,8 +616,9 @@
                     @foreach($resumenJurisdiccion5 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -433,8 +630,9 @@
                 <tfoot class="bg-light font-weight-bold">
                     <tr>
                         <td>TOTAL</td>
-                        <td class="text-center">{{ collect($resumenJurisdiccion5)->sum('adversos') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion5)->sum('cuasi_falla') }}</td>
+                        <td class="text-center">{{ collect($resumenJurisdiccion5)->sum('adversos') }}</td>
+                        
                         <td class="text-center">{{ collect($resumenJurisdiccion5)->sum('centinela') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion5)->sum('total') }}</td>
                     </tr>
@@ -448,7 +646,7 @@
 <!-- -------------------------------------------------------------- -->
 
 <div class="card shadow-sm">
-    <div class="card-header bg-danger">
+    <div class="card-header bg-success py-2">
         <h6 class="mb-0 text-white">
             Jurisdicción 6 - Eventos por Unidad
         </h6>
@@ -460,8 +658,9 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -471,8 +670,9 @@
                     @foreach($resumenJurisdiccion6 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -484,8 +684,9 @@
                 <tfoot class="bg-light font-weight-bold">
                     <tr>
                         <td>TOTAL</td>
-                        <td class="text-center">{{ collect($resumenJurisdiccion6)->sum('adversos') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion6)->sum('cuasi_falla') }}</td>
+                        <td class="text-center">{{ collect($resumenJurisdiccion6)->sum('adversos') }}</td>
+                        
                         <td class="text-center">{{ collect($resumenJurisdiccion6)->sum('centinela') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion6)->sum('total') }}</td>
                     </tr>
@@ -499,7 +700,7 @@
 <!-- -------------------------------------------------------------- -->
 
 <div class="card shadow-sm">
-    <div class="card-header bg-dark">
+    <div class="card-header bg-success py-2">
         <h6 class="mb-0 text-white">
             Jurisdicción 7 - Eventos por Unidad
         </h6>
@@ -511,8 +712,9 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -522,8 +724,9 @@
                     @foreach($resumenJurisdiccion7 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -535,8 +738,9 @@
                 <tfoot class="bg-light font-weight-bold">
                     <tr>
                         <td>TOTAL</td>
-                        <td class="text-center">{{ collect($resumenJurisdiccion7)->sum('adversos') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion7)->sum('cuasi_falla') }}</td>
+                        <td class="text-center">{{ collect($resumenJurisdiccion7)->sum('adversos') }}</td>
+                        
                         <td class="text-center">{{ collect($resumenJurisdiccion7)->sum('centinela') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion7)->sum('total') }}</td>
                     </tr>
@@ -550,7 +754,7 @@
 <!-- -------------------------------------------------------------- -->
 
 <div class="card shadow-sm">
-    <div class="card-header bg-primary">
+    <div class="card-header bg-success py-2">
         <h6 class="mb-0 text-white">
             Jurisdicción 8 - Eventos por Unidad
         </h6>
@@ -562,8 +766,9 @@
                 <thead class="bg-light">
                     <tr>
                         <th width="50%">Unidad</th>
-                        <th class="text-center">Adversos</th>
                         <th class="text-center">Cuasi-Falla</th>
+                        <th class="text-center">Adversos</th>
+                        
                         <th class="text-center">Centinela</th>
                         <th class="text-center">Total</th>
                     </tr>
@@ -573,8 +778,9 @@
                     @foreach($resumenJurisdiccion8 as $unidad => $datos)
                     <tr>
                         <td>{{ $unidad }}</td>
-                        <td class="text-center">{{ $datos['adversos'] }}</td>
                         <td class="text-center">{{ $datos['cuasi_falla'] }}</td>
+                        <td class="text-center">{{ $datos['adversos'] }}</td>
+                        
                         <td class="text-center">{{ $datos['centinela'] }}</td>
                         <td class="text-center font-weight-bold">
                             {{ $datos['total'] }}
@@ -586,8 +792,9 @@
                 <tfoot class="bg-light font-weight-bold">
                     <tr>
                         <td>TOTAL</td>
-                        <td class="text-center">{{ collect($resumenJurisdiccion8)->sum('adversos') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion8)->sum('cuasi_falla') }}</td>
+                        <td class="text-center">{{ collect($resumenJurisdiccion8)->sum('adversos') }}</td>
+                        
                         <td class="text-center">{{ collect($resumenJurisdiccion8)->sum('centinela') }}</td>
                         <td class="text-center">{{ collect($resumenJurisdiccion8)->sum('total') }}</td>
                     </tr>

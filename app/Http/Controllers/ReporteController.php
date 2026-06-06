@@ -185,6 +185,25 @@ class ReporteController extends Controller
                 })
                 ->sortByDesc('total');   
 
+            $categorias = $eventos
+                ->groupBy('incidente_categoria_label')
+                ->map(function ($items) {
+                    return $items->count();
+                })
+                ->sortDesc();
+
+            $descripciones = $eventos
+                ->groupBy('incidente_categoria_label')
+                ->map(function ($categorias) {
+                    return $categorias
+                        ->groupBy('incidente_descripcion_label')
+                        ->map(function ($items) {
+                            return $items->count();
+                        })
+                        ->sortDesc();
+                })
+                ->sortKeys();
+
         // Retorno de la vista con los eventos y el conteo por unidad
         return view('reporte.show', [
             'fechaInicio'=> $fechaInicio,
@@ -203,6 +222,8 @@ class ReporteController extends Controller
             'resumenJurisdiccion6' => $resumenJurisdiccion6,
             'resumenJurisdiccion7' => $resumenJurisdiccion7,
             'resumenJurisdiccion8' => $resumenJurisdiccion8,
+            'categorias' => $categorias,
+            'descripciones' => $descripciones,
 
         ]);
      }
