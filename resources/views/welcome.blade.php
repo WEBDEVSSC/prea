@@ -15,28 +15,207 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.5.2/dist/select2-bootstrap4.min.css" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#f4f6f9;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color:#495057;
+}
+
+.hero-header{
+    background: linear-gradient(135deg,#4b286d,#6f42c1);
+    padding:30px;
+    color:white;
+    margin-bottom:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.logo-header{
+    max-height:120px;
+}
+
+.titulo-sistema{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.subtitulo-sistema{
+    font-size:1rem;
+    opacity:.9;
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.card-header{
+    background:linear-gradient(135deg,#4b286d,#6f42c1)!important;
+    color:white!important;
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:.3px;
+    padding:15px 20px;
+    border:none;
+}
+
+.card-body{
+    padding:25px;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    border:1px solid #d9dee3;
+    min-height:45px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#6f42c1;
+    box-shadow:0 0 0 .2rem rgba(111,66,193,.15);
+}
+
+.form-check{
+    padding:12px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.form-check:hover{
+    background:#f8f9fa;
+}
+
+.form-check-input{
+    transform:scale(1.2);
+}
+
+label{
+    font-weight:500;
+}
+
+p{
+    margin-bottom:6px;
+    font-weight:600;
+}
+
+.alert-danger{
+    border:none;
+    border-radius:10px;
+}
+
+.table{
+    margin-bottom:0;
+}
+
+.table tr{
+    border-bottom:1px solid #eee;
+}
+
+.table td{
+    padding:15px;
+    vertical-align:middle;
+}
+
+.btn-registrar{
+    background:linear-gradient(135deg,#4b286d,#6f42c1);
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:15px 40px;
+    font-size:1.1rem;
+    font-weight:600;
+    transition:.3s;
+    box-shadow:0 4px 15px rgba(111,66,193,.3);
+}
+
+.btn-registrar:hover{
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(111,66,193,.4);
+}
+
+footer{
+    background:#212529!important;
+    margin-top:50px;
+}
+
+.select2-container--bootstrap4 .select2-selection{
+    min-height:45px;
+    border-radius:10px!important;
+}
+
+.section-divider{
+    height:4px;
+    width:80px;
+    background:#6f42c1;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.required::after{
+    content:" *";
+    color:red;
+}
+
+.institucional-logo{
+    max-width: 500px;       /* Ajusta el tamaño */
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background: #ffffff;
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.10);
+}
+
+</style>
 
 
 </head>
 
 <body>
 
-<div class="container">
-  <div class="row">
+<div class="hero-header">
+    <div class="container">
+        <div class="row justify-content-center">
 
-    <div class="col-md-12">
-      <center><img src="{{ asset('img/cintilla_prea.jpg') }}" alt="Logo" width="70%"></center>
+            <div class="col-lg-10 text-center">
+
+                <i class="fas fa-shield-heart fa-4x mb-3"></i>
+
+                <h1 class="titulo-sistema">
+                    Sistema de Notificación y Análisis de Eventos Adversos
+                </h1>
+
+                <p class="subtitulo-sistema">
+                    Seguridad del Paciente · Secretaría de Salud de Coahuila
+                </p>
+
+            </div>
+
+        </div>
     </div>
+</div>
 
-  </div>
-
-  <div class="row">
-  
-    <div class="col-md-12">
-      <center><h3>Sistema de Notificación y Análisis de Eventos Adversos Relacionados con la Seguridad del Paciente</h3></center>
+<div class="row mt-3">
+    <div class="col-md-12 text-center">
+        <img src="{{ asset('img/cintilla_prea.jpg') }}"
+             class="img-fluid logo-header institucional-logo">
     </div>
-
-  </div>
 </div>
 
 <br>
@@ -53,6 +232,7 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
+                <i class="fas fa-triangle-exclamation me-2"></i>
                 Tipo de evento
             </div>
             <div class="card-body">
@@ -96,7 +276,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Unidad
+                 <i class="fas fa-hospital me-2"></i>
+    Unidad
             </div>
             <div class="card-body">
 
@@ -120,7 +301,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Datos del paciente
+                <i class="fas fa-user-injured me-2"></i>
+    Datos del paciente
             </div>
             <div class="card-body">
 
@@ -163,7 +345,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Descripción del evento adverso
+                <i class="fas fa-file-lines me-2"></i>
+    Descripción del evento adverso
             </div>
             <div class="card-body">
 
@@ -273,7 +456,7 @@
   <div class="row mt-3">
     
     <div class="col-md-6">
-      <p>Personas que presenciaron</p>
+      <p>Personas que presenciarón</p>
       <select id="personaTestigosSelect" name="persona_testigos" class="form-control" onchange="toggleTestigosInput()">
         <option value="">[ Seleccione una opción ]</option>
         <option value="ACOMPAÑANTE"{{ old('persona_testigos') == 'ACOMPAÑANTE' ? ' selected' : '' }}>ACOMPAÑANTE</option>
@@ -313,7 +496,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Descripción detallada del evento
+                 <i class="fas fa-notes-medical me-2"></i>
+    Descripción detallada del evento
             </div>
             <div class="card-body">
 
@@ -339,7 +523,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Tipo de incidente
+                <i class="fas fa-list-check me-2"></i>
+    Tipo de incidente
             </div>
             <div class="card-body">
                 <!-- Select para Categorías -->
@@ -379,7 +564,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Gravedad del daño
+                <i class="fas fa-heart-pulse me-2"></i>
+    Gravedad del daño
             </div>
             <div class="card-body">
 
@@ -458,7 +644,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Factores del incidente
+                <i class="fas fa-magnifying-glass-chart me-2"></i>
+    Factores del incidente
             </div>
             <div class="card-body">
 
@@ -557,7 +744,8 @@
 
         <div class="card mt-3">
             <div class="card-header" style="color: white; font-weight: bold; background-color: #6f42c1;">
-                Evitabilidad
+                <i class="fas fa-shield-heart me-2"></i>
+    Evitabilidad
             </div>
             <div class="card-body">
 
@@ -651,9 +839,10 @@
           <div class="col-md-12">
             <center>
 
-            <button type="submit" class="btn btn-block mt-3" style="background-color: #6f42c1; color: #fff; border: none;">REGISTRAR EVENTO</button>
+            <button type="submit" class="btn btn-registrar"><i class="fas fa-save"></i>  REGISTRAR EVENTO</button>
 
             </center>
+
           </div>
         </div>
 
