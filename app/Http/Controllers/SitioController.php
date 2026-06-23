@@ -61,7 +61,7 @@ class SitioController extends Controller
     public function store(Request $request)
     {        
         $request->validate([
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required',
             'clasificacion_del_evento'=>'required',
             'unidad'=>'required',
             'edad'=>'required|integer|max_digits:2',
@@ -95,39 +95,6 @@ class SitioController extends Controller
             'proporciono_informacion'=>'required',
             'quien_proporciono'=>'required',
         ], [
-            /*'clasificacion_del_evento.required' => 'El campo de clasificación del evento es obligatorio.',
-            'unidad.required' => 'El campo unidad es obligatorio.',
-            'edad.required' => 'El campo edad es obligatorio.',
-            'edad.integer' => 'El campo edad debe ser un número.',
-            'sexo.required' => 'El campo sexo es obligatorio.',
-            'servicio.required' => 'Debe seleccionar un lugar o area',
-            'turno.required' => 'Debe seleccionar un turno',
-            'fecha_hora.required' => 'El campo fecha y hora es obligatorio.',
-            'fecha_hora.date_format' => 'El formato de la fecha y hora no es válido. Debe ser YYYY-MM-DDTHH:MM.',
-            'persona_involucrada.required' => 'Debe seleccionar una opción',
-            'persona_testigos.required' => 'Debe seleccionar una opción',
-            'descripcion.required' => 'La descripción del evento es necesaria',
-
-            'categoria.required' => 'Es necesario seleccionar una categoria',
-            'opcion.required' => 'Es necesario seleccionar una opcion',
-            'incidente_otro.required_if' => 'Debe ingresar un detalle en cuando la categoría sea OTRO INCIDENTE.',
-
-            'gravedad.required' => 'Es necesario seleccionar una opción',
-            'factores_incidente_uno.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'factores_incidente_dos.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'factores_incidente_tres.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'factores_incidente_cuatro.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'factores_incidente_cinco.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'factores_incidente_seis.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'factores_incidente_siete.required_without_all' => 'Debe seleccionar al menos un factor que haya contribuido al incidente.',
-            'evitar_evento.required' => 'Debe seleccionar una opción.',
-            'como_evitar_evento.required' => 'Debe ingresar un comentario.',
-            'proporciono_informacion.required' => 'Debe seleccionar una opción.',
-            'quien_proporciono.required' => 'Debe seleccionar una opción.',
-
-            'g-recaptcha-response.required' => 'Por favor verifica que no eres un robot.',
-            'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.',*/
-
             'clasificacion_del_evento.required' => 'La clasificación del evento es obligatoria.',
 
             'unidad.required' => 'La unidad es obligatoria.',
@@ -193,6 +160,23 @@ class SitioController extends Controller
             'g-recaptcha-response.required' => 'Por favor verifica que no eres un robot.',
             'g-recaptcha-response.captcha' => 'La verificación del reCAPTCHA falló. Inténtalo de nuevo.'
         ]);
+
+        // Validacion manual para recaptcha
+        $recaptcha = Http::withoutVerifying()->post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            [
+                'secret' => env('RECAPTCHA_SECRET'),
+                'response' => $request->input('g-recaptcha-response'),
+            ]
+        );
+
+        $result = $recaptcha->json();
+
+        if (($result['success'] ?? false) !== true) {
+            return back()->withErrors([
+                'captcha' => 'Error en validación reCAPTCHA'
+            ]);
+        }
 
         // Consultamos el clues de la unidad
         $unidad = Unidad::findOrFail($request->unidad);
