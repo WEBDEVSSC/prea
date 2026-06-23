@@ -830,23 +830,15 @@ footer{
         <div class="row mt-3">
           <div class="col-md-12">
 
-            {{--<center>
+            <center>
 
-            {!! NoCaptcha::display() !!}
-
-            @if ($errors->has('g-recaptcha-response'))
-                <span class="text-danger">
-                    {{ $errors->first('g-recaptcha-response') }}
-                </span>
-            @endif
-
-            </center>--}}
-
-            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+              <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
               <div class="cf-turnstile"
                   data-sitekey="{{ env('TURNSTILE_SITE_KEY') }}">
               </div>
+
+            </center>
 
           </div>
         </div>
@@ -868,8 +860,6 @@ footer{
 
     </form>
 
-    <!-- Carga el script -->
- {!! NoCaptcha::renderJs() !!}
 
     <!-- ------------------------------------------------------------------------- -->
     
