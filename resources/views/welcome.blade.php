@@ -830,7 +830,7 @@ footer{
         <div class="row mt-3">
           <div class="col-md-12">
 
-            <center>
+            {{--<center>
 
             {!! NoCaptcha::display() !!}
 
@@ -840,7 +840,13 @@ footer{
                 </span>
             @endif
 
-            </center>
+            </center>--}}
+
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+              <div class="cf-turnstile"
+                  data-sitekey="{{ env('TURNSTILE_SITE_KEY') }}">
+              </div>
 
           </div>
         </div>
@@ -863,7 +869,7 @@ footer{
     </form>
 
     <!-- Carga el script -->
-{!! NoCaptcha::renderJs() !!}
+ {!! NoCaptcha::renderJs() !!}
 
     <!-- ------------------------------------------------------------------------- -->
     

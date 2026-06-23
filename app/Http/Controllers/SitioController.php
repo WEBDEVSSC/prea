@@ -60,13 +60,8 @@ class SitioController extends Controller
      */
     public function store(Request $request)
     {        
-        dd([
-            'token' => $request->input('g-recaptcha-response'),
-            'response' => $response->json()
-        ]);
-    
         $request->validate([
-            'g-recaptcha-response' => 'required',
+            //'g-recaptcha-response' => 'required',
             'clasificacion_del_evento'=>'required',
             'unidad'=>'required',
             'edad'=>'required|integer|max_digits:2',
@@ -167,7 +162,7 @@ class SitioController extends Controller
         ]);
 
         // Validacion manual para recaptcha
-        $recaptcha = Http::withoutVerifying()->post(
+        /*$recaptcha = Http::withoutVerifying()->post(
             'https://www.google.com/recaptcha/api/siteverify',
             [
                 'secret' => env('RECAPTCHA_SECRET'),
@@ -181,9 +176,24 @@ class SitioController extends Controller
             return back()->withErrors([
                 'captcha' => 'Error en validación reCAPTCHA'
             ]);
-        }
+        }*/
 
+            $turnstile = Http::post(
+                'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+                [
+                    'secret' => env('TURNSTILE_SECRET_KEY'),
+                    'response' => $request->input('cf-turnstile-response'),
+                    'remoteip' => $request->ip(),
+                ]
+            );
 
+            $result = $turnstile->json();
+
+            if (!($result['success'] ?? false)) {
+                return back()->withErrors([
+                    'captcha' => 'Verificación fallida, intenta nuevamente.'
+                ]);
+            }
 
         // Consultamos el clues de la unidad
         $unidad = Unidad::findOrFail($request->unidad);
