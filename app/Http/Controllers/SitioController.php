@@ -60,6 +60,11 @@ class SitioController extends Controller
      */
     public function store(Request $request)
     {        
+        dd([
+            'token' => $request->input('g-recaptcha-response'),
+            'response' => $response->json()
+        ]);
+    
         $request->validate([
             'g-recaptcha-response' => 'required',
             'clasificacion_del_evento'=>'required',
@@ -177,6 +182,8 @@ class SitioController extends Controller
                 'captcha' => 'Error en validación reCAPTCHA'
             ]);
         }
+
+
 
         // Consultamos el clues de la unidad
         $unidad = Unidad::findOrFail($request->unidad);
