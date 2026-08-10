@@ -5,377 +5,276 @@
 @section('plugins.Chartjs', true)
 
 @section('content_header')
-    <h1><strong>Dashboard </strong><small><?php echo date('Y'); ?></small></h1>
+    <div class="d-flex align-items-center justify-content-between mb-2 mt-2">
+        <h1 class="m-0 font-weight-bold text-dark" style="font-size: 1.75rem;">
+            Dashboard <small class="text-muted" style="font-size: 1.1rem; font-weight: 400;"><?php echo date('Y'); ?></small>
+        </h1>
+    </div>
 @stop
 
 @section('content')
 
-    <!-- -------------------------------------------------------------------- -->
-
     @if($usuario->role == "admin")
 
+    <!-- TARJETAS DE RESUMEN TIPO MATERIAL DESIGN -->
     <div class="row">
-        <div class="col-md-3">
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>{{ $cuasiFalla }}</h3>
-
-                <p>Cuasi-Falla</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="{{ route('indexCuasiFalla') }}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="card card-material-widget widget-success mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="widget-title">Cuasi-Falla</span>
+                            <h2 class="widget-value mb-0">{{ $cuasiFalla }}</h2>
+                        </div>
+                        <div class="widget-icon bg-success-light">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    <a href="{{ route('indexCuasiFalla') }}" class="widget-link text-success mt-3 d-inline-block font-weight-bold">
+                        Ver detalles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3 style="color: white;">{{ $eventoAdverso }}</h3>
-
-                <p style="color: white;">Adverso</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="{{ route('indexAdversos') }}" class="small-box-footer text-white" style="color: white !important;">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="card card-material-widget widget-warning mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="widget-title">Adverso</span>
+                            <h2 class="widget-value mb-0">{{ $eventoAdverso }}</h2>
+                        </div>
+                        <div class="widget-icon bg-warning-light">
+                            <i class="fas fa-notes-medical"></i>
+                        </div>
+                    </div>
+                    <a href="{{ route('indexAdversos') }}" class="widget-link text-warning mt-3 d-inline-block font-weight-bold">
+                        Ver detalles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{ $eventoCentinela }}</h3>
-
-                <p>Centinela</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="{{ route('indexCentinelas') }}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
-            </div> 
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="card card-material-widget widget-danger mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="widget-title">Centinela</span>
+                            <h2 class="widget-value mb-0">{{ $eventoCentinela }}</h2>
+                        </div>
+                        <div class="widget-icon bg-danger-light">
+                            <i class="fas fa-biohazard"></i>
+                        </div>
+                    </div>
+                    <a href="{{ route('indexCentinelas') }}" class="widget-link text-danger mt-3 d-inline-block font-weight-bold">
+                        Ver detalles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{$totalEvento}}</h3>
-
-                <p>Total</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="{{ route('eventoIndex') }}" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="card card-material-widget widget-purple mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="widget-title">Total Eventos</span>
+                            <h2 class="widget-value mb-0">{{ $totalEvento }}</h2>
+                        </div>
+                        <div class="widget-icon bg-purple-light">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                    </div>
+                    <a href="{{ route('eventoIndex') }}" class="widget-link text-purple mt-3 d-inline-block font-weight-bold">
+                        Ver detalles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    
-
-        <!-- INICIO DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
-
-        {{-- <div class="row">
-            <div class="col-md-3">
-    
-                <div class="info-box">
-                    <span class="info-box-icon bg-success"><i class="far fa-envelope"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">CUASI-FALLA</span>
-                        <span class="info-box-number">{{ $cuasiFalla }}</span>
-                        <a href="">Detalles</a>
-                    </div>            
-                </div>
-    
-            </div>            
-    
-            <div class="col-md-3">
-    
-                <div class="info-box">
-                    <span class="info-box-icon bg-warning"><i class="far fa-envelope"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">ADVERSO</span>
-                        <span class="info-box-number">{{ $eventoAdverso }}</span>
-                        <a href="">Detalles</a>
-                    </div>            
-                </div>
-    
-            </div>
-    
-            <div class="col-md-3">
-    
-                <div class="info-box">
-                    <span class="info-box-icon bg-danger"><i class="far fa-envelope"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">CENTINELA</span>
-                        <span class="info-box-number">{{ $eventoCentinela }}</span>
-                        <a href="">Detalles</a>
-                    </div>            
-                </div>
-    
-            </div>
-    
-            <div class="col-md-3">
-    
-                <div class="info-box">
-                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">TOTAL</span>
-                        <span class="info-box-number">{{ $totalEvento }}</span>
-                        <a class="badge badge-danger" href="">Detalles</a>
-                    </div>            
-                </div>
-    
-            </div>
-        </div> --}}
-    
-        <!-- -------------------------------------------------------------------- -->
-
-        <div class="row">
-            <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Reportes por Nivel de Atención</strong></h3>
+    <!-- SECCIÓN DE GRÁFICAS PRINCIPALES -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Reportes por Nivel de Atención</h3>
                 </div>
                 <div class="card-body">
-    
-                            <div>
-                                <canvas id="registrosPorNivelDeAtencion" width="400" height="400"></canvas>
-                            </div>
-    
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="registrosPorNivelDeAtencion"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Resumen por mes</strong></h3>
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Resumen por mes</h3>
                 </div>
                 <div class="card-body">
-    
-                            <div>
-                                <canvas id="myBarCharts" width="400" height="350"></canvas>
-                            </div>
-    
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="myBarCharts"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-        
-        <!-- -------------------------------------------------------------------- -->
-
-        <div class="row">
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Comparativo Anual CuasiFalla</strong></h3>
-                    </div>
-                    <div class="card-body">
-
-                        <div>
-                            <canvas id="myBarChartsCuasiFallaHistorico" width="400" height="350"></canvas>
-                        </div>
-
+    <!-- COMPARATIVOS HISTÓRICOS -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Comparativo Anual CuasiFalla</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="myBarChartsCuasiFallaHistorico"></canvas>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Comparativo Anual Adverso</strong></h3>
-                    </div>
-                    <div class="card-body">
-                        
-                        <div>
-                            <canvas id="myBarChartsAdversoHistorico" width="400" height="350"></canvas>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Comparativo Anual Centinela</strong></h3>
-                    </div>
-                    <div class="card-body">
-
-                        <div>
-                            <canvas id="myBarChartsCentinelaHistorico" width="400" height="350"></canvas>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- -------------------------------------------------------------------- -->
-    
-        <div class="row">
-            
-            <div class="col-md-3">
-    
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Registros por jurisdicción</strong></h3>
-                    </div>
-                    <div class="card-body">
-                        
-                                <div>
-                                    <canvas id="registrosPorJurisdiccion" width="400" height="400"></canvas>
-                                </div>
-                        
-    
+        <div class="col-md-4">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Comparativo Anual Adverso</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="myBarChartsAdversoHistorico"></canvas>
                     </div>
                 </div>
-    
             </div>
-            <div class="col-md-3">
-    
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Registros por sexo</strong></h3>
-                    </div>
-                    <div class="card-body">
-    
-                    
-                        <div>
-                            <canvas id="registrosPorSexo" width="400" height="400"></canvas>
-                        </div>
-    
-                        
-    
-                    </div>
-                </div>
-    
-            </div>
-    
-            <div class="col-md-3">
-    
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Rangos de edad</strong></h3>
-                    </div>
-                    <div class="card-body">
-    
-                                <div>
-                                    <canvas id="registrosPorRangoDeEdad" width="400" height="400"></canvas>
-                                </div>
-
-                    </div>
-                </div>
-    
-            </div>
-    
-            <div class="col-md-3">
-    
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><strong>Lugar o área del evento adverso</strong></h3>
-                    </div>
-                    <div class="card-body">
-    
-                                <div>
-                                    <canvas id="graficaAreaEventoAdverso" width="400" height="400"></canvas>
-                                </div>
-    
-                    </div>
-                </div>
-    
-            </div>
-    
-            
         </div>
-    
-        <!-- -------------------------------------------------------------------- -->
-    
-        <div class="row">
+
+        <div class="col-md-4">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Comparativo Anual Centinela</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="myBarChartsCentinelaHistorico"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETALLES DEMOGRÁFICOS -->
+    <div class="row">
         <div class="col-md-3">
-    
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Turno</strong></h3>
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Registros por jurisdicción</h3>
                 </div>
                 <div class="card-body">
-    
-                            <div>
-                                <canvas id="graficaTurno" width="400" height="400"></canvas>
-                            </div>
-    
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="registrosPorJurisdiccion"></canvas>
+                    </div>
                 </div>
-            </div>
-    
-            </div>
-
-            <div class="col-md-3">
-    
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Tipo de Incidente</strong></h3>
-                </div>
-                <div class="card-body">
-    
-                            <div>
-                                <canvas id="registrosPorTipoIncidente" width="400" height="400"></canvas>
-                            </div>
-    
-                </div>
-            </div>
-    
-            </div>
-
-             <div class="col-md-3">
-    
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Gravedad del daño</strong></h3>
-                </div>
-                <div class="card-body">
-    
-                            <div>
-                                <canvas id="registrosPorGravedadDelDano" width="400" height="400"></canvas>
-                            </div>
-    
-                </div>
-            </div>
-    
-            </div>
-    
-            <div class="col-md-3">
-    
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><strong>Persona directamente involucrada</strong></h3>
-                </div>
-                <div class="card-body">
-    
-                            <div>
-                                <canvas id="registrosPersonaDirectamenteInvolucrada" width="400" height="407"></canvas>
-                            </div>
-    
-                </div>
-            </div>
-    
             </div>
         </div>
 
-        <!-- ------------------------------------------------------------------ -->
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Registros por sexo</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="registrosPorSexo"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- ------------------------------------------------------------------ -->
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Rangos de edad</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="registrosPorRangoDeEdad"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 0.95rem;">Lugar / Área del evento</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="graficaAreaEventoAdverso"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- FIN DE LAS GRAFICAS PARA EL USUARIO ADMIN -->
-    
-    @else
+    <!-- OTROS FACTORES -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Turno</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="graficaTurno"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Tipo de Incidente</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="registrosPorTipoIncidente"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Gravedad del daño</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="registrosPorGravedadDelDano"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 0.9rem;">Persona involucrada</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 280px;">
+                        <canvas id="registrosPersonaDirectamenteInvolucrada"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @endif
 
 @stop
@@ -383,971 +282,443 @@
 @include('layouts.footer')
 
 @section('css')
+<!-- Google Fonts: Roboto -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
+<style>
+    /* Aplicación general de fuente Roboto */
+    body, .content-wrapper {
+        font-family: 'Roboto', sans-serif !important;
+        background-color: #e9ecef !important; /* Gris claro institucional de fondo */
+    }
+
+    /* Tarjetas principales estilo Material Design */
+    .card-material {
+        border: 1px solid rgba(0, 0, 0, 0.04) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        background-color: #ffffff !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-material:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Tarjetas de Widgets/Resumen estilo Material */
+    .card-material-widget {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+        background-color: #ffffff !important;
+        transition: transform 0.2s ease;
+    }
+
+    .card-material-widget:hover {
+        transform: translateY(-3px);
+    }
+
+    .widget-title {
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6c757d;
+    }
+
+    .widget-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #212529;
+    }
+
+    .widget-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .widget-link {
+        font-size: 0.85rem;
+        text-decoration: none !important;
+        transition: opacity 0.2s ease;
+    }
+
+    .widget-link:hover {
+        opacity: 0.8;
+    }
+
+    /* Modificadores de Colores para Íconos e Indicadores Material */
+    .bg-success-light { background-color: #e8f5e9; color: #2e7d32; }
+    .bg-warning-light { background-color: #fff8e1; color: #f57f17; }
+    .bg-danger-light { background-color: #ffebee; color: #c62828; }
+    .bg-purple-light { background-color: #f3e5f5; color: #6200ee; }
+
+    .text-purple { color: #6200ee !important; }
+</style>
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-
-   <script>
-    // Esta línea convierte la variable PHP $datosPorTipo en una variable JS válida
-    const datosPorTipo = @json($datosPorTipo);
-</script>
-
 <script>
+    // Configuración global estética para Chart.js
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.Chart) {
+            Chart.defaults.font.family = 'Roboto, sans-serif';
+            Chart.defaults.color = '#495057';
+            Chart.defaults.font.size = 11;
+        }
+    });
+
+    // Configuración base reutilizable para gráficas circulares (sin leyendas)
+    const opcionesDoughnutSinLeyenda = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                enabled: true
+            }
+        }
+    };
+
+    // 1. Convertir PHP a JS
+    const datosPorTipo = @json($datosPorTipo);
+
+    // 2. Gráfica Resumen por mes
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('myBarCharts');
-        if (!ctx) {
-            console.error('No se encontró el elemento con ID "myBarCharts"');
-            return;
-        }
-
-        // Configuración global para Chart.js 3+
-        Chart.defaults.font.family = 'Nunito, sans-serif';
-        Chart.defaults.color = '#000';
-        Chart.defaults.font.size = 12;
-
-        // Aquí ya usamos la variable que viene desde el backend
-        new Chart(ctx.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [
-
-                    {
-                        label: 'Cuasifalla',
-                        data: datosPorTipo.Cuasifalla,
-                        backgroundColor: 'rgba(34, 197, 94, 0.8)',  // Verde
-                        borderColor: 'rgba(34, 197, 94, 1)',
-                        borderWidth: 1
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [
+                        {
+                            label: 'Cuasifalla',
+                            data: datosPorTipo.Cuasifalla,
+                            backgroundColor: 'rgba(46, 125, 50, 0.85)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Adverso',
+                            data: datosPorTipo.Adverso,
+                            backgroundColor: 'rgba(245, 127, 23, 0.85)',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Centinela',
+                            data: datosPorTipo.Centinela,
+                            backgroundColor: 'rgba(198, 40, 40, 0.85)',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
                     },
-                    {
-                        label: 'Adverso',
-                        data: datosPorTipo.Adverso,
-                        backgroundColor: 'rgba(250, 204, 21, 0.8)',  // Amarillo
-                        borderColor: 'rgba(250, 204, 21, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Centinela',
-                        data: datosPorTipo.Centinela,
-                        backgroundColor: 'rgba(239, 68, 68, 0.8)',   // Rojo
-                        borderColor: 'rgba(239, 68, 68, 1)',
-                        borderWidth: 1
-                    }
-
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(0, 0, 0, 0.04)' } },
+                        x: { grid: { display: false } }
                     }
                 }
-            }
-        });
+            });
+        }
     });
-</script>
 
-<script>
+    // 3. Comparativo Anual CuasiFalla
     const datosCuasiFallaHistorico = @json($datosCuasiFallaHistorico);
-</script>
-
-<script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('myBarChartsCuasiFallaHistorico');
-        if (!ctx) {
-            console.error('No se encontró el elemento con ID "myBarChartsCuasiFallaHistorico"');
-            return;
-        }
-
-        // Configuración global para Chart.js 3+
-        Chart.defaults.font.family = 'Nunito, sans-serif';
-        Chart.defaults.color = '#000';
-        Chart.defaults.font.size = 12;
-
-        /*
-            Se espera que desde el backend venga algo así:
-
-            datosCuasiFallaHistorico = {
-                2024: [12, 7, 15, 9, 4, 6, 8, 5, 10, 11, 3, 2],
-                2025: [9, 11, 8, 6, 7, 10, 5, 4, 9, 6, 2, 1],
-                2026: [4, 2, 6, 3, 5, 7, 2, 1, 4, 3, 1, 0]
-            };
-        */
-
-        new Chart(ctx.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [
-                    {
-                        label: '2024',
-                        data: datosCuasiFallaHistorico[2024],
-                        backgroundColor: 'rgba(59, 130, 246, 0.8)',   // Azul
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2025',
-                        data: datosCuasiFallaHistorico[2025],
-                        backgroundColor: 'rgba(34, 197, 94, 0.8)',   // Verde
-                        borderColor: 'rgba(34, 197, 94, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2026',
-                        data: datosCuasiFallaHistorico[2026],
-                        backgroundColor: 'rgba(239, 68, 68, 0.8)',   // Rojo
-                        borderColor: 'rgba(239, 68, 68, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            precision: 0
-                        }
-                    }
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [
+                        { label: '2024', data: datosCuasiFallaHistorico[2024], backgroundColor: 'rgba(33, 150, 243, 0.85)', borderRadius: 4 },
+                        { label: '2025', data: datosCuasiFallaHistorico[2025], backgroundColor: 'rgba(76, 175, 80, 0.85)', borderRadius: 4 },
+                        { label: '2026', data: datosCuasiFallaHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
                 }
-            }
-        });
+            });
+        }
     });
-</script>
 
-<script>
+    // 4. Comparativo Anual Adverso
     const datosAdversoHistorico = @json($datosAdversoHistorico);
-</script>
-
-
-<script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('myBarChartsAdversoHistorico');
-        if (!ctx) {
-            console.error('No se encontró el elemento con ID "myBarChartsAdversoHistorico"');
-            return;
-        }
-
-        // Configuración global Chart.js 3+
-        Chart.defaults.font.family = 'Nunito, sans-serif';
-        Chart.defaults.color = '#000';
-        Chart.defaults.font.size = 12;
-
-        new Chart(ctx.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [
-                    {
-                        label: '2024',
-                        data: datosAdversoHistorico[2024],
-                        backgroundColor: 'rgba(59, 130, 246, 0.8)', // Amarillo
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2025',
-                        data: datosAdversoHistorico[2025],
-                        backgroundColor: 'rgba(34, 197, 94, 0.8)', // Verde
-                        borderColor: 'rgba(34, 197, 94, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2026',
-                        data: datosAdversoHistorico[2026],
-                        backgroundColor: 'rgba(239, 68, 68, 0.8)', // Rojo
-                        borderColor: 'rgba(239, 68, 68, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            precision: 0
-                        }
-                    }
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [
+                        { label: '2024', data: datosAdversoHistorico[2024], backgroundColor: 'rgba(33, 150, 243, 0.85)', borderRadius: 4 },
+                        { label: '2025', data: datosAdversoHistorico[2025], backgroundColor: 'rgba(76, 175, 80, 0.85)', borderRadius: 4 },
+                        { label: '2026', data: datosAdversoHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
                 }
-            }
-        });
+            });
+        }
     });
-</script>
 
-
-<script>
+    // 5. Comparativo Anual Centinela
     const datosCentinelaHistorico = @json($datosCentinelaHistorico);
-</script>
-
-<script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('myBarChartsCentinelaHistorico');
-        if (!ctx) {
-            console.error('No se encontró el elemento con ID "myBarChartsCentinelaHistorico"');
-            return;
-        }
-
-        // Configuración global Chart.js
-        Chart.defaults.font.family = 'Nunito, sans-serif';
-        Chart.defaults.color = '#000';
-        Chart.defaults.font.size = 12;
-
-        new Chart(ctx.getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [
-                    {
-                        label: '2024',
-                        data: datosCentinelaHistorico[2024],
-                        backgroundColor: 'rgba(59, 130, 246, 0.8)', // Morado
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2025',
-                        data: datosCentinelaHistorico[2025],
-                        backgroundColor: 'rgba(34, 197, 94, 0.8)', // Amarillo
-                        borderColor: 'rgba(34, 197, 94, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2026',
-                        data: datosCentinelaHistorico[2026],
-                        backgroundColor: 'rgba(239, 68, 68, 0.8)', // Azul claro
-                        borderColor: 'rgba(239, 68, 68, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            precision: 0
-                        }
-                    }
-                }
-            }
-        });
-    });
-</script>
-
-
-
-
-    <!-- GRAFICAS POR SEXO -->
-    <script>
-    // Espera a que el contenido del DOM esté cargado
-    document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPorSexo').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Masculino', 'Femenino'],
-            datasets: [{
-                label: 'Número de votos',
-                data: [{{$totalMasculino}}, {{$totalFemenino}}], 
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.5)',  // Azul Chart.js (más visible)
-                    'rgba(153, 102, 255, 0.5)'  // Morado Chart.js (más visible)
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [
+                        { label: '2024', data: datosCentinelaHistorico[2024], backgroundColor: 'rgba(33, 150, 243, 0.85)', borderRadius: 4 },
+                        { label: '2025', data: datosCentinelaHistorico[2025], backgroundColor: 'rgba(76, 175, 80, 0.85)', borderRadius: 4 },
+                        { label: '2026', data: datosCentinelaHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
+                    ]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
                 }
-            }
+            });
         }
     });
-});
 
-</script>
-
-<!-- GRAFICAS POR NIVEL DE ATENCION -->
-    <script>
-    // Espera a que el contenido del DOM esté cargado
+    // 6. Gráficas por Sexo
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPorNivelDeAtencion').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
-            datasets: [{
-                label: 'Número de votos',
-                data: [{{$primerNivel}}, {{$segundoNivel}}, {{$tercerNivel}}], 
-                backgroundColor: [
-                    'rgba(56, 189, 248, 0.5)',   // Azul cielo (#38bdf8)
-                    'rgba(250, 204, 21, 0.5)',   // Amarillo (#facc15)
-                    'rgba(239, 68, 68, 0.5)'     // Rojo (#ef4444)
-                ],
-                borderColor: [
-                    'rgba(56, 189, 248, 1)',     // Azul cielo
-                    'rgba(250, 204, 21, 1)',     // Amarillo
-                    'rgba(239, 68, 68, 1)'       // Rojo
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        var ctx = document.getElementById('registrosPorSexo');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Masculino', 'Femenino'],
+                    datasets: [{
+                        data: [{{$totalMasculino}}, {{$totalFemenino}}],
+                        backgroundColor: ['#2196f3', '#9c27b0'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const dataset = tooltipItem.chart.data.datasets[tooltipItem.datasetIndex];
-                            const total = dataset.data.reduce((a, b) => a + b, 0);
-                            const value = dataset.data[tooltipItem.dataIndex];
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
-</script>
-
-<!-- GRAFICAS POR JURISDICCION -->
-<script>
-    // Espera a que el contenido del DOM esté cargado
+    // 7. Gráficas por Nivel de Atención
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPorJurisdiccion').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: [
-                'Jurisdicción 1',
-                'Jurisdicción 2',
-                'Jurisdicción 3',
-                'Jurisdicción 4',
-                'Jurisdicción 5',
-                'Jurisdicción 6',
-                'Jurisdicción 7',
-                'Jurisdicción 8',
-            ],
-            datasets: [{
-                label: 'Número de votos',
-                data: [
-                    {{$totalJurisdiccionUno}}, 
-                    {{$totalJurisdiccionDos}},  
-                    {{$totalJurisdiccionTres}},  
-                    {{$totalJurisdiccionCuatro}},  
-                    {{$totalJurisdiccionCinco}},  
-                    {{$totalJurisdiccionSeis}},  
-                    {{$totalJurisdiccionSiete}},  
-                    {{$totalJurisdiccionOcho}},  
-                ], 
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.5)',   // Azul (Color 1)
-                    'rgba(153, 102, 255, 0.5)',  // Morado (Color 2)
-                    'rgba(255, 159, 64, 0.5)',   // Naranja (Color 3)
-                    'rgba(75, 192, 192, 0.5)',   // Verde agua (Color 4)
-                    'rgba(255, 99, 132, 0.5)',   // Rojo (Color 5)
-                    'rgba(54, 162, 235, 0.5)',   // Azul (Color 6) - repetido para mantener paleta
-                    'rgba(255, 206, 86, 0.5)',   // Amarillo (Color 7)
-                    'rgba(153, 102, 255, 0.5)'   // Morado (Color 8) - repetido
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',     // Azul (Color 1)
-                    'rgba(153, 102, 255, 1)',    // Morado (Color 2)
-                    'rgba(255, 159, 64, 1)',     // Naranja (Color 3)
-                    'rgba(75, 192, 192, 1)',     // Verde agua (Color 4)
-                    'rgba(255, 99, 132, 1)',     // Rojo (Color 5)
-                    'rgba(54, 162, 235, 1)',     // Azul (Color 6)
-                    'rgba(255, 206, 86, 1)',     // Amarillo (Color 7)
-                    'rgba(153, 102, 255, 1)'     // Morado (Color 8)
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        var ctx = document.getElementById('registrosPorNivelDeAtencion');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
+                    datasets: [{
+                        data: [{{$primerNivel}}, {{$segundoNivel}}, {{$tercerNivel}}],
+                        backgroundColor: ['#03a9f4', '#ffc107', '#f44336'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
-</script>
-
-<!-- GRAFICAS POR RANGOS DE EDAD -->
-<script>
-    // Espera a que el contenido del DOM esté cargado
+    // 8. Gráficas por Jurisdicción
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPorRangoDeEdad').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Primera Infancia','Infancia','Adolescencia','Juventud','Adultez','Persona Mayor'],
-            datasets: [{
-                label: 'Número de registros',
-                data: [
-                    {{$totalPrimeraInfancia}}, 
-                    {{$totalInfancia}},  
-                    {{$totalAdolescencia}},  
-                    {{$totalJuventud}},  
-                    {{$totalAdultez}},  
-                    {{$totalPersonaMayor}}, 
-                ], 
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',   // Color 1 - Rojo
-                    'rgba(54, 162, 235, 0.5)',   // Color 2 - Azul
-                    'rgba(255, 206, 86, 0.5)',   // Color 3 - Amarillo
-                    'rgba(75, 192, 192, 0.5)',   // Color 4 - Verde agua
-                    'rgba(153, 102, 255, 0.5)',  // Color 5 - Morado
-                    'rgba(255, 159, 64, 0.5)'    // Color 6 - Naranja
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',     // Color 1
-                    'rgba(54, 162, 235, 1)',     // Color 2
-                    'rgba(255, 206, 86, 1)',     // Color 3
-                    'rgba(75, 192, 192, 1)',     // Color 4
-                    'rgba(153, 102, 255, 1)',    // Color 5
-                    'rgba(255, 159, 64, 1)'      // Color 6
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        var ctx = document.getElementById('registrosPorJurisdiccion');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8'],
+                    datasets: [{
+                        data: [
+                            {{$totalJurisdiccionUno}}, {{$totalJurisdiccionDos}}, {{$totalJurisdiccionTres}},
+                            {{$totalJurisdiccionCuatro}}, {{$totalJurisdiccionCinco}}, {{$totalJurisdiccionSeis}},
+                            {{$totalJurisdiccionSiete}}, {{$totalJurisdiccionOcho}}
+                        ],
+                        backgroundColor: ['#2196f3', '#9c27b0', '#ff9800', '#00bcd4', '#f44336', '#3f51b5', '#ffeb3b', '#673ab7'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
-</script>
-
-<!-- GRAFICAS POR AREA DONDE OCURRIO EL EVENTO -->
-<script>
+    // 9. Rangos de Edad
     document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('graficaAreaEventoAdverso').getContext('2d');
-    
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: [
-                    'almacen',
-                    'cendis',
-                    'ceye',
-                    'consultaExterna',
-                    'dental',
-                    'farmacia',
-                    'hospitalizacion',
-                    'imagenologia',
-                    'laboratorio',
-                    'medicinaPreventiva',
-                    'nutricion',
-                    'patologia',
-                    'quirofano',
-                    'saludReproductiva',
-                    'tococirugia',
-                    'UCIAdultos',
-                    'UCINeonatales',
-                    'UCIPediatricos',
-                    'urgencias',
-                ],
-                datasets: [{
-                    label: 'Número de registros',
-                    data: [
-                        {{ $almacen }},
-                        {{ $cendis }},
-                        {{ $ceye }},
-                        {{ $consultaExterna }},
-                        {{ $dental }},
-                        {{ $farmacia }},
-                        {{ $hospitalizacion }},
-                        {{ $imagenologia }},
-                        {{ $laboratorio }},
-                        {{ $medicinaPreventiva }},
-                        {{ $nutricion }},
-                        {{ $patologia }},
-                        {{ $quirofano }},
-                        {{ $saludReproductiva }},
-                        {{ $tococirugia }},
-                        {{ $UCIAdultos }},
-                        {{ $UCINeonatales }},
-                        {{ $UCIPediatricos }},
-                        {{ $urgencias }}
+        var ctx = document.getElementById('registrosPorRangoDeEdad');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['1ra Infancia','Infancia','Adolescencia','Juventud','Adultez','Mayor'],
+                    datasets: [{
+                        data: [
+                            {{$totalPrimeraInfancia}}, {{$totalInfancia}}, {{$totalAdolescencia}},
+                            {{$totalJuventud}}, {{$totalAdultez}}, {{$totalPersonaMayor}}
+                        ],
+                        backgroundColor: ['#e91e63', '#2196f3', '#ffc107', '#00bcd4', '#9c27b0', '#ff9800'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: opcionesDoughnutSinLeyenda
+            });
+        }
+    });
+
+    // 10. Área del Evento Adverso
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('graficaAreaEventoAdverso');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Almacén', 'Cendis', 'CEYE', 'Consulta Externa', 'Dental', 'Farmacia', 
+                        'Hospitalización', 'Imagenología', 'Laboratorio', 'Medicina Preventiva', 
+                        'Nutrición', 'Patología', 'Quirófano', 'Salud Reproductiva', 'Tococirugía', 
+                        'UCI Adultos', 'UCI Neonatales', 'UCI Pediátricos', 'Urgencias'
                     ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',    // Rosa claro
-                        'rgba(54, 162, 235, 0.5)',    // Azul claro
-                        'rgba(255, 206, 86, 0.5)',    // Amarillo claro
-                        'rgba(75, 192, 192, 0.5)',    // Verde agua claro
-                        'rgba(153, 102, 255, 0.5)',   // Lila claro
-                        'rgba(255, 159, 64, 0.5)',    // Naranja claro
-                        'rgba(199, 199, 199, 0.5)',   // Gris claro
-                        'rgba(255, 99, 71, 0.5)',     // Tomate claro
-                        'rgba(32, 189, 185, 0.5)',    // Aqua oscuro
-                        'rgba(255, 87, 34, 0.5)',     // Coral
-                        'rgba(153, 255, 51, 0.5)',    // Verde lima
-                        'rgba(255, 20, 147, 0.5)',    // Deep pink
-                        'rgba(0, 255, 255, 0.5)',     // Cian
-                        'rgba(255, 69, 0, 0.5)',      // Rojo oscuro
-                        'rgba(138, 43, 226, 0.5)',    // Azul oscuro
-                        'rgba(0, 128, 128, 0.5)',     // Verde azulado
-                        'rgba(128, 0, 128, 0.5)',     // Púrpura
-                        'rgba(210, 105, 30, 0.5)',    // Marrón chocolate
-                        'rgba(244, 164, 96, 0.5)'     // Arena claro
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(199, 199, 199, 1)',
-                        'rgba(255, 99, 71, 1)',
-                        'rgba(32, 189, 185, 1)',
-                        'rgba(255, 87, 34, 1)',
-                        'rgba(153, 255, 51, 1)',
-                        'rgba(255, 20, 147, 1)',
-                        'rgba(0, 255, 255, 1)',
-                        'rgba(255, 69, 0, 1)',
-                        'rgba(138, 43, 226, 1)',
-                        'rgba(0, 128, 128, 1)',
-                        'rgba(128, 0, 128, 1)',
-                        'rgba(210, 105, 30, 1)',
-                        'rgba(244, 164, 96, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                        }
-                    }
-                }
-            }
-        });
-    });
-    </script>
-    
-
-<!-- GRAFICAS POR AREA DONDE OCURRIO EL EVENTO -->
-<script>
-    // Espera a que el contenido del DOM esté cargado
-    document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('graficaTurno').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: [
-                'Matutino', 
-                'Vespertino',  
-                'Nocturno',  
-                'Jornada Acumulada',  
-        
-            ],
-            datasets: [{
-                label: 'Número de registros',
-                data: [
-                    {{$matutino}}, 
-                    {{$vespertino}},  
-                    {{$nocturno}},  
-                    {{$jornadaAcumulada}},  
-                ], 
-                backgroundColor: [
-                    'rgba(229, 57, 53, 0.5)',    // Red 600 (más intenso)
-                    'rgba(30, 136, 229, 0.5)',   // Blue 600 (más intenso)
-                    'rgba(253, 216, 53, 0.5)',   // Yellow 600 (más intenso)
-                    'rgba(0, 137, 123, 0.5)'     // Teal 600 (más intenso)
-                ],
-                borderColor: [
-                    'rgba(229, 57, 53, 1)',      // Red 600
-                    'rgba(30, 136, 229, 1)',     // Blue 600
-                    'rgba(253, 216, 53, 1)',     // Yellow 600
-                    'rgba(0, 137, 123, 1)'       // Teal 600
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+                    datasets: [{
+                        data: [
+                            {{ $almacen }}, {{ $cendis }}, {{ $ceye }}, {{ $consultaExterna }}, {{ $dental }},
+                            {{ $farmacia }}, {{ $hospitalizacion }}, {{ $imagenologia }}, {{ $laboratorio }},
+                            {{ $medicinaPreventiva }}, {{ $nutricion }}, {{ $patologia }}, {{ $quirofano }},
+                            {{ $saludReproductiva }}, {{ $tococirugia }}, {{ $UCIAdultos }}, {{ $UCINeonatales }},
+                            {{ $UCIPediatricos }}, {{ $urgencias }}
+                        ],
+                        backgroundColor: [
+                            '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4',
+                            '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107',
+                            '#ff9800', '#ff5722', '#795548', '#9e9e9e', '#607d8b'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
-</script>
-
-<script>
-    // Esperamos a que el DOM esté completamente cargado
-    document.addEventListener('DOMContentLoaded', function () {
-        // Seleccionamos el elemento canvas
-        var ctx = document.getElementById('myBarChart').getContext('2d');
-
-        // Creamos la gráfica de barras
-        var myBarChart = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfica
-            data: {
-                labels: [
-                    'Enero', 
-                    'Febrero', 
-                    'Marzo', 
-                    'Abril', 
-                    'Mayo', 
-                    'Junio', 
-                    'Julio', 
-                    'Agosto', 
-                    'Septiembre', 
-                    'Octubre', 
-                    'Noviembre', 
-                    'Diciembre'
-                ], // Etiquetas en el eje x
-                datasets: [{
-                    label: 'Registros por mes', // Etiqueta para el dataset
-                    data: [
-                        {{$enero2024}},
-                        {{$febrero2024}},
-                        {{$marzo2024}},
-                        {{$abril2024}},
-                        {{$mayo2024}},
-                        {{$junio2024}},
-                        {{$julio2024}},
-                        {{$agosto2024}},
-                        {{$septiembre2024}},
-                        {{$octubre2024}},
-                        {{$noviembre2024}},
-                        {{$diciembre2024}}
-                    ], // Datos para la gráfica
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',    // Enero - rojo base
-                        'rgba(54, 162, 235, 0.5)',    // Febrero - azul base
-                        'rgba(255, 206, 86, 0.5)',    // Marzo - amarillo base
-                        'rgba(75, 192, 192, 0.5)',    // Abril - verde agua base
-                        'rgba(153, 102, 255, 0.5)',   // Mayo - morado base
-                        'rgba(255, 159, 64, 0.5)',    // Junio - naranja base
-                        'rgba(255, 121, 135, 0.5)',   // Julio - rojo un poco más claro
-                        'rgba(78, 169, 243, 0.5)',    // Agosto - azul más claro
-                        'rgba(255, 215, 120, 0.5)',   // Septiembre - amarillo más suave
-                        'rgba(85, 204, 204, 0.5)',    // Octubre - verde agua más claro
-                        'rgba(178, 138, 255, 0.5)',   // Noviembre - morado más claro
-                        'rgba(255, 180, 100, 0.5)'    // Diciembre - naranja más suave
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',      // Enero
-                        'rgba(54, 162, 235, 1)',      // Febrero
-                        'rgba(255, 206, 86, 1)',      // Marzo
-                        'rgba(75, 192, 192, 1)',      // Abril
-                        'rgba(153, 102, 255, 1)',     // Mayo
-                        'rgba(255, 159, 64, 1)',      // Junio
-                        'rgba(255, 99, 132, 1)',      // Julio (mismo rojo que enero en borde)
-                        'rgba(54, 162, 235, 1)',      // Agosto
-                        'rgba(255, 206, 86, 1)',      // Septiembre
-                        'rgba(75, 192, 192, 1)',      // Octubre
-                        'rgba(153, 102, 255, 1)',     // Noviembre
-                        'rgba(255, 159, 64, 1)'       // Diciembre
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true // Inicia el eje y en cero
-                    }
-                }
-                
-            }
-        });
-    });
-</script>
-
-<!-- GRAFICAS POR TIPO DE INCIDENTE -->
-    <script>
-    // Espera a que el contenido del DOM esté cargado
+    // 11. Gráfica Turno
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPorTipoIncidente').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO','HEMO'],
-            datasets: [{
-                label: 'Número de votos',
-                data: [{{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}},{{$tipoDEB}},{{$tipoACC}},{{$tipoPFR}},{{$tipoSAP}},{{$tipoNUT}},{{$tipoASC}},{{$tipoMCI}},{{$tipoOTRO}},{{$tipoHEMO}},], 
-                backgroundColor: [
-                    'rgba(244, 67, 54, 0.5)',    // Red 500
-                    'rgba(233, 30, 99, 0.5)',    // Pink 500
-                    'rgba(156, 39, 176, 0.5)',   // Purple 500
-                    'rgba(103, 58, 183, 0.5)',   // Deep Purple 500
-                    'rgba(63, 81, 181, 0.5)',    // Indigo 500
-                    'rgba(33, 150, 243, 0.5)',   // Blue 500
-                    'rgba(3, 169, 244, 0.5)',    // Light Blue 500
-                    'rgba(0, 188, 212, 0.5)',    // Cyan 500
-                    'rgba(0, 150, 136, 0.5)',    // Teal 500
-                    'rgba(76, 175, 80, 0.5)',    // Green 500
-                    'rgba(139, 195, 74, 0.5)',   // Light Green 500
-                    'rgba(255, 193, 7, 0.5)'     // Amber 500
-                ],
-                borderColor: [
-                    'rgba(244, 67, 54, 1)',
-                    'rgba(233, 30, 99, 1)',
-                    'rgba(156, 39, 176, 1)',
-                    'rgba(103, 58, 183, 1)',
-                    'rgba(63, 81, 181, 1)',
-                    'rgba(33, 150, 243, 1)',
-                    'rgba(3, 169, 244, 1)',
-                    'rgba(0, 188, 212, 1)',
-                    'rgba(0, 150, 136, 1)',
-                    'rgba(76, 175, 80, 1)',
-                    'rgba(139, 195, 74, 1)',
-                    'rgba(255, 193, 7, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        var ctx = document.getElementById('graficaTurno');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Matutino', 'Vespertino', 'Nocturno', 'J. Acumulada'],
+                    datasets: [{
+                        data: [{{$matutino}}, {{$vespertino}}, {{$nocturno}}, {{$jornadaAcumulada}}],
+                        backgroundColor: ['#e53935', '#1e88e5', '#fdd835', '#00897b'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
-</script>
-
-<!-- GRAFICAS POR GRAVEDAD DEL DAÑO -->
-    <script>
-    // Espera a que el contenido del DOM esté cargado
+    // 12. Tipo de Incidente
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPorGravedadDelDano').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Sin Daño','Bajo','Moderado','Grave','Muerte'],
-            datasets: [{
-                label: 'Número de votos',
-                data: [{{$sinDano}}, {{$bajo}}, {{$moderado}},{{$grave}},{{$muerte}}], 
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',   // Rosa vivo (similar coral suave)
-                    'rgba(54, 162, 235, 0.5)',   // Azul brillante (similar turquesa pastel)
-                    'rgba(75, 192, 192, 0.5)',   // Verde agua (similar verde lima suave)
-                    'rgba(255, 206, 86, 0.5)',   // Amarillo vibrante (similar mostaza claro)
-                    'rgba(153, 102, 255, 0.5)'   // Violeta fuerte (similar violeta pastel)
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        var ctx = document.getElementById('registrosPorTipoIncidente');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO','HEMO'],
+                    datasets: [{
+                        data: [
+                            {{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}}, {{$tipoDEB}}, {{$tipoACC}}, {{$tipoPFR}},
+                            {{$tipoSAP}}, {{$tipoNUT}}, {{$tipoASC}}, {{$tipoMCI}}, {{$tipoOTRO}}, {{$tipoHEMO}}
+                        ],
+                        backgroundColor: [
+                            '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3',
+                            '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#ffc107'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
-</script>
-
-<!-- GRAFICAS PERSONA DIRECTAMENTE INVOLUCRADA -->
-    <script>
-    // Espera a que el contenido del DOM esté cargado
+    // 13. Gravedad del daño
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtén el contexto del canvas
-    var ctx = document.getElementById('registrosPersonaDirectamenteInvolucrada').getContext('2d');
-    
-    // Crea la gráfica de dona
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Administrativo','Camillero','Enfermería','Médico','Nutriólogo','Odontólogo','Otro','Personal En Formación','Químico','Radiólogo'],
-            datasets: [{
-                label: 'Número de votos',
-                data: [{{$PDIAdministrativo}}, {{$PDICamillero}}, {{$PDIEnfermeria}},{{$PDIMedico}},{{$PDINutriologo}},{{$PDIOdontologo}},{{$PDIOtro}},{{$PDIPersonalEnFormacion}},{{$PDIQuimico}},{{$PDIRadiologo}}], 
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',   // Rojo vibrante
-                    'rgba(255, 159, 64, 0.5)',   // Naranja
-                    'rgba(255, 205, 86, 0.5)',   // Amarillo
-                    'rgba(75, 192, 192, 0.5)',   // Verde agua
-                    'rgba(54, 162, 235, 0.5)',   // Azul cielo
-                    'rgba(153, 102, 255, 0.5)',  // Morado
-                    'rgba(201, 203, 207, 0.5)',  // Gris suave
-                    'rgba(255, 99, 255, 0.5)',   // Rosa fuerte
-                    'rgba(0, 191, 255, 0.5)',    // Azul profundo
-                    'rgba(60, 179, 113, 0.5)'    // Verde medio
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 205, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(201, 203, 207, 1)',
-                    'rgba(255, 99, 255, 1)',
-                    'rgba(0, 191, 255, 1)',
-                    'rgba(60, 179, 113, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
+        var ctx = document.getElementById('registrosPorGravedadDelDano');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Sin Daño','Bajo','Moderado','Grave','Muerte'],
+                    datasets: [{
+                        data: [{{$sinDano}}, {{$bajo}}, {{$moderado}}, {{$grave}}, {{$muerte}}],
+                        backgroundColor: ['#4caf50', '#2196f3', '#ffc107', '#ff9800', '#f44336'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            const total = tooltipItem.chart._metasets[tooltipItem.datasetIndex].total;
-                            const value = tooltipItem.raw;
-                            const percentage = ((value / total) * 100).toFixed(1);
-                            return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
+                options: opcionesDoughnutSinLeyenda
+            });
         }
     });
-});
 
+    // 14. Persona Involucrada
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('registrosPersonaDirectamenteInvolucrada');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Admin','Camillero','Enfermería','Médico','Nutriólogo','Odontólogo','Otro','En Formación','Químico','Radiólogo'],
+                    datasets: [{
+                        data: [
+                            {{$PDIAdministrativo}}, {{$PDICamillero}}, {{$PDIEnfermeria}}, {{$PDIMedico}},
+                            {{$PDINutriologo}}, {{$PDIOdontologo}}, {{$PDIOtro}}, {{$PDIPersonalEnFormacion}},
+                            {{$PDIQuimico}}, {{$PDIRadiologo}}
+                        ],
+                        backgroundColor: [
+                            '#f44336', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3',
+                            '#9c27b0', '#9e9e9e', '#e91e63', '#00bcd4', '#2e7d32'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: opcionesDoughnutSinLeyenda
+            });
+        }
+    });
 </script>
-
-
 @stop

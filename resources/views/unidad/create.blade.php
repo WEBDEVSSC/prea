@@ -1,94 +1,169 @@
 @extends('adminlte::page')
 
-@section('title', 'Unidades')
+@section('title', 'Nueva Unidad')
 
 @section('content_header')
-    <h1><strong>Unidades</strong> <small>Nuevo registro</small></h1>
+    <div class="d-flex align-items-center justify-content-between my-2">
+        <div>
+            <h1 class="m-0 font-weight-bold text-dark" style="font-size: 1.75rem;">
+                Nueva Unidad Médica
+            </h1>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                Ingrese los datos correspondientes para dar de alta una unidad en el sistema
+            </p>
+        </div>
+        <div>
+            <a href="{{ route('unidadIndex') }}" class="btn btn-material-outline font-weight-bold px-3 py-2">
+                <i class="fas fa-arrow-left mr-1"></i> Volver a la lista
+            </a>
+        </div>
+    </div>
 @stop
 
 @section('content')
 
-    <!-- -------------------------------------------------------------- -->
+    <form action="{{ route('unidadStore') }}" method="POST">
+        @csrf
 
-    <div class="card card-info">
+        <div class="card card-material mb-4">
+            <div class="card-header bg-transparent border-0 pt-4 px-4 pb-0">
+                <h5 class="card-title font-weight-bold text-dark m-0">
+                    <i class="fas fa-hospital-user text-primary mr-2"></i>Información General
+                </h5>
+            </div>
 
-        <div class="card-header">
-            
-        </div>
-
-        <div class="card-body">   
-            
-            <div class="row">
-                <div class="col-md-12">
-                    
-                <form action="{{ route('unidadStore') }}" method="POST">
-
-                    @csrf
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p>CLUES</p>
-                            <input type="text" name="clues" class="form-control" value="{{ old('clues') }}">
-                            @error('clues')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <p>Jurisdicción</p>
-                            <select name="jurisdiccion" id="jurisdiccion" class="form-control">
-                                <option value="">[ Selecciona una opción ]</option>
-                                <option value="1">1 - Piedras Negras</option>
-                                <option value="2">2 - Acuña</option>
-                                <option value="3">3 - Sabinas</option>
-                                <option value="4">4 - Monclova</option>
-                                <option value="5">5 - Cuatro Cienégas</option>
-                                <option value="6">6 - Torreón</option>
-                                <option value="7">7 - Fco. I. Madero</option>
-                                <option value="8">8 - Saltillo</option>
-                            </select>
-                            @error('area')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <p>Unidad</p>
-                            <input type="text" name="unidad" class="form-control" value="{{ old('unidad') }}">
-                            @error('unidad')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-3">
-                            <p>Categoria</p>
-                            <input type="text" name="categoria" class="form-control" value="{{ old('categoria') }}">
-                            @error('categoria')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="clues" class="form-label font-weight-bold text-secondary">CLUES</label>
+                        <input type="text" name="clues" id="clues" 
+                               class="form-control form-control-material @error('clues') is-invalid @enderror" 
+                               value="{{ old('clues') }}" 
+                               placeholder="Ej. COSSA000000">
+                        @error('clues')
+                            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
 
+                    <div class="col-md-3 mb-3">
+                        <label for="jurisdiccion" class="form-label font-weight-bold text-secondary">Jurisdicción</label>
+                        <select name="jurisdiccion" id="jurisdiccion" 
+                                class="form-control form-control-material @error('jurisdiccion') is-invalid @enderror">
+                            <option value="">[ Selecciona una opción ]</option>
+                            <option value="1" {{ old('jurisdiccion') == '1' ? 'selected' : '' }}>1 - Piedras Negras</option>
+                            <option value="2" {{ old('jurisdiccion') == '2' ? 'selected' : '' }}>2 - Acuña</option>
+                            <option value="3" {{ old('jurisdiccion') == '3' ? 'selected' : '' }}>3 - Sabinas</option>
+                            <option value="4" {{ old('jurisdiccion') == '4' ? 'selected' : '' }}>4 - Monclova</option>
+                            <option value="5" {{ old('jurisdiccion') == '5' ? 'selected' : '' }}>5 - Cuatro Ciénegas</option>
+                            <option value="6" {{ old('jurisdiccion') == '6' ? 'selected' : '' }}>6 - Torreón</option>
+                            <option value="7" {{ old('jurisdiccion') == '7' ? 'selected' : '' }}>7 - Fco. I. Madero</option>
+                            <option value="8" {{ old('jurisdiccion') == '8' ? 'selected' : '' }}>8 - Saltillo</option>
+                        </select>
+                        @error('jurisdiccion')
+                            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="unidad" class="form-label font-weight-bold text-secondary">Nombre de la Unidad</label>
+                        <input type="text" name="unidad" id="unidad" 
+                               class="form-control form-control-material @error('unidad') is-invalid @enderror" 
+                               value="{{ old('unidad') }}" 
+                               placeholder="Nombre oficial">
+                        @error('unidad')
+                            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="categoria" class="form-label font-weight-bold text-secondary">Categoría</label>
+                        <input type="text" name="categoria" id="categoria" 
+                               class="form-control form-control-material @error('categoria') is-invalid @enderror" 
+                               value="{{ old('categoria') }}" 
+                               placeholder="Ej. Hospital General">
+                        @error('categoria')
+                            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
-        </div><!-- CARD BODY -->
-
-        <div class="card-footer">
-
-            <button type="submit" class="btn btn-info btn-sm float-right">REGISTRAR DATOS</button>
-            
+            <div class="card-footer bg-light border-0 p-4 d-flex justify-content-end align-items-center">
+                <a href="{{ route('unidadIndex') }}" class="btn btn-material-outline font-weight-bold px-4 py-2 mr-2">
+                    Cancelar
+                </a>
+                <button type="submit" class="btn btn-material-primary font-weight-bold px-4 py-2">
+                    <i class="fas fa-save mr-1"></i> Registrar Datos
+                </button>
+            </div>
         </div>
-    </div>
-</form>
-    <!-- -------------------------------------------------------------- -->
+    </form>
 
-    
 @stop
 
+@include('layouts.footer')
+
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body, .content-wrapper {
+            font-family: 'Roboto', sans-serif !important;
+            background-color: #e9ecef !important;
+        }
+
+        .card-material {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+            background-color: #ffffff !important;
+            overflow: hidden;
+        }
+
+        .form-control-material {
+            border-radius: 6px;
+            border: 1px solid #ced4da;
+            padding: 0.6rem 0.75rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-control-material:focus {
+            border-color: #1976d2;
+            box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.15);
+        }
+
+        .btn-material-primary {
+            background-color: #1976d2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-material-primary:hover {
+            background-color: #1565c0;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(25, 118, 210, 0.4);
+        }
+
+        .btn-material-outline {
+            background-color: transparent;
+            color: #6c757d;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-material-outline:hover {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+    </style>
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script>
+        console.log("Vista de registro de unidad cargada correctamente.");
+    </script>
 @stop
