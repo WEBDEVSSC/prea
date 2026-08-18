@@ -286,13 +286,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
-    /* Aplicación general de fuente Roboto */
     body, .content-wrapper {
         font-family: 'Roboto', sans-serif !important;
-        background-color: #e9ecef !important; /* Gris claro institucional de fondo */
+        background-color: #e9ecef !important;
     }
 
-    /* Tarjetas principales estilo Material Design */
     .card-material {
         border: 1px solid rgba(0, 0, 0, 0.04) !important;
         border-radius: 12px !important;
@@ -305,7 +303,6 @@
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
     }
 
-    /* Tarjetas de Widgets/Resumen estilo Material */
     .card-material-widget {
         border: none !important;
         border-radius: 12px !important;
@@ -352,7 +349,6 @@
         opacity: 0.8;
     }
 
-    /* Modificadores de Colores para Íconos e Indicadores Material */
     .bg-success-light { background-color: #e8f5e9; color: #2e7d32; }
     .bg-warning-light { background-color: #fff8e1; color: #f57f17; }
     .bg-danger-light { background-color: #ffebee; color: #c62828; }
@@ -363,17 +359,22 @@
 @stop
 
 @section('js')
+<!-- Plugin de Chart.js para Etiquetas de Datos (Datalabels) -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
 <script>
-    // Configuración global estética para Chart.js
     document.addEventListener('DOMContentLoaded', function() {
         if (window.Chart) {
+            // Registro global del plugin datalabels
+            Chart.register(ChartDataLabels);
+
             Chart.defaults.font.family = 'Roboto, sans-serif';
             Chart.defaults.color = '#495057';
             Chart.defaults.font.size = 11;
         }
     });
 
-    // Configuración base reutilizable para gráficas circulares (sin leyendas)
+    // Configuración base con DataLabels activado para Gráficas Circulares
     const opcionesDoughnutSinLeyenda = {
         responsive: true,
         maintainAspectRatio: false,
@@ -383,7 +384,54 @@
             },
             tooltip: {
                 enabled: true
+            },
+            datalabels: {
+                color: '#ffffff',
+                font: {
+                    weight: 'bold',
+                    size: 11
+                },
+                // Oculta la etiqueta si la rebanada es menor al 4% para evitar amontonamiento
+                display: function(context) {
+                    var dataset = context.dataset;
+                    var count = dataset.data.length;
+                    var value = dataset.data[context.dataIndex];
+                    var total = dataset.data.reduce((a, b) => a + Number(b), 0);
+                    return total > 0 && (value / total) > 0.04;
+                },
+                formatter: function(value, context) {
+                    return value;
+                }
             }
+        }
+    };
+
+    // Configuración para Gráficas de Barras
+    const opcionesBarrasEstandar = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#333333',
+                font: {
+                    weight: 'bold',
+                    size: 10
+                },
+                formatter: function(value) {
+                    return value > 0 ? value : '';
+                }
+            }
+        },
+        scales: {
+            y: { 
+                beginAtZero: true, 
+                grid: { color: 'rgba(0, 0, 0, 0.04)' },
+                grace: '8%' // Espacio extra arriba para que la etiqueta no quede cortada
+            },
+            x: { grid: { display: false } }
         }
     };
 
@@ -419,17 +467,7 @@
                         }
                     ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'top' }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: 'rgba(0, 0, 0, 0.04)' } },
-                        x: { grid: { display: false } }
-                    }
-                }
+                options: opcionesBarrasEstandar
             });
         }
     });
@@ -449,11 +487,7 @@
                         { label: '2026', data: datosCuasiFallaHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
                     ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-                }
+                options: opcionesBarrasEstandar
             });
         }
     });
@@ -473,11 +507,7 @@
                         { label: '2026', data: datosAdversoHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
                     ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-                }
+                options: opcionesBarrasEstandar
             });
         }
     });
@@ -497,11 +527,7 @@
                         { label: '2026', data: datosCentinelaHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
                     ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-                }
+                options: opcionesBarrasEstandar
             });
         }
     });
