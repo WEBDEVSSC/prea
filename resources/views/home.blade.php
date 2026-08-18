@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Estadístico')
 
 @section('plugins.Chartjs', true)
 
 @section('content_header')
     <div class="d-flex align-items-center justify-content-between mb-2 mt-2">
         <h1 class="m-0 font-weight-bold text-dark" style="font-size: 1.75rem;">
-            Dashboard <small class="text-muted" style="font-size: 1.1rem; font-weight: 400;"><?php echo date('Y'); ?></small>
+            Dashboard Estadístico de Seguridad del Paciente <small class="text-muted" style="font-size: 1.1rem; font-weight: 400;"><?php echo date('Y'); ?></small>
         </h1>
     </div>
 @stop
@@ -97,10 +97,10 @@
 
     <!-- SECCIÓN DE GRÁFICAS PRINCIPALES -->
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Reportes por Nivel de Atención</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Distribución por Nivel de Atención</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 300px;">
@@ -109,10 +109,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Resumen por mes</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Tendencia Mensual por Tipo de Evento</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 300px;">
@@ -128,7 +128,7 @@
         <div class="col-md-4">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Comparativo Anual CuasiFalla</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Evolución Anual: Cuasi-Falla</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -141,7 +141,7 @@
         <div class="col-md-4">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Comparativo Anual Adverso</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Evolución Anual: Evento Adverso</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -154,7 +154,7 @@
         <div class="col-md-4">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Comparativo Anual Centinela</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Evolución Anual: Evento Centinela</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -165,25 +165,12 @@
         </div>
     </div>
 
-    <!-- DETALLES DEMOGRÁFICOS -->
+    <!-- ANÁLISIS DEMOGRÁFICO Y DISTRIBUCIÓN -->
     <div class="row">
         <div class="col-md-3">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Registros por jurisdicción</h3>
-                </div>
-                <div class="card-body">
-                    <div style="position: relative; height: 280px;">
-                        <canvas id="registrosPorJurisdiccion"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card card-material mb-4">
-                <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Registros por sexo</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Distribución por Sexo</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -196,7 +183,7 @@
         <div class="col-md-3">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Rangos de edad</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Grupo Etario (Edad)</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -209,23 +196,7 @@
         <div class="col-md-3">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 0.95rem;">Lugar / Área del evento</h3>
-                </div>
-                <div class="card-body">
-                    <div style="position: relative; height: 280px;">
-                        <canvas id="graficaAreaEventoAdverso"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- OTROS FACTORES -->
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card card-material mb-4">
-                <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Turno</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Distribución por Turno</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -238,20 +209,7 @@
         <div class="col-md-3">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Tipo de Incidente</h3>
-                </div>
-                <div class="card-body">
-                    <div style="position: relative; height: 280px;">
-                        <canvas id="registrosPorTipoIncidente"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card card-material mb-4">
-                <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Gravedad del daño</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Gravedad del Daño</h3>
                 </div>
                 <div class="card-body">
                     <div style="position: relative; height: 280px;">
@@ -260,14 +218,58 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-3">
+    <!-- ANÁLISIS DE CATEGORÍAS COMPLEJAS CON BARRAS HORIZONTALES -->
+    <div class="row">
+        <div class="col-md-6">
             <div class="card card-material mb-4">
                 <div class="card-header border-0 bg-transparent pt-3 pb-0">
-                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 0.9rem;">Persona involucrada</h3>
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Rankings: Ocurrencia por Área / Lugar</h3>
                 </div>
                 <div class="card-body">
-                    <div style="position: relative; height: 280px;">
+                    <div style="position: relative; height: 420px;">
+                        <canvas id="graficaAreaEventoAdverso"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Rankings: Tipo de Incidente Ocurrido</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 420px;">
+                        <canvas id="registrosPorTipoIncidente"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Incidencia por Jurisdicción Sanitarias</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 350px;">
+                        <canvas id="registrosPorJurisdiccion"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-material mb-4">
+                <div class="card-header border-0 bg-transparent pt-3 pb-0">
+                    <h3 class="card-title text-dark font-weight-bold" style="font-size: 1rem;">Personal Involucrado en Incidentes</h3>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative; height: 350px;">
                         <canvas id="registrosPersonaDirectamenteInvolucrada"></canvas>
                     </div>
                 </div>
@@ -282,44 +284,32 @@
 @include('layouts.footer')
 
 @section('css')
-<!-- Google Fonts: Roboto -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
     body, .content-wrapper {
         font-family: 'Roboto', sans-serif !important;
-        background-color: #e9ecef !important;
+        background-color: #f4f6f9 !important;
     }
 
     .card-material {
-        border: 1px solid rgba(0, 0, 0, 0.04) !important;
-        border-radius: 12px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        border: none !important;
+        border-radius: 10px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
         background-color: #ffffff !important;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card-material:hover {
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
     }
 
     .card-material-widget {
         border: none !important;
-        border-radius: 12px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+        border-radius: 10px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
         background-color: #ffffff !important;
-        transition: transform 0.2s ease;
-    }
-
-    .card-material-widget:hover {
-        transform: translateY(-3px);
     }
 
     .widget-title {
-        font-size: 0.85rem;
-        font-weight: 500;
+        font-size: 0.8rem;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         color: #6c757d;
     }
 
@@ -330,23 +320,13 @@
     }
 
     .widget-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.25rem;
-    }
-
-    .widget-link {
-        font-size: 0.85rem;
-        text-decoration: none !important;
-        transition: opacity 0.2s ease;
-    }
-
-    .widget-link:hover {
-        opacity: 0.8;
+        font-size: 1.2rem;
     }
 
     .bg-success-light { background-color: #e8f5e9; color: #2e7d32; }
@@ -359,248 +339,199 @@
 @stop
 
 @section('js')
-<!-- Plugin de Chart.js para Etiquetas de Datos (Datalabels) -->
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (window.Chart) {
-            // Registro global del plugin datalabels
             Chart.register(ChartDataLabels);
-
             Chart.defaults.font.family = 'Roboto, sans-serif';
             Chart.defaults.color = '#495057';
             Chart.defaults.font.size = 11;
         }
     });
 
-    // Configuración base con DataLabels activado para Gráficas Circulares
-    const opcionesDoughnutSinLeyenda = {
+    // CONFIGURACIÓN 1: Donas con lectura de Valor + Porcentaje (%)
+    const opcionesDoughnutPorcentaje = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false
+                position: 'bottom',
+                labels: { boxWidth: 12, padding: 12 }
             },
             tooltip: {
-                enabled: true
+                callbacks: {
+                    label: function(context) {
+                        let total = context.dataset.data.reduce((a, b) => a + Number(b), 0);
+                        let val = context.raw || 0;
+                        let pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+                        return ` ${context.label}: ${val} (${pct}%)`;
+                    }
+                }
             },
             datalabels: {
                 color: '#ffffff',
-                font: {
-                    weight: 'bold',
-                    size: 11
-                },
-                // Oculta la etiqueta si la rebanada es menor al 4% para evitar amontonamiento
-                display: function(context) {
-                    var dataset = context.dataset;
-                    var count = dataset.data.length;
-                    var value = dataset.data[context.dataIndex];
-                    var total = dataset.data.reduce((a, b) => a + Number(b), 0);
-                    return total > 0 && (value / total) > 0.04;
-                },
+                font: { weight: 'bold', size: 10 },
                 formatter: function(value, context) {
-                    return value;
-                }
+                    let total = context.dataset.data.reduce((a, b) => a + Number(b), 0);
+                    if (total === 0 || value === 0) return '';
+                    let pct = ((value / total) * 100).toFixed(0);
+                    return pct > 3 ? `${value}\n(${pct}%)` : '';
+                },
+                textAlign: 'center'
             }
         }
     };
 
-    // Configuración para Gráficas de Barras
-    const opcionesBarrasEstandar = {
+    // CONFIGURACIÓN 2: Barras Verticales (SIN PORCENTAJES - Solo Valor Absoluto)
+    const opcionesBarrasEstandarSoloValores = {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
         plugins: {
             legend: { position: 'top' },
             datalabels: {
                 anchor: 'end',
                 align: 'top',
-                color: '#333333',
-                font: {
-                    weight: 'bold',
-                    size: 10
-                },
+                color: '#495057',
+                font: { weight: 'bold', size: 9 },
                 formatter: function(value) {
-                    return value > 0 ? value : '';
+                    return (value && value > 0) ? value : '';
                 }
             }
         },
         scales: {
-            y: { 
-                beginAtZero: true, 
-                grid: { color: 'rgba(0, 0, 0, 0.04)' },
-                grace: '8%' // Espacio extra arriba para que la etiqueta no quede cortada
-            },
+            y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, grace: '15%' },
             x: { grid: { display: false } }
         }
     };
 
-    // 1. Convertir PHP a JS
+    // CONFIGURACIÓN 3: Barras Horizontales con Valor + Porcentaje
+    const opcionesBarrasHorizontales = {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            datalabels: {
+                anchor: 'end',
+                align: 'end',
+                color: '#333333',
+                font: { weight: 'bold', size: 9 },
+                formatter: function(value, context) {
+                    if (!value || value === 0) return '';
+                    let dataset = context.dataset.data;
+                    let total = dataset.reduce((a, b) => a + Number(b || 0), 0);
+                    let pct = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                    return `${value} (${pct}%)`;
+                }
+            }
+        },
+        scales: {
+            x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, grace: '20%' },
+            y: { grid: { display: false } }
+        }
+    };
+
+    // Función Auxiliar para ordenar datos de Barras Horizontales Descendentes
+    function ordenarDatosHorizontal(labels, data, color) {
+        let combinados = labels.map((l, i) => ({ label: l, val: data[i] }));
+        combinados.sort((a, b) => b.val - a.val);
+        return {
+            labels: combinados.map(item => item.label),
+            datasets: [{
+                data: combinados.map(item => item.val),
+                backgroundColor: color,
+                borderRadius: 4
+            }]
+        };
+    }
+
+    // Carga de Datos PHP
     const datosPorTipo = @json($datosPorTipo);
-
-    // 2. Gráfica Resumen por mes
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('myBarCharts');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    datasets: [
-                        {
-                            label: 'Cuasifalla',
-                            data: datosPorTipo.Cuasifalla,
-                            backgroundColor: 'rgba(46, 125, 50, 0.85)',
-                            borderRadius: 4
-                        },
-                        {
-                            label: 'Adverso',
-                            data: datosPorTipo.Adverso,
-                            backgroundColor: 'rgba(245, 127, 23, 0.85)',
-                            borderRadius: 4
-                        },
-                        {
-                            label: 'Centinela',
-                            data: datosPorTipo.Centinela,
-                            backgroundColor: 'rgba(198, 40, 40, 0.85)',
-                            borderRadius: 4
-                        }
-                    ]
-                },
-                options: opcionesBarrasEstandar
-            });
-        }
-    });
-
-    // 3. Comparativo Anual CuasiFalla
     const datosCuasiFallaHistorico = @json($datosCuasiFallaHistorico);
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('myBarChartsCuasiFallaHistorico');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    datasets: [
-                        { label: '2024', data: datosCuasiFallaHistorico[2024], backgroundColor: 'rgba(33, 150, 243, 0.85)', borderRadius: 4 },
-                        { label: '2025', data: datosCuasiFallaHistorico[2025], backgroundColor: 'rgba(76, 175, 80, 0.85)', borderRadius: 4 },
-                        { label: '2026', data: datosCuasiFallaHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
-                    ]
-                },
-                options: opcionesBarrasEstandar
-            });
-        }
-    });
-
-    // 4. Comparativo Anual Adverso
     const datosAdversoHistorico = @json($datosAdversoHistorico);
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('myBarChartsAdversoHistorico');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    datasets: [
-                        { label: '2024', data: datosAdversoHistorico[2024], backgroundColor: 'rgba(33, 150, 243, 0.85)', borderRadius: 4 },
-                        { label: '2025', data: datosAdversoHistorico[2025], backgroundColor: 'rgba(76, 175, 80, 0.85)', borderRadius: 4 },
-                        { label: '2026', data: datosAdversoHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
-                    ]
-                },
-                options: opcionesBarrasEstandar
-            });
-        }
-    });
-
-    // 5. Comparativo Anual Centinela
     const datosCentinelaHistorico = @json($datosCentinelaHistorico);
+
     document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('myBarChartsCentinelaHistorico');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
+        
+        // 1. Tendencia Mensual por Tipo de Evento (SOLO NÚMEROS / SIN PORCENTAJES)
+        const ctxMes = document.getElementById('myBarCharts');
+        if (ctxMes) {
+            new Chart(ctxMes.getContext('2d'), {
                 type: 'bar',
                 data: {
                     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
                     datasets: [
-                        { label: '2024', data: datosCentinelaHistorico[2024], backgroundColor: 'rgba(33, 150, 243, 0.85)', borderRadius: 4 },
-                        { label: '2025', data: datosCentinelaHistorico[2025], backgroundColor: 'rgba(76, 175, 80, 0.85)', borderRadius: 4 },
-                        { label: '2026', data: datosCentinelaHistorico[2026], backgroundColor: 'rgba(244, 67, 54, 0.85)', borderRadius: 4 }
+                        { label: 'Cuasifalla', data: datosPorTipo.Cuasifalla, backgroundColor: '#2e7d32', borderRadius: 3 },
+                        { label: 'Adverso', data: datosPorTipo.Adverso, backgroundColor: '#f57f17', borderRadius: 3 },
+                        { label: 'Centinela', data: datosPorTipo.Centinela, backgroundColor: '#c62828', borderRadius: 3 }
                     ]
                 },
-                options: opcionesBarrasEstandar
+                options: opcionesBarrasEstandarSoloValores
             });
         }
-    });
 
-    // 6. Gráficas por Sexo
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPorSexo');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
+        // 2. Evolución Anual Histórica (SOLO NÚMEROS / SIN PORCENTAJES)
+        ['CuasiFallaHistorico', 'AdversoHistorico', 'CentinelaHistorico'].forEach((type) => {
+            let elem = document.getElementById(`myBarCharts${type}`);
+            let source = type === 'CuasiFallaHistorico' ? datosCuasiFallaHistorico :
+                         type === 'AdversoHistorico' ? datosAdversoHistorico : datosCentinelaHistorico;
+            if (elem) {
+                new Chart(elem.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                        datasets: [
+                            { label: '2024', data: source[2024], backgroundColor: '#90caf9', borderRadius: 3 },
+                            { label: '2025', data: source[2025], backgroundColor: '#42a5f5', borderRadius: 3 },
+                            { label: '2026', data: source[2026], backgroundColor: '#1565c0', borderRadius: 3 }
+                        ]
+                    },
+                    options: opcionesBarrasEstandarSoloValores
+                });
+            }
+        });
+
+        // 3. Distribución por Sexo
+        const ctxSexo = document.getElementById('registrosPorSexo');
+        if (ctxSexo) {
+            new Chart(ctxSexo.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['Masculino', 'Femenino'],
                     datasets: [{
                         data: [{{$totalMasculino}}, {{$totalFemenino}}],
-                        backgroundColor: ['#2196f3', '#9c27b0'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
+                        backgroundColor: ['#0288d1', '#ab47bc'],
+                        borderWidth: 2, borderColor: '#ffffff'
                     }]
                 },
-                options: opcionesDoughnutSinLeyenda
+                options: opcionesDoughnutPorcentaje
             });
         }
-    });
 
-    // 7. Gráficas por Nivel de Atención
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPorNivelDeAtencion');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
+        // 4. Nivel de Atención
+        const ctxNivel = document.getElementById('registrosPorNivelDeAtencion');
+        if (ctxNivel) {
+            new Chart(ctxNivel.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['Primer Nivel', 'Segundo Nivel', 'Tercer Nivel'],
                     datasets: [{
                         data: [{{$primerNivel}}, {{$segundoNivel}}, {{$tercerNivel}}],
-                        backgroundColor: ['#03a9f4', '#ffc107', '#f44336'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
+                        backgroundColor: ['#00acc1', '#ffb300', '#e53935'],
+                        borderWidth: 2, borderColor: '#ffffff'
                     }]
                 },
-                options: opcionesDoughnutSinLeyenda
+                options: opcionesDoughnutPorcentaje
             });
         }
-    });
 
-    // 8. Gráficas por Jurisdicción
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPorJurisdiccion');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8'],
-                    datasets: [{
-                        data: [
-                            {{$totalJurisdiccionUno}}, {{$totalJurisdiccionDos}}, {{$totalJurisdiccionTres}},
-                            {{$totalJurisdiccionCuatro}}, {{$totalJurisdiccionCinco}}, {{$totalJurisdiccionSeis}},
-                            {{$totalJurisdiccionSiete}}, {{$totalJurisdiccionOcho}}
-                        ],
-                        backgroundColor: ['#2196f3', '#9c27b0', '#ff9800', '#00bcd4', '#f44336', '#3f51b5', '#ffeb3b', '#673ab7'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: opcionesDoughnutSinLeyenda
-            });
-        }
-    });
-
-    // 9. Rangos de Edad
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPorRangoDeEdad');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
+        // 5. Grupo Etario (Edad)
+        const ctxEdad = document.getElementById('registrosPorRangoDeEdad');
+        if (ctxEdad) {
+            new Chart(ctxEdad.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['1ra Infancia','Infancia','Adolescencia','Juventud','Adultez','Mayor'],
@@ -609,142 +540,102 @@
                             {{$totalPrimeraInfancia}}, {{$totalInfancia}}, {{$totalAdolescencia}},
                             {{$totalJuventud}}, {{$totalAdultez}}, {{$totalPersonaMayor}}
                         ],
-                        backgroundColor: ['#e91e63', '#2196f3', '#ffc107', '#00bcd4', '#9c27b0', '#ff9800'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
+                        backgroundColor: ['#ec407a', '#1e88e5', '#fdd835', '#26a69a', '#ab47bc', '#fb8c00'],
+                        borderWidth: 2, borderColor: '#ffffff'
                     }]
                 },
-                options: opcionesDoughnutSinLeyenda
+                options: opcionesDoughnutPorcentaje
             });
         }
-    });
 
-    // 10. Área del Evento Adverso
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('graficaAreaEventoAdverso');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: [
-                        'Almacén', 'Cendis', 'CEYE', 'Consulta Externa', 'Dental', 'Farmacia', 
-                        'Hospitalización', 'Imagenología', 'Laboratorio', 'Medicina Preventiva', 
-                        'Nutrición', 'Patología', 'Quirófano', 'Salud Reproductiva', 'Tococirugía', 
-                        'UCI Adultos', 'UCI Neonatales', 'UCI Pediátricos', 'Urgencias'
-                    ],
-                    datasets: [{
-                        data: [
-                            {{ $almacen }}, {{ $cendis }}, {{ $ceye }}, {{ $consultaExterna }}, {{ $dental }},
-                            {{ $farmacia }}, {{ $hospitalizacion }}, {{ $imagenologia }}, {{ $laboratorio }},
-                            {{ $medicinaPreventiva }}, {{ $nutricion }}, {{ $patologia }}, {{ $quirofano }},
-                            {{ $saludReproductiva }}, {{ $tococirugia }}, {{ $UCIAdultos }}, {{ $UCINeonatales }},
-                            {{ $UCIPediatricos }}, {{ $urgencias }}
-                        ],
-                        backgroundColor: [
-                            '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4',
-                            '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107',
-                            '#ff9800', '#ff5722', '#795548', '#9e9e9e', '#607d8b'
-                        ],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: opcionesDoughnutSinLeyenda
-            });
-        }
-    });
-
-    // 11. Gráfica Turno
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('graficaTurno');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
+        // 6. Turno
+        const ctxTurno = document.getElementById('graficaTurno');
+        if (ctxTurno) {
+            new Chart(ctxTurno.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['Matutino', 'Vespertino', 'Nocturno', 'J. Acumulada'],
                     datasets: [{
                         data: [{{$matutino}}, {{$vespertino}}, {{$nocturno}}, {{$jornadaAcumulada}}],
-                        backgroundColor: ['#e53935', '#1e88e5', '#fdd835', '#00897b'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
+                        backgroundColor: ['#fbc02d', '#1976d2', '#4527a0', '#00796b'],
+                        borderWidth: 2, borderColor: '#ffffff'
                     }]
                 },
-                options: opcionesDoughnutSinLeyenda
+                options: opcionesDoughnutPorcentaje
             });
         }
-    });
 
-    // 12. Tipo de Incidente
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPorTipoIncidente');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO','HEMO'],
-                    datasets: [{
-                        data: [
-                            {{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}}, {{$tipoDEB}}, {{$tipoACC}}, {{$tipoPFR}},
-                            {{$tipoSAP}}, {{$tipoNUT}}, {{$tipoASC}}, {{$tipoMCI}}, {{$tipoOTRO}}, {{$tipoHEMO}}
-                        ],
-                        backgroundColor: [
-                            '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3',
-                            '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#ffc107'
-                        ],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: opcionesDoughnutSinLeyenda
-            });
-        }
-    });
-
-    // 13. Gravedad del daño
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPorGravedadDelDano');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
+        // 7. Gravedad del Daño
+        const ctxGravedad = document.getElementById('registrosPorGravedadDelDano');
+        if (ctxGravedad) {
+            new Chart(ctxGravedad.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['Sin Daño','Bajo','Moderado','Grave','Muerte'],
                     datasets: [{
                         data: [{{$sinDano}}, {{$bajo}}, {{$moderado}}, {{$grave}}, {{$muerte}}],
-                        backgroundColor: ['#4caf50', '#2196f3', '#ffc107', '#ff9800', '#f44336'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
+                        backgroundColor: ['#43a047', '#29b6f6', '#ffa726', '#ef5350', '#b71c1c'],
+                        borderWidth: 2, borderColor: '#ffffff'
                     }]
                 },
-                options: opcionesDoughnutSinLeyenda
+                options: opcionesDoughnutPorcentaje
             });
         }
-    });
 
-    // 14. Persona Involucrada
-    document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('registrosPersonaDirectamenteInvolucrada');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Admin','Camillero','Enfermería','Médico','Nutriólogo','Odontólogo','Otro','En Formación','Químico','Radiólogo'],
-                    datasets: [{
-                        data: [
-                            {{$PDIAdministrativo}}, {{$PDICamillero}}, {{$PDIEnfermeria}}, {{$PDIMedico}},
-                            {{$PDINutriologo}}, {{$PDIOdontologo}}, {{$PDIOtro}}, {{$PDIPersonalEnFormacion}},
-                            {{$PDIQuimico}}, {{$PDIRadiologo}}
-                        ],
-                        backgroundColor: [
-                            '#f44336', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3',
-                            '#9c27b0', '#9e9e9e', '#e91e63', '#00bcd4', '#2e7d32'
-                        ],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: opcionesDoughnutSinLeyenda
+        // 8. Rankings Complejos (Barras Horizontales)
+
+        // Área / Lugar del Evento
+        const ctxArea = document.getElementById('graficaAreaEventoAdverso');
+        if (ctxArea) {
+            let labels = ['Almacén', 'Cendis', 'CEYE', 'Consulta Externa', 'Dental', 'Farmacia', 'Hospitalización', 'Imagenología', 'Laboratorio', 'Medicina Preventiva', 'Nutrición', 'Patología', 'Quirófano', 'Salud Reproductiva', 'Tococirugía', 'UCI Adultos', 'UCI Neonatales', 'UCI Pediátricos', 'Urgencias'];
+            let data = [{{ $almacen }}, {{ $cendis }}, {{ $ceye }}, {{ $consultaExterna }}, {{ $dental }}, {{ $farmacia }}, {{ $hospitalizacion }}, {{ $imagenologia }}, {{ $laboratorio }}, {{ $medicinaPreventiva }}, {{ $nutricion }}, {{ $patologia }}, {{ $quirofano }}, {{ $saludReproductiva }}, {{ $tococirugia }}, {{ $UCIAdultos }}, {{ $UCINeonatales }}, {{ $UCIPediatricos }}, {{ $urgencias }}];
+            
+            new Chart(ctxArea.getContext('2d'), {
+                type: 'bar',
+                data: ordenarDatosHorizontal(labels, data, 'rgba(30, 136, 229, 0.85)'),
+                options: opcionesBarrasHorizontales
             });
         }
+
+        // Tipo de Incidente
+        const ctxIncidente = document.getElementById('registrosPorTipoIncidente');
+        if (ctxIncidente) {
+            let labels = ['AESP','MMU','PCI','DEB','ACC','PFR','SAD','NUT','ASC','MCI','OTRO','HEMO'];
+            let data = [{{$tipoAESP}}, {{$tipoMMU}}, {{$tipoPCI}}, {{$tipoDEB}}, {{$tipoACC}}, {{$tipoPFR}}, {{$tipoSAP}}, {{$tipoNUT}}, {{$tipoASC}}, {{$tipoMCI}}, {{$tipoOTRO}}, {{$tipoHEMO}}];
+
+            new Chart(ctxIncidente.getContext('2d'), {
+                type: 'bar',
+                data: ordenarDatosHorizontal(labels, data, 'rgba(0, 150, 136, 0.85)'),
+                options: opcionesBarrasHorizontales
+            });
+        }
+
+        // Jurisdicción Sanitarias
+        const ctxJuris = document.getElementById('registrosPorJurisdiccion');
+        if (ctxJuris) {
+            let labels = ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8'];
+            let data = [{{$totalJurisdiccionUno}}, {{$totalJurisdiccionDos}}, {{$totalJurisdiccionTres}}, {{$totalJurisdiccionCuatro}}, {{$totalJurisdiccionCinco}}, {{$totalJurisdiccionSeis}}, {{$totalJurisdiccionSiete}}, {{$totalJurisdiccionOcho}}];
+
+            new Chart(ctxJuris.getContext('2d'), {
+                type: 'bar',
+                data: ordenarDatosHorizontal(labels, data, 'rgba(124, 77, 255, 0.85)'),
+                options: opcionesBarrasHorizontales
+            });
+        }
+
+        // Persona Involucrada
+        const ctxPersona = document.getElementById('registrosPersonaDirectamenteInvolucrada');
+        if (ctxPersona) {
+            let labels = ['Admin','Camillero','Enfermería','Médico','Nutriólogo','Odontólogo','Otro','En Formación','Químico','Radiólogo'];
+            let data = [{{$PDIAdministrativo}}, {{$PDICamillero}}, {{$PDIEnfermeria}}, {{$PDIMedico}}, {{$PDINutriologo}}, {{$PDIOdontologo}}, {{$PDIOtro}}, {{$PDIPersonalEnFormacion}}, {{$PDIQuimico}}, {{$PDIRadiologo}}];
+
+            new Chart(ctxPersona.getContext('2d'), {
+                type: 'bar',
+                data: ordenarDatosHorizontal(labels, data, 'rgba(255, 112, 67, 0.85)'),
+                options: opcionesBarrasHorizontales
+            });
+        }
+
     });
 </script>
 @stop
